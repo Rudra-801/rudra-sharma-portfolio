@@ -1,0 +1,189 @@
+/* NEXZO V139 — terminal task states, readable Planner rows and consistent card rhythm. */
+
+/* Planner rows: each region owns its space; status controls no longer collide. */
+body.planner-page .task-row {
+  grid-template-columns: 104px minmax(270px, 1.55fr) minmax(120px, .68fr) minmax(132px, .76fr) minmax(108px, .6fr) minmax(210px, 1fr) 96px !important;
+  align-items: center !important;
+  gap: 18px !important;
+  min-height: 166px !important;
+  padding: 22px 20px !important;
+}
+body.planner-page .task-row .time {
+  min-height: 72px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  border-radius: 16px;
+}
+body.planner-page .task-row .task-title {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+}
+body.planner-page .task-row .task-title b { line-height: 1.3 !important; }
+body.planner-page .task-row .task-title small { line-height: 1.55 !important; }
+body.planner-page .task-row .tag {
+  width: 100% !important;
+  min-height: 38px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px !important;
+  text-align: center;
+  line-height: 1.25;
+}
+body.planner-page .task-row .status-area {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-content: center;
+  justify-items: stretch;
+  gap: 12px !important;
+  width: 100%;
+}
+body.planner-page .task-row .status-pill { justify-self: start; }
+body.planner-page .task-row .run-tools {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px !important;
+  width: 100%;
+}
+body.planner-page .task-row .task-timer {
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 999px;
+  text-align: center;
+}
+body.planner-page .task-row .progress { width: 100%; }
+body.planner-page .task-row .score-note { line-height: 1.35; }
+body.planner-page .task-row .actions {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  align-content: center;
+  gap: 10px !important;
+}
+body.planner-page .task-row.submitted {
+  --x: #22d3ee !important;
+  border-color: rgba(34, 211, 238, .48) !important;
+}
+body.planner-page .status-pill.submitted {
+  color: #a5f3fc !important;
+  border-color: rgba(34, 211, 238, .4) !important;
+  background: rgba(8, 145, 178, .16) !important;
+}
+
+/* Community right rail: cards must never visually touch each other. */
+body[data-current-page="community"] .community-pro-side {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-content: start !important;
+  gap: 24px !important;
+}
+body[data-current-page="community"] .community-pro-side > section {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+body[data-current-page="community"] .community-side-card {
+  padding: 24px !important;
+  border-radius: 22px !important;
+}
+body[data-current-page="community"] .community-side-card .side-title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin-bottom: 18px !important;
+}
+body[data-current-page="community"] .community-side-card .side-list {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+/* Hub/Dashboard missions: proper inner box, readable copy and separated reward. */
+body:is(.nx-hub-page, .nx-dashboard-live) .featured-card { padding: 28px !important; }
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-missions {
+  display: grid !important;
+  gap: 14px !important;
+  margin: 24px 0 18px !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission {
+  grid-template-columns: 42px minmax(0, 1fr) minmax(92px, auto) !important;
+  align-items: center !important;
+  gap: 16px !important;
+  min-height: 92px !important;
+  padding: 16px 18px !important;
+  border-radius: 16px !important;
+  box-sizing: border-box !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission > span {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 11px !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission > div {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission strong {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission small {
+  margin: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission > b {
+  min-width: 92px;
+  align-self: stretch;
+  align-content: center;
+  padding-left: 14px;
+  border-left: 1px solid rgba(148, 163, 184, .14);
+  line-height: 1.35;
+}
+
+@media (max-width: 1180px) {
+  body.planner-page .task-row {
+    grid-template-columns: 92px minmax(240px, 1.4fr) minmax(120px, .65fr) minmax(210px, 1fr) 96px !important;
+  }
+  body.planner-page .task-row > .tag:nth-child(4),
+  body.planner-page .task-row > .tag:nth-child(5) { display: none !important; }
+  body.planner-page .task-row .status-area,
+  body.planner-page .task-row .actions { grid-column: auto !important; }
+}
+
+@media (max-width: 820px) {
+  body.planner-page .task-row {
+    grid-template-columns: 78px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    min-height: 0 !important;
+    padding: 16px !important;
+  }
+  body.planner-page .task-row .task-title { grid-column: 2 !important; }
+  body.planner-page .task-row > .tag,
+  body.planner-page .task-row .status-area,
+  body.planner-page .task-row .actions { grid-column: 1 / -1 !important; }
+  body.planner-page .task-row .actions { justify-content: flex-start !important; }
+  body[data-current-page="community"] .community-pro-side { gap: 18px !important; }
+}
+
+@media (max-width: 620px) {
+  body:is(.nx-hub-page, .nx-dashboard-live) .featured-card { padding: 20px !important; }
+  body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission {
+    grid-template-columns: 36px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+  body:is(.nx-hub-page, .nx-dashboard-live) .nx-eh-mission > b {
+    grid-column: 2 !important;
+    min-width: 0;
+    padding: 9px 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(148, 163, 184, .14);
+    text-align: left !important;
+  }
+}

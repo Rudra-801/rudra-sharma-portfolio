@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: rudra-sharma-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: CONTACT_STORE
+        value: firebase
+      - key: PORTFOLIO_FIREBASE_PROJECT_ID
+        sync: false
+      - key: PORTFOLIO_FIREBASE_CREDENTIALS
+        sync: false

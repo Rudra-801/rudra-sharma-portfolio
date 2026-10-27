@@ -1,0 +1,189 @@
+
+/* NEXZO preferences runtime v5 — authoritative site-wide appearance and layout. */
+:root{
+  --nx-user-accent:#8b5cf6;
+  --nx-font-scale:1;
+  --nx-density:1;
+  --nx-card-pad:20px;
+  --nx-sidebar-width:260px;
+  --nx-surface:#080c14;
+  --nx-surface-2:#0d1320;
+  --nx-text:#f8fafc;
+  --nx-muted:#9aa7ba;
+  --nx-line:rgba(255,255,255,.10);
+}
+html{font-size:calc(16px * var(--nx-font-scale));}
+body{font-size:1rem;color:var(--nx-text);}
+body[data-font-size="small"]{--nx-font-scale:.875}
+body[data-font-size="medium"]{--nx-font-scale:1}
+body[data-font-size="large"]{--nx-font-scale:1.1}
+body[data-font-size="xl"]{--nx-font-scale:1.2}
+body[data-density="compact"]{--nx-density:.84;--nx-card-pad:14px}
+body[data-density="comfortable"]{--nx-density:1;--nx-card-pad:20px}
+body[data-density="spacious"]{--nx-density:1.18;--nx-card-pad:26px}
+body[data-density] :is(.card,.panel,.section-panel,.settings-v3-card,.community-side-card,.community-compose-card,.nx-gamification-panel){padding:var(--nx-card-pad)}
+body[data-density] :is(.grid,.settings-v3-content,.community-layout,.nx-game-body){gap:calc(18px * var(--nx-density))}
+
+/* Accent: only interactive/highlight elements, never the whole page. */
+:root{--gold:var(--nx-user-accent);--glow:var(--nx-user-accent)}
+:is(.btn.primary,.settings-v3-segmented button.active,.tab.active,.settings-v4-toggle[aria-pressed="true"],.settings-v4-toggle[aria-checked="true"]){
+  background:linear-gradient(135deg,var(--nx-user-accent),color-mix(in srgb,var(--nx-user-accent) 55%,#22d3ee))!important;
+  border-color:color-mix(in srgb,var(--nx-user-accent) 75%,white)!important;
+  color:#fff!important;
+  box-shadow:0 0 22px color-mix(in srgb,var(--nx-user-accent) 38%,transparent)!important;
+}
+:is(.progress span,.nx-quest em,.settings-v3-preview-progress span){background:linear-gradient(90deg,var(--nx-user-accent),#22d3ee)!important}
+:is(a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible){outline:2px solid var(--nx-user-accent)!important;outline-offset:2px}
+
+/* Sidebar modes use the actual app shell selectors. */
+body[data-sidebar-mode="expanded"]{--nx-sidebar-width:260px}
+body[data-sidebar-mode="compact"]{--nx-sidebar-width:148px}
+body[data-sidebar-mode="icons"]{--nx-sidebar-width:82px}
+body[data-sidebar-mode] .app{grid-template-columns:var(--nx-sidebar-width) minmax(0,1fr)!important}
+body[data-sidebar-mode] .app>.sidebar{width:var(--nx-sidebar-width)!important}
+body[data-sidebar-mode] .app>.main{margin-left:var(--nx-sidebar-width)!important;width:calc(100% - var(--nx-sidebar-width))!important}
+body[data-sidebar-mode="compact"] .sidebar .brand>div,
+body[data-sidebar-mode="icons"] .sidebar .brand>div{display:none!important}
+body[data-sidebar-mode="compact"] .sidebar .brand,
+body[data-sidebar-mode="icons"] .sidebar .brand{justify-content:center!important;padding-inline:6px!important}
+body[data-sidebar-mode="compact"] .sidebar .nav a{font-size:.78rem!important;gap:7px!important;padding:12px 8px!important;justify-content:flex-start!important}
+body[data-sidebar-mode="compact"] .sidebar .nav a i{margin:0!important;flex:0 0 30px!important}
+body[data-sidebar-mode="icons"] .sidebar .nav a{font-size:0!important;justify-content:center!important;padding:12px 6px!important;min-height:52px!important}
+body[data-sidebar-mode="icons"] .sidebar .nav a i{font-size:1.25rem!important;margin:0!important}
+body[data-sidebar-mode="icons"] .sidebar .nav a::after{display:none!important}
+
+/* Motion. */
+.nx-motion-reduced *, .nx-motion-reduced *::before, .nx-motion-reduced *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.1s!important;scroll-behavior:auto!important}
+.nx-motion-off *, .nx-motion-off *::before, .nx-motion-off *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.nx-motion-off :is(.ambient,.orb,.particles,.bg-orb,[class*="animated-bg"]){display:none!important}
+
+/* Real light theme, adapted rather than inverted. */
+html[data-nexzo-theme="light"]{
+  color-scheme:light;
+  --nx-surface:#ffffff;
+  --nx-surface-2:#f3f6fb;
+  --nx-text:#111827;
+  --nx-muted:#5b677a;
+  --nx-line:rgba(15,23,42,.14);
+}
+html[data-nexzo-theme="light"] body{background:radial-gradient(circle at 75% 8%,color-mix(in srgb,var(--nx-user-accent) 8%,transparent),transparent 32%),linear-gradient(145deg,#e8eef7,#f8fafc 54%,#e7edf5)!important;color:#111827!important}
+html[data-nexzo-theme="light"] :is(.main,.sidebar,.nx-shell-topbar,.settings-v3-topbar,.settings-v3-tabs,.settings-v3-card,.settings-v3-heading,.settings-v3-preview-card,.settings-v3-quick-card,.profile-hero,.rank-strip,.journey-card,.profile-stat,.sync-stat,.community-pro-hero,.community-side-card,.community-compose-card,.nx-pro-modal-card,.nx-gamification-panel,.nx-game-body>div,.card,.panel,.section-panel){
+  background:rgba(255,255,255,.94)!important;color:#111827!important;border-color:rgba(15,23,42,.14)!important;box-shadow:0 14px 34px rgba(15,23,42,.08)!important
+}
+html[data-nexzo-theme="light"] :is(h1,h2,h3,h4,b,strong,label,.page-title,.settings-v3-setting-copy b,.nx-game-stats b){color:#111827!important;text-shadow:none!important;-webkit-text-fill-color:initial!important}
+html[data-nexzo-theme="light"] :is(p,small,.sub,.muted,.settings-v3-setting-copy small,.nx-game-empty,.nx-game-stats small){color:#5b677a!important}
+html[data-nexzo-theme="light"] :is(input,select,textarea,.search-input){background:#f7f9fc!important;color:#111827!important;border-color:rgba(15,23,42,.18)!important}
+html[data-nexzo-theme="light"] :is(.settings-v3-segmented button,.settings-v3-color-grid button,.settings-v4-toggle,.btn:not(.primary),.tab){background:#eef2f7!important;color:#1e293b!important;border-color:rgba(15,23,42,.16)!important}
+html[data-nexzo-theme="light"] .sidebar .nav a{background:#f7f9fc!important;color:#1e293b!important;border-color:rgba(15,23,42,.12)!important}
+html[data-nexzo-theme="light"] .sidebar .nav a:hover,
+html[data-nexzo-theme="light"] .sidebar .nav a.active{background:color-mix(in srgb,var(--c,var(--nx-user-accent)) 14%,#fff)!important;border-color:var(--c,var(--nx-user-accent))!important}
+html[data-nexzo-theme="light"] .nx-quest{background:#f7f9fc!important;color:#111827!important;border-color:rgba(15,23,42,.10)!important}
+
+@media(max-width:820px){
+  body[data-sidebar-mode] .app{display:block!important}
+  body[data-sidebar-mode] .app>.main{margin-left:0!important;width:100%!important}
+  body[data-sidebar-mode] .app>.sidebar{width:100%!important}
+}
+
+/* NEXZO purchased cosmetics — shared across pages */
+.nx-cosmetic-purple-border .profile-card,.nx-cosmetic-purple-border .user-profile,.nx-cosmetic-purple-border .profile-chip{border-color:#a855f7!important;box-shadow:0 0 22px rgba(168,85,247,.36)!important}.nx-cosmetic-diamond-frame .avatar,.nx-cosmetic-diamond-frame .user-avatar,.nx-cosmetic-diamond-frame img.profile-avatar{outline:3px solid #67e8f9!important;box-shadow:0 0 0 5px rgba(99,102,241,.5),0 0 22px rgba(34,211,238,.55)!important}.nx-cosmetic-chat-glow .ai-message,.nx-cosmetic-chat-glow .assistant-message,.nx-cosmetic-chat-glow [data-role="assistant"]{box-shadow:0 0 22px rgba(168,85,247,.28)!important;border-color:rgba(168,85,247,.55)!important}html[data-nexzo-title="scholar"] .user-chip::after,html[data-nexzo-title="scholar"] .profile-chip::after{content:"Scholar";font-size:10px;color:#facc15;border:1px solid rgba(250,204,21,.35);border-radius:999px;padding:2px 6px;margin-left:6px}
+
+
+/* =========================================================
+   NEXZO V66 — REAL FONT SCALE + DASHBOARD-STYLE CONSISTENCY
+   ========================================================= */
+
+/* Font size must live on the root element because rem units resolve from html. */
+html[data-font-size="small"]{--nx-font-scale:.875;font-size:14px!important}
+html[data-font-size="medium"]{--nx-font-scale:1;font-size:16px!important}
+html[data-font-size="large"]{--nx-font-scale:1.125;font-size:18px!important}
+html[data-font-size="xl"]{--nx-font-scale:1.25;font-size:20px!important}
+body[data-font-size]{font-size:1rem!important}
+body[data-font-size] :is(button,input,select,textarea){font-size:inherit}
+body[data-font-size] :is(.sidebar,.topbar,.nx-shell-topbar,.settings-v3-topbar){font-size:1rem}
+
+/* Dashboard visual language shared by Hub, Settings and Profile sections. */
+body[data-page="hub"],body[data-page="settings"],body[data-page="profile"],body[data-page="planner"]{
+  background:#03070d!important;
+}
+body[data-page="hub"] :is(.nx-hub-hero,.nx-hub-action-row>article,.summary-card,.hub-card,.nx-hub-tabs,.nx-hub-panel),
+body[data-page="settings"] :is(.settings-v3-heading,.settings-v3-tabs,.settings-v3-card,.settings-v3-preview-card,.settings-v3-quick-card),
+body[data-page="profile"] :is(.profile-hero,.profile-stat,.rank-strip,.journey-card,.learning-journey,.profile-panel),
+body[data-page="planner"] :is(.planner-head,.stat,.panel,.study,.suggest-box,.prompt-box){
+  background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--x,var(--accent,var(--nx-user-accent))) 8%,transparent),transparent 42%),linear-gradient(145deg,#0b111a,#05080e 76%)!important;
+  box-shadow:0 18px 44px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.035)!important;
+}
+body[data-page="hub"] .nx-hub-hero,
+body[data-page="settings"] .settings-v3-heading{
+  border-color:color-mix(in srgb,var(--nx-user-accent) 42%,rgba(255,255,255,.08))!important;
+}
+body[data-page="hub"] .hub-card{min-height:210px}
+body[data-page="hub"] .featured-card{min-height:300px}
+body[data-page="hub"] .nx-secondary-grid{align-items:stretch}
+body[data-page="hub"] .compact-card{min-height:178px}
+body[data-page="hub"] .gold,
+body[data-page="hub"] .summary-card.gold,
+body[data-page="hub"] .chest-panel,
+body[data-page="hub"] .recent-card{
+  --accent:#8b5cf6!important;
+}
+body[data-page="hub"] .gold-btn{
+  background:linear-gradient(135deg,#7c3aed,#06b6d4)!important;
+  color:#fff!important;
+}
+body[data-page="hub"] .chest-visual b{filter:drop-shadow(0 18px 28px rgba(139,92,246,.28))!important}
+body[data-page="hub"] .chest-visual span{color:#67e8f9!important}
+
+/* Planner: remove brown/yellow-gold surfaces and use purple/cyan/green accents. */
+body[data-page="planner"]{--planner-purple:#8b5cf6;--planner-cyan:#06b6d4;--planner-green:#22c55e}
+body[data-page="planner"] .stats .stat:nth-child(3){--x:#06b6d4!important}
+body[data-page="planner"] .main-grid>form.panel{--x:#8b5cf6!important}
+body[data-page="planner"] .main-grid>aside.panel{--x:#06b6d4!important}
+body[data-page="planner"] .panel,
+body[data-page="planner"] .stat,
+body[data-page="planner"] .prompt-box,
+body[data-page="planner"] .tabs,
+body[data-page="planner"] .suggest-box{
+  border-color:color-mix(in srgb,var(--x,#8b5cf6) 55%,rgba(255,255,255,.08))!important;
+}
+body[data-page="planner"] .panel::before,
+body[data-page="planner"] .stat::before{background:linear-gradient(120deg,transparent 36%,color-mix(in srgb,var(--x,#8b5cf6) 11%,transparent),transparent 64%)!important}
+body[data-page="planner"] .tabs{background:color-mix(in srgb,var(--x,#8b5cf6) 7%,#070b12)!important}
+body[data-page="planner"] .tabs button.active,
+body[data-page="planner"] .chip.active,
+body[data-page="planner"] .btn.primary,
+body[data-page="planner"] .magic{
+  background:linear-gradient(135deg,#7c3aed,#06b6d4)!important;
+  color:#fff!important;
+  border-color:rgba(103,232,249,.48)!important;
+  box-shadow:0 0 22px rgba(124,58,237,.28)!important;
+}
+body[data-page="planner"] .suggest-box{
+  background:radial-gradient(circle at 0 0,rgba(6,182,212,.13),transparent 44%),linear-gradient(145deg,#07131a,#05080e 76%)!important;
+}
+body[data-page="planner"] :is(.tool-row button,.filters button,.submit-tabs button){
+  background:#0a1018!important;
+  border-color:rgba(139,92,246,.28)!important;
+}
+body[data-page="planner"] :is(.tool-row button,.filters button,.submit-tabs button):hover,
+body[data-page="planner"] :is(.filters button.active,.submit-tabs button.active){
+  background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(6,182,212,.18))!important;
+  border-color:#8b5cf6!important;
+}
+
+/* Settings font-size choice stays visibly selected in the premium theme. */
+body[data-page="settings"] [data-setting="font"].active,
+body[data-page="settings"] [data-value="small"].active,
+body[data-page="settings"] [data-value="medium"].active,
+body[data-page="settings"] [data-value="large"].active,
+body[data-page="settings"] [data-value="xl"].active{
+  background:linear-gradient(135deg,#7c3aed,#06b6d4)!important;
+  color:#fff!important;
+  border-color:rgba(103,232,249,.55)!important;
+}
+
+@media(max-width:820px){
+  html[data-font-size="large"]{font-size:17px!important}
+  html[data-font-size="xl"]{font-size:18px!important}
+  body[data-page="hub"] .hub-card{min-height:0}
+}

@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+class Storage{constructor(){this.m=new Map()}getItem(k){return this.m.get(k)||null}setItem(k,v){this.m.set(k,String(v))}}
+function load(file,extra={}){const sandbox={globalThis:null,window:null,Date,Math,JSON,...extra};sandbox.globalThis=sandbox;sandbox.window=sandbox;vm.createContext(sandbox);vm.runInContext(fs.readFileSync(file,'utf8'),sandbox,{filename:file});return sandbox;}
+test('community safety blocks short, spammy and repeated content',()=>{const c=load('Frontend/js/community-safety.js').NEXZOCommunitySafety;assert.equal(c.validateText('ok').ok,false);assert.equal(c.validateText('https://a.co https://b.co https://c.co https://d.co https://e.co https://f.co').code,'LINK_SPAM');assert.equal(c.validateText('aaaaaaaaaaaaaaaaaaaaaaaaaa').code,'REPETITION');assert.equal(c.validateText('Useful DSA discussion').ok,true);});
+test('community cooldown and duplicate guard are deterministic',()=>{const c=load('Frontend/js/community-safety.js').NEXZOCommunitySafety,s=new Storage();let r=c.rateLimit(s,'x',{now:1000,cooldownMs:500});assert.equal(r.allowed,true);r.commit();r=c.rateLimit(s,'x',{now:1200,cooldownMs:500});assert.equal(r.allowed,false);let d=c.duplicate(s,'d','Hello world',{now:1000});assert.equal(d.duplicate,false);d.commit();d=c.duplicate(s,'d',' hello   WORLD ',{now:1100});assert.equal(d.duplicate,true);});
+test('community page loads safety before service and exposes report action',()=>{const html=fs.readFileSync('Frontend/community.html','utf8'),js=fs.readFileSync('Frontend/js/community-service.js','utf8');assert.ok(html.indexOf('community-safety.js')<html.indexOf('community-service.js'));assert.match(js,/data-v42-report/);assert.match(js,/reports/);});
+test('release has no stale v40 root references in primary docs',()=>{for(const file of ['README.md','DEPLOYMENT.md']){const s=fs.readFileSync(file,'utf8');assert.doesNotMatch(s,/v40work/i);}});

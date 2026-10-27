@@ -1,0 +1,138 @@
+/* NEXZO V77 — viewport integrity, compact celebration, modal and shell repair */
+
+/* 1) Real card borders: never let content-visibility/paint containment crop borders or hover glow. */
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+  main section,.card,.panel,.glass-card,.section-card,.section-panel,.home-acad-card,.resource-card,.career-card,
+  .stat,.suggest-box,.ai-preview,.planner-card,.dash-card-exact,.dash-stat-exact,.dash-chart-box-exact,
+  .dash-heatmap-box-exact,.community-pro-stats article,.community-compose-card,.settings-v3-card,
+  .profile-card,.profile-panel,.profile-stat,.journey-card,.level-card,.task-row,.study
+){
+  content-visibility:visible!important;
+  contain:none!important;
+  contain-intrinsic-size:auto!important;
+  box-sizing:border-box!important;
+}
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .card,.panel,.glass-card,.section-card,.section-panel,.home-acad-card,.resource-card,.career-card,
+  .stat,.suggest-box,.ai-preview,.planner-card,.dash-card-exact,.dash-stat-exact,.dash-chart-box-exact,
+  .dash-heatmap-box-exact,.community-pro-stats article,.community-compose-card,.settings-v3-card,
+  .profile-card,.profile-panel,.profile-stat,.journey-card,.level-card,.task-row,.study
+){
+  outline:0!important;
+  border-width:1px!important;
+  border-style:solid!important;
+  border-color:color-mix(in srgb,var(--nx-accent,var(--c,var(--x,#64748b))) 58%,rgba(255,255,255,.13))!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018),0 14px 38px rgba(0,0,0,.24)!important;
+  background-clip:padding-box!important;
+}
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .card,.panel,.glass-card,.section-card,.section-panel,.home-acad-card,.resource-card,.career-card,
+  .stat,.suggest-box,.ai-preview,.planner-card,.dash-card-exact,.dash-stat-exact,.dash-chart-box-exact,
+  .dash-heatmap-box-exact,.community-pro-stats article,.community-compose-card,.settings-v3-card,
+  .profile-card,.profile-panel,.profile-stat,.journey-card,.level-card,.task-row,.study
+):hover{
+  transform:translateY(-2px)!important;
+  border-color:color-mix(in srgb,var(--nx-accent,var(--c,var(--x,#64748b))) 88%,white 8%)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 0 24px color-mix(in srgb,var(--nx-accent,var(--c,var(--x,#64748b))) 16%,transparent),0 18px 45px rgba(0,0,0,.30)!important;
+}
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .grid,.grid-3,.grid-4,.home-acad-grid,.stats,.dash-stats-exact,.community-pro-stats,.main-grid,
+  .dash-live-layout,.settings-v3-layout,.learning-journey,#resourceGrid,#careerGrid
+){overflow:visible!important;contain:none!important;padding-top:max(8px,var(--nx-grid-pad,8px))!important;padding-bottom:max(12px,var(--nx-grid-pad,12px))!important}
+body:is(.planner-page,.dashboard-page,.community-page,.career-page,.academics-page,.settings-page,.profile-page) .main{padding-bottom:56px!important;overflow:visible!important}
+
+/* 2) Desktop navigation ownership: brand and quick actions stay at viewport top. */
+@media(min-width:769px){
+  body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{
+    position:fixed!important;top:12px!important;right:16px!important;left:auto!important;z-index:2140!important;
+    min-height:54px!important;height:54px!important;padding:6px 7px!important;margin:0!important;
+    border-radius:16px!important;background:#030508!important;
+    box-shadow:0 14px 38px rgba(0,0,0,.48)!important;
+  }
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>button,
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile){width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important;border-radius:12px!important}
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-timer-button{width:auto!important;min-width:74px!important;padding:0 9px!important}
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile{height:42px!important;min-width:185px!important;max-width:230px!important;border-radius:13px!important}
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile-avatar,
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-avatar-letter{width:32px!important;height:32px!important;min-width:32px!important;border-radius:10px!important}
+  body[data-shell-ready="true"] .app>.main{padding-top:84px!important}
+
+  body:not(.home-page):not(.mentor-page) .app>.sidebar .brand{
+    position:sticky!important;top:0!important;z-index:20!important;margin-top:0!important;padding-top:8px!important;padding-bottom:12px!important;
+    background:linear-gradient(180deg,#030609 0%,#030609 78%,rgba(3,6,9,0) 100%)!important;
+  }
+  body:not(.home-page):not(.mentor-page) .app>.sidebar .nav{position:relative!important;z-index:2!important}
+
+  body.home-page>#nx-home-fixed-header-v10{
+    position:fixed!important;top:12px!important;left:16px!important;right:16px!important;transform:none!important;
+    width:auto!important;max-width:none!important;height:54px!important;min-height:54px!important;z-index:214748300!important;
+  }
+  body.home-page .nx-home-brand-v10{width:236px!important;min-width:236px!important;height:54px!important;border-radius:16px!important}
+  body.home-page .nx-home-brand-v10__mark{width:40px!important;height:40px!important;flex-basis:40px!important;border-radius:11px!important}
+  body.home-page .nx-home-brand-v10__title{font-size:19px!important}
+  body.home-page .nx-home-brand-v10__tagline{font-size:7px!important}
+  body.home-page .home-acad-main{padding-top:82px!important}
+}
+
+/* 3) Compact premium level-up card. Large enough to read; no full-screen takeover. */
+body>.nexzo-level-up-backdrop{padding:18px!important;background:rgba(1,4,12,.82)!important;backdrop-filter:blur(14px)!important}
+body>.nexzo-level-up-backdrop .nx-levelup-premium{
+  width:min(980px,calc(100vw - 44px))!important;
+  max-height:min(760px,calc(100dvh - 44px))!important;
+  grid-template-columns:minmax(0,1fr) minmax(350px,.9fr)!important;
+  border-radius:24px!important;
+  overflow:auto!important;
+}
+body>.nexzo-level-up-backdrop .nx-lu-left,
+body>.nexzo-level-up-backdrop .nx-lu-right{padding:24px!important}
+body>.nexzo-level-up-backdrop .nx-lu-brand{left:18px!important;top:16px!important;gap:8px!important}
+body>.nexzo-level-up-backdrop .nx-lu-brand img{width:44px!important;height:44px!important;border-radius:12px!important}
+body>.nexzo-level-up-backdrop .nx-lu-brand b{font-size:17px!important}
+body>.nexzo-level-up-backdrop .nx-lu-kicker{font-size:10px!important;letter-spacing:.24em!important}
+body>.nexzo-level-up-backdrop .nx-levelup-premium h2{font-size:clamp(48px,5vw,70px)!important;margin-top:7px!important}
+body>.nexzo-level-up-backdrop .nx-lu-sub{font-size:14px!important;margin:8px 0 2px!important}
+body>.nexzo-level-up-backdrop .nx-lu-badge-wrap{width:250px!important;height:205px!important;margin:0 auto!important}
+body>.nexzo-level-up-backdrop .nx-lu-badge-wrap img{width:185px!important;height:185px!important}
+body>.nexzo-level-up-backdrop .nx-lu-badge-wrap strong{font-size:48px!important}
+body>.nexzo-level-up-backdrop .nx-lu-rank-name{font-size:17px!important;padding:7px 24px!important;margin-top:-5px!important}
+body>.nexzo-level-up-backdrop .nx-lu-transition{margin:10px 0 8px!important;padding:10px 16px!important;font-size:19px!important;border-radius:15px!important}
+body>.nexzo-level-up-backdrop .nx-lu-transition i{font-size:30px!important}
+body>.nexzo-level-up-backdrop .nx-lu-rank-tier{padding:9px 14px!important}.nexzo-level-up-backdrop .nx-lu-rank-tier b{font-size:17px!important}
+body>.nexzo-level-up-backdrop .nx-lu-earned{margin-top:9px!important;border-radius:14px!important}.nexzo-level-up-backdrop .nx-lu-earned article{padding:10px!important;gap:8px!important}.nexzo-level-up-backdrop .nx-lu-earned article>span{font-size:21px!important}.nexzo-level-up-backdrop .nx-lu-earned b{font-size:13px!important}
+body>.nexzo-level-up-backdrop .nx-lu-panel{padding:14px!important;border-radius:15px!important}.nexzo-level-up-backdrop .nx-lu-panel>header{margin-bottom:10px!important}.nexzo-level-up-backdrop .nx-lu-xp-row b{font-size:21px!important}.nexzo-level-up-backdrop .nx-lu-track{height:12px!important;margin:10px 0 6px!important}.nexzo-level-up-backdrop .nx-lu-track em{top:17px!important}
+body>.nexzo-level-up-backdrop .nx-lu-unlocks{gap:7px!important}.nexzo-level-up-backdrop .nx-lu-unlocks article{min-height:92px!important;padding:9px 6px!important}.nexzo-level-up-backdrop .nx-lu-unlocks article span{font-size:25px!important}.nexzo-level-up-backdrop .nx-lu-unlocks article b{font-size:12px!important}
+body>.nexzo-level-up-backdrop .nx-lu-whats article{padding:8px 9px!important;gap:9px!important}.nexzo-level-up-backdrop .nx-lu-whats article>span{font-size:20px!important}.nexzo-level-up-backdrop .nx-lu-actions button{min-height:46px!important}
+@media(max-width:980px){body>.nexzo-level-up-backdrop .nx-levelup-premium{grid-template-columns:1fr!important;width:min(690px,calc(100vw - 24px))!important}.nexzo-level-up-backdrop .nx-lu-left{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}}
+@media(max-width:620px){body>.nexzo-level-up-backdrop{padding:7px!important}.nexzo-level-up-backdrop .nx-levelup-premium{width:calc(100vw - 14px)!important;max-height:calc(100dvh - 14px)!important}.nexzo-level-up-backdrop .nx-lu-left,.nexzo-level-up-backdrop .nx-lu-right{padding:18px 14px!important}.nexzo-level-up-backdrop .nx-lu-badge-wrap{width:210px!important;height:175px!important}.nexzo-level-up-backdrop .nx-lu-badge-wrap img{width:155px!important;height:155px!important}.nexzo-level-up-backdrop .nx-lu-unlocks{grid-template-columns:repeat(2,1fr)!important}}
+
+/* 4) Career modal: always inside viewport, own scroll area, close stays visible. */
+html.nx-career-modal-open,body.nx-career-modal-open{overflow:hidden!important}
+.modal-backdrop.career-pop-backdrop{
+  position:fixed!important;inset:0!important;z-index:2147482000!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  padding:20px!important;overflow:hidden!important;background:rgba(0,0,0,.84)!important;backdrop-filter:blur(13px)!important;
+}
+.career-pop-v3{
+  position:relative!important;width:min(1050px,calc(100vw - 44px))!important;
+  max-height:calc(100dvh - 40px)!important;height:auto!important;
+  overflow:auto!important;overscroll-behavior:contain!important;scrollbar-gutter:stable!important;
+  padding:26px 28px 24px!important;border-radius:24px!important;margin:0!important;
+}
+.career-pop-v3 .career-pop-x{
+  position:sticky!important;float:right!important;top:0!important;left:auto!important;right:0!important;
+  width:42px!important;height:42px!important;margin:-6px -6px -42px 0!important;border-radius:13px!important;z-index:60!important;
+  background:#081019!important;backdrop-filter:blur(10px)!important;
+}
+.career-pop-v3 .career-pop-head{margin:4px 48px 20px 0!important;grid-template-columns:105px minmax(0,1fr)!important;gap:22px!important}
+.career-pop-v3 .career-role-icon{width:100px!important;height:100px!important;border-radius:25px!important;font-size:48px!important}
+.career-pop-v3 .career-pop-title h1{font-size:clamp(38px,4.3vw,58px)!important;line-height:1!important;overflow-wrap:normal!important;word-break:normal!important}
+.career-pop-v3 .career-pop-title p{font-size:15px!important;line-height:1.5!important}
+.career-pop-v3 .career-metric-grid{gap:12px!important;margin-bottom:14px!important}.career-pop-v3 .career-metric-card{min-height:112px!important;padding:15px!important;border-radius:19px!important}.career-pop-v3 .career-metric-card b{font-size:17px!important}
+.career-pop-v3 .career-tile-grid{gap:12px!important;margin:14px 0!important}.career-pop-v3 .career-tile{min-height:138px!important;padding:16px!important;border-radius:20px!important}.career-pop-v3 .career-tile span{width:52px!important;height:52px!important;font-size:28px!important;border-radius:17px!important}.career-pop-v3 .career-tile b{font-size:19px!important}.career-pop-v3 .career-tile small{font-size:13px!important}
+.career-pop-v3 .career-tech-row{padding:12px 14px!important;border-radius:17px!important}.career-pop-v3 .career-close-btn{position:sticky!important;bottom:0!important;float:none!important;display:flex!important;margin:14px 0 0 auto!important;padding:10px 18px!important;background:#081019!important;z-index:50!important}
+@media(max-width:760px){.modal-backdrop.career-pop-backdrop{padding:10px!important}.career-pop-v3{width:calc(100vw - 20px)!important;max-height:calc(100dvh - 20px)!important;padding:18px!important;border-radius:20px!important}.career-pop-v3 .career-pop-head{grid-template-columns:1fr!important;margin-right:42px!important}.career-pop-v3 .career-role-icon{width:76px!important;height:76px!important;font-size:38px!important}.career-pop-v3 .career-pop-title h1{font-size:32px!important}.career-pop-v3 .career-metric-grid,.career-pop-v3 .career-tile-grid{grid-template-columns:1fr!important}}
+
+/* 5) Sign-in gate: compact, product-consistent and readable. */
+.nx-shell-modal:has(.nx-guest-auth-copy){background:rgba(2,4,12,.80)!important;backdrop-filter:blur(14px)!important}
+.nx-shell-modal-card:has(.nx-guest-auth-copy){width:min(560px,calc(100vw - 28px))!important;padding:26px!important;border-radius:24px!important;border:1px solid rgba(139,92,246,.34)!important;background:radial-gradient(circle at 100% 0,rgba(34,211,238,.09),transparent 34%),linear-gradient(145deg,#0c1120,#060911)!important;box-shadow:0 28px 90px rgba(0,0,0,.62),0 0 38px rgba(139,92,246,.10)!important}
+.nx-shell-modal-card:has(.nx-guest-auth-copy)>h2{font-size:26px!important;margin-bottom:18px!important}.nx-guest-auth-copy{display:flex!important;align-items:center!important;gap:14px!important;padding:16px!important;border-radius:17px!important;background:rgba(255,255,255,.035)!important;border:1px solid rgba(250,204,21,.18)!important}.nx-guest-lock{display:grid!important;place-items:center!important;flex:0 0 46px!important;width:46px!important;height:46px!important;border-radius:14px!important;background:rgba(250,204,21,.10)!important;font-size:22px!important}.nx-guest-auth-copy p{margin:0!important;color:#cbd5e1!important;line-height:1.5!important}.nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-shell-modal-actions{gap:9px!important}.nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-shell-action{min-height:44px!important;padding:0 16px!important;border:1px solid rgba(139,92,246,.30)!important;background:#101522!important}.nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-guest-login-primary{background:linear-gradient(135deg,#7c3aed,#0891b2)!important;border-color:transparent!important}.nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-guest-create{background:rgba(124,58,237,.14)!important}

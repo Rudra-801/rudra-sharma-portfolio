@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="nx-auth-pending">
+<head>
+<style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXZO Hub</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/nexzo-hub.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Hub">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/nexzo-hub.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Hub">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="css/page-nexzo-hub.37097c43aba0.css">
+
+
+
+
+
+<link rel="manifest" href="manifest.webmanifest">
+
+
+
+
+
+
+<script src="js/event-actions.44010823e1a9.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="dashboard-exact-page nx-hub-page" data-page="hub">
+<div class="app"><main class="main"><div class="nx-hub-shell">
+<section class="nx-hub-hero">
+  <div class="nx-hub-hero-copy">
+    <span class="eyebrow">NEXZO PROGRESSION SYSTEM</span>
+    <h1>NEXZO <em>Hub</em></h1>
+    <p>One place for your next action, verified missions, measurable progress and useful rewards across NEXZO.</p>
+  </div>
+  <div class="nx-hub-balance" aria-label="Account rewards balance">
+    <b id="nxEhXP">0 XP</b><b id="nxEhCoins">0 Coins</b>
+  </div>
+</section>
+
+<section class="nx-hub-action-row" aria-label="Recommended next action and exam goal">
+  <article class="nx-smart-next" id="nxContinueCard">
+    <div class="card-icon">▶</div><div><small>SMART NEXT ACTION</small><h3 id="nxContinueTitle">Finding your next step…</h3><p id="nxContinueText">NEXZO checks unfinished tasks, weak topics and active challenges.</p></div>
+    <button id="nxContinueBtn" type="button">Continue</button>
+  </article>
+  <article class="nx-exam-goal" id="nxExamGoalCard">
+    <div class="card-icon">🎓</div><div><small>EXAM GOAL</small><h3 id="nxExamGoalTitle">Set your exam target</h3><p id="nxExamGoalText">Create a dated study target and turn it into trackable Planner tasks.</p></div>
+    <button id="nxExamGoalBtn" type="button">Set goal</button>
+  </article>
+</section>
+
+<section class="nx-hub-summary" aria-label="Hub overview">
+  <article class="summary-card purple"><span class="summary-icon">🏆</span><div><small>Current level</small><strong id="nxHubLevel">Level 1</strong><p id="nxHubMultiplier">1.00× reward multiplier</p><i class="summary-line"><u id="nxSummaryLevelBar"></u></i></div></article>
+  <article class="summary-card gold"><span class="summary-icon">🪙</span><div><small>Available coins</small><strong id="nxSummaryCoins">0 Coins</strong><p>Earned through verified activity</p></div></article>
+  <article class="summary-card green"><span class="summary-icon">🔥</span><div><small>Login streak</small><strong id="nxHubStreak">0 days</strong><p><span id="nxHubStudyStreak">0-day study streak</span> · <span id="nxHubStreakStatus">Start studying today</span></p></div></article>
+  <article class="summary-card chest-card"><span class="summary-icon">🎁</span><div><small>Daily chest</small><strong id="nxChestStatus">Ready today</strong><button data-eh="chest" id="nxChestHeroBtn">Open chest</button></div></article>
+</section>
+
+<nav class="nx-hub-tabs" aria-label="Hub categories">
+  <button class="active" data-hub-tab="rewards"><span>◎</span> Missions</button>
+  <button data-hub-tab="ai"><span>✦</span> Challenges</button>
+  <button data-hub-tab="progress"><span>↗</span> Progress</button>
+</nav>
+
+<section class="nx-hub-panel active" data-hub-panel="rewards">
+  <div class="nx-rewards-layout">
+    <article class="hub-card mission-card purple featured-card">
+      <header><div class="card-icon">🎯</div><div><h3>Active Missions</h3><p>Real actions from Planner, Academics and NEXZO learning activity. Completion and rewards are verified and protected from duplicate claims.</p></div></header>
+      <div id="nxEhMissions" class="nx-eh-missions"></div>
+      <button class="secondary-btn" data-eh="missions">View all missions <span>→</span></button>
+    </article>
+    <article class="hub-card chest-panel gold featured-card">
+      <header><div class="card-icon">🎁</div><div><h3>Daily Chest</h3><p>One verified reward per local calendar day.</p></div></header>
+      <div class="chest-visual" aria-hidden="true"><span>✨</span><b>🎁</b><span>✨</span></div>
+      <div class="chest-footer"><small id="nxChestHint">Your claim status is synced to your account.</small><button class="gold-btn" data-eh="chest" id="nxChestBtn">Open chest</button></div>
+    </article>
+  </div>
+  <section class="nx-verified-strip" aria-label="Today verified progress">
+    <article><span>✅</span><div><small>Planner task</small><strong id="nxVerifiedPlanner">Not completed</strong></div></article>
+    <article><span>⏱️</span><div><small>Focus study</small><strong id="nxVerifiedFocus">0 / 25 min</strong></div></article>
+    <article><span>🧠</span><div><small>Learning activity</small><strong id="nxVerifiedLearn">Not completed</strong></div></article>
+    <article class="mission-total"><span>🎁</span><div><small>Daily completion</small><strong id="nxMissionTotal">0 / 3 missions</strong></div></article>
+  </section>
+  <div class="nx-secondary-grid">
+    <article class="hub-card orange compact-card"><div class="card-icon">🪙</div><div><h3>Useful Rewards</h3><p>Use earned coins only on available NEXZO rewards and unlocks. Unavailable rewards stay hidden.</p></div><button data-eh="shop">Open shop</button></article>
+    <article class="hub-card pink compact-card"><div class="card-icon">🏅</div><div><h3>Achievements</h3><p>Milestones based on your real activity.</p></div><button data-eh="achievements">View all</button></article>
+    <article class="hub-card blue compact-card level-card"><div class="card-icon">🔓</div><div><h3>Level Rewards</h3><p id="nxLevelReward">Loading next reward…</p><div class="nx-eh-progress"><i id="nxLevelBar"></i></div></div><button data-eh="levels">View rewards</button></article>
+  </div>
+</section>
+
+<section class="nx-hub-panel" data-hub-panel="ai" hidden>
+  <div class="section-heading"><div><span>02 / CHALLENGES</span><h2>Prove what you know</h2></div><p>These activities use the connected study service and save verified results.</p></div>
+  <div class="nx-ai-grid">
+    <article class="hub-card purple"><div class="card-icon">🧠</div><h3>Smart Quiz</h3><p>Topic-based questions, stored results and real weak-topic detection.</p><button data-eh="quiz">Generate quiz</button></article>
+    <article class="hub-card cyan"><div class="card-icon">🎤</div><h3>Mock Interview</h3><p>Role-based questions with evidence-backed feedback.</p><button data-eh="interview">Start interview</button></article>
+    <article class="hub-card red"><div class="card-icon">⚠️</div><h3>Weak Topics</h3><p>Only concepts missed in completed quizzes.</p><button data-eh="weak">View weak topics</button></article>
+    <article class="hub-card gold"><div class="card-icon">🎯</div><h3>Daily Challenge</h3><p>A practical activity generated for your chosen subject.</p><button data-eh="challenge">Generate challenge</button></article>
+    <article class="hub-card teal career-card"><div class="card-icon">💼</div><div><h3>Career Direction</h3><p>Uses your saved learning evidence without inventing confidence percentages.</p></div><button data-eh="career">Analyse progress</button></article>
+    <article class="hub-card pink"><div class="card-icon">🗂️</div><h3>Quiz History</h3><p>Review saved scores, explanations and retry missed questions.</p><button id="nxQuizHistoryBtn">View history</button></article>
+    <article class="hub-card blue"><div class="card-icon">📈</div><h3>Interview Progress</h3><p>Compare saved interview evaluations and improvement notes.</p><button id="nxInterviewHistoryBtn">View progress</button></article>
+    <article class="hub-card orange"><div class="card-icon">🧪</div><h3>Challenge Workspace</h3><p>Resume, submit and evaluate your active verified challenge.</p><button id="nxChallengeWorkspaceBtn">Open workspace</button></article>
+  </div>
+</section>
+
+<section class="nx-hub-panel" data-hub-panel="progress" hidden>
+  <div class="section-heading"><div><span>03 / PROGRESS</span><h2>Your work, measured honestly</h2></div><p>Everything below is derived from stored NEXZO usage.</p></div>
+  <div class="nx-progress-grid">
+    <article class="hub-card green heatmap-card"><header><div class="card-icon">🔥</div><div><h3>Learning Heatmap</h3><p>Your recorded Hub activity over the last eight weeks.</p></div></header><div class="nx-heat-toolbar"><button id="nxHeatPrev" type="button">←</button><strong id="nxHeatRange">Last 8 weeks</strong><button id="nxHeatNext" type="button">→</button></div><div class="nx-eh-heat" id="nxEhHeat"></div><small id="nxHeatStat">No activity yet</small><div id="nxHeatDayDetail" class="nx-heat-detail">Click a day to see recorded activity.</div></article>
+    <article class="hub-card purple"><div class="card-icon">🏆</div><h3>Weekly Challenge</h3><p>5 Planner tasks, 3 focus sessions and 2 verified learning activities.</p><button data-eh="weekly">View challenge</button></article>
+    <article class="hub-card cyan"><div class="card-icon">📈</div><h3>XP Analytics</h3><p>See action XP, multiplier rewards and bonuses from your real ledger.</p><button data-eh="analytics">Open analytics</button></article>
+    <article class="hub-card blue report-card"><div class="card-icon">📊</div><h3>Weekly Report</h3><p>Quiz, XP, streak and completed-task summary from stored account data.</p><button data-eh="report">Open report</button><button class="secondary-btn" id="nxDownloadReportBtn" type="button">Download report</button></article>
+    <article class="hub-card purple activity-card"><div class="card-icon">🧠</div><h3>Smart Quiz Activity</h3><strong id="nxQuizStat">0 completed</strong><p>Completed quizzes contribute to weak-topic evidence.</p><button data-eh="weak">Review evidence</button></article>
+    <article class="hub-card cyan mastery-card"><div class="card-icon">📚</div><h3>Subject Mastery</h3><div id="nxHubMastery" class="nx-hub-mastery"></div><button data-eh="mastery">View mastery</button></article>
+
+    <article class="hub-card cyan"><div class="card-icon">📚</div><h3>My Resources</h3><p>Save notes, PDFs, videos, useful links, quiz results and bookmarks in one searchable workspace.</p><button data-eh="resources">Open resources</button></article>
+    <article class="hub-card gold recent-card"><div class="card-icon">⚡</div><h3>Recent Verified Activity</h3><div id="nxHubRecent" class="nx-hub-recent"></div><button data-eh="report">Full report</button></article>
+  </div>
+</section>
+</div></main></div>
+<div class="nx-eh-modal" id="nxEhModal" hidden><div class="nx-eh-dialog"><div class="nx-eh-dialog-head"><h2 id="nxEhModalTitle"></h2><button class="nx-eh-close" id="nxEhClose" type="button">✕</button></div><div id="nxEhModalBody"></div></div></div>
+<script src="js/shared-state.cd4682560d3c.js" defer></script><script src="js/config.49c3ae0216c9.js" defer></script><script src="js/firebase-client.5674754c18da.js" defer></script><script src="js/backend-store-v201.aad55e050d8d.js" defer></script><script src="js/auth-guard.7c9400012b44.js" defer></script><script src="js/runtime-observability.23a39528607f.js" defer></script><script src="js/metric-authority.d5323fddeb8f.js" defer></script><script src="js/level-system.504d314a2f55.js" defer></script><script src="js/state-authority.93fc1d23bf02.js" defer></script><script src="js/settings-state.bbb0efe8cc9e.js" defer></script>
+  <script src="js/app-shell.a5d20dca51e0.js" defer></script><script src="js/task-integrity.e1591c740b4b.js" defer></script>
+<script src="js/data-service.19a7f3758365.js" defer></script><script src="js/task-store.70d5d2d679db.js" defer></script><script src="js/ai-service.0b65947f7940.js" defer></script><script src="js/final-runtime.0bbe419101b5.js" defer></script><script src="js/streak-system.2954278a6d9c.js" defer></script>
+  <script src="js/gamification-system.31979460172e.js" defer></script><script src="js/engagement-hub.8926b1fa6b7f.js" defer></script>
+  <script src="js/level-up-controller.d0afb4c5a97d.js" defer></script>
+  <script src="js/performance-runtime.39a399549dd9.js" defer></script>
+  <script src="js/consent-interactions-v129.b226d20ff1a4.js" defer></script>
+  <script src="js/hub-polish-v215.56c4704f6c0e.js" defer></script>
+  <script src="js/nexzo-home-shell.e8f440ebb383.js" defer></script>
+  <script src="js/student-digital-twin-v181.f26a4a92425f.js" defer></script>
+</body></html>

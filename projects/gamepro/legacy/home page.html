@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GamePro - Home</title>
+<link href="home page.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="gamepro-theme.css" rel="stylesheet"/><script defer="True" src="gamepro-theme.js"></script></head>
+<body>
+<div id="particles-js"></div>
+<header>
+<a class="logo" href="#">GamePro</a>
+<ul class="navbar">
+<li><a class="nav-btn" href="home page.html">Home</a></li>
+<li><a class="nav-btn" href="dashboard.html">Dashboard</a></li>
+<li><a class="nav-btn" href="games.html">Games</a></li>
+<li><a class="nav-btn" href="subscription.html">Subscription</a></li>
+<li><a class="nav-btn" href="aboutpage.html">About</a></li>
+<!-- ✅ Login link updated -->
+<li><a class="nav-btn" href="login.html">Login</a></li>
+</ul>
+<div class="menu-btn">☰</div>
+</header>
+<section class="hero">
+<div class="content">
+<h1>UNLIMITED <span>GAMES</span> HEAVEN</h1>
+<p>Play your favorite games anytime, anywhere. Fun never stops!</p>
+<a class="btn" href="games.html">Play Now</a>
+</div>
+</section>
+<section class="options">
+<div class="card">
+<div class="icon">🎮</div>
+<h3>Endless Games</h3>
+<p>Discover and play a massive library of games, from retro classics to new indie hits.</p>
+</div>
+<div class="card">
+<div class="icon">🕹️</div>
+<h3>Seamless Play</h3>
+<p>Enjoy a lag-free gaming experience with our high-performance servers, anytime, anywhere.</p>
+</div>
+<div class="card">
+<div class="icon">🏆</div>
+<h3>Compete &amp; Win</h3>
+<p>Climb the global leaderboards and challenge your friends to become the ultimate GamePro.</p>
+</div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    // Particle background script
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {"value": 80},
+        "size": {"value": 3},
+        "color": {"value": "#ff4ded"},
+        "line_linked": {"enable": true,"color":"#b84dff"},
+        "move": {"speed": 2}
+      }
+    });
+
+    // Mobile menu toggle script
+    let menuBtn = document.querySelector('.menu-btn');
+    let navbar = document.querySelector('.navbar');
+    menuBtn.onclick = function() {
+      navbar.style.display = (navbar.style.display === "flex") ? "none" : "flex";
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+}
+
+.login-container {
+    display: flex;
+    background: #1e1e1e;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    width: 600px;
+    overflow: hidden;
+}
+
+/* .image-section {
+    flex: 1;
+    background: #151515;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+.image-section img {
+    flex: 1;
+    background: url('/background\ imge.jpg') no-repeat center center/cover;
+    position: relative;
+} */
+
+.image-section {
+    flex: 1;
+    background: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px;
+}
+
+.image-section img {
+    height: 400px;
+    width: 300px; /* Adjust size as needed */
+    background: url('/background\ imge.jpg') no-repeat center center/cover;
+    margin-bottom: 15px;
+}
+
+.image-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.form-section {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    background: #1e1e1e;
+}
+
+h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #6a4df6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #5a3be2;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
+
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-login button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.google-btn {
+    background: white;
+    color: black;
+}
+
+.apple-btn {
+    background: white;
+    color: black;
+}
+
+/* GamePro v10: keep scrolling functional while hiding native scrollbar chrome */
+html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }

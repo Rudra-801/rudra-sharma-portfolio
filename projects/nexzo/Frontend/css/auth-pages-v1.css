@@ -1,0 +1,57 @@
+/* NEXZO authentication scene — isolated to Login / Signup only. */
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page){
+  min-height:100vh; min-height:100svh; overflow-x:hidden; color:#f7f3e8;
+  background:#030303!important;
+  background-image:
+    linear-gradient(90deg,rgba(0,0,0,.46),rgba(0,0,0,.70) 48%,rgba(0,0,0,.62)),
+    linear-gradient(0deg,rgba(0,0,0,.38),rgba(0,0,0,.12)),
+    url("../assets/auth/nexzo-auth-cinematic.webp")!important;
+  background-size:cover!important; background-position:center center!important; background-attachment:fixed!important;
+}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page)::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 70% 50%,rgba(214,170,37,.07),transparent 34%),linear-gradient(90deg,rgba(0,0,0,.18),transparent 35%);
+}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth{
+  position:relative;z-index:1;isolation:isolate;display:grid!important;place-items:center!important;
+  width:100%!important;min-height:100vh!important;min-height:100svh!important;padding:96px 20px 34px!important;
+}
+/* Minimal brand: logo + NEXZO only. It never consumes the left half of the page. */
+.auth-brand-panel{
+  position:fixed!important;z-index:4!important;top:24px!important;left:28px!important;width:auto!important;
+  padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+.auth-brand-panel .brand{display:flex!important;align-items:center!important;gap:12px!important;margin:0!important}
+.auth-brand-panel .logo-img{display:block!important;width:50px!important;height:50px!important;flex:0 0 50px!important;object-fit:cover!important;border-radius:13px!important;box-shadow:0 8px 24px rgba(0,0,0,.35)!important}
+.auth-brand-panel .brand h1{margin:0!important;color:#f4f0e4!important;font-size:28px!important;line-height:1!important;font-weight:850!important;letter-spacing:.08em!important}
+.auth-brand-panel .brand p,.auth-brand-tagline,.auth-box>.brand{display:none!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box{
+  position:relative!important;width:min(440px,calc(100vw - 32px))!important;max-height:calc(100svh - 126px)!important;
+  overflow-y:auto!important;margin:0!important;padding:34px 38px 30px!important;
+  border:1px solid rgba(218,171,20,.42)!important;border-radius:24px!important;
+  background:linear-gradient(155deg,rgba(11,11,10,.95),rgba(4,4,4,.97))!important;
+  box-shadow:0 30px 90px rgba(0,0,0,.65),inset 0 1px rgba(255,255,255,.025),0 0 44px rgba(205,158,18,.06)!important;
+  backdrop-filter:blur(18px)!important;animation:none!important;scrollbar-width:none!important;
+}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box::-webkit-scrollbar{display:none!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box>h1{margin:4px 0 26px!important;text-align:center!important;color:#f7f5ef!important;font-size:clamp(34px,3vw,43px)!important;line-height:1.05!important;letter-spacing:-.035em!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box input:not([type=checkbox]){min-height:54px!important;border-radius:15px!important;background:rgba(3,4,5,.91)!important;border-color:rgba(216,170,28,.30)!important;color:#f7f4eb!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box input:not([type=checkbox]):focus{border-color:rgba(244,195,49,.75)!important;box-shadow:0 0 0 3px rgba(222,175,28,.09)!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box .btn{min-height:52px;border-radius:14px!important}
+html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box [data-action="toggle-password"]{min-height:40px!important;top:7px!important}
+html:not([data-nexzo-theme="light"]) body.signup-page .auth-box .nx-legal-agree{display:grid!important;grid-template-columns:18px minmax(0,1fr)!important;align-items:start!important;gap:10px!important}
+html:not([data-nexzo-theme="light"]) body.signup-page .auth-box .nx-legal-agree input[type="checkbox"]{appearance:auto!important;-webkit-appearance:checkbox!important;box-sizing:border-box!important;width:18px!important;min-width:18px!important;max-width:18px!important;height:18px!important;min-height:18px!important;margin:3px 0 0!important;padding:0!important;accent-color:#d6aa25!important}
+html:not([data-nexzo-theme="light"]) body.signup-page .auth-box .nx-legal-agree span{min-width:0!important;line-height:1.45!important}
+@media(max-height:780px) and (min-width:701px){
+ html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth{padding-top:78px!important;padding-bottom:18px!important}
+ html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box{max-height:calc(100svh - 96px)!important;padding-top:26px!important;padding-bottom:24px!important}
+ .auth-brand-panel{top:16px!important;left:20px!important}
+}
+@media(max-width:700px){
+ html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page){background-position:46% center!important;background-attachment:scroll!important}
+ html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth{padding:88px 12px 20px!important;align-items:start!important}
+ .auth-brand-panel{top:16px!important;left:18px!important}
+ .auth-brand-panel .logo-img{width:42px!important;height:42px!important;flex-basis:42px!important;border-radius:11px!important}
+ .auth-brand-panel .brand h1{font-size:24px!important}
+ html:not([data-nexzo-theme="light"]) body:is(.login-page,.signup-page):not(.admin-page) .auth-box{width:100%!important;max-height:none!important;padding:27px 21px 24px!important;border-radius:20px!important}
+}

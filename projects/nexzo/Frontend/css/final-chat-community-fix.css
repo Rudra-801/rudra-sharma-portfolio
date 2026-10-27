@@ -1,0 +1,38 @@
+/* NEXZO final chat/community polish — 2026-10-13 */
+body.ai-clean-page .chat-shell{display:grid!important;grid-template-rows:auto auto minmax(0,1fr) auto auto!important;justify-items:center!important;padding-left:20px!important;padding-right:20px!important}
+body.ai-clean-page .messages{width:min(940px,100%)!important;max-width:940px!important;margin:0 auto!important;padding:18px 12px 26px!important;box-sizing:border-box!important}
+body.ai-clean-page .message-row{width:100%!important;max-width:100%!important;display:flex!important;align-items:flex-start!important;gap:12px!important;margin:0 0 26px!important;box-sizing:border-box!important}
+body.ai-clean-page .message-row.assistant{justify-content:flex-start!important}
+body.ai-clean-page .message-row.user{justify-content:flex-end!important;padding-left:18%!important}
+body.ai-clean-page .message-row.assistant .bubble{width:min(820px,calc(100% - 52px))!important;max-width:min(820px,calc(100% - 52px))!important;min-width:0!important;padding:2px 0 15px!important}
+body.ai-clean-page .message-row.user .bubble{width:auto!important;max-width:620px!important;min-width:0!important;margin-left:auto!important;padding:12px 16px!important;border-radius:18px!important}
+body.ai-clean-page .message-avatar{flex:0 0 34px!important;width:34px!important;height:34px!important}
+body.ai-clean-page .assistant-message .bubble h1,body.ai-clean-page .message-row.assistant .bubble h1{font-size:24px!important;margin:8px 0 12px!important}
+body.ai-clean-page .message-row.assistant .bubble h2{font-size:19px!important;margin:18px 0 8px!important}
+body.ai-clean-page .message-row.assistant .bubble h3{font-size:15px!important;margin:16px 0 7px!important;text-transform:none!important;letter-spacing:0!important;color:#e7d8b2!important}
+body.ai-clean-page .message-row.assistant .bubble p{font-size:15px!important;line-height:1.72!important;margin:0 0 12px!important;color:#d1cbc0!important}
+body.ai-clean-page .message-row.assistant .bubble hr{border:0!important;border-top:1px solid rgba(214,177,92,.16)!important;margin:18px 0!important}
+body.ai-clean-page .bubble-actions{margin-top:12px!important;padding-top:9px!important;border-top:1px solid rgba(214,177,92,.10)!important}
+body.ai-clean-page #composer{width:min(940px,calc(100vw - 40px))!important;min-height:96px!important;margin:8px auto 0!important;border-color:rgba(214,177,92,.32)!important;background:#0d0f0f!important;border-radius:22px!important}
+body.ai-clean-page .disclaimer{width:min(940px,calc(100vw - 40px))!important}
+body.ai-clean-page .nyro-companion,body.ai-clean-page [data-nyro-companion],body.ai-clean-page #nyroCompanion{position:fixed!important;right:22px!important;bottom:112px!important;z-index:18!important;max-width:116px!important;pointer-events:auto!important}
+@media(max-width:1100px){body.ai-clean-page .nyro-companion,body.ai-clean-page [data-nyro-companion],body.ai-clean-page #nyroCompanion{display:none!important}}
+@media(max-width:720px){body.ai-clean-page .chat-shell{padding-left:8px!important;padding-right:8px!important}.ai-clean-page .messages{padding-left:4px!important;padding-right:4px!important}.ai-clean-page .message-row.user{padding-left:12%!important}.ai-clean-page .message-row.user .bubble{max-width:88%!important}.ai-clean-page #composer{width:100%!important}}
+
+/* Community: compact, product-native pickers. */
+body.community-page .nx-emoji-picker{width:min(440px,calc(100vw - 28px))!important;max-height:min(520px,72vh)!important;display:flex!important;flex-direction:column!important;background:#0b0c0c!important;border:1px solid rgba(214,177,92,.34)!important;border-radius:16px!important;box-shadow:0 24px 70px rgba(0,0,0,.62)!important;overflow:hidden!important}
+body.community-page .nx-emoji-tabs{display:flex!important;gap:3px!important;overflow-x:auto!important;padding:9px 9px 6px!important;border-bottom:1px solid rgba(214,177,92,.12)!important;scrollbar-width:none!important}
+body.community-page .nx-emoji-tabs::-webkit-scrollbar{display:none!important}
+body.community-page .nx-emoji-tabs button{white-space:nowrap!important;border:0!important;border-radius:8px!important;padding:7px 9px!important;background:transparent!important;color:#aaa59b!important}
+body.community-page .nx-emoji-tabs button.active{background:rgba(214,177,92,.12)!important;color:#e7ca80!important}
+body.community-page .nx-emoji-picker [data-emoji-search]{margin:9px 10px 5px!important;width:calc(100% - 20px)!important;border:1px solid rgba(214,177,92,.20)!important;border-radius:10px!important;background:#111313!important;color:#f3ead7!important;padding:9px 11px!important}
+body.community-page .nx-emoji-panel{display:grid!important;grid-template-columns:repeat(8,1fr)!important;gap:2px!important;padding:8px 10px 12px!important;overflow-y:auto!important;min-height:180px!important;max-height:300px!important;scrollbar-width:none!important}
+body.community-page .nx-emoji-panel::-webkit-scrollbar{display:none!important}
+body.community-page .nx-emoji-panel button{aspect-ratio:1!important;border:0!important;border-radius:8px!important;background:transparent!important;font-size:24px!important;cursor:pointer!important}
+body.community-page .nx-emoji-panel button:hover{background:rgba(214,177,92,.11)!important}
+body.community-page .nx-sticker-strip{display:flex!important;gap:6px!important;padding:8px 10px 10px!important;border-top:1px solid rgba(214,177,92,.10)!important;overflow-x:auto!important;scrollbar-width:none!important}
+body.community-page .nx-sticker-strip button{border:1px solid rgba(214,177,92,.18)!important;background:#101212!important;color:#eee4d2!important;border-radius:10px!important;padding:7px 9px!important}
+body.community-page .nx-msg-status{font-family:Arial,sans-serif!important;font-weight:700!important;letter-spacing:-3px!important;min-width:18px!important;padding:0 2px!important;background:transparent!important;border:0!important}
+body.community-page .nx-msg-status.sent{color:#aaa49a!important}.community-page .nx-msg-status.delivered{color:#c9c3b8!important}.community-page .nx-msg-status.read{color:#d9b94f!important;text-shadow:0 0 9px rgba(217,185,79,.25)!important}
+.nx-assistant-confirm-overlay{position:fixed;inset:0;z-index:10050;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(7px)}
+.nx-assistant-confirm{width:min(430px,100%);display:grid;grid-template-columns:42px 1fr;gap:13px;padding:20px;border:1px solid rgba(214,177,92,.32);border-radius:16px;background:#0c0d0d;box-shadow:0 28px 90px rgba(0,0,0,.68);color:#eee7da}.nx-assistant-confirm-mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(225,91,91,.4);border-radius:50%;color:#ff9898;font-weight:800}.nx-assistant-confirm-copy h3{margin:1px 0 6px;font-size:17px}.nx-assistant-confirm-copy p{margin:0;color:#aaa49a;font-size:13px;line-height:1.55}.nx-assistant-confirm-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;margin-top:7px}.nx-assistant-confirm-actions button{border:1px solid rgba(214,177,92,.22);border-radius:9px;background:#151616;color:#eee7da;padding:9px 14px;cursor:pointer}.nx-assistant-confirm-actions button.danger{border-color:rgba(225,91,91,.38);background:#321818;color:#ffb0b0}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GamePro Subscription</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #0d001a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Particles Background */
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: linear-gradient(-45deg, #1a0033, #0d001a, #2a003f);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 32px;
+      text-shadow: 0 0 20px #ff4ded, 0 0 40px #b84dff;
+    }
+
+    .plans {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .plan {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 30px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(184,77,255,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeUp 1s forwards;
+    }
+    .plan:nth-child(1){ animation-delay: 0.3s; }
+    .plan:nth-child(2){ animation-delay: 0.6s; }
+    .plan:nth-child(3){ animation-delay: 0.9s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .plan:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 30px rgba(255,77,237,0.8), 0 0 50px rgba(184,77,255,0.8);
+    }
+
+    .plan h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff4ded, #b84dff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.2)}
+    }
+
+    .price {
+      font-size: 28px;
+      margin: 15px 0;
+      color: #fff;
+      text-shadow: 0 0 12px #ff4ded;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    ul li {
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #ff4ded, #b84dff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 14px;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(255,77,237,0.8);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      box-shadow: 0 0 25px rgba(184,77,255,1);
+      transform: scale(1.05);
+    }
+
+    .popular, .discount {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: linear-gradient(90deg, #ff4ded, #b84dff);
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      box-shadow: 0 0 12px rgba(255,77,237,0.9);
+    }
+    .discount {
+      left: -10px; right: auto;
+      background: linear-gradient(90deg, #00f0ff, #4dffb8);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #1a0033;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,77,237,0.8);
+    }
+    .modal-content h3 {
+      margin-bottom: 15px;
+    }
+    .close {
+      margin-top: 15px;
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(90deg, #ff4ded, #b84dff);
+      color: #fff;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+<link href="gamepro-theme.css" rel="stylesheet"/><script defer="True" src="gamepro-theme.js"></script></head>
+<body>
+<!-- Particles -->
+<div id="particles-js"></div>
+<header>
+    Choose Your <span style="color:#ff4ded">Subscription</span>
+</header>
+<section class="plans">
+<!-- Hourly -->
+<div class="plan">
+<div class="icon">⏳</div>
+<h2>Hourly Pass</h2>
+<div class="price">₹29</div>
+<ul>
+<li>1 Hour Unlimited Play</li>
+<li>No Ads</li>
+<li>Save High Scores</li>
+</ul>
+<div class="btn" onclick="openModal('Hourly Pass')">Buy Now</div>
+</div>
+<!-- Weekly -->
+<div class="plan">
+<div class="icon">📅</div>
+<h2>Weekly Pass</h2>
+<div class="price">₹149</div>
+<ul>
+<li>7 Days Unlimited Play</li>
+<li>Access to All Games</li>
+<li>Leaderboard Access</li>
+</ul>
+<div class="btn" onclick="openModal('Weekly Pass')">Buy Now</div>
+</div>
+<!-- Monthly -->
+<div class="plan">
+<div class="popular">Best Value</div>
+<div class="discount">Save 20%</div>
+<div class="icon">🚀</div>
+<h2>Monthly Pro</h2>
+<div class="price">₹499</div>
+<ul>
+<li>30 Days Unlimited Play</li>
+<li>Exclusive Premium Games</li>
+<li>Priority Support</li>
+<li>Special Leaderboard Badge</li>
+</ul>
+<div class="btn" onclick="openModal('Monthly Pro')">Buy Now</div>
+</div>
+</section>
+<footer>
+    Cancel anytime • Scores stay saved • Play from any device
+  </footer>
+<!-- Modal -->
+<div class="modal" id="paymentModal">
+<div class="modal-content">
+<h3 id="planName"></h3>
+<p>Payment gateway coming soon! 🚀</p>
+<div class="close" onclick="closeModal()">Close</div>
+</div>
+</div>
+<!-- Particle.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {"value": 80},
+        "size": {"value": 3},
+        "color": {"value": "#ff4ded"},
+        "line_linked": {"enable": true,"color":"#b84dff"},
+        "move": {"speed": 2}
+      }
+    });
+
+    // Modal functions
+    function openModal(plan){
+      document.getElementById("planName").innerText = plan + " Selected";
+      document.getElementById("paymentModal").style.display = "flex";
+    }
+    function closeModal(){
+      document.getElementById("paymentModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

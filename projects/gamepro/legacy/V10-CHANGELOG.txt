@@ -1,0 +1,15 @@
+GamePro Unified 3D Theme v10
+
+FIXED
+- Native vertical and horizontal scrollbar chrome is hidden across the complete project.
+- Scrolling itself remains enabled wherever the page/game needs it.
+- Existing game logic, iframe launcher, moving constellation background and audio controls are preserved.
+
+NEXT UI/UX PRIORITIES
+1. Replace legacy game-specific top bars/branding inside games with one authoritative shell.
+2. Normalize every game viewport/card so games never start clipped or off-screen.
+3. Add game states: Ready / Playing / Paused / Game Over with consistent controls.
+4. Add fullscreen button and keyboard shortcut per game.
+5. Add persistent best-score / last-played / favorites on the Games page.
+6. Improve responsive/mobile controls and touch targets.
+7. Reduce CSS duplication by isolating legacy game CSS inside iframe content and keeping platform chrome separate.

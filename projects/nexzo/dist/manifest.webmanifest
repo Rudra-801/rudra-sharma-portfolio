@@ -1,0 +1,17 @@
+{
+  "name": "NEXZO Personalized Learning Platform",
+  "short_name": "NEXZO",
+  "start_url": "./Home.html",
+  "display": "standalone",
+  "background_color": "#07080c",
+  "theme_color": "#0b0d12",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "scope": "./",
+  "description": "Personalized learning, planning, progress and community workspace."
+}

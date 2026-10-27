@@ -1,0 +1,513 @@
+
+/* NEXZO final visual and behaviour repair v1 */
+:root{--nx-panel:#090e17;--nx-border:rgba(255,255,255,.10)}
+/* Sidebar: every page item keeps its own colour, active item is stronger */
+.sidebar .nav a{position:relative;overflow:hidden;border-color:color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.08))!important;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 5%,#0b1018),#070b12 68%)!important}
+.sidebar .nav a:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c);opacity:.42;box-shadow:0 0 18px var(--c)}
+.sidebar .nav a i{filter:drop-shadow(0 0 7px var(--c))}
+.sidebar .nav a:hover{border-color:color-mix(in srgb,var(--c) 55%,transparent)!important;box-shadow:inset 0 0 24px color-mix(in srgb,var(--c) 8%,transparent),0 0 20px color-mix(in srgb,var(--c) 10%,transparent)}
+.sidebar .nav a.active{border-color:var(--c)!important;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 19%,#0b1018),#080c13 72%)!important;box-shadow:inset 4px 0 0 var(--c),inset 0 0 32px color-mix(in srgb,var(--c) 11%,transparent),0 0 25px color-mix(in srgb,var(--c) 15%,transparent)!important}
+
+/* Better global search */
+.nx-shell-modal-card:has(.nx-shell-search-input){width:min(720px,94vw)!important;padding:24px!important;background:radial-gradient(circle at 10% 0,rgba(39,216,255,.10),transparent 33%),linear-gradient(145deg,#101622,#070b12)!important;border:1px solid rgba(56,207,255,.34)!important;border-radius:24px!important;box-shadow:0 35px 100px rgba(0,0,0,.65),0 0 55px rgba(49,199,255,.10)!important}
+.nx-shell-search-label{display:block;margin:0 0 10px;color:#93a4bc;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.nx-shell-search-input{width:100%;height:54px;border-radius:16px!important;border:1px solid rgba(71,184,255,.36)!important;background:#080d15!important;color:white!important;padding:0 18px!important;font-size:16px!important;outline:none}.nx-shell-search-input:focus{border-color:#35d6ff!important;box-shadow:0 0 0 4px rgba(53,214,255,.10),0 0 24px rgba(53,214,255,.10)}
+.nx-shell-search-results{display:grid;gap:9px;margin-top:14px;max-height:380px;overflow:auto}.nx-shell-search-results a,.nx-shell-search-results button{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;padding:14px 15px!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:14px!important;background:rgba(255,255,255,.025)!important;color:#eef4ff!important;text-decoration:none!important}.nx-shell-search-results a:hover,.nx-shell-search-results button:hover{background:rgba(53,214,255,.07)!important;border-color:rgba(53,214,255,.30)!important}
+
+/* Dashboard cleanup and fixed heatmap */
+.nx-eh-launchbar{display:none!important}.dash-live-layout>.dash-card-exact:has(#dashFocusTime){display:none!important}
+.dash-heatmap-exact{display:grid!important;grid-template-columns:repeat(12,minmax(10px,1fr))!important;gap:7px!important;align-content:start!important;min-height:150px!important;padding:12px!important;border-radius:15px;background:rgba(3,9,16,.45)}
+.dash-heatmap-exact i{display:block!important;aspect-ratio:1;border-radius:4px;background:#0a2030!important;border:1px solid rgba(52,211,153,.08)}
+.dash-heatmap-exact i[data-level="1"]{background:#14532d!important}.dash-heatmap-exact i[data-level="2"]{background:#16a34a!important}.dash-heatmap-exact i[data-level="3"]{background:#22c55e!important}.dash-heatmap-exact i[data-level="4"]{background:#4ade80!important;box-shadow:0 0 9px rgba(74,222,128,.48)}
+.dash-achievement-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;overflow:visible!important;padding:4px!important}.dash-achievement{min-width:0!important;min-height:125px!important;padding:17px 10px!important;border-radius:18px!important;text-align:center!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important;overflow:hidden!important}.dash-achievement i{font-style:normal;font-size:25px}.dash-achievement b{font-size:15px!important;line-height:1.15;overflow-wrap:anywhere}.dash-achievement small{font-size:12px}.dash-achievement.unlocked{border:1px solid rgba(255,140,51,.48)!important;background:radial-gradient(circle at 50% 0,rgba(255,112,25,.24),transparent 50%),#0c1018!important;box-shadow:inset 0 0 25px rgba(255,111,25,.08)}.dash-achievement.locked{filter:none!important;opacity:.58;background:#0a0e15!important;border:1px solid rgba(255,255,255,.08)!important}
+
+/* Hub: clearer spacing, no vague filler, real activity heatmap */
+.nx-hub-shell{padding-top:115px!important}.nx-hub-panel{animation:nxHubIn .24s ease}@keyframes nxHubIn{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}
+.nx-card-grid{align-items:stretch}.hub-card{min-height:260px!important;padding:25px!important}.mission-card{grid-column:span 2}.nx-eh-mission{display:grid!important;grid-template-columns:24px minmax(0,1fr) auto!important;gap:10px!important;align-items:center!important;padding:11px 0!important}.nx-eh-mission>span:first-child{font-size:17px}.nx-eh-mission b{white-space:nowrap}.nx-eh-missions:empty:after{content:"Complete activities in Planner, Academics or Study Assistant to begin today's missions.";display:block;color:#91a0b5;padding:12px 0;line-height:1.55}
+.nx-eh-heat{grid-template-columns:repeat(14,18px)!important;gap:7px!important;padding:18px!important;background:rgba(1,10,14,.55);border:1px solid rgba(36,220,139,.12);border-radius:17px;width:max-content;max-width:100%;overflow:auto}.nx-eh-heat i{width:18px!important;height:18px!important;border-radius:5px!important;background:#0b1a23!important}.nx-eh-heat i[data-v="1"]{background:#14532d!important}.nx-eh-heat i[data-v="2"]{background:#16a34a!important}.nx-eh-heat i[data-v="3"]{background:#4ade80!important;box-shadow:0 0 10px rgba(74,222,128,.42)}
+
+/* Settings made consistent with NEXZO multicolour card system */
+.settings-v3-body{background:#03070b!important}.settings-v3-main{max-width:1320px!important;margin:0 auto!important;padding-bottom:70px!important}.settings-v3-heading{padding:24px!important;border:1px solid rgba(168,85,247,.32)!important;border-radius:22px!important;background:radial-gradient(circle at 90% 0,rgba(168,85,247,.13),transparent 40%),linear-gradient(145deg,#101520,#080c13)!important;margin-bottom:20px!important}.settings-v3-tabs{padding:7px!important;border-radius:17px!important;background:#080d15!important;border:1px solid rgba(255,255,255,.08)!important}.settings-v3-tabs button{border-radius:12px!important}.settings-v3-tabs button:nth-child(1){--set:#a855f7}.settings-v3-tabs button:nth-child(2){--set:#06b6d4}.settings-v3-tabs button:nth-child(3){--set:#ec4899}.settings-v3-tabs button:nth-child(4){--set:#22c55e}.settings-v3-tabs button:nth-child(5){--set:#f59e0b}.settings-v3-tabs button:nth-child(6){--set:#3b82f6}.settings-v3-tabs button.active{background:color-mix(in srgb,var(--set) 18%,#0b1018)!important;border-color:color-mix(in srgb,var(--set) 55%,transparent)!important;color:#fff!important;box-shadow:inset 0 0 24px color-mix(in srgb,var(--set) 10%,transparent),0 0 18px color-mix(in srgb,var(--set) 10%,transparent)!important}.settings-v3-layout{gap:20px!important}.settings-v3-card,.settings-v3-content>article,.settings-v3-content>section{border-radius:22px!important;background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--set-accent,#8b5cf6) 12%,transparent),transparent 42%),linear-gradient(145deg,#10151f,#070b12)!important;border:1px solid color-mix(in srgb,var(--set-accent,#8b5cf6) 32%,rgba(255,255,255,.08))!important;box-shadow:0 22px 60px rgba(0,0,0,.24)!important}.settings-v3-preview-card{--set-accent:#a855f7}.settings-v3-quick-card{--set-accent:#f59e0b}.settings-v3-help-card{--set-accent:#06b6d4}.settings-v3-action-list button:hover{transform:translateX(4px);background:rgba(245,158,11,.08)!important}.settings-v3-system-status>div{border-radius:13px!important;background:rgba(255,255,255,.025)!important}
+
+/* Home Hub card */
+.home-acad-card.home-hub-card{grid-column:span 2;background:radial-gradient(circle at 85% 0,rgba(245,184,46,.18),transparent 42%),linear-gradient(145deg,#12131d,#080b11)!important}.home-acad-card.home-hub-card .icon{box-shadow:0 0 34px rgba(245,184,46,.24)}
+@media(max-width:900px){.home-acad-card.home-hub-card{grid-column:auto}.dash-achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.mission-card{grid-column:auto}.settings-v3-layout{grid-template-columns:1fr!important}.settings-v3-side{display:grid!important;grid-template-columns:1fr!important}}
+@media(max-width:560px){.dash-achievement-grid{grid-template-columns:1fr 1fr!important}.dash-heatmap-exact{grid-template-columns:repeat(7,1fr)!important}}
+
+
+/* Unified NEXZO sidebar — same black + gold appearance on every page */
+.sidebar .nav a{
+  --c:#e9b728 !important;
+  color:#f7f8fb!important;
+  border:1px solid rgba(233,183,40,.16)!important;
+  background:linear-gradient(135deg,rgba(233,183,40,.045),rgba(8,13,22,.98) 66%)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)!important;
+}
+.sidebar .nav a:before{
+  width:0!important;opacity:0!important;
+}
+.sidebar .nav a i{
+  color:#f4c542!important;
+  background:linear-gradient(145deg,rgba(233,183,40,.17),rgba(255,255,255,.025))!important;
+  border:1px solid rgba(233,183,40,.20)!important;
+  box-shadow:0 0 17px rgba(233,183,40,.13),inset 0 0 14px rgba(233,183,40,.06)!important;
+  filter:none!important;
+}
+.sidebar .nav a:hover{
+  transform:translateX(3px)!important;
+  border-color:rgba(233,183,40,.48)!important;
+  background:linear-gradient(135deg,rgba(233,183,40,.10),rgba(8,13,22,.98) 70%)!important;
+  box-shadow:0 0 20px rgba(233,183,40,.10),inset 0 0 22px rgba(233,183,40,.05)!important;
+}
+.sidebar .nav a.active{
+  color:#fff!important;
+  border-color:#e9b728!important;
+  background:linear-gradient(110deg,rgba(233,183,40,.20),rgba(11,17,27,.98) 67%)!important;
+  box-shadow:inset 4px 0 0 #f2c230,inset 0 0 28px rgba(233,183,40,.09),0 0 22px rgba(233,183,40,.13)!important;
+}
+.sidebar .nav a.active i{box-shadow:0 0 20px rgba(233,183,40,.24),inset 0 0 15px rgba(233,183,40,.10)!important}
+
+/* Study Assistant drawer uses the exact same sidebar visual language */
+.ai-clean-page .nav-drawer nav a{
+  color:#f7f8fb!important;
+  border:1px solid rgba(233,183,40,.16)!important;
+  background:linear-gradient(135deg,rgba(233,183,40,.045),rgba(8,13,22,.98) 66%)!important;
+  border-radius:14px!important;
+  margin-bottom:9px!important;
+}
+.ai-clean-page .nav-drawer nav a .nav-icon{
+  color:#f4c542!important;
+  background:linear-gradient(145deg,rgba(233,183,40,.17),rgba(255,255,255,.025))!important;
+  border:1px solid rgba(233,183,40,.20)!important;
+  box-shadow:0 0 17px rgba(233,183,40,.13),inset 0 0 14px rgba(233,183,40,.06)!important;
+}
+.ai-clean-page .nav-drawer nav a:hover{
+  border-color:rgba(233,183,40,.48)!important;
+  background:linear-gradient(135deg,rgba(233,183,40,.10),rgba(8,13,22,.98) 70%)!important;
+}
+.ai-clean-page .nav-drawer nav a.active{
+  border-color:#e9b728!important;
+  background:linear-gradient(110deg,rgba(233,183,40,.20),rgba(11,17,27,.98) 67%)!important;
+  box-shadow:inset 4px 0 0 #f2c230,0 0 22px rgba(233,183,40,.13)!important;
+}
+
+/* NEXZO V62 — verified loaded sidebar palette + fixed extreme-right black toolbar */
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Home"]{--c:#f59e0b!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Academics"]{--c:#a855f7!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Study Assistant"]{--c:#ff3df2!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Career"]{--c:#ec4899!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Planner"]{--c:#22c55e!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Community"]{--c:#ef4444!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Dashboard"]{--c:#3b82f6!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="NEXZO Hub"]{--c:#f97316!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Settings"]{--c:#06b6d4!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Profile"]{--c:#a855f7!important}
+body[data-shell-ready="true"] .sidebar .nav a{
+  color:#f8fafc!important;
+  background:linear-gradient(110deg,color-mix(in srgb,var(--c) 10%,#080c13),#080c13 58%,#05080d)!important;
+  border:1px solid color-mix(in srgb,var(--c) 28%,rgba(255,255,255,.08))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),inset 0 0 20px color-mix(in srgb,var(--c) 6%,transparent)!important;
+  transform:none!important;
+}
+body[data-shell-ready="true"] .sidebar .nav a i{
+  color:#fff!important;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 30%,#111827),color-mix(in srgb,var(--c) 12%,#080c13))!important;
+  border:1px solid color-mix(in srgb,var(--c) 52%,transparent)!important;
+  box-shadow:0 0 18px color-mix(in srgb,var(--c) 40%,transparent),inset 0 1px rgba(255,255,255,.12)!important;
+}
+body[data-shell-ready="true"] .sidebar .nav a:hover,
+body[data-shell-ready="true"] .sidebar .nav a.active{
+  background:linear-gradient(100deg,color-mix(in srgb,var(--c) 34%,#08101a),color-mix(in srgb,var(--c) 12%,#080c13) 58%,#06090f)!important;
+  border-color:var(--c)!important;
+  box-shadow:inset 5px 0 0 var(--c),0 0 26px color-mix(in srgb,var(--c) 34%,transparent),inset 0 0 24px color-mix(in srgb,var(--c) 13%,transparent)!important;
+  transform:translateX(3px)!important;
+}
+body[data-shell-ready="true"] .sidebar .nav a.active i{
+  box-shadow:0 0 24px color-mix(in srgb,var(--c) 62%,transparent),inset 0 1px rgba(255,255,255,.16)!important;
+}
+@media(min-width:769px){
+  body[data-shell-ready="true"] .app>.main{padding-top:96px!important}
+  body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{
+    position:fixed!important;
+    z-index:1200!important;
+    top:14px!important;
+    right:18px!important;
+    left:auto!important;
+    width:auto!important;
+    max-width:calc(100vw - var(--side,260px) - 42px)!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:58px!important;
+    margin:0!important;
+    padding:7px 8px!important;
+    display:flex!important;
+    justify-content:flex-end!important;
+    align-items:center!important;
+    background:#030508!important;
+    background-image:linear-gradient(180deg,rgba(10,12,17,.99),rgba(2,3,6,.99))!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:17px!important;
+    box-shadow:0 15px 45px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.04)!important;
+    backdrop-filter:blur(18px)!important;
+  }
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{
+    width:auto!important;max-width:none!important;margin:0!important;padding:0!important;
+    display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:8px!important;
+    background:transparent!important;border:0!important;box-shadow:none!important;
+  }
+  body[data-shell-ready="true"] #nxShellTopbar :is(button,a){background:#080b10!important;border:1px solid rgba(255,255,255,.11)!important}
+  body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile{background:#080b10!important}
+}
+
+/* V141 — short first-paint transition without delaying interaction. */
+body{animation:nx-fade-in .3s ease both}
+@keyframes nx-fade-in{from{opacity:.01}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){body{animation:none}}
+@media(max-width:768px){
+  body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{position:relative!important;top:auto!important;right:auto!important;width:100%!important;margin:0 0 14px!important;background:#030508!important}
+}
+
+
+/* NEXZO V62 — verified loaded sidebar palette + fixed extreme-right black toolbar */
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Home"]{--c:#f59e0b!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Academics"]{--c:#a855f7!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Study Assistant"]{--c:#ff3df2!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Career"]{--c:#ec4899!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Planner"]{--c:#22c55e!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Community"]{--c:#ef4444!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Dashboard"]{--c:#3b82f6!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="NEXZO Hub"]{--c:#f97316!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Settings"]{--c:#06b6d4!important}
+body[data-shell-ready="true"] .sidebar .nav a[data-nav-label="Profile"]{--c:#a855f7!important}
+body[data-shell-ready="true"] .sidebar .nav a{color:#f8fafc!important;background:linear-gradient(110deg,color-mix(in srgb,var(--c) 10%,#080c13),#080c13 58%,#05080d)!important;border:1px solid color-mix(in srgb,var(--c) 28%,rgba(255,255,255,.08))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),inset 0 0 20px color-mix(in srgb,var(--c) 6%,transparent)!important;transform:none!important}
+body[data-shell-ready="true"] .sidebar .nav a i{color:#fff!important;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 30%,#111827),color-mix(in srgb,var(--c) 12%,#080c13))!important;border:1px solid color-mix(in srgb,var(--c) 52%,transparent)!important;box-shadow:0 0 18px color-mix(in srgb,var(--c) 40%,transparent),inset 0 1px rgba(255,255,255,.12)!important}
+body[data-shell-ready="true"] .sidebar .nav a:hover,body[data-shell-ready="true"] .sidebar .nav a.active{background:linear-gradient(100deg,color-mix(in srgb,var(--c) 34%,#08101a),color-mix(in srgb,var(--c) 12%,#080c13) 58%,#06090f)!important;border-color:var(--c)!important;box-shadow:inset 5px 0 0 var(--c),0 0 26px color-mix(in srgb,var(--c) 34%,transparent),inset 0 0 24px color-mix(in srgb,var(--c) 13%,transparent)!important;transform:translateX(3px)!important}
+body[data-shell-ready="true"] .sidebar .nav a.active i{box-shadow:0 0 24px color-mix(in srgb,var(--c) 62%,transparent),inset 0 1px rgba(255,255,255,.16)!important}
+@media(min-width:769px){body[data-shell-ready="true"] .app>.main{padding-top:96px!important}body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{position:fixed!important;z-index:1200!important;top:14px!important;right:18px!important;left:auto!important;width:auto!important;max-width:calc(100vw - var(--side,260px) - 42px)!important;min-width:0!important;height:auto!important;min-height:58px!important;margin:0!important;padding:7px 8px!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;background:#030508!important;background-image:linear-gradient(180deg,rgba(10,12,17,.99),rgba(2,3,6,.99))!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:17px!important;box-shadow:0 15px 45px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.04)!important;backdrop-filter:blur(18px)!important}body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{width:auto!important;max-width:none!important;margin:0!important;padding:0!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:8px!important;background:transparent!important;border:0!important;box-shadow:none!important}body[data-shell-ready="true"] #nxShellTopbar :is(button,a){background:#080b10!important;border:1px solid rgba(255,255,255,.11)!important}body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile{background:#080b10!important}}
+@media(max-width:768px){body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{position:relative!important;top:auto!important;right:auto!important;width:100%!important;margin:0 0 14px!important;background:#030508!important}}
+
+/* NEXZO V63 — clean per-page sidebar palette + invisible scrollbar */
+:root{
+  --nx-home:#f59e0b;
+  --nx-academics:#a855f7;
+  --nx-ai:#ec4899;
+  --nx-career:#f43f5e;
+  --nx-planner:#22c55e;
+  --nx-community:#ef4444;
+  --nx-dashboard:#3b82f6;
+  --nx-hub:#f97316;
+  --nx-settings:#06b6d4;
+  --nx-profile:#8b5cf6;
+}
+.sidebar .nav a,.sidebar nav a,.nav-drawer a,.drawer.nav-drawer a{
+  --nav-c:#94a3b8;
+  background:linear-gradient(180deg,rgba(10,15,23,.96),rgba(6,10,17,.96))!important;
+  border:1px solid rgba(148,163,184,.17)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 8px 18px rgba(0,0,0,.18)!important;
+  transform:none!important;
+}
+.sidebar a[href$="Home.html"],.sidebar a[href$="home.html"],.nav-drawer a[href$="Home.html"],.nav-drawer a[href$="home.html"]{--nav-c:var(--nx-home)!important}
+.sidebar a[href$="academics.html"],.nav-drawer a[href$="academics.html"]{--nav-c:var(--nx-academics)!important}
+.sidebar a[href$="ai-assistant.html"],.nav-drawer a[href$="ai-assistant.html"]{--nav-c:var(--nx-ai)!important}
+.sidebar a[href$="career.html"],.nav-drawer a[href$="career.html"]{--nav-c:var(--nx-career)!important}
+.sidebar a[href$="planner.html"],.nav-drawer a[href$="planner.html"]{--nav-c:var(--nx-planner)!important}
+.sidebar a[href$="community.html"],.nav-drawer a[href$="community.html"]{--nav-c:var(--nx-community)!important}
+.sidebar a[href$="dashboard.html"],.nav-drawer a[href$="dashboard.html"]{--nav-c:var(--nx-dashboard)!important}
+.sidebar a[href$="nexzo-hub.html"],.nav-drawer a[href$="nexzo-hub.html"]{--nav-c:var(--nx-hub)!important}
+.sidebar a[href$="settings.html"],.nav-drawer a[href$="settings.html"]{--nav-c:var(--nx-settings)!important}
+.sidebar a[href$="profile.html"],.nav-drawer a[href$="profile.html"]{--nav-c:var(--nx-profile)!important}
+.sidebar .nav a i,.sidebar nav a i,.sidebar .nav a .nav-icon,.sidebar nav a .nav-icon,.nav-drawer a .nav-icon{
+  background:color-mix(in srgb,var(--nav-c) 16%,rgba(12,18,28,.9))!important;
+  border:1px solid color-mix(in srgb,var(--nav-c) 28%,transparent)!important;
+  box-shadow:0 0 16px color-mix(in srgb,var(--nav-c) 24%,transparent)!important;
+}
+.sidebar .nav a:hover,.sidebar nav a:hover,.nav-drawer a:hover,
+.sidebar .nav a.active,.sidebar nav a.active,.nav-drawer a.active,
+.sidebar .nav a[aria-current="page"],.sidebar nav a[aria-current="page"],.nav-drawer a[aria-current="page"]{
+  border-color:color-mix(in srgb,var(--nav-c) 82%,white 5%)!important;
+  background:
+    radial-gradient(circle at 12% 50%,color-mix(in srgb,var(--nav-c) 27%,transparent),transparent 38%),
+    linear-gradient(90deg,color-mix(in srgb,var(--nav-c) 15%,rgba(8,12,19,.98)),rgba(8,12,19,.98))!important;
+  box-shadow:inset 4px 0 0 var(--nav-c),0 0 25px color-mix(in srgb,var(--nav-c) 20%,transparent)!important;
+  transform:translateX(2px)!important;
+}
+.sidebar,.sidebar .nav,.sidebar nav,.nav-drawer,.drawer.nav-drawer{
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+}
+.sidebar::-webkit-scrollbar,.sidebar .nav::-webkit-scrollbar,.sidebar nav::-webkit-scrollbar,
+.nav-drawer::-webkit-scrollbar,.drawer.nav-drawer::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+.sidebar{overflow-y:auto!important;overflow-x:hidden!important}
+.nav-drawer,.drawer.nav-drawer{overflow-y:auto!important;overflow-x:hidden!important}
+
+/* NEXZO — hover clipping repair (scoped, no layout redesign) */
+body:is(.home-page,.academics-page,.career-page,.planner-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .main,
+  .home-acad-main,
+  .home-acad-grid,
+  .grid,
+  .grid-3,
+  .grid-4,
+  .planner-shell,
+  .main-grid,
+  .stats,
+  .dashboard-exact-main,
+  .dash-live-layout,
+  .dash-stats-exact,
+  .settings-v3-main,
+  .settings-v3-layout,
+  .settings-v3-content,
+  .settings-v3-side,
+  .profile-page,
+  .profile-hero,
+  .learning-journey,
+  .journey-card
+){
+  overflow:visible!important;
+  contain:none!important;
+}
+
+body:is(.home-page,.academics-page,.career-page,.planner-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .home-acad-grid,
+  .grid,
+  .grid-3,
+  .grid-4,
+  .main-grid,
+  .stats,
+  .dash-live-layout,
+  .dash-stats-exact,
+  .settings-v3-layout,
+  .profile-hero,
+  .learning-journey
+){
+  padding-top:10px!important;
+  margin-top:-10px!important;
+}
+
+body:is(.home-page,.academics-page,.career-page,.planner-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .card,
+  .section-panel,
+  .home-acad-card,
+  .resource-card,
+  .career-card,
+  .panel,
+  .stat,
+  .suggest-box,
+  .ai-preview,
+  .planner-card,
+  .dash-card-exact,
+  .dash-stat-exact,
+  .dash-chart-box-exact,
+  .dash-heatmap-box-exact,
+  .settings-v3-card,
+  .profile-card,
+  .profile-panel,
+  .profile-stat,
+  .journey-card,
+  .level-card
+){
+  position:relative!important;
+  z-index:1;
+  transform-origin:center center!important;
+}
+
+body:is(.home-page,.academics-page,.career-page,.planner-page,.dashboard-page,.settings-page,.profile-page) :is(
+  .card,
+  .section-panel,
+  .home-acad-card,
+  .resource-card,
+  .career-card,
+  .panel,
+  .stat,
+  .suggest-box,
+  .ai-preview,
+  .planner-card,
+  .dash-card-exact,
+  .dash-stat-exact,
+  .dash-chart-box-exact,
+  .dash-heatmap-box-exact,
+  .settings-v3-card,
+  .profile-card,
+  .profile-panel,
+  .profile-stat,
+  .journey-card,
+  .level-card
+):hover{
+  z-index:30!important;
+  transform:translateY(-2px) scale(1.002)!important;
+}
+
+@media (hover:none), (prefers-reduced-motion:reduce){
+  body:is(.home-page,.academics-page,.career-page,.planner-page,.dashboard-page,.settings-page,.profile-page) :is(
+    .card,.section-panel,.home-acad-card,.resource-card,.career-card,.panel,.stat,.suggest-box,.ai-preview,
+    .planner-card,.dash-card-exact,.dash-stat-exact,.dash-chart-box-exact,.dash-heatmap-box-exact,
+    .settings-v3-card,.profile-card,.profile-panel,.profile-stat,.journey-card,.level-card
+  ):hover{
+    transform:none!important;
+  }
+}
+
+/* =========================================================
+   NEXZO V65 — cross-page layout integrity repair
+   Fixes clipped card borders, wrapping metric rows, career
+   collisions, sticky shell, black surfaces and Home grid.
+   ========================================================= */
+
+/* Neutral black application surface — keep coloured cards only. */
+html,body{background:#020407!important}
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) .main,
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) .home-acad-main,
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) .dashboard-exact-main{
+  background:linear-gradient(180deg,#03070d 0%,#020509 55%,#020407 100%)!important;
+}
+
+/* Desktop shell remains fixed while only main content scrolls. */
+@media (min-width:1101px){
+  body:not(.mentor-page) .app{display:block!important;min-height:100vh!important}
+  body:not(.mentor-page) .app>.sidebar{
+    position:fixed!important;left:0!important;top:0!important;bottom:0!important;
+    width:var(--side,260px)!important;height:100vh!important;z-index:1400!important;
+    overflow-y:auto!important;overflow-x:hidden!important;background:#030609!important;
+  }
+  body:not(.mentor-page) .app>.main{
+    width:calc(100% - var(--side,260px))!important;
+    margin-left:var(--side,260px)!important;
+    min-width:0!important;
+  }
+  body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{
+    position:fixed!important;top:14px!important;right:18px!important;left:auto!important;
+    background:#020407!important;background-image:none!important;
+    border-color:rgba(255,255,255,.12)!important;
+  }
+}
+
+/* Remove the previous negative-margin hover workaround. */
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+ .home-acad-grid,.grid,.grid-3,.grid-4,.main-grid,.stats,.dash-live-layout,.dash-stats-exact,
+ .community-pro-stats,.settings-v3-layout,.profile-hero,.learning-journey
+){margin-top:0!important;padding-top:12px!important;overflow:visible!important;contain:none!important}
+
+/* Draw a complete rounded outline independent of decorative pseudo-elements. */
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+ .card,.home-acad-card,.resource-card,.career-card,.panel,.stat,.suggest-box,.planner-card,
+ .dash-card-exact,.dash-stat-exact,.community-pro-stats article,.community-compose-card,
+ .settings-v3-card,.profile-stat,.journey-card,.level-card
+){
+  isolation:isolate!important;
+  overflow:hidden!important;
+  outline:1px solid color-mix(in srgb,var(--nx-accent,var(--c,var(--x,#64748b))) 68%,rgba(255,255,255,.10))!important;
+  outline-offset:-1px!important;
+  background-clip:padding-box!important;
+}
+body:is(.home-page,.academics-page,.career-page,.planner-page,.community-page,.dashboard-page,.settings-page,.profile-page) :is(
+ .card,.home-acad-card,.resource-card,.career-card,.panel,.stat,.suggest-box,.planner-card,
+ .dash-card-exact,.dash-stat-exact,.community-pro-stats article,.community-compose-card,
+ .settings-v3-card,.profile-stat,.journey-card,.level-card
+):hover{
+  transform:translateY(-2px)!important;
+  outline-color:color-mix(in srgb,var(--nx-accent,var(--c,var(--x,#64748b))) 92%,white 8%)!important;
+}
+
+/* Dashboard: five metrics stay on one row at normal desktop widths. */
+body.nx-dashboard-live .dash-stats-exact{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:14px!important;align-items:stretch!important;
+}
+body.nx-dashboard-live .dash-stat-exact{
+  min-width:0!important;min-height:174px!important;height:100%!important;
+  padding:20px 18px!important;display:grid!important;
+  grid-template-columns:58px minmax(0,1fr)!important;align-items:center!important;
+}
+body.nx-dashboard-live .dash-stat-exact>div{min-width:0!important}
+body.nx-dashboard-live .dash-stat-exact :is(p,h2,b,small){overflow-wrap:normal!important;word-break:normal!important}
+body.nx-dashboard-live .dash-stat-exact p{font-size:15px!important;line-height:1.25!important}
+body.nx-dashboard-live .dash-stat-exact h2{font-size:clamp(28px,2.2vw,42px)!important;line-height:1.05!important}
+@media (max-width:1280px) and (min-width:801px){body.nx-dashboard-live .dash-stats-exact{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media (max-width:800px){body.nx-dashboard-live .dash-stats-exact{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:540px){body.nx-dashboard-live .dash-stats-exact{grid-template-columns:1fr!important}}
+
+/* Community metrics: complete bottom borders and balanced equal cards. */
+body.community-page .community-pro-stats{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;align-items:stretch!important;padding-bottom:14px!important;
+}
+body.community-page .community-pro-stats article{
+  min-width:0!important;min-height:150px!important;height:100%!important;
+  padding:20px!important;display:grid!important;
+  grid-template-columns:58px 1fr!important;grid-template-rows:auto 1fr!important;
+  align-items:center!important;
+}
+body.community-page .community-pro-stats article span{grid-column:1/-1!important;margin-top:12px!important;line-height:1.25!important}
+@media(max-width:900px){body.community-page .community-pro-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){body.community-page .community-pro-stats{grid-template-columns:1fr!important}}
+
+/* Planner: six cards stay in one equal row; no orphan Progress card. */
+body.planner-page .stats{
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:14px!important;align-items:stretch!important;padding-bottom:16px!important;
+}
+body.planner-page .stats .stat{
+  min-width:0!important;min-height:174px!important;height:100%!important;
+  padding:18px!important;display:grid!important;
+  grid-template-columns:58px minmax(0,1fr)!important;align-items:center!important;
+}
+body.planner-page .stats .stat>div:last-child{min-width:0!important}
+body.planner-page .stats .stat span{font-size:15px!important;line-height:1.22!important;white-space:normal!important}
+body.planner-page .stats .stat b{font-size:clamp(26px,2vw,38px)!important;line-height:1.05!important;white-space:normal!important}
+body.planner-page .stats .stat small{line-height:1.3!important}
+@media(max-width:1300px) and (min-width:901px){body.planner-page .stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){body.planner-page .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){body.planner-page .stats{grid-template-columns:1fr!important}}
+
+/* Career: stable four-column cards, badge/icon separation and no collisions. */
+body.career-page .grid.grid-4,
+body.career-page #careerGrid{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:20px!important;align-items:stretch!important;padding-bottom:20px!important;
+}
+body.career-page .career-card{
+  min-width:0!important;min-height:430px!important;height:100%!important;
+  padding:28px 26px 24px!important;display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;overflow:hidden!important;
+}
+body.career-page .career-card .career-tag-badge{
+  position:static!important;display:inline-flex!important;align-items:center!important;
+  min-height:30px!important;margin:0 0 18px!important;padding:6px 12px!important;
+  border-radius:999px!important;line-height:1!important;max-width:100%!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  z-index:3!important;
+}
+body.career-page .career-card .icon{margin:0 0 20px!important;flex:0 0 auto!important}
+body.career-page .career-card h3{min-height:58px!important;line-height:1.18!important;overflow-wrap:normal!important;word-break:normal!important}
+body.career-page .career-card p{width:100%!important;margin:8px 0!important;overflow-wrap:break-word!important}
+body.career-page .career-card .btn{margin-top:auto!important}
+@media(max-width:1250px){body.career-page .grid.grid-4,body.career-page #careerGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){body.career-page .grid.grid-4,body.career-page #careerGrid{grid-template-columns:1fr!important}}
+
+/* Academics: resource cards keep complete border and consistent height. */
+body.academics-page #resourceGrid{align-items:stretch!important;padding-bottom:20px!important}
+body.academics-page #resourceGrid>.card{height:100%!important;min-height:270px!important;display:flex!important;flex-direction:column!important}
+body.academics-page #resourceGrid>.card .btn{margin-top:auto!important}
+
+/* Home: every feature card has the same width; Hub no longer spans two columns. */
+body.home-page .home-acad-grid{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:20px!important;align-items:stretch!important;padding-bottom:24px!important;
+}
+body.home-page .home-acad-grid>.home-acad-card,
+body.home-page .home-acad-grid>.home-hub-card{
+  grid-column:auto!important;grid-row:auto!important;width:auto!important;min-width:0!important;
+  min-height:360px!important;height:100%!important;
+}
+@media(max-width:1250px){body.home-page .home-acad-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){body.home-page .home-acad-grid{grid-template-columns:1fr!important}}
+
+/* Keep content below fixed toolbar; prevent toolbar overlap/cut at right edge. */
+@media(min-width:769px){
+ body[data-shell-ready="true"] .app>.main{padding-top:96px!important}
+ body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{
+   max-width:calc(100vw - var(--side,260px) - 38px)!important;
+   overflow:visible!important;
+ }
+}

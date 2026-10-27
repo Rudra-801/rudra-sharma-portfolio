@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maze</title>
+<link href="game3 .css" rel="stylesheet"/>
+<link href="game-embed.css" rel="stylesheet"/></head>
+<body>
+<div id="page">
+<div id="Message-Container">
+<div id="message">
+<h1>Congratulations!</h1>
+<p>You are done.</p>
+<p id="moves"></p>
+<input id="okBtn" onclick="toggleVisablity('Message-Container')" type="button" value="Cool!"/>
+</div>
+</div>
+<br/>
+<div id="menu">
+<div class="custom-select">
+<select id="diffSelect">
+<option value="10">Easy</option>
+<option value="15">Medium</option>
+<option value="25">Hard</option>
+<option value="38">Extreme</option>
+</select>
+</div>
+<input id="startMazeBtn" onclick="makeMaze()" type="button" value="Start"/>
+</div>
+<div id="view">
+<div id="mazeContainer">
+<canvas class="border" height="1100" id="mazeCanvas" width="1100"></canvas>
+</div>
+</div>
+<p id="instructions">Use arrow keys to move the key to the house!</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js" type="text/javascript"></script>
+<script src="game3 .js"></script>
+</body>
+</html>

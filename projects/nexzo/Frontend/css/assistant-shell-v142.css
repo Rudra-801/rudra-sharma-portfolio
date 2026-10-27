@@ -1,0 +1,109 @@
+/* NEXZO V142 — Study Assistant shell parity.
+   Structural-only: keeps existing assistant controls/IDs and shared NEXZO live shell. */
+body.ai-clean-page.nx-global-shell{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  overflow:hidden!important;
+  background:#070706!important;
+}
+body.ai-clean-page.nx-global-shell>.nx-global-path{
+  display:block!important;
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  opacity:1!important;
+}
+body.ai-clean-page.nx-global-shell>.nx-slider-trigger,
+body.ai-clean-page.nx-global-shell>.nx-global-brand{display:none!important}
+body.ai-clean-page.nx-global-shell>.ai-app{
+  position:relative!important;
+  z-index:2!important;
+  width:100vw!important;
+  height:100dvh!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:96px minmax(0,1fr)!important;
+  overflow:hidden!important;
+  background:transparent!important;
+}
+body.ai-clean-page.nx-global-shell .topbar{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  inset:auto!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  width:100%!important;
+  height:96px!important;
+  min-height:96px!important;
+  margin:0!important;
+  padding:0 30px!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
+  overflow:visible!important;
+  background:linear-gradient(180deg,rgba(3,4,4,.985),rgba(3,4,4,.94))!important;
+  border:0!important;
+  border-bottom:1px solid rgba(225,181,47,.20)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+  z-index:1200!important;
+}
+body.ai-clean-page.nx-global-shell .topbar .brand-group{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important}
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.nx-brand-lockup,
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.assistant-title-lockup,
+body.ai-clean-page.nx-global-shell .topbar .brand-group>#statusBadge{display:flex!important}
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.divider{display:block!important}
+body.ai-clean-page.nx-global-shell .topbar .top-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}
+body.ai-clean-page.nx-global-shell .assistant-side-rail{display:none!important}
+body.ai-clean-page.nx-global-shell .chat-shell{
+  grid-column:1!important;
+  grid-row:2!important;
+  position:relative!important;
+  width:min(1180px,calc(100vw - 56px))!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body.ai-clean-page.nx-global-shell .messages{
+  min-height:0!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  scrollbar-width:none!important;
+  background:transparent!important;
+}
+body.ai-clean-page.nx-global-shell .messages::-webkit-scrollbar{display:none!important}
+body.ai-clean-page.nx-global-shell>.nx-shell-backdrop{z-index:2147483001!important}
+body.ai-clean-page.nx-global-shell>.nx-shell-drawer{z-index:2147483002!important}
+body.ai-clean-page.nx-global-shell>.nx-shell-drawer.is-open{transform:translate3d(0,0,0)!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+@media(max-width:980px){
+ body.ai-clean-page.nx-global-shell>.ai-app{grid-template-rows:82px minmax(0,1fr)!important}
+ body.ai-clean-page.nx-global-shell .topbar{height:82px!important;min-height:82px!important;padding:0 14px!important;gap:10px!important}
+ body.ai-clean-page.nx-global-shell .chat-shell{width:calc(100vw - 28px)!important}
+ body.ai-clean-page.nx-global-shell .topbar .assistant-title-lockup,body.ai-clean-page.nx-global-shell .topbar #statusBadge{display:none!important}
+}
+@media(max-width:700px){
+ body.ai-clean-page.nx-global-shell>.ai-app{grid-template-rows:68px minmax(0,1fr)!important}
+ body.ai-clean-page.nx-global-shell .topbar{height:68px!important;min-height:68px!important;padding:0 8px!important}
+ body.ai-clean-page.nx-global-shell .topbar .brand-group>.divider{display:none!important}
+ body.ai-clean-page.nx-global-shell .topbar .assistant-history-top,body.ai-clean-page.nx-global-shell .topbar .timer-btn{display:none!important}
+ body.ai-clean-page.nx-global-shell .profile-chip{min-width:46px!important;width:46px!important}
+ body.ai-clean-page.nx-global-shell .profile-chip-copy{display:none!important}
+}

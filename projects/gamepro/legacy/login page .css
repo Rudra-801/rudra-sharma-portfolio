@@ -1,0 +1,242 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0d001a;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Particle Background */
+#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #1a0033, #0d001a, #2a003f);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(184,77,255,0.5);
+    border: 1px solid rgba(255,77,237,0.3);
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 50px rgba(255,77,237,0.8), 0 0 80px rgba(184,77,255,0.8);
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.glitch-text {
+    font-size: 48px;
+    font-weight: 800;
+    text-shadow: 0 0 20px #ff4ded, 0 0 40px #b84dff;
+    margin-bottom: 10px;
+    position: relative;
+    animation: glitch 1s infinite;
+}
+
+.form-section p {
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(255,77,237,0.3);
+    border-radius: 30px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    margin: 5px 0;
+}
+
+input:focus {
+    border-color: #ff4ded;
+    box-shadow: 0 0 10px rgba(255,77,237,0.5);
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#password {
+    width: 100%;
+    margin: 0;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s;
+}
+
+#togglePassword:hover {
+    color: #ff4ded;
+}
+
+.terms-label {
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.terms-label a {
+    color: #ff4ded;
+    text-decoration: none;
+}
+
+.cta-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #ff4ded, #b84dff);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,77,237,0.8);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.cta-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255,77,237,1), 0 0 50px rgba(184,77,255,1);
+}
+
+.divider {
+    position: relative;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%);
+    z-index: -1;
+}
+.divider span {
+    background: #0d001a;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.social-btn:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.1);
+}
+
+.login-link {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+.login-link a {
+    color: #ff4ded;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 0.3s;
+}
+.login-link a:hover {
+    text-shadow: 0 0 10px #ff4ded;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+    .glitch-text {
+        font-size: 32px;
+    }
+    .input-group {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+/* GamePro v10: keep scrolling functional while hiding native scrollbar chrome */
+html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }

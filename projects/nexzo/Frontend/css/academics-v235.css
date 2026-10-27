@@ -1,0 +1,34 @@
+
+/* V253 detailed study notes */
+.nx-rich-notes{display:grid;gap:18px;max-width:1080px;margin:auto}.nx-rich-notes .nx-notes-hero{padding:22px 24px;border:1px solid rgba(224,177,55,.28);border-radius:16px;background:linear-gradient(135deg,rgba(224,177,55,.09),rgba(113,55,178,.08),rgba(0,174,199,.05))}.nx-notes-hero span{font-size:12px;font-weight:800;letter-spacing:.13em;color:#e8bf4b}.nx-notes-hero h3{font-size:30px;margin:7px 0 5px}.nx-notes-hero p{margin:0;color:#9ca8bb}.nx-rich-notes section{padding:20px 22px;border:1px solid rgba(151,163,184,.15);border-radius:14px;background:rgba(8,13,21,.72)}.nx-rich-notes section h4{margin:0 0 12px;color:#f0d889;font-size:18px}.nx-rich-notes section p,.nx-rich-notes li{font-size:16px;line-height:1.72;color:#c4ccda}.nx-note-concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.nx-note-concepts>div{padding:14px 16px;border-radius:12px;background:#0d141f;border:1px solid rgba(151,163,184,.13)}.nx-note-concepts b{color:#f3f5f8}.nx-note-concepts p{margin:5px 0 0;font-size:14px!important}.nx-note-steps{counter-reset:item;padding-left:24px}.nx-note-steps li{margin:8px 0;padding-left:5px}.nx-note-example{border-color:rgba(0,190,214,.28)!important;background:linear-gradient(135deg,rgba(0,190,214,.06),rgba(8,13,21,.78))!important}.nx-note-exam{border-color:rgba(151,74,219,.3)!important;background:linear-gradient(135deg,rgba(151,74,219,.07),rgba(8,13,21,.78))!important}@media(max-width:700px){.nx-note-concepts{grid-template-columns:1fr}.nx-rich-notes section,.nx-rich-notes .nx-notes-hero{padding:16px}.nx-notes-hero h3{font-size:24px}.nx-rich-notes section p,.nx-rich-notes li{font-size:15px}}
+
+/* V255 Study Notes black-gold consistency */
+#academicToolModal .nx-acad-modal-panel,
+#academicWorkspaceModal .nx-acad-modal-panel{
+  background:linear-gradient(145deg,#090d13,#05070b)!important;
+  border-color:rgba(225,181,47,.30)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.48)!important;
+}
+.nx-rich-notes .nx-notes-hero{
+  background:linear-gradient(135deg,rgba(225,181,47,.09),rgba(7,10,14,.99))!important;
+  border-color:rgba(225,181,47,.30)!important;
+}
+.nx-rich-notes section,
+.nx-note-example,
+.nx-note-exam{
+  background:linear-gradient(145deg,rgba(225,181,47,.035),rgba(7,10,14,.94))!important;
+  border-color:rgba(225,181,47,.16)!important;
+  box-shadow:none!important;
+}
+.nx-rich-notes section h4,
+.nx-notes-hero span{color:#efd777!important}
+.nx-note-concepts>div{
+  background:#090d13!important;
+  border-color:rgba(225,181,47,.14)!important;
+}
+.nx-note-concepts b{color:#f2efe7!important}
+.nx-rich-notes section p,
+.nx-rich-notes li,
+.nx-notes-hero p{color:#bcc3ce!important}
+/* Subject-aware study notes: formulae, worked problems and instructional figures */
+.nx-note-formula{display:grid;gap:10px}.nx-formula-row{padding:12px 14px;border-left:2px solid rgba(232,184,58,.72);background:rgba(232,184,58,.055);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;white-space:normal;overflow-wrap:anywhere}.nx-note-figure{margin:22px 0;padding:18px;border:1px solid rgba(232,184,58,.28);background:#090c10}.nx-note-figure>b{display:block;margin-bottom:14px}.nx-note-figure-flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.nx-note-node{min-width:120px;padding:12px 14px;border:1px solid rgba(238,229,204,.22);background:#0d1117;text-align:center}.nx-note-arrow{color:#e8b83a;font-size:20px}.nx-note-answers{margin-top:16px;border-top:1px solid rgba(238,229,204,.15);padding-top:12px}.nx-note-answers summary{cursor:pointer;font-weight:700;color:#e8b83a}.nx-note-answers ol{margin-top:12px}@media(max-width:640px){.nx-note-figure-flow{align-items:stretch;flex-direction:column}.nx-note-arrow{transform:rotate(90deg);text-align:center}.nx-note-node{width:100%}}

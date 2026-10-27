@@ -1,0 +1,210 @@
+
+/* NEXZO V134 — Study Assistant topbar restoration + clean four quick actions */
+body.ai-clean-page .ai-app{
+  height:100dvh!important;
+  min-height:100dvh!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  grid-template-rows:96px minmax(0,1fr)!important;
+  padding:0!important;
+  margin:0!important;
+}
+body.ai-clean-page .topbar{
+  grid-column:1!important;
+  grid-row:1!important;
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:96px!important;
+  min-height:96px!important;
+  margin:0!important;
+  padding:12px 34px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  backdrop-filter:none!important;
+  z-index:200!important;
+}
+body.ai-clean-page .topbar .brand-group{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+body.ai-clean-page .topbar .nx-brand-lockup{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+body.ai-clean-page .topbar .nx-brand-mark{
+  width:66px!important;
+  height:66px!important;
+  object-fit:cover!important;
+  flex:0 0 66px!important;
+}
+body.ai-clean-page .topbar .nx-brand-wordmark{
+  width:190px!important;
+  max-width:190px!important;
+  height:auto!important;
+}
+body.ai-clean-page .topbar .nx-brand-copy small{
+  display:block!important;
+  margin-top:2px!important;
+  color:#e7c55f!important;
+  font-size:8px!important;
+  letter-spacing:.08em!important;
+}
+body.ai-clean-page .topbar .assistant-title-lockup,
+body.ai-clean-page .topbar .divider{
+  display:none!important;
+}
+body.ai-clean-page .topbar #statusBadge{
+  display:block!important;
+  margin-left:2px!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+  color:#d8ded7!important;
+  font-size:9px!important;
+}
+body.ai-clean-page .top-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  min-width:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+body.ai-clean-page .top-actions > button.assistant-global-action,
+body.ai-clean-page .top-actions > .timer-btn{
+  width:58px!important;
+  min-width:58px!important;
+  height:58px!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-radius:17px!important;
+  background:rgba(10,11,11,.78)!important;
+  color:#f2eddf!important;
+  box-shadow:none!important;
+  font:inherit!important;
+  cursor:pointer!important;
+}
+body.ai-clean-page .top-actions > button.assistant-global-action:hover,
+body.ai-clean-page .top-actions > .timer-btn:hover{
+  background:rgba(231,197,95,.08)!important;
+  color:#f4d77f!important;
+}
+body.ai-clean-page .top-actions > .timer-btn{
+  width:86px!important;
+  min-width:86px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+}
+body.ai-clean-page .top-actions .assistant-bell{
+  position:relative!important;
+}
+body.ai-clean-page .top-actions .assistant-badge{
+  position:absolute!important;
+  right:2px!important;
+  top:-7px!important;
+  min-width:22px!important;
+  height:22px!important;
+  padding:0 5px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:999px!important;
+  background:#ff4747!important;
+  color:white!important;
+  font-size:10px!important;
+  font-style:normal!important;
+  font-weight:800!important;
+}
+body.ai-clean-page .profile-chip{
+  min-width:250px!important;
+  height:58px!important;
+  padding:5px 8px!important;
+  border:0!important;
+  border-radius:17px!important;
+  background:rgba(10,11,11,.60)!important;
+  box-shadow:none!important;
+}
+body.ai-clean-page .profile-chip:hover{background:rgba(231,197,95,.06)!important}
+body.ai-clean-page .profile-avatar-button{width:48px!important;height:48px!important}
+body.ai-clean-page .chat-shell{
+  grid-column:1!important;
+  grid-row:2!important;
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  min-height:0!important;
+  height:100%!important;
+  margin:0!important;
+}
+body.ai-clean-page .assistant-side-rail{
+  top:96px!important;
+  height:calc(100dvh - 96px)!important;
+}
+/* Lightweight assistant modal used by Search and Notifications. */
+body.ai-clean-page .assistant-quick-modal{
+  position:fixed!important; inset:0!important; z-index:12000!important;
+  display:grid!important; place-items:start center!important;
+  padding:10vh 20px 30px!important;
+  background:rgba(0,0,0,.72)!important;
+  backdrop-filter:blur(10px)!important;
+}
+body.ai-clean-page .assistant-quick-panel{
+  width:min(720px,calc(100vw - 32px))!important;
+  max-height:76vh!important; overflow:auto!important;
+  padding:22px!important;
+  border:1px solid rgba(231,197,95,.18)!important;
+  border-radius:22px!important;
+  background:#080907!important;
+  color:#f2eddf!important;
+  box-shadow:0 30px 90px rgba(0,0,0,.6)!important;
+  scrollbar-width:none!important;
+}
+body.ai-clean-page .assistant-quick-panel::-webkit-scrollbar{display:none!important}
+body.ai-clean-page .assistant-quick-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+body.ai-clean-page .assistant-quick-head h2{margin:0;font-size:22px}
+body.ai-clean-page .assistant-quick-close{width:40px;height:40px;border:0;border-radius:12px;background:#10110f;color:#f2eddf;font-size:22px;cursor:pointer}
+body.ai-clean-page .assistant-quick-input{width:100%;height:54px;padding:0 15px;border:1px solid rgba(231,197,95,.25);border-radius:14px;background:#0d0e0c;color:#f2eddf;outline:none;font:inherit}
+body.ai-clean-page .assistant-quick-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+body.ai-clean-page .assistant-quick-links a,
+body.ai-clean-page .assistant-note-row{padding:13px 14px;border:0;border-radius:13px;background:#0d0f0e;color:#f2eddf;text-decoration:none}
+body.ai-clean-page .assistant-note-row{display:block;margin-top:8px}
+@media(max-width:900px){
+  body.ai-clean-page .ai-app{grid-template-rows:76px minmax(0,1fr)!important}
+  body.ai-clean-page .topbar{height:76px!important;min-height:76px!important;padding:8px 12px!important}
+  body.ai-clean-page .topbar .nx-brand-mark{width:50px!important;height:50px!important;flex-basis:50px!important}
+  body.ai-clean-page .topbar .nx-brand-wordmark{width:135px!important}
+  body.ai-clean-page .topbar #statusBadge{display:none!important}
+  body.ai-clean-page .top-actions{gap:5px!important}
+  body.ai-clean-page .top-actions > button.assistant-global-action{width:44px!important;min-width:44px!important;height:44px!important;border-radius:13px!important}
+  body.ai-clean-page .top-actions > .timer-btn{width:64px!important;min-width:64px!important;height:44px!important}
+  body.ai-clean-page .profile-chip{width:48px!important;min-width:48px!important;height:48px!important;padding:2px!important}
+  body.ai-clean-page .profile-chip-copy{display:none!important}
+  body.ai-clean-page .assistant-side-rail{top:76px!important;height:calc(100dvh - 76px)!important}
+}
+@media(max-width:620px){
+  body.ai-clean-page .topbar .nx-brand-wordmark{width:110px!important}
+  body.ai-clean-page .top-actions .assistant-search,
+  body.ai-clean-page .top-actions .assistant-bell{display:none!important}
+  body.ai-clean-page .assistant-quick-links{grid-template-columns:1fr}
+}

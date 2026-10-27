@@ -1,0 +1,4 @@
+import mongoose from 'mongoose';
+const postSchema=new mongoose.Schema({title:{type:String,required:true,trim:true,maxlength:140},slug:{type:String,required:true,unique:true,index:true},excerpt:{type:String,required:true,maxlength:320},content:{type:String,required:true,minlength:50},coverImage:{type:String,default:''},category:{type:String,required:true,trim:true,index:true},tags:[{type:String,trim:true,lowercase:true}],status:{type:String,enum:['draft','published'],default:'draft',index:true},featured:{type:Boolean,default:false},author:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},views:{type:Number,default:0},publishedAt:{type:Date}},{timestamps:true});
+postSchema.index({title:'text',excerpt:'text',content:'text',tags:'text'});
+export default mongoose.model('Post',postSchema);

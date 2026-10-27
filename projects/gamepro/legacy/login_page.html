@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GamePro Sign-up</title>
+<link href="login page .css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="gamepro-theme.css" rel="stylesheet"/><script defer="True" src="gamepro-theme.js"></script></head>
+<body>
+<div id="particles-js"></div>
+<div class="container">
+<div class="form-section">
+<h2 class="glitch-text">Create Account</h2>
+<p>Join the ultimate gaming experience. 🎮</p>
+<form id="signupForm">
+<div class="input-group">
+<input placeholder="First Name" required="" type="text"/>
+<input placeholder="Last Name" required="" type="text"/>
+</div>
+<input placeholder="Enter your email" required="" type="email"/>
+<div class="password-wrapper">
+<input id="password" placeholder="Enter your password" required="" type="password"/>
+<span id="togglePassword">👁</span>
+</div>
+<label class="terms-label">
+<input required="" type="checkbox"/> I agree to the <a href="Termsandcondition.html">Terms &amp; Conditions</a>
+</label>
+<button class="cta-btn" type="submit">Create account</button>
+</form>
+<div class="divider"><span>OR</span></div>
+<div class="social-buttons">
+<button class="social-btn google">Google</button>
+<button class="social-btn apple">Apple</button>
+</div>
+<p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+if (window.particlesJS) particlesJS("particles-js", {particles:{number:{value:55},size:{value:3},color:{value:"#ff4ded"},line_linked:{enable:true,color:"#b84dff"},move:{speed:2}}});
+</script>
+<script src="app.js"></script>
+</body>
+</html>

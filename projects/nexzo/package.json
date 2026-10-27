@@ -1,0 +1,17 @@
+{
+  "name": "nexzo-project",
+  "version": "7.4.0",
+  "private": true,
+  "scripts": {
+    "start": "npm --prefix Backend start",
+    "test": "python tools/full_verify.py",
+    "deploy:rules": "firebase deploy --only firestore:rules,firestore:indexes,storage",
+    "test:xp": "node tools/xp_balance_test.mjs",
+    "test:quick": "node tools/platform_quality_tests.mjs",
+    "test:academics": "node tools/academics_v235_tests.mjs",
+    "build": "python tools/build_production.py",
+    "predeploy:check": "python tools/predeploy_check.py",
+    "verify:release": "python tools/full_verify.py && python tools/predeploy_check.py && python tools/build_production.py",
+    "test:community:phase2": "node tools/community_phase2_tests.mjs"
+  }
+}

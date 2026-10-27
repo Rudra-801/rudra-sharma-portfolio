@@ -1,0 +1,753 @@
+/* NEXZO v3 — internal pages: slider navigation + living black/cream/gold environment. */
+:root{--nx-bg:#070706;--nx-bg2:#0d0c09;--nx-ink:#f2eddf;--nx-muted:#aaa493;--nx-gold:#e7c55f;--nx-gold2:#9e813c;--nx-line:rgba(231,197,95,.24);--nx-panel:rgba(12,12,10,.76)}
+body.nx-global-shell{background:var(--nx-bg)!important;color:var(--nx-ink)!important;overflow-x:clip;min-height:100svh}
+body.nx-global-shell::before{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;background:radial-gradient(55vw 42vw at var(--nx-mx,76%) var(--nx-my,18%),rgba(231,197,95,.095),transparent 62%),radial-gradient(38vw 28vw at 18% calc(78% - (var(--nx-scroll,0)*10%)),rgba(158,129,60,.05),transparent 70%),linear-gradient(180deg,#070706,#0b0a08 55%,#070706)}
+body.nx-global-shell::after{content:"";position:fixed;inset:-12%;z-index:-4;pointer-events:none;opacity:.32;background-image:linear-gradient(rgba(231,197,95,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(231,197,95,.022) 1px,transparent 1px);background-size:92px 92px;transform:translate3d(0,var(--nx-grid-y,0),0) rotate(.001deg)}
+.nx-global-path{position:fixed;inset:0;width:100%;height:100svh;z-index:-2;pointer-events:none;opacity:.72}.nx-global-path path{fill:none;vector-effect:non-scaling-stroke}.nx-path-main{stroke:var(--nx-gold2);stroke-width:1.15}.nx-path-echo{stroke:rgba(231,197,95,.22);stroke-width:.55}.nx-path-thread{stroke:rgba(231,197,95,.13);stroke-width:.65}.nx-path-spark{fill:var(--nx-gold);filter:drop-shadow(0 0 11px rgba(231,197,95,.88))}
+/* Internal pages intentionally have no Home-style horizontal top navigation. */
+.nx-slider-trigger{position:fixed;z-index:1080;left:22px;top:22px;width:52px;height:52px;border:1px solid rgba(231,197,95,.5);border-radius:50%;background:rgba(7,7,6,.82);backdrop-filter:blur(10px);display:grid;place-content:center;gap:6px;box-shadow:0 0 28px rgba(231,197,95,.06);cursor:pointer}.nx-slider-trigger span{display:block;width:19px;height:1px;background:var(--nx-gold);transition:.25s}.nx-slider-trigger span:last-child{width:12px}.nx-slider-trigger:hover span:last-child{width:19px}
+.nx-shell-drawer{position:fixed;z-index:1100;inset:0 auto 0 0;width:min(410px,92vw);padding:24px 22px 28px;background:rgba(7,7,6,.975);border-right:1px solid rgba(231,197,95,.34);transform:translateX(-104%);transition:transform .42s cubic-bezier(.2,.8,.2,1);box-shadow:40px 0 110px rgba(0,0,0,.7);overflow:auto}.nx-shell-drawer.is-open{transform:none}.nx-shell-drawer::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,transparent 55%,rgba(231,197,95,.045));z-index:-1}.nx-shell-drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--nx-line)}.nx-shell-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--nx-ink)!important}.nx-shell-brand img{width:58px;height:58px;object-fit:contain;border:1px solid rgba(231,197,95,.44);border-radius:15px}.nx-shell-brand strong{display:block;font-size:29px;letter-spacing:4px;line-height:.9}.nx-shell-brand small{display:block;color:var(--nx-gold);font-size:8px;letter-spacing:1.4px;margin-top:8px;font-weight:800}.nx-shell-drawer-head button{border:0;background:none;color:var(--nx-gold);font-size:30px;cursor:pointer}.nx-drawer-label{font-size:9px;letter-spacing:.25em;color:var(--nx-gold2);margin:25px 4px 13px}.nx-shell-drawer nav{display:grid}.nx-shell-drawer nav a{display:grid;grid-template-columns:44px 1fr 24px;align-items:center;min-height:62px;padding:0 8px;text-decoration:none!important;color:#aaa69b!important;border-top:1px solid rgba(231,197,95,.12);border-radius:0!important;background:transparent!important;font-weight:650;transition:.22s}.nx-shell-drawer nav a:last-child{border-bottom:1px solid rgba(231,197,95,.12)}.nx-shell-drawer nav a:hover,.nx-shell-drawer nav a[aria-current="page"]{color:var(--nx-ink)!important;padding-left:15px}.nx-shell-drawer nav a[aria-current="page"]{border-color:rgba(231,197,95,.42)}.nx-shell-drawer nav i{font-style:normal;color:var(--nx-gold2);font-size:10px;letter-spacing:.08em}.nx-shell-drawer nav b{font-weight:400;color:var(--nx-gold);opacity:0;transform:translateX(-6px);transition:.22s}.nx-shell-drawer nav a:hover b,.nx-shell-drawer nav a[aria-current="page"] b{opacity:1;transform:none}.nx-shell-backdrop{position:fixed;z-index:1090;inset:0;background:rgba(0,0,0,.68);opacity:0;pointer-events:none;transition:opacity .3s}.nx-shell-backdrop.is-open{opacity:1;pointer-events:auto}
+/* Editorial entry shared by every internal module. */
+.nx-page-mast{position:relative;min-height:0;padding:clamp(28px,4vh,44px) clamp(28px,7vw,120px) clamp(24px,3.5vh,40px)!important;display:flex;flex-direction:column;justify-content:flex-start;border:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden}.nx-page-index{font-size:clamp(9px,.72vw,12px);letter-spacing:.22em;text-transform:uppercase;color:var(--nx-gold);margin-bottom:clamp(12px,1.8vh,20px)}.nx-page-mast h1{margin:0!important;font-size:clamp(62px,8.5vw,150px)!important;line-height:.78!important;letter-spacing:-.07em!important;font-weight:760!important;color:var(--nx-ink)!important;text-transform:uppercase;max-width:none!important}.nx-page-rule{display:flex;align-items:center;gap:18px;margin-top:clamp(18px,2.8vh,30px);width:min(620px,75vw)}.nx-page-rule span{height:1px;flex:1;background:linear-gradient(90deg,var(--nx-gold),rgba(231,197,95,.08))}.nx-page-rule b{font-size:8px;letter-spacing:.22em;color:var(--nx-muted);white-space:nowrap}
+/* Retire rainbow chrome while retaining existing functional DOM/controller hooks. */
+body.nx-global-shell .app>.sidebar,body.nx-global-shell .sidebar{display:none!important}body.nx-global-shell .main{margin-left:0!important;width:100%!important;max-width:none!important;padding-top:0!important}body.nx-global-shell:not(.ai-clean-page) .topbar{display:none!important}
+body.nx-global-shell :is(.card,.panel,.tile,.stat-card,.hub-card,.career-v242-path-card,.community-pro-stats article,.nx-next-card){--c:var(--nx-gold)!important;border-color:rgba(231,197,95,.2)!important;background:linear-gradient(145deg,rgba(17,16,12,.84),rgba(8,8,7,.78))!important;box-shadow:none!important}
+body.nx-global-shell :is(.primary,.btn.primary,button.primary,.nx-acad-primary){background:var(--nx-gold)!important;color:#111!important;border-color:var(--nx-gold)!important;box-shadow:none!important}body.nx-global-shell :is(input,textarea,select){border-color:rgba(231,197,95,.28)!important;background:#0d0d0b!important;color:var(--nx-ink)!important}body.nx-global-shell :is(h1,h2,h3,strong,b){text-shadow:none!important}body.nx-global-shell .bg-orb{display:none!important}
+/* Existing module content becomes one calm productivity layer after the expressive mast. */
+body.nx-global-shell main.main>section:not(.nx-page-mast),body.nx-global-shell main.main>div:not(.topbar){position:relative}body.nx-global-shell :is(.nx-acad-hero,.career-v242-hero,.nx-campus-hero){background:transparent!important;border:0!important;box-shadow:none!important;padding-left:clamp(24px,6vw,96px)!important;padding-right:clamp(24px,6vw,96px)!important}body.nx-global-shell :is(.page-title,.nx-acad-hero h1,.career-v242-hero h1,.nx-campus-hero h1){color:var(--nx-ink)!important}body.nx-global-shell :is(.nx-acad-kicker,.nx-campus-hero small){color:var(--nx-gold)!important}
+/* kill legacy module rainbow accents without changing semantic error/success states */
+body.nx-global-shell :is(.nx-acad-tabs button,.nx-campus-tabs button,.career-v242-tab,.tab-btn){--accent:var(--nx-gold)!important}body.nx-global-shell :is(.nx-acad-tabs button.active,.nx-campus-tabs button.active,.career-v242-tab.active,.tab-btn.active){color:var(--nx-gold)!important;border-color:var(--nx-gold)!important;background:rgba(231,197,95,.08)!important}
+@media(max-width:760px){.nx-slider-trigger{left:14px;top:14px;width:46px;height:46px}.nx-page-mast{min-height:0;padding:20px 22px 24px!important}.nx-page-mast h1{font-size:clamp(50px,17vw,88px)!important}.nx-global-path{opacity:.48}.nx-page-rule{width:88vw}}
+@media(prefers-reduced-motion:reduce){.nx-shell-drawer,.nx-shell-backdrop,.nx-slider-trigger span{transition:none!important}.nx-global-path{opacity:.28}}
+
+/* NEXZO v4 — structure correction: logo treatment, true overlay slider, Career + Hub rebuild */
+.nx-shell-drawer{scrollbar-width:none}.nx-shell-drawer::-webkit-scrollbar{display:none;width:0}
+.nx-shell-brand{gap:12px}.nx-shell-brand img{width:62px;height:62px;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}.nx-shell-brand strong{font-size:31px;letter-spacing:5px;color:#f4efdf}.nx-shell-brand small{font-size:8px;letter-spacing:1.25px}
+body.nx-global-shell .nx-page-mast{min-height:0;padding-top:clamp(28px,4vh,44px)!important;padding-bottom:clamp(24px,3.5vh,40px)!important}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(68px,11.2vw,188px)!important}
+/* Content owns the full viewport. Drawer overlays instead of reserving a dead left column. */
+body.nx-global-shell .app,body.nx-global-shell main.main{width:100%!important;max-width:none!important;margin:0!important;padding-left:0!important}
+body.nx-global-shell main.main>*:not(.nx-page-mast){max-width:none!important;margin-left:0!important;margin-right:0!important}
+
+/* ACADEMICS: remove duplicate legacy hero/header after editorial entry and use full width. */
+body.academics-page :is(.nx-acad-hero,.academics-hero,.page-header){margin-top:0!important}
+body.academics-page .nx-acad-shell,body.academics-page .academics-shell,body.academics-page main.main>div{width:100%!important;max-width:none!important}
+body.academics-page :is(.nx-acad-workspace,.academics-workspace,.nx-acad-main){padding-left:clamp(22px,5vw,84px)!important;padding-right:clamp(22px,5vw,84px)!important}
+
+/* CAREER — retire the old colourful dashboard and rebuild it as a direction workspace. */
+body.career-page .career-v242-shell{padding:0 clamp(22px,4vw,72px) 90px!important;max-width:1720px!important;margin:0 auto!important;background:transparent!important}
+body.career-page .career-v242-heading{display:none!important}
+body.career-page .career-v242-feature-strip{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:0!important;margin:0 0 44px!important;border-top:1px solid rgba(231,197,95,.28);border-bottom:1px solid rgba(231,197,95,.18);background:transparent!important}
+body.career-page .career-v242-feature-strip button{min-height:88px!important;border:0!important;border-right:1px solid rgba(231,197,95,.14)!important;border-radius:0!important;background:transparent!important;color:var(--nx-ink)!important;box-shadow:none!important;text-align:left!important;padding:18px 20px!important;transition:.25s}
+body.career-page .career-v242-feature-strip button:hover{background:rgba(231,197,95,.055)!important;transform:translateY(-2px)}
+body.career-page .career-v242-feature-strip i{color:var(--nx-gold)!important;background:none!important;border:0!important;font-size:13px!important}body.career-page .career-v242-feature-strip strong{font-size:14px!important;color:var(--nx-ink)!important}body.career-page .career-v242-feature-strip small{color:var(--nx-muted)!important}
+body.career-page .career-v242-status{color:var(--nx-gold)!important;margin:0 0 14px!important}
+body.career-page .career-v242-explorer{display:grid!important;grid-template-columns:minmax(260px,340px) minmax(0,1fr)!important;gap:30px!important;align-items:start!important}
+body.career-page .career-v242-paths{position:sticky!important;top:24px!important;max-height:calc(100svh - 48px)!important;overflow:auto!important;scrollbar-width:none!important;padding:0 22px 0 0!important;border:0!important;border-right:1px solid rgba(231,197,95,.2)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}body.career-page .career-v242-paths::-webkit-scrollbar{display:none}
+body.career-page .career-v242-path-head h2{font-size:11px!important;letter-spacing:.2em!important;text-transform:uppercase!important;color:var(--nx-gold)!important}body.career-page .career-v242-path-head p{color:var(--nx-muted)!important;font-size:13px!important}
+body.career-page .career-v242-search{border:0!important;border-bottom:1px solid rgba(231,197,95,.25)!important;border-radius:0!important;background:transparent!important;margin:20px 0!important}body.career-page .career-v242-search input{border:0!important;background:transparent!important;padding-left:4px!important}
+body.career-page .career-v242-role-list{display:grid!important;gap:0!important}body.career-page .career-v242-role-list>*{border:0!important;border-bottom:1px solid rgba(231,197,95,.13)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;min-height:70px!important;transition:.25s!important}body.career-page .career-v242-role-list>*:hover,body.career-page .career-v242-role-list>*.active{padding-left:10px!important;background:linear-gradient(90deg,rgba(231,197,95,.09),transparent)!important;border-color:rgba(231,197,95,.5)!important}
+body.career-page .career-v242-workspace{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
+body.career-page .career-v242-role-header{min-height:190px!important;padding:32px 0 34px!important;border:0!important;border-bottom:1px solid rgba(231,197,95,.24)!important;background:transparent!important}
+body.career-page .career-v242-role-header h2{font-size:clamp(38px,5vw,82px)!important;line-height:.92!important;letter-spacing:-.05em!important;color:var(--nx-ink)!important}
+body.career-page .career-v242-tabs{display:flex!important;gap:22px!important;overflow-x:auto!important;scrollbar-width:none!important;border:0!important;border-bottom:1px solid rgba(231,197,95,.16)!important;background:transparent!important;padding:0!important}body.career-page .career-v242-tabs::-webkit-scrollbar{display:none}body.career-page .career-v242-tabs button{border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;background:transparent!important;color:var(--nx-muted)!important;padding:18px 2px!important;white-space:nowrap!important}body.career-page .career-v242-tabs button.active{color:var(--nx-gold)!important;border-bottom-color:var(--nx-gold)!important;background:transparent!important}
+body.career-page .career-v242-tab-content{padding:30px 0!important;background:transparent!important}body.career-page .career-v242-tab-content :is(.card,.panel,article){border-radius:2px!important;border-color:rgba(231,197,95,.16)!important;background:rgba(9,9,8,.66)!important}
+body.career-page .career-v242-tab-content :is(.purple,.cyan,.green,.orange,.pink,.blue,.teal){--c:var(--nx-gold)!important;color:inherit!important;background:rgba(9,9,8,.66)!important}
+
+/* HUB — progression command centre. Remove arcade/rainbow visual language; preserve real missions/rewards/actions. */
+body.nx-hub-page .nx-hub-shell{width:min(1680px,100%)!important;max-width:none!important;margin:0 auto!important;padding:0 clamp(22px,5vw,84px) 100px!important;background:transparent!important}
+body.nx-hub-page .nx-hub-hero{display:grid!important;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr)!important;gap:50px!important;align-items:end!important;padding:0 0 54px!important;margin:0 0 26px!important;border:0!important;border-bottom:1px solid rgba(231,197,95,.25)!important;background:transparent!important;box-shadow:none!important}
+body.nx-hub-page .nx-hub-hero h1{font-size:clamp(48px,7vw,112px)!important;line-height:.82!important;letter-spacing:-.06em!important;text-transform:uppercase!important}body.nx-hub-page .nx-hub-hero em{color:var(--nx-gold)!important;font-style:normal!important}body.nx-hub-page .nx-hub-hero p{max-width:720px!important;color:var(--nx-muted)!important}
+body.nx-hub-page :is(.summary-card,.hub-card,.nx-verified-strip article){border-radius:2px!important;border-color:rgba(231,197,95,.17)!important;background:rgba(9,9,8,.7)!important;box-shadow:none!important}
+body.nx-hub-page :is(.purple,.cyan,.green,.orange,.pink,.blue,.teal,.gold,.red){--c:var(--nx-gold)!important;background:rgba(9,9,8,.7)!important;border-color:rgba(231,197,95,.17)!important}
+body.nx-hub-page :is(.summary-icon,.card-icon){filter:grayscale(1) sepia(1) saturate(2)!important;color:var(--nx-gold)!important;background:rgba(231,197,95,.07)!important;border:1px solid rgba(231,197,95,.2)!important}
+body.nx-hub-page .nx-hub-tabs{display:flex!important;gap:30px!important;border-bottom:1px solid rgba(231,197,95,.18)!important;background:transparent!important;margin:0 0 34px!important}body.nx-hub-page .nx-hub-tabs button{border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;background:transparent!important;color:var(--nx-muted)!important;padding:16px 2px!important}body.nx-hub-page .nx-hub-tabs button.active{color:var(--nx-gold)!important;border-bottom-color:var(--nx-gold)!important;background:transparent!important}
+body.nx-hub-page .nx-rewards-layout{grid-template-columns:1.4fr .6fr!important;gap:22px!important}body.nx-hub-page .nx-secondary-grid,body.nx-hub-page .nx-ai-grid,body.nx-hub-page .nx-progress-grid{gap:16px!important}body.nx-hub-page .hub-card{transition:transform .22s,border-color .22s!important}body.nx-hub-page .hub-card:hover{transform:translateY(-2px)!important;border-color:rgba(231,197,95,.42)!important}
+body.nx-hub-page :is(button,.gold-btn,.secondary-btn){box-shadow:none!important}body.nx-hub-page :is(.gold-btn,button[data-eh="chest"]){background:var(--nx-gold)!important;color:#0b0a08!important;border-color:var(--nx-gold)!important}
+
+/* STUDY ASSISTANT: no injected editorial mast, no visible navigation scrollbar, keep chat viewport usable. */
+body.ai-clean-page .nx-page-mast{display:none!important}body.ai-clean-page .nx-shell-drawer{scrollbar-width:none!important}body.ai-clean-page .nx-shell-drawer::-webkit-scrollbar{display:none!important}body.ai-clean-page .app{height:100svh!important;min-height:0!important}body.ai-clean-page .chat-shell{min-height:0!important}
+
+@media(max-width:980px){body.career-page .career-v242-feature-strip{grid-template-columns:repeat(3,1fr)}body.career-page .career-v242-explorer{grid-template-columns:1fr!important}body.career-page .career-v242-paths{position:relative!important;top:auto!important;max-height:none!important;border-right:0!important;border-bottom:1px solid rgba(231,197,95,.2)!important;padding:0 0 24px!important}body.nx-hub-page .nx-hub-hero{grid-template-columns:1fr!important}body.nx-hub-page .nx-rewards-layout{grid-template-columns:1fr!important}}
+@media(max-width:640px){body.career-page .career-v242-feature-strip{grid-template-columns:repeat(2,1fr)}body.career-page .career-v242-shell{padding-inline:18px!important}body.nx-hub-page .nx-hub-shell{padding-inline:18px!important}}
+
+/* NEXZO v5 — denser full-viewport composition + invisible functional scroll regions */
+body.nx-global-shell .nx-page-mast{
+  min-height:0!important;
+  padding:clamp(28px,4vh,44px) clamp(24px,5vw,84px) clamp(24px,3.5vh,40px)!important;
+  justify-content:flex-start!important;
+}
+body.nx-global-shell .nx-page-mast .nx-page-index{margin-bottom:clamp(12px,1.8vh,20px)!important}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(64px,8.5vw,145px)!important;line-height:.78!important}
+body.nx-global-shell .nx-page-rule{margin-top:clamp(18px,2.8vh,30px)!important;width:min(760px,72vw)!important}
+/* Pull real page content directly into the composition instead of leaving a dead band. */
+body.nx-global-shell main.main>.nx-page-mast + *{margin-top:0!important}
+body.nx-global-shell :is(.nx-acad-hero,.career-v242-hero,.nx-campus-hero){padding-top:clamp(28px,4vh,52px)!important;padding-bottom:clamp(28px,4vh,52px)!important}
+/* Scroll stays functional but the browser scrollbar is never part of the visual design. */
+body.nx-global-shell :is(.nx-shell-drawer,.career-v242-paths,.career-v242-tab-content,.chat-history,.history-list,.assistant-history,.sidebar-scroll){scrollbar-width:none!important;-ms-overflow-style:none!important}
+body.nx-global-shell :is(.nx-shell-drawer,.career-v242-paths,.career-v242-tab-content,.chat-history,.history-list,.assistant-history,.sidebar-scroll)::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+/* Career uses the viewport rather than a narrow dashboard island. */
+body.career-page .career-v242-shell{width:100%!important;max-width:none!important;padding-left:clamp(24px,5vw,88px)!important;padding-right:clamp(24px,5vw,88px)!important}
+body.career-page .career-v242-explorer{width:100%!important;max-width:none!important;gap:clamp(24px,3vw,48px)!important}
+/* Campus discovery fills the canvas after the intro. */
+body.campus-page :is(.nx-campus-hero,.nx-campus-setup,.nx-campus-results,.nx-campus-feed){width:100%!important;max-width:none!important;padding-left:clamp(24px,5vw,88px)!important;padding-right:clamp(24px,5vw,88px)!important}
+/* Assistant: full-height usable chat, no decorative dead space and no visible internal scrollbars. */
+body.ai-clean-page{height:100svh!important;overflow:hidden!important}
+body.ai-clean-page :is(.chat-shell,.chat-main,.chat-area,.messages,.messages-wrap){min-height:0!important}
+body.ai-clean-page :is(.messages,.messages-wrap,.chat-history,.history-list){scrollbar-width:none!important;-ms-overflow-style:none!important}
+body.ai-clean-page :is(.messages,.messages-wrap,.chat-history,.history-list)::-webkit-scrollbar{display:none!important;width:0!important}
+@media(max-width:760px){body.nx-global-shell .nx-page-mast{min-height:300px!important;padding:82px 20px 34px!important}body.nx-global-shell .nx-page-mast h1{font-size:clamp(54px,17vw,92px)!important}.nx-page-rule{width:90vw!important}}
+
+/* NEXZO v6 — compact-live internal composition: no dead cinematic bands */
+body.nx-global-shell .nx-page-mast{
+  min-height:0!important;
+  height:auto!important;
+  padding:96px clamp(24px,4vw,72px) 24px!important;
+  justify-content:flex-start!important;
+  gap:0!important;
+}
+body.nx-global-shell .nx-page-mast .nx-page-index{margin:0 0 12px!important;font-size:11px!important;letter-spacing:.22em!important}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(58px,7.1vw,118px)!important;line-height:.82!important;margin:0!important;letter-spacing:-.055em!important}
+body.nx-global-shell .nx-page-rule{margin-top:20px!important;width:min(680px,60vw)!important}
+body.nx-global-shell .nx-page-rule b{font-size:9px!important;letter-spacing:.17em!important}
+body.nx-global-shell main.main>.nx-page-mast + *{margin-top:0!important}
+/* The live path occupies the viewport; it must never create layout space. */
+body.nx-global-shell .nx-global-path{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;pointer-events:none!important}
+
+/* Academics: one title only; real controls begin immediately in the same first viewport. */
+body.academics-page .nx-acad-hero{padding:12px clamp(24px,4vw,72px) 18px!important;min-height:0!important;display:flex!important;align-items:end!important;gap:24px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.academics-page .nx-acad-hero .page-title{display:none!important}
+body.academics-page .nx-acad-hero .nx-acad-kicker{margin:0 0 5px!important}
+body.academics-page .nx-acad-hero .sub{margin:0!important;max-width:760px!important}
+body.academics-page .nx-acad-tabs{margin:0 clamp(24px,4vw,72px) 16px!important;width:auto!important}
+body.academics-page .nx-acad-panel{margin-inline:clamp(24px,4vw,72px)!important}
+body.academics-page .nx-next-card{margin-top:0!important}
+
+/* Campus: remove the second giant headline and put discovery controls directly below CAMPUS. */
+body.nx-campus-page .nx-page-mast{padding-bottom:18px!important}
+body.nx-campus-page .nx-campus-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:0 clamp(24px,4vw,72px) 72px!important}
+body.nx-campus-page .nx-campus-hero{padding:8px 0 18px!important;min-height:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+body.nx-campus-page .nx-campus-hero h1{font-size:clamp(28px,3.1vw,52px)!important;margin:7px 0 8px!important;line-height:1!important;max-width:900px!important}
+body.nx-campus-page .nx-campus-hero h1 span{color:var(--nx-ink,#eee8d7)!important;background:none!important;-webkit-text-fill-color:initial!important}
+body.nx-campus-page .nx-campus-hero p{margin:0!important;max-width:1050px!important;line-height:1.45!important}
+body.nx-campus-page .nx-live-badge{margin-top:12px!important}
+body.nx-campus-page .nx-campus-setup{margin-top:4px!important;padding:18px 0!important;border-radius:0!important;border-left:0!important;border-right:0!important;background:rgba(8,8,7,.42)!important}
+
+/* Career + Hub + Planner + Community + Dashboard + Settings + Profile: compact entry, workspace visible above fold. */
+body.career-page .career-v242-shell,
+body.nx-hub-page .nx-hub-shell{padding-top:6px!important}
+body.career-page .career-v242-feature-strip{margin-top:0!important;margin-bottom:22px!important}
+body.nx-hub-page .nx-hub-hero{padding-top:0!important;margin-top:0!important}
+
+@media (min-width:1200px) and (min-height:700px){
+  body.nx-global-shell .nx-page-mast{padding-top:82px!important}
+  body.academics-page .nx-page-mast,
+  body.nx-campus-page .nx-page-mast,
+  body.career-page .nx-page-mast,
+  body.nx-hub-page .nx-page-mast{padding-bottom:18px!important}
+}
+@media(max-width:760px){
+  body.nx-global-shell .nx-page-mast{padding:76px 18px 18px!important}
+  body.nx-global-shell .nx-page-mast h1{font-size:clamp(48px,16vw,78px)!important}
+  body.nx-global-shell .nx-page-rule{width:88vw!important;margin-top:15px!important}
+  body.academics-page .nx-acad-hero{padding:8px 18px 14px!important;align-items:flex-start!important;flex-direction:column!important}
+  body.academics-page .nx-acad-tabs,body.academics-page .nx-acad-panel{margin-inline:18px!important}
+  body.nx-campus-page .nx-campus-wrap{padding-inline:18px!important}
+}
+
+/* NEXZO v7 — full-viewport internal world: Home-scale canvas without dead space */
+body.nx-global-shell{position:relative!important;background:#070706!important;isolation:isolate}
+body.nx-global-shell::before,body.nx-global-shell::after{z-index:0!important}
+body.nx-global-shell .nx-global-path{z-index:1!important;opacity:.86!important;mix-blend-mode:screen}
+body.nx-global-shell .app{position:relative!important;z-index:2!important;background:transparent!important;min-height:100vh!important}
+body.nx-global-shell main.main{position:relative!important;z-index:2!important;background:transparent!important;min-height:100vh!important;padding:0!important;overflow:visible!important}
+body.nx-global-shell .nx-slider-trigger{z-index:1080!important}
+body.nx-global-shell .nx-shell-drawer{z-index:1100!important}
+body.nx-global-shell .nx-shell-backdrop{z-index:1090!important}
+
+/* Full-width editorial header, like Home, but compact enough to expose the real workspace. */
+body.nx-global-shell .nx-page-mast{
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+  min-height:clamp(300px,38vh,410px)!important;
+  padding:clamp(92px,10vh,118px) clamp(42px,7vw,128px) 24px!important;
+  justify-content:flex-end!important;
+}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(74px,10vw,176px)!important;line-height:.76!important}
+body.nx-global-shell .nx-page-rule{width:min(760px,58vw)!important;margin-top:26px!important}
+
+/* Never center internal modules into a narrow island. Every module uses the viewport. */
+body.nx-global-shell main.main>div,
+body.nx-global-shell main.main>section:not(.nx-page-mast),
+body.nx-global-shell :is(.nx-campus-wrap,.nx-acad-shell,.academics-shell,.career-v242-shell,.nx-hub-shell){
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+}
+
+/* Campus: full-screen first composition — CAMPUS + live discovery in one viewport. */
+body.nx-campus-page main.main{display:grid!important;grid-template-rows:auto auto!important;align-content:start!important}
+body.nx-campus-page .nx-page-mast{min-height:34vh!important;padding-bottom:12px!important}
+body.nx-campus-page .nx-campus-wrap{margin:0!important;padding:0 clamp(42px,7vw,128px) 80px!important}
+body.nx-campus-page .nx-campus-hero{padding:0 0 16px!important;margin:0!important}
+body.nx-campus-page .nx-campus-hero h1{font-size:clamp(34px,3.4vw,62px)!important;max-width:1100px!important}
+body.nx-campus-page .nx-campus-hero p{max-width:1200px!important;font-size:clamp(14px,1vw,18px)!important}
+body.nx-campus-page .nx-campus-setup{width:100%!important;margin:8px 0 16px!important;padding:18px 0!important;background:rgba(7,7,6,.34)!important;border-top:1px solid rgba(231,197,95,.22)!important;border-bottom:1px solid rgba(231,197,95,.18)!important}
+body.nx-campus-page .nx-campus-summary,body.nx-campus-page .nx-campus-search,body.nx-campus-page .nx-campus-grid,body.nx-campus-page .nx-campus-trust{width:100%!important;max-width:none!important}
+
+/* Academics: same full canvas; title and controls are visually one scene. */
+body.academics-page .nx-page-mast{min-height:34vh!important;padding-bottom:10px!important}
+body.academics-page :is(.nx-acad-shell,.academics-shell,main.main>div){padding-left:clamp(42px,7vw,128px)!important;padding-right:clamp(42px,7vw,128px)!important}
+body.academics-page .nx-acad-hero{padding:0 0 14px!important;margin:0!important}
+body.academics-page .nx-acad-tabs{margin:0 0 16px!important;width:100%!important}
+body.academics-page .nx-acad-panel{margin-inline:0!important;width:100%!important;max-width:none!important}
+
+/* Career/Hub and remaining product pages inherit the same edge-to-edge canvas. */
+body.career-page .career-v242-shell,body.nx-hub-page .nx-hub-shell{padding-left:clamp(42px,7vw,128px)!important;padding-right:clamp(42px,7vw,128px)!important}
+
+@media(max-width:760px){
+ body.nx-global-shell .nx-page-mast{min-height:250px!important;padding:78px 18px 16px!important}
+ body.nx-global-shell .nx-page-mast h1{font-size:clamp(54px,18vw,92px)!important}
+ body.nx-campus-page .nx-page-mast,body.academics-page .nx-page-mast{min-height:250px!important}
+ body.nx-campus-page .nx-campus-wrap,body.academics-page :is(.nx-acad-shell,.academics-shell,main.main>div),body.career-page .career-v242-shell,body.nx-hub-page .nx-hub-shell{padding-left:18px!important;padding-right:18px!important}
+}
+
+/* NEXZO v8 — no reserved navigation space + conversation-first Assistant */
+/* Slider is an overlay. No internal page may reserve a rail/header column for navigation. */
+body.nx-global-shell .app,
+body.nx-global-shell main.main,
+body.nx-global-shell .main{
+  grid-template-columns:minmax(0,1fr)!important;
+  margin-left:0!important;
+  padding-left:0!important;
+  inset-inline-start:0!important;
+  width:100%!important;
+  max-width:none!important;
+}
+body.nx-global-shell .sidebar,
+body.nx-global-shell .app>.sidebar{display:none!important;width:0!important;min-width:0!important}
+
+/* Internal module mast is a compact identity band, not an empty hero screen. */
+body.nx-global-shell .nx-page-mast{
+  min-height:0!important;
+  height:auto!important;
+  padding:88px clamp(24px,4vw,72px) 12px!important;
+  justify-content:flex-start!important;
+}
+body.nx-global-shell .nx-page-mast .nx-page-index{margin:0 0 8px!important}
+body.nx-global-shell .nx-page-mast h1{
+  font-size:clamp(52px,6.5vw,108px)!important;
+  line-height:.82!important;
+}
+body.nx-global-shell .nx-page-rule{margin-top:14px!important;width:min(620px,48vw)!important}
+body.nx-global-shell main.main>.nx-page-mast + *{margin-top:0!important}
+
+/* Campus / Academics / Career / Hub begin their real workspace immediately. */
+body.nx-campus-page .nx-page-mast,
+body.academics-page .nx-page-mast,
+body.career-page .nx-page-mast,
+body.nx-hub-page .nx-page-mast{min-height:0!important;padding-bottom:10px!important}
+body.nx-campus-page .nx-campus-wrap,
+body.academics-page :is(.nx-acad-shell,.academics-shell),
+body.career-page .career-v242-shell,
+body.nx-hub-page .nx-hub-shell{
+  margin-top:0!important;
+  padding-top:0!important;
+}
+
+/* Study Assistant: the old rail/topbar must not leave invisible grid tracks behind. */
+body.ai-clean-page.nx-global-shell{
+  height:100svh!important;min-height:100svh!important;overflow:hidden!important;
+}
+body.ai-clean-page.nx-global-shell .ai-app{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr)!important;
+  width:100vw!important;height:100svh!important;min-height:0!important;
+  margin:0!important;padding:0!important;background:transparent!important;
+}
+body.ai-clean-page.nx-global-shell .topbar,
+body.ai-clean-page.nx-global-shell .assistant-side-rail,
+body.ai-clean-page.nx-global-shell .nexzo-companion,
+body.ai-clean-page.nx-global-shell .nx-study-hero{display:none!important}
+body.ai-clean-page.nx-global-shell .chat-shell{
+  grid-column:1!important;grid-row:1!important;
+  width:100vw!important;height:100svh!important;min-height:0!important;
+  margin:0!important;padding:76px clamp(18px,4vw,64px) 18px!important;
+  display:grid!important;
+  grid-template-rows:auto auto minmax(0,1fr) auto auto!important;
+  background:transparent!important;overflow:hidden!important;
+}
+body.ai-clean-page.nx-global-shell #messages{
+  width:min(1120px,100%)!important;max-width:1120px!important;
+  min-height:0!important;margin:0 auto!important;padding:8px 8px 16px!important;
+  overflow-y:auto!important;scrollbar-width:none!important;
+}
+body.ai-clean-page.nx-global-shell #messages::-webkit-scrollbar{display:none!important}
+body.ai-clean-page.nx-global-shell #messages:has(.assistant-welcome){
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+body.ai-clean-page.nx-global-shell .assistant-welcome{
+  width:min(900px,100%)!important;min-height:0!important;margin:auto!important;
+  padding:24px!important;background:transparent!important;border:0!important;box-shadow:none!important;
+}
+body.ai-clean-page.nx-global-shell #composer{
+  width:min(1120px,100%)!important;margin:8px auto 0!important;
+  flex:0 0 auto!important;
+}
+body.ai-clean-page.nx-global-shell .disclaimer{width:min(1120px,100%)!important}
+
+@media(max-width:760px){
+  body.nx-global-shell .nx-page-mast{padding:74px 18px 8px!important}
+  body.nx-global-shell .nx-page-mast h1{font-size:clamp(44px,14vw,72px)!important}
+  body.nx-global-shell .nx-page-rule{width:min(78vw,460px)!important;margin-top:10px!important}
+  body.ai-clean-page.nx-global-shell .chat-shell{padding:68px 10px 8px!important}
+  body.ai-clean-page.nx-global-shell .assistant-welcome{padding:14px 6px!important}
+}
+
+/* NEXZO v10 — Campus composition becomes the shared internal-page canvas */
+body.nx-global-shell{--nx-page-gutter:clamp(34px,4vw,72px)}
+/* Keep the global quick-action bar present on every internal page, including Campus. */
+body.nx-global-shell #nxShellTopbar.nx-shell-topbar{
+  display:flex!important;position:fixed!important;top:8px!important;right:18px!important;left:auto!important;
+  width:auto!important;max-width:min(720px,calc(100vw - 120px))!important;z-index:1070!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;
+}
+body.nx-global-shell #nxShellTopbar .nx-global-menu-btn,
+body.nx-global-shell #nxShellTopbar .nx-shell-mobile-brand{display:none!important}
+body.nx-global-shell #nxShellTopbar .nx-shell-actions{margin-left:auto!important}
+/* Hamburger belongs to the slider only. */
+body.nx-global-shell .nx-slider-trigger{top:22px!important;left:24px!important}
+
+/* Every internal module uses the same full-width, compact editorial opening as Campus. */
+body.nx-global-shell .nx-page-mast{
+  padding:112px var(--nx-page-gutter) 8px!important;
+  width:100%!important;max-width:none!important;min-height:0!important;
+}
+body.nx-global-shell .nx-page-mast .nx-page-index{margin-bottom:8px!important}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(62px,7.1vw,124px)!important;line-height:.8!important}
+body.nx-global-shell .nx-page-rule{width:min(720px,58vw)!important;margin-top:16px!important}
+/* Real workspace follows immediately and uses the screen instead of a centered island. */
+body.nx-global-shell main.main>:not(.nx-page-mast){max-width:none!important;box-sizing:border-box!important}
+body.nx-global-shell :is(
+  .nx-campus-wrap,.nx-acad-shell,.academics-shell,.career-v242-shell,.nx-hub-shell,
+  .planner-shell,.dash-shell-exact,.community-shell,.community-main,.settings-shell,
+  .profile-shell,.profile-main,.main-content,.content-wrap,.page-shell
+){width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;padding-left:var(--nx-page-gutter)!important;padding-right:var(--nx-page-gutter)!important}
+/* Avoid double gutters on module children already living inside a full-width shell. */
+body.nx-campus-page .nx-campus-wrap{padding-top:0!important}
+body.academics-page .nx-acad-shell :is(.nx-acad-tabs,.nx-acad-panel){max-width:none!important}
+body.career-page .career-v242-explorer{max-width:none!important;width:100%!important}
+body.nx-hub-page .nx-hub-shell{max-width:none!important}
+body.planner-page .planner-shell,body.dashboard-page .dash-shell-exact{width:100%!important}
+/* Old app-shell/sidebar layouts must never reserve a hidden column. */
+body.nx-global-shell[data-shell-ready="true"] .app,body.nx-global-shell .app{display:block!important;grid-template-columns:none!important;width:100%!important}
+body.nx-global-shell[data-shell-ready="true"] .app>.main{grid-column:auto!important;width:100%!important;margin:0!important}
+body.nx-global-shell[data-shell-ready="true"] .app>.sidebar{display:none!important;width:0!important}
+/* Live environment stays behind the complete viewport on all pages. */
+body.nx-global-shell .nx-global-path{display:block!important;visibility:visible!important;opacity:.9!important}
+body.nx-global-shell::before{opacity:.82!important}
+/* No second hero should re-create dead space below the mast. */
+body.nx-global-shell :is(.nx-acad-hero,.career-v242-hero,.nx-campus-hero,.nx-hub-hero){min-height:0!important;margin-top:0!important}
+@media(max-width:760px){
+ body.nx-global-shell{--nx-page-gutter:18px}
+ body.nx-global-shell #nxShellTopbar.nx-shell-topbar{right:8px!important;max-width:calc(100vw - 78px)!important}
+ body.nx-global-shell .nx-slider-trigger{left:12px!important;top:14px!important}
+ body.nx-global-shell .nx-page-mast{padding:82px var(--nx-page-gutter) 8px!important}
+ body.nx-global-shell .nx-page-mast h1{font-size:clamp(48px,15vw,78px)!important}
+}
+
+/* NEXZO v11 — final internal-canvas normalization + Assistant repair */
+/* Internal modules: one shared viewport system. No hidden rail, no dead column, no rainbow residue. */
+body.nx-global-shell{--nx-page-gutter:clamp(28px,2vw,42px)!important}
+body.nx-global-shell .app,body.nx-global-shell main.main{display:block!important;width:100vw!important;max-width:none!important;margin:0!important;padding:0!important;transform:none!important}
+body.nx-global-shell .sidebar,body.nx-global-shell .assistant-side-rail{display:none!important;width:0!important;min-width:0!important;margin:0!important;padding:0!important}
+body.nx-global-shell .nx-page-mast{width:100vw!important;max-width:none!important;min-height:0!important;margin:0!important;padding:112px var(--nx-page-gutter) 18px!important;display:block!important}
+body.nx-global-shell .nx-page-mast .nx-page-index{margin:0 0 8px!important}
+body.nx-global-shell .nx-page-mast h1{font-size:clamp(58px,7.2vw,118px)!important;line-height:.82!important;letter-spacing:-.065em!important}
+body.nx-global-shell .nx-page-rule{width:min(720px,55vw)!important;margin:18px 0 0!important}
+body.nx-global-shell main.main>:not(.nx-page-mast){width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important}
+body.nx-global-shell :is(.nx-campus-wrap,.nx-acad-shell,.academics-shell,.career-v242-shell,.nx-hub-shell,.planner-shell,.community-shell,.community-main,.dash-shell-exact,.settings-shell,.profile-shell,.profile-main,.main-content,.content-wrap,.page-shell){width:100%!important;max-width:none!important;margin:0!important;padding-left:var(--nx-page-gutter)!important;padding-right:var(--nx-page-gutter)!important}
+/* Campus-style compact opening on every major workspace. */
+body.nx-global-shell :is(.nx-acad-hero,.career-v242-hero,.nx-campus-hero,.nx-hub-hero,.planner-hero,.dashboard-hero,.community-hero){min-height:0!important;margin:0!important;padding-top:4px!important;padding-bottom:14px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+/* Remove legacy module-colour language. Keep semantic status colours only. */
+body.nx-global-shell :is(.subject-card,.nx-subject-card,.career-v242-path-card,.career-v242-workspace,.career-v242-feature,.hub-card,.nx-hub-card,.planner-card,.dash-card,.community-card,.stat-card,.card,.panel,.tile){--c:var(--nx-gold)!important;--accent:var(--nx-gold)!important;background:linear-gradient(145deg,rgba(18,17,13,.9),rgba(8,8,7,.86))!important;border-color:rgba(231,197,95,.20)!important;box-shadow:none!important}
+body.nx-global-shell :is(.subject-card,.nx-subject-card,.career-v242-path-card,.hub-card,.nx-hub-card,.planner-card,.dash-card,.community-card)::before,body.nx-global-shell :is(.subject-card,.nx-subject-card,.career-v242-path-card,.hub-card,.nx-hub-card,.planner-card,.dash-card,.community-card)::after{filter:saturate(0)!important;opacity:.14!important}
+body.nx-global-shell :is(.subject-card,.nx-subject-card,.career-v242-path-card,.hub-card,.nx-hub-card,.planner-card,.dash-card,.community-card) :is(.icon,.subject-icon,.path-icon){background:rgba(231,197,95,.09)!important;border-color:rgba(231,197,95,.25)!important;color:var(--nx-gold)!important;box-shadow:none!important}
+/* Slider overlays; never participates in document layout. */
+body.nx-global-shell .nx-slider-trigger,body.nx-global-shell .nx-shell-drawer,body.nx-global-shell .nx-shell-backdrop{position:fixed!important}
+/* Quick actions match Campus on all authenticated internal pages. */
+body.nx-global-shell #nxShellTopbar.nx-shell-topbar{display:flex!important;position:fixed!important;top:8px!important;right:18px!important;left:auto!important;z-index:1070!important}
+
+/* Study Assistant: purpose-built full viewport chat, not a faded legacy dashboard. */
+body.ai-clean-page.nx-global-shell{height:100dvh!important;min-height:100dvh!important;overflow:hidden!important;background:#070706!important}
+body.ai-clean-page.nx-global-shell .ai-app{display:block!important;position:relative!important;width:100vw!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important;opacity:1!important;filter:none!important}
+body.ai-clean-page.nx-global-shell :is(.topbar,.assistant-side-rail,.nexzo-companion,.sidebar-pet-dock,.pet-dock,.nx-study-hero){display:none!important}
+body.ai-clean-page.nx-global-shell .chat-shell{position:relative!important;display:grid!important;grid-template-rows:minmax(0,1fr) auto auto!important;width:100vw!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:86px clamp(18px,5vw,86px) 14px!important;background:transparent!important;overflow:hidden!important;opacity:1!important;filter:none!important;z-index:3!important}
+body.ai-clean-page.nx-global-shell #messages{grid-row:1!important;display:block!important;width:min(1040px,100%)!important;max-width:1040px!important;height:100%!important;min-height:0!important;margin:0 auto!important;padding:18px 10px 26px!important;overflow-y:auto!important;opacity:1!important;filter:none!important;color:var(--nx-ink)!important;scrollbar-width:none!important;mask-image:none!important;-webkit-mask-image:none!important}
+body.ai-clean-page.nx-global-shell #messages::-webkit-scrollbar{display:none!important}
+body.ai-clean-page.nx-global-shell #messages>*{opacity:1!important;filter:none!important}
+body.ai-clean-page.nx-global-shell #messages:has(.assistant-welcome:only-child){display:grid!important;place-items:center!important}
+body.ai-clean-page.nx-global-shell .assistant-welcome{width:min(820px,100%)!important;margin:0 auto!important;padding:22px 0!important;background:transparent!important;border:0!important;box-shadow:none!important;opacity:1!important}
+body.ai-clean-page.nx-global-shell .assistant-welcome .welcome-avatar{border-color:rgba(231,197,95,.35)!important;background:rgba(231,197,95,.08)!important;color:var(--nx-gold)!important}
+body.ai-clean-page.nx-global-shell .assistant-welcome .welcome-actions button{background:rgba(14,14,11,.78)!important;border-color:rgba(231,197,95,.18)!important;box-shadow:none!important;color:var(--nx-ink)!important}
+body.ai-clean-page.nx-global-shell #composer{grid-row:2!important;width:min(1040px,100%)!important;max-width:1040px!important;margin:0 auto!important;padding:12px 14px!important;border:1px solid rgba(231,197,95,.25)!important;border-radius:22px!important;background:rgba(17,17,14,.94)!important;box-shadow:0 18px 60px rgba(0,0,0,.36)!important;opacity:1!important;filter:none!important}
+body.ai-clean-page.nx-global-shell #composer textarea{min-height:44px!important;color:var(--nx-ink)!important;background:transparent!important}
+body.ai-clean-page.nx-global-shell .disclaimer{grid-row:3!important;width:min(1040px,100%)!important;margin:6px auto 0!important;color:#777367!important}
+body.ai-clean-page.nx-global-shell :is(.bubble,.message,.assistant-message,.user-message){opacity:1!important;filter:none!important;color:var(--nx-ink)!important}
+body.ai-clean-page.nx-global-shell .bubble.user{background:rgba(231,197,95,.09)!important;border-color:rgba(231,197,95,.20)!important}
+body.ai-clean-page.nx-global-shell .bubble.assistant{background:transparent!important;border-color:transparent!important}
+@media(max-width:760px){body.nx-global-shell{--nx-page-gutter:16px!important}body.nx-global-shell .nx-page-mast{padding:78px 16px 12px!important}body.nx-global-shell .nx-page-mast h1{font-size:clamp(46px,14vw,76px)!important}body.ai-clean-page.nx-global-shell .chat-shell{padding:70px 10px 8px!important}body.ai-clean-page.nx-global-shell #composer{border-radius:18px!important}}
+
+/* NEXZO v12 — full replacement stabilization: visible controls + Assistant workspace */
+/* Internal pages keep the full viewport canvas. Navigation is always an overlay, never layout space. */
+body.nx-global-shell .nx-slider-trigger{display:grid!important;place-items:center!important;visibility:visible!important;opacity:1!important;z-index:2147483000!important}
+body.nx-global-shell .nx-shell-drawer{display:block!important;visibility:visible!important;z-index:2147483002!important}
+body.nx-global-shell .nx-shell-backdrop{display:block!important;visibility:visible!important;z-index:2147483001!important}
+body.nx-global-shell .nx-shell-drawer nav{display:grid!important;width:100%!important}
+body.nx-global-shell .nx-shell-drawer nav a{display:grid!important}
+
+/* Assistant: restore useful controls. Do not reserve a sidebar column. */
+body.ai-clean-page.nx-global-shell .topbar{
+  display:flex!important;position:fixed!important;top:8px!important;right:18px!important;left:auto!important;
+  width:auto!important;max-width:calc(100vw - 120px)!important;height:58px!important;min-height:58px!important;
+  padding:6px 8px!important;z-index:1070!important;background:rgba(7,7,6,.78)!important;
+  border:1px solid rgba(231,197,95,.34)!important;border-radius:18px!important;backdrop-filter:blur(16px)!important;
+  box-shadow:0 14px 45px rgba(0,0,0,.28)!important;
+}
+body.ai-clean-page.nx-global-shell .topbar .brand-group{display:none!important}
+body.ai-clean-page.nx-global-shell .topbar .top-actions{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important}
+body.ai-clean-page.nx-global-shell .topbar :is(button,a,.profile-chip){opacity:1!important;visibility:visible!important;filter:none!important}
+body.ai-clean-page.nx-global-shell .assistant-side-rail{display:none!important;width:0!important}
+body.ai-clean-page.nx-global-shell .chat-shell{padding-top:82px!important}
+
+/* Native modal backdrop must truly disappear when hidden; it was dimming the Assistant canvas. */
+body.ai-clean-page .backdrop[hidden]{display:none!important;opacity:0!important;pointer-events:none!important}
+body.ai-clean-page .modal[hidden],body.ai-clean-page .side-panel[hidden]{display:none!important}
+
+/* Assistant-specific controls live inside the same slider as page navigation. */
+.nx-assistant-drawer-tools{margin:22px 0 4px;padding-top:18px;border-top:1px solid rgba(231,197,95,.18)}
+.nx-assistant-drawer-tools>small{display:block;margin:0 8px 10px;color:#c8a842;font-size:9px;font-weight:800;letter-spacing:.22em}
+.nx-assistant-drawer-tools .nx-assistant-tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nx-assistant-drawer-tools button,.nx-assistant-drawer-tools a{min-height:46px!important;padding:10px 12px!important;border:1px solid rgba(231,197,95,.17)!important;border-radius:12px!important;background:rgba(231,197,95,.035)!important;color:#eee8d7!important;font:inherit!important;font-size:12px!important;font-weight:700!important;text-align:left!important;text-decoration:none!important;cursor:pointer!important}
+.nx-assistant-drawer-tools button:hover,.nx-assistant-drawer-tools a:hover{border-color:rgba(231,197,95,.48)!important;background:rgba(231,197,95,.08)!important}
+
+/* Keep the conversation readable and present instead of faded under the live world. */
+body.ai-clean-page.nx-global-shell #messages{position:relative!important;z-index:4!important}
+body.ai-clean-page.nx-global-shell #composer{position:relative!important;z-index:5!important}
+body.ai-clean-page.nx-global-shell .nx-global-path{opacity:.52!important}
+body.ai-clean-page.nx-global-shell::before{opacity:.45!important}
+
+@media(max-width:760px){
+ body.ai-clean-page.nx-global-shell .topbar{right:8px!important;max-width:calc(100vw - 78px)!important;height:52px!important;min-height:52px!important}
+ body.ai-clean-page.nx-global-shell .topbar .compact-new-chat{display:none!important}
+ .nx-assistant-drawer-tools .nx-assistant-tool-grid{grid-template-columns:1fr!important}
+}
+
+/* NEXZO v13 — zero dead-space internal canvas + Assistant identity restore */
+/* Internal pages: the overlay drawer must never reserve width; useful content starts under the top controls. */
+body.nx-global-shell:not(.home-page){overflow-x:hidden!important}
+body.nx-global-shell:not(.home-page) :is(.app,.main,main.main,.main-content,.page-shell,.content-wrap){
+  width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;
+  transform:none!important;left:auto!important;right:auto!important;
+}
+body.nx-global-shell:not(.home-page) .nx-page-mast{
+  min-height:0!important;height:auto!important;
+  padding:92px var(--nx-page-gutter) 4px!important;
+  margin:0!important;
+}
+body.nx-global-shell:not(.home-page) .nx-page-mast h1{
+  font-size:clamp(52px,5.7vw,98px)!important;line-height:.86!important;margin:0!important;
+}
+body.nx-global-shell:not(.home-page) .nx-page-rule{margin:12px 0 0!important}
+body.nx-global-shell:not(.home-page) main.main>.nx-page-mast+*{margin-top:0!important;padding-top:0!important}
+body.nx-global-shell:not(.home-page) :is(
+ .nx-campus-wrap,.nx-acad-shell,.academics-shell,.career-v242-shell,.nx-hub-shell,.planner-shell,
+ .dash-shell-exact,.community-shell,.community-main,.settings-shell,.profile-shell,.profile-main
+){
+ width:100%!important;max-width:none!important;margin:0!important;
+ padding-left:var(--nx-page-gutter)!important;padding-right:var(--nx-page-gutter)!important;
+ transform:none!important;inset-inline:auto!important;
+}
+/* Career was still inheriting a clipped/offset legacy explorer. Flatten it onto the shared canvas. */
+body.career-page :is(.career-v242-shell,.career-v242-explorer,.career-v242-main,.career-v242-workspace,.career-v242-paths){
+ max-width:none!important;margin-left:0!important;margin-right:0!important;transform:none!important;left:auto!important;
+}
+body.career-page .career-v242-explorer{width:100%!important;grid-template-columns:minmax(250px,22vw) minmax(0,1fr)!important}
+/* Legacy sidebar columns are hidden and take no layout space on every internal module. */
+body.nx-global-shell:not(.home-page) :is(.sidebar,.side-nav,.left-sidebar,.nav-sidebar):not(.nx-shell-drawer){display:none!important;width:0!important;min-width:0!important;margin:0!important;padding:0!important}
+
+/* Study Assistant: restore NEXZO identity + product/status while keeping navigation in the overlay slider. */
+body.ai-clean-page.nx-global-shell .topbar{left:112px!important;right:18px!important;max-width:none!important;justify-content:space-between!important}
+body.ai-clean-page.nx-global-shell .topbar .brand-group{
+ display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;opacity:1!important;visibility:visible!important;
+}
+body.ai-clean-page.nx-global-shell .topbar #navOpen{display:none!important}
+body.ai-clean-page.nx-global-shell .topbar .nx-brand-lockup{display:flex!important;align-items:center!important;gap:9px!important;min-width:0!important}
+body.ai-clean-page.nx-global-shell .topbar .nx-brand-mark{display:block!important;width:34px!important;height:34px!important;object-fit:contain!important}
+body.ai-clean-page.nx-global-shell .topbar .nx-brand-copy{display:flex!important;flex-direction:column!important;line-height:1!important}
+body.ai-clean-page.nx-global-shell .topbar .nx-brand-wordmark{display:block!important;width:92px!important;height:auto!important;max-height:22px!important}
+body.ai-clean-page.nx-global-shell .topbar .nx-brand-copy small{display:block!important;margin-top:3px!important;color:#c8a842!important;font-size:6px!important;font-weight:800!important;letter-spacing:.12em!important}
+body.ai-clean-page.nx-global-shell .topbar .divider{display:block!important;width:1px!important;height:28px!important;background:rgba(231,197,95,.18)!important}
+body.ai-clean-page.nx-global-shell .topbar .assistant-title-lockup{display:flex!important;align-items:center!important}
+body.ai-clean-page.nx-global-shell .topbar .assistant-product-name{display:block!important;color:#eee8d7!important;font-size:14px!important;white-space:nowrap!important}
+body.ai-clean-page.nx-global-shell .topbar #statusBadge{
+ display:inline-flex!important;align-items:center!important;gap:6px!important;padding:7px 10px!important;border:1px solid rgba(231,197,95,.22)!important;
+ border-radius:999px!important;background:rgba(231,197,95,.055)!important;color:#d9c36f!important;font-size:10px!important;font-weight:800!important;white-space:nowrap!important;
+}
+body.ai-clean-page.nx-global-shell .topbar #statusBadge::before{content:"";width:6px;height:6px;border-radius:50%;background:#62d995;box-shadow:0 0 10px rgba(98,217,149,.55)}
+body.ai-clean-page.nx-global-shell .chat-shell{padding-top:78px!important}
+
+@media(max-width:980px){
+ body.ai-clean-page.nx-global-shell .topbar{left:82px!important}
+ body.ai-clean-page.nx-global-shell .topbar .nx-brand-copy small,body.ai-clean-page.nx-global-shell .topbar .divider{display:none!important}
+ body.ai-clean-page.nx-global-shell .topbar .assistant-product-name{font-size:12px!important}
+}
+@media(max-width:760px){
+ body.nx-global-shell:not(.home-page) .nx-page-mast{padding:72px 16px 4px!important}
+ body.ai-clean-page.nx-global-shell .topbar{left:70px!important;right:8px!important}
+ body.ai-clean-page.nx-global-shell .topbar .nx-brand-wordmark{width:70px!important}
+ body.ai-clean-page.nx-global-shell .topbar .assistant-title-lockup,body.ai-clean-page.nx-global-shell .topbar #statusBadge{display:none!important}
+}
+
+/* v14 — reference-style NEXZO lockup on every internal page, without a containing box. */
+body.nx-global-shell .nx-global-brand{
+ position:fixed!important;left:94px!important;top:15px!important;z-index:2147482990!important;
+ display:flex!important;align-items:center!important;gap:11px!important;width:auto!important;height:62px!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;backdrop-filter:none!important;text-decoration:none!important;color:inherit!important;
+}
+body.nx-global-shell .nx-global-brand-mark{
+ width:56px!important;height:56px!important;object-fit:contain!important;flex:0 0 56px!important;
+ border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+ filter:drop-shadow(0 0 9px rgba(231,197,95,.13))!important;
+}
+body.nx-global-shell .nx-global-brand-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;line-height:1!important;min-width:0!important}
+body.nx-global-shell .nx-global-brand-wordmark{display:block!important;width:196px!important;height:auto!important;max-height:40px!important;object-fit:contain!important;object-position:left center!important}
+body.nx-global-shell .nx-global-brand-copy small{display:block!important;margin:4px 0 0 3px!important;color:#d8ad3d!important;font-size:8px!important;font-weight:900!important;letter-spacing:.115em!important;white-space:nowrap!important}
+body.nx-global-shell .nx-global-brand-copy em{display:flex!important;align-items:center!important;gap:5px!important;margin:5px 0 0 3px!important;color:#bdb7a8!important;font-size:7px!important;font-style:normal!important;font-weight:800!important;letter-spacing:.1em!important;white-space:nowrap!important}
+body.nx-global-shell .nx-global-brand-copy em i{width:5px!important;height:5px!important;border-radius:50%!important;background:#43e69d!important;box-shadow:0 0 8px rgba(67,230,157,.7)!important}
+/* Assistant uses this single shared identity; keep its functional actions/status hooks but remove duplicate visual lockup. */
+body.ai-clean-page.nx-global-shell .topbar .brand-group{padding-left:0!important;min-width:0!important}
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.nx-brand-lockup,
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.divider,
+body.ai-clean-page.nx-global-shell .topbar .brand-group>.assistant-title-lockup,
+body.ai-clean-page.nx-global-shell .topbar .brand-group>#statusBadge{display:none!important}
+@media(max-width:760px){
+ body.nx-global-shell .nx-global-brand{left:70px!important;top:11px!important;height:50px!important;gap:7px!important}
+ body.nx-global-shell .nx-global-brand-mark{width:43px!important;height:43px!important;flex-basis:43px!important}
+ body.nx-global-shell .nx-global-brand-wordmark{width:132px!important;max-height:28px!important}
+ body.nx-global-shell .nx-global-brand-copy small{font-size:5.7px!important;margin-top:2px!important;letter-spacing:.08em!important}
+ body.nx-global-shell .nx-global-brand-copy em{display:none!important}
+}
+@media(max-width:430px){body.nx-global-shell .nx-global-brand-mark{display:none!important}body.nx-global-shell .nx-global-brand-wordmark{width:112px!important}}
+
+/* v15 — compact reference branding. Same NEXZO identity on internal pages and Study Assistant. */
+body.nx-global-shell .nx-global-brand{left:96px!important;top:18px!important;height:58px!important;gap:10px!important}
+body.nx-global-shell .nx-global-brand-mark{width:50px!important;height:50px!important;flex-basis:50px!important;filter:drop-shadow(0 0 7px rgba(231,197,95,.10))!important}
+body.nx-global-shell .nx-global-brand-wordmark{width:142px!important;max-height:31px!important;filter:none!important}
+body.nx-global-shell .nx-global-brand-copy small{margin:3px 0 0 1px!important;font-size:7px!important;letter-spacing:.12em!important;color:#d8ad3d!important}
+body.nx-global-shell .nx-global-brand-copy em{margin:4px 0 0 1px!important;font-size:6.4px!important;letter-spacing:.085em!important;color:#c8c2b4!important}
+body.ai-clean-page.nx-global-shell .nx-global-brand{top:16px!important}
+body.ai-clean-page.nx-global-shell .topbar{min-height:88px!important;padding-left:310px!important}
+@media(max-width:900px){body.ai-clean-page.nx-global-shell .topbar{padding-left:250px!important}}
+@media(max-width:760px){body.nx-global-shell .nx-global-brand{left:68px!important;top:12px!important;height:46px!important}body.nx-global-shell .nx-global-brand-mark{width:40px!important;height:40px!important;flex-basis:40px!important}body.nx-global-shell .nx-global-brand-wordmark{width:112px!important;max-height:25px!important}body.ai-clean-page.nx-global-shell .topbar{padding-left:210px!important;min-height:70px!important}}
+
+/* V127 — one clean internal header. Home intentionally excluded. */
+html{scrollbar-width:none!important}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:0!important;height:0!important;background:transparent!important}
+body:not(.home-page){scrollbar-width:none!important}
+
+body[data-shell-ready="true"]{--nx-fixed-header-h:96px;padding-top:var(--nx-fixed-header-h)!important;box-sizing:border-box!important}
+body[data-shell-ready="true"] > #nxShellTopbar.nx-shell-topbar{
+  position:fixed!important;inset:0 0 auto 0!important;z-index:1200!important;
+  width:100%!important;max-width:none!important;height:96px!important;min-height:96px!important;
+  margin:0!important;padding:12px 30px!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important;
+  background:linear-gradient(180deg,rgba(3,4,4,.995),rgba(3,4,4,.965))!important;
+  border:0!important;border-radius:0!important;box-shadow:0 1px 0 rgba(225,181,47,.16)!important;
+  backdrop-filter:blur(18px)!important;transform:none!important;translate:none!important;overflow:visible!important;
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-left{display:flex!important;align-items:center!important;gap:18px!important;min-width:0!important;flex:0 1 auto!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn{
+  display:grid!important;place-content:center!important;gap:7px!important;width:52px!important;height:52px!important;min-width:52px!important;
+  padding:0!important;border:1px solid rgba(225,181,47,.42)!important;border-radius:50%!important;background:#050606!important;box-shadow:none!important;color:#e5bf67!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn span{display:block!important;width:18px!important;height:1px!important;background:#d7ad45!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-mobile-brand{display:flex!important;align-items:center!important;min-width:0!important;text-decoration:none!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-lockup{width:auto!important;gap:10px!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-mark{width:54px!important;height:54px!important;min-width:54px!important;max-width:54px!important;object-fit:cover!important;border-radius:4px!important;border:0!important;background:transparent!important;box-shadow:none!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{width:205px!important;flex:0 1 205px!important;overflow:visible!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-wordmark{display:block!important;width:190px!important;height:auto!important;max-width:190px!important;max-height:42px!important;object-fit:contain!important;object-position:left center!important;border:0!important;background:transparent!important;box-shadow:none!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy small{font-size:8px!important;color:#d9ad3e!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;width:auto!important;min-width:0!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions > button,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions > a:not(.nx-shell-profile){
+  display:grid!important;place-items:center!important;width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;padding:0!important;
+  border:0!important;border-radius:16px!important;background:rgba(255,255,255,.025)!important;box-shadow:none!important;color:#f6f0df!important;text-decoration:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions > :is(button,a):hover{background:rgba(255,255,255,.055)!important;color:#e5bf67!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-timer-button{display:flex!important;width:82px!important;min-width:82px!important;gap:5px!important;font-variant-numeric:tabular-nums!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-guest-chip{
+  display:flex!important;align-items:center!important;gap:10px!important;width:auto!important;min-width:210px!important;max-width:280px!important;height:58px!important;
+  padding:4px 8px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#f7f3e8!important;text-decoration:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile-avatar,body[data-shell-ready="true"] #nxShellTopbar .nx-shell-avatar-letter{width:46px!important;height:46px!important;min-width:46px!important;border-radius:10px!important;object-fit:cover!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile>span:last-child,body[data-shell-ready="true"] #nxShellTopbar .nx-shell-guest-chip>span:last-child{display:flex!important;flex-direction:column!important;min-width:0!important;line-height:1.15!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile b{font-size:14px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile small{font-size:10px!important;color:#a9a49b!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body[data-shell-ready="true"] #nxShellTopbar [data-nx-shell-badge]{position:absolute!important;transform:translate(15px,-15px)!important;background:#ef4444!important;color:#fff!important;border-radius:999px!important;padding:2px 5px!important;font:700 10px/1 system-ui!important}
+
+/* The internal header replaces page-specific desktop chrome; content remains untouched. */
+body[data-shell-ready="true"] .app>.sidebar,body[data-shell-ready="true"] .sidebar.ai-site-drawer{position:fixed!important;z-index:5100!important;top:0!important;bottom:0!important;left:0!important;transform:translateX(-110%)!important;transition:transform .2s ease!important}
+body[data-shell-ready="true"].nx-global-sidebar-open .app>.sidebar,body[data-shell-ready="true"].nx-global-sidebar-open .sidebar.ai-site-drawer{transform:translateX(0)!important}
+body[data-shell-ready="true"] .app>.main{margin-left:0!important;width:100%!important;max-width:none!important;padding-top:0!important}
+
+/* Modals always cover the header; the page behind them cannot bleed through. */
+body:has(.nx-shell-modal) #nxShellTopbar{pointer-events:none!important}
+.nx-shell-modal{position:fixed!important;inset:0!important;z-index:6000!important;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(12px)!important;overflow:auto!important;overscroll-behavior:contain!important}
+.nx-shell-modal-card{position:relative!important;z-index:6001!important;max-height:calc(100vh - 40px)!important;overflow:auto!important}
+
+@media(max-width:900px){
+ body[data-shell-ready="true"]{--nx-fixed-header-h:82px}
+ body[data-shell-ready="true"] > #nxShellTopbar.nx-shell-topbar{height:82px!important;min-height:82px!important;padding:10px 14px!important;gap:10px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn{width:46px!important;height:46px!important;min-width:46px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-mark{width:42px!important;height:42px!important;min-width:42px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{width:145px!important;flex-basis:145px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-wordmark{width:140px!important;max-width:140px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{gap:5px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>[data-nx-shell-search],body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a[data-nav-label="Study Assistant"]{display:none!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>button,body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile){width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-timer-button{width:64px!important;min-width:64px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile{min-width:46px!important;width:46px!important;height:46px!important;padding:0!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile>span:last-child{display:none!important}
+}
+@media(max-width:620px){body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{display:none!important}body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>[data-nx-shell-notifications]{display:none!important}}
+
+
+/* =========================================================
+   NEXZO V133 — COMPACT INTERNAL PAGE RHYTHM
+   Home + Study Assistant excluded.
+   Removes the accidental giant blank band introduced by shell/header passes.
+   ========================================================= */
+html:not([data-page="home"]):not([data-page="assistant"])
+body:not(.home-page):not(.study-assistant-page) {
+  --nexzo-shell-clearance: 118px;
+}
+
+html:not([data-page="home"]):not([data-page="assistant"])
+body:not(.home-page):not(.study-assistant-page)
+:is(main, .page-main, .workspace-main, .cinematic-main, .page-content) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+html:not([data-page="home"]):not([data-page="assistant"])
+body:not(.home-page):not(.study-assistant-page)
+:is(.hero, .page-hero, .cinematic-hero, .workspace-hero, .module-hero, .career-hero, .campus-hero, .academics-hero) {
+  min-height: 0 !important;
+  padding-top: clamp(118px, 8.5vw, 154px) !important;
+  margin-top: 0 !important;
+}
+
+/* Do not let old header-clearance shims create a second blank band. */
+html:not([data-page="home"]):not([data-page="assistant"])
+body:not(.home-page):not(.study-assistant-page)
+:is(.header-spacer, .app-header-spacer, .shell-spacer, .nexzo-header-spacer) {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Preserve invisible scrollbars without disabling scrolling. */
+html, body, main, .page-content, .workspace-main {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+main::-webkit-scrollbar,
+.page-content::-webkit-scrollbar,
+.workspace-main::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* V141 — Study Assistant shell parity. The Assistant uses the exact global NEXZO drawer/backdrop. */
+body.ai-clean-page.nx-global-shell{background:#070706!important;}
+body.ai-clean-page.nx-global-shell .ai-app,
+body.ai-clean-page.nx-global-shell .chat-shell,
+body.ai-clean-page.nx-global-shell .messages{background:transparent!important;}
+body.ai-clean-page.nx-global-shell::before{z-index:0!important;opacity:1!important;}
+body.ai-clean-page.nx-global-shell::after{z-index:0!important;}
+body.ai-clean-page.nx-global-shell>.nx-global-path{z-index:1!important;}
+body.ai-clean-page.nx-global-shell>.ai-app{position:relative!important;z-index:2!important;}
+body.ai-clean-page.nx-global-shell>.nx-shell-backdrop{display:block!important;visibility:visible!important;position:fixed!important;inset:0!important;z-index:2147483001!important;background:rgba(0,0,0,.68)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+body.ai-clean-page.nx-global-shell>.nx-shell-drawer{display:block!important;visibility:visible!important;position:fixed!important;inset:0 auto 0 0!important;width:min(410px,92vw)!important;z-index:2147483002!important;opacity:1!important;pointer-events:auto!important;transform:translate3d(-104%,0,0)!important;background:rgba(7,7,6,.985)!important;border-right:1px solid rgba(231,197,95,.34)!important;box-shadow:40px 0 110px rgba(0,0,0,.7)!important;}
+body.ai-clean-page.nx-global-shell>.nx-shell-drawer.is-open{transform:translate3d(0,0,0)!important;}
+body.ai-clean-page.nx-global-shell>.nx-shell-drawer:not(.is-open){pointer-events:none!important;}
+body.ai-clean-page.nx-global-shell #backdrop.backdrop[hidden]{display:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+
+/* V195 — shared live trajectory polish.
+   Keep the animated line system below the global header and behind page UI. */
+body.nx-global-shell>.nx-global-path{
+  z-index:0!important;
+  opacity:.64!important;
+  mix-blend-mode:normal!important;
+  clip-path:inset(112px 0 0 0)!important;
+}
+body.nx-global-shell>.nx-global-path .nx-path-main{stroke-width:.92!important;opacity:.82!important}
+body.nx-global-shell>.nx-global-path .nx-path-echo{stroke-width:.48!important;opacity:.72!important}
+body.nx-global-shell>.nx-global-path .nx-path-thread{stroke-width:.52!important;opacity:.56!important}
+body.nx-global-shell>.nx-global-path .nx-path-spark{r:3!important;filter:drop-shadow(0 0 6px rgba(231,197,95,.52))!important}
+body.nx-global-shell>.nx-global-brand,
+body.nx-global-shell>.nx-slider-trigger,
+body.nx-global-shell #nxShellTopbar,
+body.nx-global-shell .nx-shell-topbar{z-index:20!important}
+body.nx-global-shell main.main,
+body.nx-global-shell .main{position:relative!important;z-index:2!important}
+@media(max-width:760px){body.nx-global-shell>.nx-global-path{clip-path:inset(72px 0 0 0)!important;opacity:.48!important}}

@@ -1,0 +1,61 @@
+/* NEXZO AUTH PRESENTATION FINAL — isolated from legacy global CSS */
+html,body.login-page,body.signup-page{width:100%;min-height:100%;margin:0!important;background:#050403!important;overflow:hidden!important}
+body.login-page .nx-auth-scene,body.signup-page .nx-auth-scene{position:fixed!important;inset:0!important;z-index:2147480000!important;width:100vw!important;height:100vh!important;object-fit:cover!important;object-position:center!important;display:block!important;pointer-events:none!important;filter:brightness(.68) saturate(.92) contrast(1.03)!important}
+body.login-page .nx-auth-shade,body.signup-page .nx-auth-shade{position:fixed!important;inset:0!important;z-index:2147480001!important;pointer-events:none!important;background:linear-gradient(90deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.14) 46%,rgba(0,0,0,.30) 100%),linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.20))!important}
+body.login-page .auth,body.signup-page .auth{position:fixed!important;inset:0!important;z-index:2147480002!important;width:100vw!important;height:100vh!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important;display:block!important;overflow:auto!important}
+body.login-page .auth-brand-panel,body.signup-page .auth-brand-panel{position:absolute!important;top:62px!important;left:clamp(70px,15.5vw,300px)!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+body .auth-brand-panel .brand{display:flex!important;align-items:center!important;gap:20px!important;margin:0!important;padding:0!important;background:transparent!important}
+body .auth-brand-panel .logo-img{width:92px!important;height:92px!important;object-fit:contain!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+body .auth-brand-panel h1{margin:0 0 5px!important;color:#f4f1e8!important;font:800 45px/1 Inter,system-ui,sans-serif!important;letter-spacing:.035em!important;text-shadow:0 3px 14px #000!important}
+body .auth-brand-panel h1::first-letter{color:#e3ad24!important}
+body .auth-brand-panel .brand p{display:block!important;margin:0!important;color:#e8e2d7!important;font:500 19px/1.28 Inter,system-ui,sans-serif!important;text-shadow:0 2px 10px #000!important}
+body .auth-brand-tagline{display:none!important}
+body.login-page .auth-box,body.signup-page .auth-box{position:absolute!important;top:50%!important;right:clamp(70px,8.2vw,160px)!important;left:auto!important;bottom:auto!important;transform:translateY(-50%)!important;width:500px!important;max-width:calc(100vw - 48px)!important;max-height:calc(100vh - 76px)!important;margin:0!important;padding:38px 40px 30px!important;overflow:auto!important;scrollbar-width:none!important;box-sizing:border-box!important;border:1px solid rgba(214,161,28,.70)!important;border-radius:24px!important;background:linear-gradient(145deg,rgba(15,14,12,.90),rgba(7,7,6,.91))!important;box-shadow:0 28px 80px rgba(0,0,0,.62),inset 0 0 0 1px rgba(255,210,70,.025)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+body .auth-box::-webkit-scrollbar{display:none!important}
+body .auth-box>h1{margin:0 0 12px!important;text-align:center!important;color:#fff!important;font:850 44px/1 Inter,system-ui,sans-serif!important;letter-spacing:-.035em!important}
+body .nx-auth-ornament{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:230px!important;margin:4px auto 10px!important;color:#e5aa20!important}body .nx-auth-ornament span{height:1px!important;flex:1!important;background:#9f761e!important}body .nx-auth-ornament b{font-size:16px!important}
+body .nx-auth-welcome{text-align:center!important;color:#c7c4bc!important;margin:0 0 20px!important;font-size:16px!important}
+body .auth-box input:not([type=checkbox]){display:block!important;width:100%!important;height:58px!important;margin:0 0 14px!important;padding:0 18px!important;box-sizing:border-box!important;border:1px solid rgba(205,151,15,.48)!important;border-radius:15px!important;background:rgba(3,4,4,.78)!important;color:#f5f2e9!important;font-size:16px!important;outline:none!important}
+body .auth-box input:not([type=checkbox]):focus{border-color:#efb51e!important;box-shadow:0 0 0 3px rgba(239,181,30,.08)!important}
+body .auth-box .btn{min-height:54px!important;border-radius:15px!important;font-size:16px!important;font-weight:750!important;border:1px solid rgba(205,151,15,.42)!important;background:rgba(10,13,16,.94)!important;color:#e9b52c!important;box-shadow:none!important}
+body .auth-box .btn.primary{background:linear-gradient(100deg,#ffd45a,#efa90d)!important;color:#090806!important;border-color:#f6bd23!important;box-shadow:0 10px 26px rgba(224,159,0,.18)!important}
+body .auth-box [data-action=toggle-password]{position:absolute!important;right:8px!important;top:9px!important;height:40px!important;min-height:40px!important;padding:0 14px!important;border-radius:11px!important;background:linear-gradient(180deg,#9b6e09,#6f4e04)!important;color:#ffd75e!important}
+body .auth-box a{color:#f3ba26!important}.nx-auth-or{display:flex!important;align-items:center!important;gap:18px!important;margin:14px 18px 16px!important;color:#c8c4ba!important}.nx-auth-or span{height:1px!important;flex:1!important;background:rgba(230,225,211,.62)!important}.nx-auth-or b{font-weight:500!important}
+body.signup-page .auth-box{padding-top:32px!important}body.signup-page .auth-box>h1{font-size:40px!important}.signup-page .nx-legal-agree{display:flex!important;align-items:flex-start!important;gap:10px!important;margin:2px 0 15px!important;color:#e8e4dc!important;line-height:1.35!important}
+@media(max-width:900px){body.login-page .auth-brand-panel,body.signup-page .auth-brand-panel{top:20px!important;left:22px!important}.auth-brand-panel .brand p{display:none!important}body .auth-brand-panel .logo-img{width:58px!important;height:58px!important}body .auth-brand-panel h1{font-size:30px!important}body.login-page .auth-box,body.signup-page .auth-box{top:54%!important;right:50%!important;transform:translate(50%,-50%)!important;width:min(500px,calc(100vw - 32px))!important;padding:28px 24px!important;max-height:calc(100vh - 120px)!important}}
+
+/* Presentation hotfix v5: keep auth artwork above all legacy page backgrounds. */
+html, body.login-page, body.signup-page {
+  background-color:#050403!important;
+  background-image:url('../assets/auth/study-group-scene.webp')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+body.login-page .nx-auth-scene, body.signup-page .nx-auth-scene {
+  z-index:2147483400!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.login-page .nx-auth-shade, body.signup-page .nx-auth-shade {
+  z-index:2147483401!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.login-page .auth, body.signup-page .auth {
+  z-index:2147483402!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+
+/* Presentation hotfix v6: center auth card on desktop while preserving top-left branding. */
+@media (min-width:901px){
+  body.login-page .auth-box,
+  body.signup-page .auth-box{
+    left:50%!important;
+    right:auto!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+  }
+}

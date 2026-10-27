@@ -1,0 +1,1 @@
+import Post from '../models/Post.js';import {asyncHandler} from '../utils/asyncHandler.js';export const categories=asyncHandler(async(req,res)=>{const data=await Post.aggregate([{$match:{status:'published'}},{$group:{_id:'$category',count:{$sum:1}}},{$sort:{count:-1}}]);res.json({success:true,data:data.map(x=>({name:x._id,count:x.count}))});});

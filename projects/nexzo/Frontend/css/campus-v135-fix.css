@@ -1,0 +1,89 @@
+/* Campus v135: reliable native dependent selects. Avoid portal/custom-select race conditions. */
+body.nx-campus-page .nx-campus-wrap,
+body.nx-campus-page .nx-campus-setup,
+body.nx-campus-page .nx-campus-setup>div{overflow:visible!important}
+body.nx-campus-page .nx-campus-setup{position:relative!important;z-index:4!important}
+body.nx-campus-page .nx-campus-setup select{
+  display:block!important;width:100%!important;height:58px!important;min-height:58px!important;
+  padding:0 46px 0 16px!important;border:1px solid rgba(231,197,95,.30)!important;
+  border-radius:15px!important;background:#0d0d0b!important;color:#f2eddf!important;
+  box-shadow:none!important;font:inherit!important;font-weight:700!important;cursor:pointer!important;
+  appearance:auto!important;-webkit-appearance:menulist!important;opacity:1!important;clip:auto!important;
+  position:relative!important;pointer-events:auto!important
+}
+body.nx-campus-page .nx-campus-setup select:focus{outline:2px solid rgba(231,197,95,.58)!important;outline-offset:2px!important}
+body.nx-campus-page .nx-campus-setup select:disabled{opacity:.5!important;cursor:not-allowed!important}
+body.nx-campus-page .nx-campus-setup select option{background:#0a0a08;color:#f2eddf}
+body.nx-global-shell[data-page] .nx-shell-modal{position:fixed!important;inset:0!important;background:rgba(0,0,0,.76)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;overflow:auto!important;overscroll-behavior:contain!important}
+body.nx-global-shell[data-page] .nx-shell-modal-card{max-height:calc(100dvh - 48px)!important;overflow:auto!important;scrollbar-width:none!important}
+
+
+/* v136 — restore NEXZO black/gold custom Campus dropdowns without changing dependent-select data. */
+body.nx-campus-page .nx-custom-select-button{
+  border-color:rgba(216,180,74,.34)!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#0d0d0b 0%,#090907 100%)!important;
+  color:#f3efe4!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+body.nx-campus-page .nx-custom-select-button:hover{border-color:rgba(216,180,74,.55)!important}
+body.nx-campus-page .nx-custom-select.is-open .nx-custom-select-button{
+  border-color:#d8b44a!important;box-shadow:0 0 0 2px rgba(216,180,74,.10)!important
+}
+body.nx-campus-page .nx-custom-select-menu.nx-custom-select-portal{
+  padding:8px!important;border:1px solid rgba(216,180,74,.42)!important;border-radius:14px!important;
+  background:#090907!important;color:#f3efe4!important;
+  scrollbar-width:none!important;-ms-overflow-style:none!important
+}
+body.nx-campus-page .nx-custom-select-menu.nx-custom-select-portal::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+body.nx-campus-page .nx-custom-select-option{
+  min-height:42px!important;padding:9px 12px!important;border-radius:9px!important;color:#eee9dc!important;
+  line-height:1.25!important;white-space:normal!important
+}
+body.nx-campus-page .nx-custom-select-option:hover,
+body.nx-campus-page .nx-custom-select-option:focus-visible{background:rgba(216,180,74,.09)!important;color:#f4d77f!important;outline:none!important}
+body.nx-campus-page .nx-custom-select-option[aria-selected="true"]{background:rgba(216,180,74,.15)!important;color:#f4d77f!important}
+@media(max-width:720px){body.nx-campus-page .nx-custom-select-menu.nx-custom-select-portal{max-height:42vh!important}}
+
+/* v137 — Campus selects are enhanced by custom-select-v128.js. Keep the native
+   select only as the state/form source so the OS menu can never leak into UI. */
+body.nx-campus-page .nx-campus-setup select.nx-custom-select-native{
+  position:absolute!important;
+  inset:auto!important;
+  width:1px!important;
+  height:1px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  clip:rect(0 0 0 0)!important;
+  clip-path:inset(50%)!important;
+  overflow:hidden!important;
+  appearance:none!important;
+  -webkit-appearance:none!important;
+}
+body.nx-campus-page .nx-campus-setup .nx-custom-select{display:block!important;width:100%!important;min-width:0!important}
+body.nx-campus-page .nx-campus-setup .nx-custom-select-button{
+  display:flex!important;width:100%!important;height:58px!important;min-height:58px!important;
+  padding:0 48px 0 18px!important;align-items:center!important;text-align:left!important;
+  border:1px solid rgba(216,180,74,.34)!important;border-radius:15px!important;
+  background:linear-gradient(180deg,#0d0d0b,#090907)!important;color:#f3efe4!important;
+  font:inherit!important;font-weight:750!important;box-shadow:inset 0 1px rgba(255,255,255,.025)!important;
+}
+body.nx-campus-page .nx-custom-select-menu.nx-custom-select-portal{
+  z-index:12000!important;padding:8px!important;border:1px solid rgba(216,180,74,.42)!important;
+  border-radius:15px!important;background:#090907!important;box-shadow:0 28px 70px rgba(0,0,0,.82)!important;
+  overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:thin!important;
+  scrollbar-color:rgba(216,180,74,.42) transparent!important
+}
+body.nx-campus-page .nx-custom-select-option{
+  min-height:42px!important;padding:9px 12px!important;border:0!important;border-radius:9px!important;
+  background:transparent!important;color:#eee9dc!important;text-align:left!important;font:inherit!important;
+  font-weight:700!important;line-height:1.25!important;white-space:normal!important;cursor:pointer!important
+}
+body.nx-campus-page .nx-custom-select-option:hover,
+body.nx-campus-page .nx-custom-select-option:focus-visible,
+body.nx-campus-page .nx-custom-select-option.is-active{background:rgba(216,180,74,.09)!important;color:#f4d77f!important;outline:none!important}
+body.nx-campus-page .nx-custom-select-option[aria-selected="true"]{background:rgba(216,180,74,.15)!important;color:#f4d77f!important}

@@ -1,0 +1,9 @@
+
+body.ai-clean-page .ai-app{display:grid!important;grid-template-columns:1fr!important;grid-template-rows:104px minmax(0,1fr)!important;height:100dvh!important;min-height:100dvh!important;padding:0!important}
+body.ai-clean-page .topbar{grid-row:1!important;grid-column:1!important;position:relative!important;inset:auto!important;width:100%!important;height:104px!important;min-height:104px!important;margin:0!important;padding:12px 32px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:22px!important;background:#050604!important;border:0!important;border-radius:0!important;box-shadow:none!important;z-index:600!important}
+body.ai-clean-page .chat-shell{grid-row:2!important;grid-column:1!important;position:relative!important;inset:auto!important;height:100%!important;min-height:0!important;margin:0!important;overflow:hidden!important}
+body.ai-clean-page .top-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;margin-left:auto!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+body.ai-clean-page .top-actions>.assistant-global-action{width:56px!important;height:56px!important;min-width:56px!important;padding:0!important;display:grid!important;place-items:center!important;border:0!important;border-radius:16px!important;background:#0a0b0a!important;color:#f4efe2!important;box-shadow:none!important}
+body.ai-clean-page .top-actions>#timerBtn{height:56px!important;min-width:84px!important;border:0!important;border-radius:16px!important;background:#0a0b0a!important;box-shadow:none!important}
+body.ai-clean-page .profile-chip{height:56px!important;border:0!important;border-radius:16px!important;background:#0a0b0a!important;box-shadow:none!important}
+body.ai-clean-page .assistant-side-rail{top:104px!important;height:calc(100dvh - 104px)!important}

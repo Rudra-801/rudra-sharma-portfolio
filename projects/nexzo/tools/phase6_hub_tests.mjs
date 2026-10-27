@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const read=p=>fs.readFileSync(p,'utf8');
+const game=read('Frontend/js/gamification-system.js');
+const hub=read('Frontend/js/engagement-hub.js');
+const rules=read('firestore.rules');
+const css=read('Frontend/css/preferences-runtime.css')+read('Frontend/css/engagement-hub.css');
+const tests=[]; const t=(n,ok)=>tests.push([n,!!ok]);
+t('Catalog contains requested rewards', ['ai-evaluation-credit','mock-test-unlock','revision-pack','streak-freeze','focus-booster','purple-border','scholar-title','chat-glow','diamond-frame'].every(x=>game.includes(`'${x}'`)));
+t('Unavailable AI credit is not sold as fake entitlement', game.includes("'ai-evaluation-credit':{name:'AI Evaluation Credit',cost:120,kind:'unavailable'") && hub.includes("reward-${esc(status?.state||'unavailable')}"));
+t('Purchase is Firestore transactional and read-back confirmed', game.includes('runTransaction') && game.includes("const verify=await fs.getDoc(ref)") && game.includes("reason:'confirmation-failed'"));
+t('Purchase retry has idempotent receipt', game.includes('rewardPurchases') && game.includes('purchasePendingKey') && game.includes('receipt.exists()') && game.includes('tx.create(receiptRef'));
+t('Non-repeatable rewards reject duplicate ownership', game.includes("!item.repeatable&&alreadyOwned") && game.includes("reason:'already-owned'"));
+t('Consumables decrement only after successful effect', game.includes("if(typeof mutate==='function')") && game.indexOf("row.quantity=Math.max(0,Number(row.quantity||0)-1)") > game.indexOf("if(typeof mutate==='function')"));
+t('Mock test unlock has real 10-question workflow', hub.includes('Advanced Mock Test') && hub.includes('exactly 10 multiple choice questions') && hub.includes('questions.length!==10'));
+t('Revision pack consumes after usable AI output', hub.includes("reply||'').trim().length<80") && hub.indexOf("consumeReward('revision-pack'") > hub.indexOf('realAI(`Create a concise'));
+t('Streak freeze mutates canonical streak data transactionally', hub.includes("consumeReward('streak-freeze'") && hub.includes("users',id,'rewards','streaks"));
+t('Focus booster confirms Planner before consuming', hub.includes('const synced=await store.flush()') && hub.indexOf("consumeReward('focus-booster'") > hub.indexOf('const synced=await store.flush()'));
+t('Cosmetics have real runtime CSS effects', ['nx-cosmetic-purple-border','nx-cosmetic-chat-glow','nx-cosmetic-diamond-frame','data-nexzo-title="scholar"'].every(x=>css.includes(x)));
+t('Purchase receipts are owner-only and immutable', rules.includes('match /rewardPurchases/{purchaseId}') && rules.includes('allow update, delete: if false;'));
+let pass=0; for(const [n,ok] of tests){console.log(`${ok?'PASS':'FAIL'} ${n}`);if(ok)pass++;}
+console.log(`\n${pass}/${tests.length} passed`);if(pass!==tests.length)process.exit(1);

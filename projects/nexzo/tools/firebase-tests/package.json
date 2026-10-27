@@ -1,0 +1,10 @@
+{
+  "name": "nexzo-firebase-emulator-tests",
+  "private": true,
+  "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test ../academic_persistence_emulator_tests.mjs"},
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "6.0.0",
+    "firebase": "13.0.0"
+  }
+}

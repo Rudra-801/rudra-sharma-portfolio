@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const js=fs.readFileSync(root+'Frontend/js/academics-controller.js','utf8');
+const html=fs.readFileSync(root+'Frontend/academics.html','utf8');
+const tests=[];const test=(n,c)=>tests.push([n,!!c]);
+test('Updated controller loaded without changing v240 persistence key',html.includes('academics-controller.js?v=20261010-evaluation2')&&js.includes('Academics v243')&&js.includes('nexzo_academics_v240:'));
+test('subject save uses delegated click so modal rerenders cannot drop listener',js.includes("e.target.closest('#saveMySubjectsBtn')")&&js.includes('commitManagerSubjects()'));
+test('subject save applies local persistence immediately, then verifies cloud sync',js.includes('saveLocal({cloud:false});renderAll()')&&js.includes('const persisted=await saveCloudNow()')&&js.includes('synced to your NEXZO account'));
+test('failed save restores previous selection',js.includes('state.selected=previous')&&js.includes('saveLocal({cloud:false})'));
+test('save status is accessible and form values are not cleared before confirmation',html.includes('id="managerSaveStatus"')&&html.includes('aria-live="polite"')&&js.includes('managerDraft'));
+test('empty curriculum cannot be silently saved',js.includes('Choose at least one subject before saving.'));
+test('obsolete visible unit-mastery gate is not loaded',!html.includes('unit-mastery-gate-v237')&&!html.includes('unit-mastery-gate-v236'));
+let pass=0;for(const [n,c] of tests){console.log(`${c?'PASS':'FAIL'} ${n}`);if(c)pass++;}console.log(`\n${pass}/${tests.length} passed`);process.exit(pass===tests.length?0:1);

@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+body {
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+  font-size: 2em;
+  color: white;
+}
+button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 3px 5px 0px 0px rgba(0, 0, 0, 0.75);
+}
+#counter {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#end {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+#end button {
+  background-color: red;
+  padding: 20px 50px 20px 50px;
+  font-family: inherit;
+  font-size: inherit;
+}
+#controlls {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+#controlls div {
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  grid-template-rows: auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin-bottom: 20px;
+}
+#controlls button {
+  width: 100%;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+#controlls button:first-of-type {
+  grid-column: 1/-1;
+}
+@media (min-width: 769px){#controls{opacity:.18;transition:.2s}#controls:hover{opacity:1}}
+/* GamePro embed */
+html,body{width:100%!important;height:100%!important;overflow:hidden!important;background:transparent!important}canvas{display:block!important;width:100%!important;height:100%!important;max-width:100vw!important;max-height:100vh!important}
+
+/* GamePro v10: keep scrolling functional while hiding native scrollbar chrome */
+html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }

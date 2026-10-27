@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" class="nx-auth-pending">
+<head>
+  <link rel="preconnect" href="https://nexzo-backend.onrender.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NEXZO | Study Assistant</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/ai-assistant.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO | Study Assistant">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/ai-assistant.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO | Study Assistant">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+  <style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="css/ai-clean.css?v=141">
+  <link rel="stylesheet" href="css/gamification.css?v=501">
+  <link rel="stylesheet" href="css/final-polish.css?v=65">
+  <link rel="stylesheet" href="css/preferences-runtime.css?v=66">
+  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<script src="js/runtime-observability.js?v=quality-v16" defer></script>
+<script src="js/event-actions.js?v=quality-v16" defer></script>
+  <link rel="stylesheet" href="css/nexzo-v110-polish.css?v=142">
+  <link rel="stylesheet" href="css/consent-interactions-v129.css?v=129">
+  <link rel="stylesheet" href="css/study-assistant-v234.css?v=239-attachments">
+  <link rel="stylesheet" href="css/nx-updates.css?v=1">
+  <link rel="stylesheet" href="css/brand.css?v=5">
+  <link rel="stylesheet" href="css/nexzo-home-shell.css?v=141">
+  <link rel="stylesheet" href="css/assistant-v17-final.css?v=release-20261005b">
+<link rel="stylesheet" href="css/ui-stability-v128.css?v=128">
+  <link rel="stylesheet" href="css/assistant-shell-v144.css?v=144">
+
+  <link rel="stylesheet" href="css/student-digital-twin-v181.css?v=181">
+  <link rel="stylesheet" href="css/nexzo-unified-black-gold-v193.css?v=193">
+  <link rel="stylesheet" href="css/final-chat-community-fix.css?v=20261013">
+</head>
+<body class="ai-clean-page" data-page="ai">
+  <header class="topbar">
+      <div class="brand-group">
+        <button id="navOpen" class="icon-btn" aria-label="Open navigation">☰</button>
+        <span class="nx-brand-lockup"><img class="nx-brand-mark" src="favicon.png" alt=""><span class="nx-brand-copy"><img class="nx-brand-wordmark" src="assets/nexzo-wordmark.svg?v=6" alt="NEXZO"><small>PERSONALIZED RECOMMENDER</small></span></span><span class="divider"></span>
+        <span class="assistant-title-lockup"><b class="assistant-product-name">Study Assistant</b></span>
+        <span id="statusBadge" class="status online">NEXZO AI Ready</span>
+      </div>
+      <div class="top-actions">
+        <button id="historyOpen" class="icon-btn assistant-history-top" type="button" aria-label="Conversation history" title="Conversation history"><span aria-hidden="true">◷</span> History</button>
+        <button id="newChat" class="new-chat compact-new-chat" type="button">＋ New chat</button>
+        <button id="timerBtn" class="timer-btn" title="Focus timer"><span aria-hidden="true">◷</span> <span id="timerText">25:00</span></button>
+        <button id="assistantQuickAction" class="icon-btn assistant-quick-action" type="button" aria-label="Study tools" title="Study tools">✦</button>
+        <div class="profile-chip">
+          <button id="avatarEditBtn" class="profile-avatar-button" type="button" aria-label="Change profile avatar" title="Change profile avatar">
+            <span id="profileAvatar">R</span><i aria-hidden="true">✎</i>
+          </button>
+          <a class="profile-chip-copy" href="profile.html" aria-label="Profile"><b id="profileName">Student</b><small id="profileEmail">NEXZO account</small></a>
+        </div>
+      </div>
+  </header>
+  <div class="ai-app">
+
+    <aside class="assistant-side-rail" aria-label="Study Assistant navigation">
+      <div class="assistant-workspace-nav">
+        <small>STUDY ASSISTANT</small>
+        <button id="railNewChat" type="button" class="assistant-rail-primary">＋ <span>New chat</span></button>
+        <div class="assistant-workspace-grid">
+          <button id="railHistory" type="button"><i>◷</i><span>History</span></button>
+          <button id="railStudyTools" type="button"><i>✦</i><span>Study tools</span></button>
+          <button id="railUploads" type="button"><i>⌇</i><span>Uploads</span></button>
+          <button id="railPetZone" type="button"><i>🐾</i><span>Pet zone</span></button>
+          <a href="planner.html"><i>▦</i><span>Planner</span></a>
+        </div>
+      </div>
+      <div class="assistant-rail-quote" aria-label="Study motivation">
+        <span>“Discipline today,<br>a better you tomorrow.”</span>
+        <small>— NEXZO</small>
+      </div>
+    </aside>
+
+    <main class="chat-shell">
+      <div id="connectionNotice" class="connection-notice" hidden><span>Study service is offline.</span><button id="retryConnection" type="button">Retry request</button></div>
+      <div class="assistant-legacy-actions" hidden aria-hidden="true">
+        <button type="button" data-assistant-rail="new">New</button><button type="button" data-assistant-rail="history">History</button><button type="button" data-assistant-rail="tools">Tools</button><button type="button" data-assistant-rail="uploads">Uploads</button>
+      </div>
+      <div class="study-mode-compat" hidden aria-hidden="true">
+        <button type="button" data-study-mode="chat" tabindex="-1">Chat</button>
+        <button type="button" data-study-mode="explain" tabindex="-1">Explain</button>
+        <button type="button" data-study-mode="notes" tabindex="-1">Notes</button>
+        <button type="button" data-study-mode="quiz" tabindex="-1">Quiz</button>
+        <button type="button" data-study-mode="interview" tabindex="-1">Interview</button>
+      </div>
+      <section id="assistantSearchPanel" class="assistant-search-panel" hidden aria-label="Search the web">
+        <div class="assistant-search-panel-head">
+          <div><small>WEB SEARCH</small><b>Search current information with sources</b></div>
+          <button id="assistantSearchClose" type="button" aria-label="Close search">×</button>
+        </div>
+        <form id="assistantSearchForm" class="assistant-search-form">
+          <span>⌕</span>
+          <input id="assistantSearchInput" type="search" autocomplete="off" placeholder="What do you want to search?" aria-label="Search query">
+          <button type="submit">Search</button>
+        </form>
+        <div class="assistant-search-hints"><button type="button" data-search-hint="Find the latest reliable resources for ">Latest resources</button><button type="button" data-search-hint="Research and compare sources about ">Research topic</button><button type="button" data-search-hint="Find recent news and updates about ">Recent updates</button></div>
+      </section>
+      <div id="projectContextBar" class="project-context-bar" hidden>
+        <span class="project-context-icon">⌘</span>
+        <span><b id="projectContextTitle">Project context</b><small id="projectContextMeta">Files available for follow-up questions</small></span>
+        <button id="clearProjectContext" type="button">Clear</button>
+      </div>
+      <div id="assistantWorkflowBar" class="assistant-workflow-bar" hidden>
+        <div class="workflow-state-icon" aria-hidden="true">🎯</div>
+        <div class="workflow-state-copy">
+          <small>ACTIVE STUDY WORKFLOW</small>
+          <b id="assistantWorkflowTitle">Mock interview</b>
+          <span id="assistantWorkflowMeta">You can ask any unrelated question at any time. The workflow will pause automatically.</span>
+        </div>
+      </div>
+      <section class="nx-study-hero" aria-label="NEXZO Study Assistant overview">
+        <div class="nx-study-hero-copy">
+          <span class="nx-study-kicker"><i></i>NEXZO AI · READY TO STUDY</span>
+          <h1>NEXZO <em>Study Assistant</em></h1>
+          <p>Ask naturally. Explain, solve, plan, quiz, research, upload — NEXZO chooses the right study workflow.</p>
+        </div>
+        <div class="nx-study-hero-actions" aria-label="Study shortcuts">
+          <button type="button" data-hero-prompt="Explain this clearly with an example: ">Explain</button>
+          <button type="button" data-hero-prompt="Solve this step by step: ">Solve</button>
+          <button type="button" data-hero-prompt="Create a realistic study plan for: ">Plan</button>
+          <button type="button" data-hero-prompt="Quiz me interactively on: ">Quiz</button>
+        </div>
+      </section>
+      <section id="messages" class="messages" aria-live="polite">
+        <div class="empty-state assistant-welcome assistant-static-fallback" data-static-assistant-welcome>
+          <div class="welcome-avatar">N</div>
+          <div class="welcome-copy">
+            <p class="welcome-kicker">Your NEXZO Study Assistant</p>
+            <h2>What are we working on?</h2>
+            <p>Type naturally. NEXZO understands whether you need an explanation, solution, quiz, study plan, current research, file analysis, or code help.</p>
+            <div class="welcome-actions">
+              <button type="button" data-welcome-prompt="Explain this concept simply with a real-life example: "><i>💡</i><span><b>Understand a topic</b><small>Clear explanation + example</small></span></button>
+              <button type="button" data-welcome-attach="file"><i>⌇</i><span><b>Solve from a file</b><small>Image, PDF, notes, or project</small></span></button>
+              <button type="button" data-welcome-prompt="Create a realistic revision plan for: "><i>▦</i><span><b>Build a study plan</b><small>Priorities, time, and deadlines</small></span></button>
+              <button type="button" data-welcome-prompt="Quiz me interactively on: "><i>✦</i><span><b>Practice with a quiz</b><small>One checked question at a time</small></span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="readerBar" class="reader-bar" hidden aria-hidden="true">
+        <div class="reader-state"><span class="reader-pulse" aria-hidden="true"></span><span><b>Read aloud</b><small id="readerStatus">Preparing voice…</small></span></div>
+        <label>Voice<select id="readerVoice" aria-label="Read aloud voice"></select></label>
+        <label>Speed<select id="readerRate" aria-label="Read aloud speed"><option value="0.8">0.8×</option><option value="0.95">0.95×</option><option value="1" selected>1×</option><option value="1.1">1.1×</option><option value="1.25">1.25×</option></select></label>
+        <button id="readerPause" type="button" aria-label="Pause reading">Pause</button>
+        <button id="readerStop" type="button" aria-label="Stop reading">Stop</button>
+      </div>
+      <form id="composer" class="composer nexzo-composer">
+        <div id="attachmentPreview" class="attachment-preview" hidden></div>
+        <textarea id="input" rows="1" placeholder="Ask anything or tell me what you want to study…" aria-label="Message"></textarea>
+        <div class="composer-controls">
+          <div class="composer-left-actions">
+            <button type="button" id="plusBtn" class="plus-btn" aria-label="Attachments and tools">＋</button>
+            <button type="button" id="composerSearchBtn" class="composer-search-btn" aria-label="Search the web" title="Search the web">🌐 <span>Search</span></button>
+            <button type="button" id="composerToolsBtn" class="composer-tools-btn" aria-label="More tools" title="More tools">✦ <span>Tools</span></button>
+          </div>
+          <div class="composer-right-actions">
+            <button type="button" id="micBtn" class="mic-btn" aria-label="Voice input" aria-pressed="false">⌁</button>
+            <button type="button" id="stopBtn" class="stop-btn" aria-label="Stop generating" title="Stop generating" hidden><span></span></button>
+            <button type="submit" id="sendBtn" class="send-btn" aria-label="Send">➤</button>
+          </div>
+        </div>
+        <span id="voiceFeedback" class="voice-feedback" role="status" aria-live="polite" hidden>Listening…</span>
+        <div id="attachMenu" class="attach-menu" hidden>
+          <button type="button" data-attach="file"><i>📎</i><span><b>Add files</b><small>ZIP, PDF, Word, PowerPoint, Excel, code or images</small></span></button>
+          <button type="button" data-attach="folder"><i>🗂</i><span><b>Add project folder</b><small>Read supported source files as one project</small></span></button>
+          <button type="button" data-attach="image"><i>🖼</i><span><b>Add images</b><small>Questions, diagrams or screenshots</small></span></button>
+          <button type="button" data-attach="generate-image"><i>✦</i><span><b>Create an image</b><small>Generate posters, diagrams, art or visuals</small></span></button>
+          <button type="button" data-attach="camera"><i>📷</i><span><b>Camera</b><small>Capture a question or whiteboard</small></span></button>
+          <button type="button" data-attach="voice"><i>🎤</i><span><b>Voice input</b><small>Speak in English, Hindi or Hinglish</small></span></button>
+          <button type="button" data-attach="tools"><i>✦</i><span><b>Tools</b><small>Search, research, code, data and creation tools</small></span></button>
+        </div>
+        <input id="fileInput" type="file" accept=".zip,.pdf,.docx,.pptx,.xlsx,.xls,.txt,.md,.json,.js,.mjs,.cjs,.ts,.tsx,.jsx,.html,.css,.py,.java,.c,.cpp,.h,.hpp,.cs,.go,.rs,.php,.rb,.sql,.xml,.yaml,.yml,.toml,.vue,.svelte,.csv,.tsv,image/png,image/jpeg,image/webp" multiple hidden>
+        <input id="projectFolderInput" type="file" webkitdirectory directory multiple hidden>
+        <input id="imageInput" type="file" accept="image/*" multiple hidden>
+        <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+        <input id="assistantAvatarInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      </form>
+      <p class="disclaimer">NEXZO may occasionally provide incomplete information. Verify important academic details.</p>
+    </main>
+
+  </div>
+
+  <div id="backdrop" class="backdrop" hidden></div>
+  <aside id="navDrawer" class="drawer nav-drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <div class="drawer-brand">
+        <span class="nx-brand-lockup"><img class="nx-brand-mark" src="favicon.png" alt=""><span class="nx-brand-copy"><img class="nx-brand-wordmark" src="assets/nexzo-wordmark.svg?v=6" alt="NEXZO"><small>PERSONALIZED RECOMMENDER</small></span></span>
+      </div>
+      <button data-close class="icon-btn drawer-close" aria-label="Close navigation">×</button>
+    </div>
+    <nav aria-label="NEXZO navigation">
+      <a href="Home.html"><span class="nav-icon home">🏠</span><span>Home</span></a>
+      <a href="academics.html"><span class="nav-icon academics">📚</span><span>Academics</span></a>
+      <a class="active" href="ai-assistant.html"><span class="nav-icon assistant">🤖</span><span>Study Assistant</span></a>
+      <a href="career.html"><span class="nav-icon career">💼</span><span>Career</span></a>
+      <a href="planner.html"><span class="nav-icon planner">📅</span><span>Planner</span></a>
+      <a href="community.html"><span class="nav-icon community">👥</span><span>Community</span></a>
+      <a href="dashboard.html"><span class="nav-icon dashboard">📊</span><span>Dashboard</span></a>
+      <a href="nexzo-hub.html"><span class="nav-icon hub">✨</span><span>NEXZO Hub</span></a>
+      <a href="settings.html"><span class="nav-icon settings">⚙</span><span>Settings</span></a>
+      <a href="profile.html"><span class="nav-icon profile">👤</span><span>Profile</span></a>
+    </nav>
+  </aside>
+
+  <section id="historyModal" class="modal" hidden>
+    <div class="modal-card history-card">
+      <div class="modal-head"><div><small>STUDY HISTORY</small><h2>Conversations</h2></div><button data-close class="icon-btn">×</button></div>
+      <input id="historySearch" class="search-input" placeholder="Search conversations…">
+      <div id="historyList" class="history-list"></div>
+      <div class="modal-foot"><button id="clearHistory" class="danger-btn">Clear all</button><button id="historyNew" class="new-chat">＋ New chat</button></div>
+    </div>
+  </section>
+
+  <section id="toolsPanel" class="side-panel" hidden>
+    <div class="panel-head"><div><small>STUDY TOOLS</small><h2>Choose a tool</h2></div><button data-close class="icon-btn">×</button></div>
+    <div class="tools-grid advanced-tools-grid">
+      <button data-advanced="search">🌐<b>Web Search</b><small>Live Google-grounded answers + sources</small></button>
+      <button data-advanced="research">🔎<b>Deep Research</b><small>Multi-source research with citations</small></button>
+      <button data-advanced="code">⌘<b>Run Code</b><small>Execute and inspect code</small></button>
+      <button data-advanced="data">📊<b>Analyze Data</b><small>CSV/JSON calculations + chart insights</small></button>
+      <button data-advanced="artifact:docx">📝<b>Create DOCX</b><small>Generate a Word document</small></button>
+      <button data-advanced="artifact:pdf">📄<b>Create PDF</b><small>Generate a printable PDF</small></button>
+      <button data-advanced="artifact:pptx">🖥<b>Create PPTX</b><small>Generate a PowerPoint deck</small></button>
+      <button data-advanced="artifact:xlsx">▦<b>Create XLSX</b><small>Generate an Excel workbook</small></button>
+      <button data-advanced="library-save">☁<b>Save Files</b><small>Keep attachments in your cloud library</small></button>
+      <button data-advanced="library-list">🗃<b>File Library</b><small>List and download saved files</small></button>
+      <button data-advanced="memory">🧠<b>Memory</b><small>See what NEXZO remembers</small></button>
+      <button data-advanced="schedule">⏱<b>Scheduled Task</b><small>Create a recurring research/check task</small></button>
+      <button data-advanced="connections">🔗<b>Google Actions</b><small>Gmail compose + Calendar quick actions</small></button>
+      <button data-advanced="project-edit">🛠<b>Edit Project</b><small>Modify attached project files + download ZIP</small></button>
+      <button data-advanced="background">⚙<b>Background Agent</b><small>Run research/code as a tracked job</small></button>
+      <button data-advanced="live-voice">🎙<b>Hands-free Voice</b><small>Continuous browser voice conversation</small></button>
+      <button id="assistantAvatarOpen" type="button" title="Change NEXZO assistant avatar">✦<b>Assistant Appearance</b><small>Change the avatar shown beside NEXZO replies</small></button>
+      <button data-tool="Explain this concept clearly with an example" data-mode="explain">💡<b>Explain Concept</b><small>Simple to advanced</small></button>
+      <button data-tool="Create concise structured notes on" data-mode="notes">📒<b>Create Notes</b><small>Revision ready</small></button>
+      <button data-tool="Start an interactive quiz on" data-mode="quiz">📝<b>Generate MCQs</b><small>One checked question at a time</small></button>
+      <button data-tool="Build a practical revision plan for">🗓<b>Revision Plan</b><small>Smart schedule</small></button>
+      <button data-tool="Start a mock interview for" data-mode="interview">🎯<b>Interview Prep</b><small>Questions and feedback</small></button>
+    </div>
+  </section>
+
+
+
+  <section id="assistantAvatarModal" class="modal assistant-avatar-modal" hidden>
+    <div class="modal-card assistant-avatar-card">
+      <div class="modal-head"><div><small>ASSISTANT APPEARANCE</small><h2>Choose NEXZO avatar</h2></div><button data-close class="icon-btn" aria-label="Close assistant avatar picker">×</button></div>
+      <button id="assistantAvatarPreview" class="assistant-avatar-preview" type="button" aria-label="Upload a custom assistant avatar"><img src="favicon.png" alt="Current NEXZO assistant avatar"><i>✎</i></button>
+      <p>This avatar appears beside NEXZO replies. It does not change your Profile photo.</p>
+      <div class="assistant-avatar-actions"><button id="resetAssistantAvatar" type="button">Use NEXZO logo</button><button id="uploadAssistantAvatar" type="button">Upload custom image</button></div>
+    </div>
+  </section>
+
+  <script src="js/firebase-client.js" defer></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script>
+  <script src="js/task-integrity.js?v=2" defer></script>
+<script src="js/data-service.js?v=20261010-evaluation2" defer></script>
+  <script src="js/shared-state.js" defer></script>
+  <script src="js/profile-authority.js?v=sync-v135" defer></script>
+  <script src="js/profile-storage.js?v=140" defer></script>
+  <script src="js/auth-guard.js?v=141" defer></script>
+  <script src="js/config.js?v=production-ai-v160" defer></script>
+  <script src="js/ai-service.js?v=20261010-evaluation2" defer></script>
+  <script src="js/task-store.js?v=152" defer></script>
+  <script src="js/personalization-engine-v152.js?v=203" defer></script>
+  <script src="js/nexzo-intelligence-v203.js?v=203" defer></script>
+  <script src="js/settings-state.js?v=71" defer></script>
+  <script src="js/ai-clean.js?v=release-20261013-attachments" defer></script>
+  
+  <script src="js/assistant-redesign-v230.js?v=release-20261005" defer></script>
+  <script src="js/assistant-redesign-v231.js?v=release-20261005" defer></script>
+  <script src="js/streak-system.js?v=1" defer></script>
+  <script src="js/gamification-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/performance-runtime.js?v=quality-v16" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+  
+  <script src="js/nx-search-fix.js?v=1" defer></script>
+  <script src="js/nexzo-home-shell.js?v=v142-assistant-shared-drawer" defer></script>
+  <script src="js/assistant-shell-v142.js?v=142" defer></script>
+
+
+  <script src="js/student-digital-twin-v181.js?v=20261010-evaluation2" defer></script>
+  <!-- Source-only companion experiment; never active on production hosts. -->
+  <script type="module">
+    if (/^(localhost|127\.0\.0\.1|\[::1\]|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(location.hostname) && new URLSearchParams(location.search).get('companion') !== '0') {
+      import(new URL('experiments/companion/bootstrap.mjs', location.href).href).catch(() => {});
+    }
+  </script>
+</body>
+</html>

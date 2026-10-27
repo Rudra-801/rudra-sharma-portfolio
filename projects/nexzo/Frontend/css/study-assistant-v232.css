@@ -1,0 +1,83 @@
+/* NEXZO Study Assistant v232 — compact slide-in navigation + embedded companion.
+   The companion lives INSIDE the navigation drawer instead of occupying a large card. */
+body.ai-clean-page .assistant-side-rail{position:relative!important;overflow:hidden!important;padding-bottom:118px!important}
+body.ai-clean-page .assistant-primary-nav{overflow-y:auto!important;min-height:0!important;scrollbar-width:none!important;padding-bottom:8px!important}
+body.ai-clean-page .assistant-primary-nav::-webkit-scrollbar{display:none!important}
+
+/* Compact companion anchored inside the drawer */
+body.ai-clean-page .sidebar-pet-dock{
+  position:absolute!important;left:12px!important;bottom:10px!important;width:92px!important;height:100px!important;
+  min-height:0!important;flex:none!important;margin:0!important;border:1px solid rgba(244,200,75,.34)!important;
+  border-radius:20px!important;overflow:visible!important;background:radial-gradient(circle at 50% 72%,rgba(34,211,238,.16),transparent 38%),linear-gradient(180deg,rgba(10,17,27,.94),rgba(6,10,16,.98))!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.48),0 0 22px rgba(244,200,75,.06)!important;z-index:20!important;
+  transform:none!important;transform-origin:bottom left!important
+}
+body.ai-clean-page .sidebar-pet-dock:after{display:none!important}
+body.ai-clean-page .sidebar-pet-visual{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;padding:0!important;border:0!important;background:transparent!important;overflow:hidden!important;border-radius:19px!important}
+body.ai-clean-page .sidebar-pet-visual:before{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:14px;border-radius:50%;background:radial-gradient(ellipse,rgba(244,200,75,.26),transparent 70%);filter:blur(2px)}
+body.ai-clean-page .sidebar-pet-visual img{position:absolute!important;left:4px!important;bottom:-23px!important;width:78px!important;height:auto!important;filter:drop-shadow(0 12px 14px rgba(0,0,0,.58)) saturate(1.12)!important;animation:nxSidebarPetFloatCompact 4.2s ease-in-out infinite!important}
+body.ai-clean-page .sidebar-pet-visual:hover img{transform:translateY(-3px) scale(1.035)!important;filter:drop-shadow(0 14px 18px rgba(0,0,0,.62)) saturate(1.2) brightness(1.06)!important}
+body.ai-clean-page .sidebar-pet-online{left:auto!important;right:8px!important;bottom:8px!important;width:9px!important;height:9px!important;border-width:2px!important}
+body.ai-clean-page .sidebar-pet-bubble{position:absolute!important;left:101px!important;right:auto!important;top:8px!important;width:130px!important;padding:9px 10px!important;border:1px solid rgba(168,85,247,.38)!important;border-radius:13px 13px 13px 4px!important;background:linear-gradient(145deg,rgba(20,20,39,.97),rgba(8,14,24,.97))!important;box-shadow:0 12px 28px rgba(0,0,0,.4)!important;opacity:0!important;transform:translateX(-5px) scale(.98)!important;pointer-events:none!important;transition:.18s ease!important;z-index:30!important}
+body.ai-clean-page .sidebar-pet-dock:hover .sidebar-pet-bubble,body.ai-clean-page .sidebar-pet-dock.is-working .sidebar-pet-bubble{opacity:1!important;transform:translateX(0) scale(1)!important}
+body.ai-clean-page .sidebar-pet-bubble b{font-size:10px!important}.sidebar-pet-bubble span{font-size:8px!important}
+body.ai-clean-page .sidebar-pet-mini-actions{position:absolute!important;left:101px!important;right:auto!important;bottom:7px!important;display:flex!important;flex-direction:row!important;gap:5px!important;opacity:0!important;transform:translateX(-5px)!important;pointer-events:none!important;transition:.18s ease!important}
+body.ai-clean-page .sidebar-pet-dock:hover .sidebar-pet-mini-actions{opacity:1!important;transform:translateX(0)!important;pointer-events:auto!important}
+body.ai-clean-page .sidebar-pet-mini-actions button{width:30px!important;height:30px!important;border-radius:10px!important;font-size:11px!important}
+@keyframes nxSidebarPetFloatCompact{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* Drawer should feel like a drawer, not a permanent giant pet panel. */
+@media(min-width:861px){
+ body.ai-clean-page .assistant-side-rail{border-right:1px solid rgba(244,200,75,.17)!important}
+}
+@media(max-width:860px){
+ body.ai-clean-page .assistant-side-rail{padding-bottom:116px!important}
+ body.ai-clean-page .sidebar-pet-dock{left:14px!important;bottom:12px!important}
+}
+
+/* Keep the right companion intelligence panel independent; hide it at laptop widths before it crushes chat. */
+@media(max-width:1380px){body.ai-clean-page .sidebar-pet-dock{transform:none!important}}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

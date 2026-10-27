@@ -1,0 +1,137 @@
+
+/* V215 community finish-stage UI polish */
+.community-page .nx-group-create-v214{
+  max-width:920px!important;
+  padding:28px!important;
+  border-radius:28px!important;
+  border:1px solid rgba(139,92,246,.28)!important;
+  background:
+    radial-gradient(circle at 12% 6%,rgba(139,92,246,.10),transparent 26%),
+    radial-gradient(circle at 92% 10%,rgba(34,211,238,.07),transparent 23%),
+    linear-gradient(145deg,rgba(15,18,28,.98),rgba(5,8,13,.98))!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+.community-page .nx-create-head{align-items:flex-start!important;gap:15px!important}
+.community-page .nx-create-icon{
+  width:52px!important;height:52px!important;border-radius:16px!important;
+  display:grid!important;place-items:center!important;
+  background:linear-gradient(145deg,rgba(139,92,246,.18),rgba(34,211,238,.09))!important;
+  border:1px solid rgba(139,92,246,.28)!important;font-size:24px!important
+}
+.community-page .nx-group-create-v214 h2{font-size:30px!important;letter-spacing:-.03em!important}
+.community-page .nx-create-grid{gap:16px!important}
+.community-page .nx-create-field input,.community-page .nx-create-field textarea{
+  border:1px solid rgba(255,255,255,.09)!important;border-radius:16px!important;
+  background:#070a0f!important;color:#f6f8fb!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.02)!important
+}
+.community-page .nx-create-field input:focus,.community-page .nx-create-field textarea:focus{
+  border-color:rgba(34,211,238,.46)!important;box-shadow:0 0 0 3px rgba(34,211,238,.08)!important
+}
+.community-page .nx-group-privacy-v214 label{
+  min-height:112px!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:18px!important;
+  background:rgba(9,13,19,.88)!important;transition:.18s ease!important
+}
+.community-page .nx-group-privacy-v214 label:hover{transform:translateY(-2px)!important;border-color:rgba(139,92,246,.32)!important}
+.community-page .nx-group-privacy-v214 label:has(input:checked){
+  border-color:rgba(139,92,246,.65)!important;
+  background:linear-gradient(145deg,rgba(139,92,246,.14),rgba(14,20,30,.94))!important;
+  box-shadow:0 14px 34px rgba(64,32,130,.14)!important
+}
+.community-page .nx-create-foot{
+  margin-top:22px!important;padding-top:18px!important;border-top:1px solid rgba(255,255,255,.065)!important
+}
+.community-page .nx-create-foot .btn.primary{
+  min-width:190px!important;min-height:50px!important;border-radius:15px!important;
+  background:linear-gradient(135deg,#f6d254,#d9a715)!important;color:#160f02!important;font-weight:900!important;
+  box-shadow:0 12px 30px rgba(217,167,21,.17)!important
+}
+.community-page .nx-create-foot .btn.primary:hover{transform:translateY(-2px)!important;filter:brightness(1.04)}
+.nx-comment-delete{
+  margin-left:auto!important;width:30px!important;height:30px!important;border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:9px!important;background:rgba(255,255,255,.03)!important;color:#aeb7c3!important;cursor:pointer!important
+}
+.nx-comment-delete:hover{border-color:rgba(239,68,68,.38)!important;color:#ff8a8a!important;background:rgba(239,68,68,.08)!important}
+
+/* v240 accessibility/performance */
+.group-pro-card img,.nx-workspace-avatar img,.nx-group-avatar img,.nx-info-avatar img{content-visibility:auto}
+@media(prefers-reduced-motion:reduce){.community-page *, .community-page *::before,.community-page *::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+/* v244 functional group list controls */
+.nx-group-inline-actions{display:flex;gap:8px;align-items:center;margin-left:auto}.nx-group-inline-actions button{white-space:nowrap}.nx-group-inline-danger{border-color:rgba(255,90,110,.6)!important;color:#ff8a99!important;background:rgba(120,20,35,.14)!important}.nx-group-inline-danger:hover{background:rgba(160,25,45,.24)!important}.nx-group-inline-secondary{border-color:rgba(160,170,200,.38)!important;color:#cbd3e4!important}.nx-group-owned-badge{display:inline-flex;margin-left:8px;padding:2px 7px;border:1px solid rgba(244,196,48,.45);border-radius:999px;font-size:10px;color:#f4c430;vertical-align:middle}.group-pro-card{grid-template-columns:auto minmax(0,1fr) auto!important}.group-pro-card>.nx-group-inline-actions{grid-column:3;grid-row:1 / span 2}.group-pro-card>.nx-group-list-preview{grid-column:2 / 4}@media(max-width:700px){.nx-group-inline-actions{flex-wrap:wrap;justify-content:flex-end}.nx-group-inline-actions button{min-height:36px;padding:7px 10px}.nx-group-owned-badge{display:none}}
+
+/* V158 — Study Group creation dialog: compact, centered, scroll-safe */
+.community-page .nx-pro-modal:has(.nx-group-create-v214){
+  padding:24px!important;align-items:center!important;justify-content:center!important;
+  background:rgba(0,2,7,.78)!important;backdrop-filter:blur(14px)!important;overflow:hidden!important;
+}
+.community-page .nx-pro-modal-card:has(.nx-group-create-v214){
+  width:min(780px,calc(100vw - 40px))!important;max-width:780px!important;
+  max-height:min(820px,calc(100dvh - 40px))!important;padding:0!important;overflow:hidden!important;
+  border-radius:24px!important;border:1px solid rgba(139,92,246,.30)!important;
+  background:#090d15!important;box-shadow:0 32px 100px rgba(0,0,0,.72),0 0 45px rgba(124,58,237,.10)!important;
+}
+.community-page .nx-pro-modal-card:has(.nx-group-create-v214)>.modal-close{
+  position:absolute!important;top:18px!important;right:18px!important;z-index:8!important;width:40px!important;height:40px!important;
+  border-radius:12px!important;background:#121824!important;border:1px solid rgba(255,255,255,.10)!important;color:#fff!important;
+}
+.community-page .nx-group-create-v214{
+  max-width:none!important;width:100%!important;max-height:min(820px,calc(100dvh - 40px))!important;overflow:auto!important;
+  padding:28px 30px 26px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  scrollbar-width:none!important;
+}
+.community-page .nx-group-create-v214::-webkit-scrollbar{display:none!important}
+.community-page .nx-group-create-v214 .nx-create-head{padding-right:52px!important;padding-bottom:20px!important;margin-bottom:22px!important;border-bottom:1px solid rgba(255,255,255,.07)!important}
+.community-page .nx-group-create-v214 .nx-create-head h2{margin:3px 0 5px!important;font-size:28px!important;line-height:1.08!important}
+.community-page .nx-group-create-v214 .nx-modal-copy{margin:0!important;color:#8e9aab!important;font-size:13px!important}
+.community-page .nx-group-create-v214 .nx-create-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:18px!important}
+.community-page .nx-group-create-v214 .nx-create-wide{grid-column:1/-1!important}
+.community-page .nx-group-create-v214 .nx-create-field{margin:0!important;min-width:0!important}
+.community-page .nx-group-create-v214 .nx-create-field>span{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin-bottom:8px!important;color:#eef2f7!important;font-size:13px!important}
+.community-page .nx-group-create-v214 .nx-create-field em,.community-page .nx-group-create-v214 .nx-create-field small{font-style:normal!important;font-size:11px!important;color:#8d98aa!important}
+.community-page .nx-group-create-v214 .nx-create-field em{padding:4px 8px!important;border-radius:999px!important;color:#f6d254!important;background:rgba(246,210,84,.10)!important}
+.community-page .nx-group-create-v214 input:not([type=file]),.community-page .nx-group-create-v214 textarea{min-height:50px!important;padding:13px 15px!important;font-size:14px!important}
+.community-page .nx-group-create-v214 textarea{min-height:105px!important;resize:vertical!important}
+.community-page .nx-group-create-v214 .nx-logo-pick-row{display:grid!important;grid-template-columns:64px minmax(0,1fr) auto!important;gap:14px!important;align-items:center!important;padding:12px!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:16px!important;background:#070a0f!important}
+.community-page .nx-group-create-v214 .nx-create-logo-preview{width:58px!important;height:58px!important;border-radius:15px!important}
+.community-page .nx-group-create-v214 input[type=file]{width:100%!important;min-width:0!important;padding:8px!important;border-radius:12px!important;border:1px solid rgba(255,255,255,.08)!important;background:#0d121b!important;color:#9ba6b6!important;font-size:12px!important}
+.community-page .nx-group-create-v214 input[type=file]::file-selector-button{margin-right:10px!important;padding:8px 11px!important;border:0!important;border-radius:9px!important;background:#1a2230!important;color:#f4f6fa!important;font-weight:700!important;cursor:pointer!important}
+.community-page .nx-group-create-v214 [data-clear-create-logo]{width:auto!important;margin:0!important;min-height:38px!important;padding:8px 12px!important;border-radius:11px!important;background:#121824!important;color:#d6deea!important;border:1px solid rgba(255,255,255,.10)!important}
+.community-page .nx-group-create-v214 #v32GroupLogoStatus{display:block!important;margin:7px 2px 0!important;color:#7f8a9a!important}
+.community-page .nx-group-create-v214 .nx-create-privacy-title{margin-top:22px!important}
+.community-page .nx-group-create-v214 .nx-create-foot{position:sticky!important;bottom:-26px!important;z-index:4!important;margin:22px -30px -26px!important;padding:16px 30px 20px!important;background:linear-gradient(180deg,rgba(9,13,21,.65),#090d15 32%)!important}
+@media(max-width:680px){
+ .community-page .nx-pro-modal:has(.nx-group-create-v214){padding:0!important}
+ .community-page .nx-pro-modal-card:has(.nx-group-create-v214){width:100vw!important;max-width:none!important;max-height:100dvh!important;height:100dvh!important;border-radius:0!important}
+ .community-page .nx-group-create-v214{max-height:100dvh!important;padding:22px 18px!important}
+ .community-page .nx-group-create-v214 .nx-create-grid{grid-template-columns:1fr!important}
+ .community-page .nx-group-create-v214 .nx-create-wide{grid-column:auto!important}
+ .community-page .nx-group-create-v214 .nx-logo-pick-row{grid-template-columns:58px 1fr!important}
+ .community-page .nx-group-create-v214 [data-clear-create-logo]{grid-column:1/-1!important;width:100%!important}
+ .community-page .nx-group-create-v214 .nx-create-foot{margin:20px -18px -22px!important;padding:15px 18px 18px!important;flex-direction:column!important;align-items:stretch!important}
+}
+
+/* V159 — NEXZO black/gold Create Study Group dialog */
+.community-page .nx-pro-modal:has(.nx-group-create-v214){background:rgba(0,0,0,.82)!important;backdrop-filter:blur(16px)!important}
+.community-page .nx-pro-modal-card:has(.nx-group-create-v214){width:min(820px,calc(100vw - 40px))!important;max-width:820px!important;border:1px solid rgba(220,167,21,.46)!important;background:linear-gradient(155deg,#090b0d 0%,#050607 68%,#0c0902 100%)!important;box-shadow:0 34px 110px rgba(0,0,0,.82),0 0 54px rgba(220,167,21,.10)!important}
+.community-page .nx-pro-modal-card:has(.nx-group-create-v214)>.modal-close{background:#0c0e10!important;border-color:rgba(220,167,21,.25)!important;color:#fff!important}
+.community-page .nx-group-create-v214{padding:30px 32px 28px!important}
+.community-page .nx-group-create-v214 .nx-create-head{grid-template-columns:66px 1fr!important;gap:18px!important}
+.community-page .nx-group-create-v214 .nx-create-icon{width:62px!important;height:62px!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(232,181,47,.18),rgba(232,181,47,.035))!important;border-color:rgba(232,181,47,.38)!important;box-shadow:inset 0 1px rgba(255,255,255,.05),0 12px 34px rgba(0,0,0,.32)!important}
+.community-page .nx-group-create-v214 .nx-modal-kicker{color:#e8b52f!important;letter-spacing:.15em!important}
+.community-page .nx-group-create-v214 .nx-create-head h2{font-size:30px!important;color:#f7f3e8!important}
+.community-page .nx-group-create-v214 .nx-modal-copy{color:#999b9e!important}
+.community-page .nx-group-create-v214 input:not([type=file]),.community-page .nx-group-create-v214 textarea{background:#050606!important;border-color:rgba(232,181,47,.22)!important;color:#f4f0e5!important}
+.community-page .nx-group-create-v214 input:focus,.community-page .nx-group-create-v214 textarea:focus{border-color:rgba(232,181,47,.72)!important;box-shadow:0 0 0 3px rgba(232,181,47,.08),0 0 22px rgba(232,181,47,.06)!important}
+.community-page .nx-group-create-v214 .nx-logo-pick-row{background:#060708!important;border-color:rgba(232,181,47,.20)!important}
+.community-page .nx-group-create-v214 input[type=file]{background:#090a0b!important;border-color:rgba(232,181,47,.18)!important}
+.community-page .nx-group-create-v214 input[type=file]::file-selector-button{background:linear-gradient(135deg,#3a2b08,#161106)!important;border:1px solid rgba(232,181,47,.42)!important;color:#f4d777!important}
+.community-page .nx-group-create-v214 [data-clear-create-logo]{background:#0c0e10!important;border-color:rgba(232,181,47,.20)!important;color:#eee6d1!important}
+.community-page .nx-group-privacy-v214>label{background:#08090a!important;border-color:rgba(232,181,47,.14)!important}
+.community-page .nx-group-privacy-v214>label:has(input:checked){border-color:#dca715!important;background:linear-gradient(145deg,rgba(220,167,21,.15),rgba(12,10,5,.94))!important;box-shadow:inset 0 0 0 1px rgba(245,201,77,.09),0 12px 30px rgba(0,0,0,.28),0 0 20px rgba(220,167,21,.06)!important}
+.community-page .nx-group-privacy-v214 .nx-privacy-icon{background:rgba(232,181,47,.08)!important;border-color:rgba(232,181,47,.18)!important}
+.community-page .nx-group-create-v214 .nx-create-foot{background:linear-gradient(180deg,rgba(6,7,8,.7),#060708 32%)!important;border-top:1px solid rgba(232,181,47,.10)!important}
+.community-page .nx-create-actions{display:flex;gap:10px;align-items:center}
+.community-page .nx-create-cancel{min-width:112px!important;min-height:46px!important;border-radius:13px!important;background:#0b0d10!important;border:1px solid rgba(255,255,255,.10)!important;color:#eee!important}
+.community-page .nx-create-foot .btn.primary{min-width:230px!important;background:linear-gradient(135deg,#f2c94c,#d59b0b)!important;border-color:#f0c54a!important;box-shadow:0 12px 30px rgba(213,155,11,.20),0 0 20px rgba(242,201,76,.08)!important}
+@media(max-width:680px){.community-page .nx-create-actions{width:100%}.community-page .nx-create-actions>*{flex:1}.community-page .nx-group-create-v214{padding:22px 18px!important}}

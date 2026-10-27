@@ -1,0 +1,22 @@
+NODE_ENV=production
+PORT=10000
+APP_VERSION=2.4.0-v234
+GEMINI_API_KEY=<set in Render dashboard>
+GEMINI_MODEL=gemini-3.8-flash
+GROQ_API_KEY=<set in Render dashboard>
+GROQ_MODEL=openai/gpt-oss-120b
+FIREBASE_PROJECT_ID=personalized-recommendersystem
+FIREBASE_STORAGE_BUCKET=personalized-recommendersystem.firebasestorage.app
+FIREBASE_SERVICE_ACCOUNT_JSON=<single-line service account JSON>
+ALLOWED_ORIGINS=https://personalized-recommendersystem.web.app
+AI_RATE_LIMIT_PER_MINUTE=20
+AI_RATE_LIMIT_PER_DAY=500
+
+# Native NEXZO image generation / editing
+GEMINI_IMAGE_MODEL=gemini-3.1-flash-image
+
+# V145 optional full Gmail + Calendar OAuth
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_OAUTH_REDIRECT_URI=https://YOUR-RENDER-BACKEND.onrender.com/api/google/callback
+GOOGLE_OAUTH_TOKEN_SECRET=generate-a-long-random-secret-at-least-32-characters

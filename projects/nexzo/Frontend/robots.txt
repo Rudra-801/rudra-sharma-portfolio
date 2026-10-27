@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /profile.html
+Disallow: /settings.html
+Disallow: /planner.html
+Disallow: /dashboard.html
+Disallow: /nexzo-hub.html
+Disallow: /community.html
+Disallow: /ai-assistant.html
+Sitemap: https://personalized-recommendersystem.web.app/sitemap.xml

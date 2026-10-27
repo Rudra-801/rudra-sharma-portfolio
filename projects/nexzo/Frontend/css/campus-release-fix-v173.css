@@ -1,0 +1,20 @@
+/* NEXZO Campus release fix v173 — compact mast, unclipped hero, stable live-feed states. */
+body.nx-campus-page{overflow-x:hidden!important}
+body.nx-campus-page main.main{display:block!important;padding-top:0!important;overflow:visible!important}
+body.nx-campus-page .nx-page-mast{min-height:0!important;height:auto!important;padding:22px clamp(42px,7vw,128px) 14px!important;margin:0!important;overflow:visible!important}
+body.nx-campus-page .nx-page-mast .nx-page-index{margin:0 0 8px!important;font-size:10px!important;letter-spacing:.2em!important}
+body.nx-campus-page .nx-page-mast h1{margin:0!important;font-size:clamp(46px,6vw,92px)!important;line-height:.88!important;letter-spacing:-.055em!important;overflow:visible!important}
+body.nx-campus-page .nx-page-rule{width:min(760px,100%)!important;margin-top:16px!important}
+body.nx-campus-page .nx-campus-wrap{padding-top:8px!important}
+body.nx-campus-page .nx-campus-hero{overflow:visible!important;padding-top:8px!important}
+body.nx-campus-page .nx-campus-hero small{display:block!important;margin:0 0 8px!important;line-height:1.2!important;overflow:visible!important}
+body.nx-campus-page .nx-live-badge{max-width:100%!important;flex-wrap:wrap!important}
+body.nx-campus-page .nx-campus-search span{min-height:1.5em!important}
+body.nx-campus-page .nx-campus-refresh:disabled{opacity:.72!important;color:#17130a!important}
+body.nx-campus-page .nx-campus-loading{min-height:120px!important}
+@media(max-width:720px){
+ body.nx-campus-page .nx-page-mast{padding:18px 18px 12px!important}
+ body.nx-campus-page .nx-page-mast h1{font-size:clamp(42px,16vw,68px)!important}
+ body.nx-campus-page .nx-page-rule b{font-size:8px!important}
+ body.nx-campus-page .nx-campus-wrap{padding-top:4px!important}
+}

@@ -1,0 +1,149 @@
+/* NEXZO Living Companion v1 — isolated overlay; no global layout redesign. */
+body.ai-clean-page #nexzoCompanion[data-layout="living"]{
+  --pet-accent:#5bdcff;--pet-accent2:#b66cff;--pet-look-x:0px;--pet-look-y:0px;
+  display:block!important;visibility:visible!important;pointer-events:auto!important;
+  position:fixed!important;right:22px!important;bottom:92px!important;top:auto!important;
+  width:176px!important;height:202px!important;padding:0!important;overflow:visible!important;
+  border:0!important;background:transparent!important;box-shadow:none!important;z-index:320!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"]:before,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-panel-head,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-roster,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-quick-tools,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-identity,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-xp,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-traits,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-actions{display:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-card{display:block!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-scene{position:relative!important;height:176px!important;overflow:visible!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage{
+  position:absolute!important;right:0!important;bottom:0!important;left:auto!important;top:auto!important;width:142px!important;height:142px!important;
+  min-height:0!important;flex-basis:auto!important;border-radius:50%!important;overflow:hidden!important;cursor:pointer!important;
+  border:1px solid color-mix(in srgb,var(--pet-accent) 38%,rgba(255,255,255,.12))!important;
+  background:radial-gradient(circle at 50% 40%,rgba(91,220,255,.18),transparent 55%),linear-gradient(160deg,rgba(13,18,29,.94),rgba(3,5,9,.98))!important;
+  box-shadow:0 18px 55px rgba(0,0,0,.6),0 0 30px rgba(91,220,255,.12),inset 0 1px rgba(255,255,255,.08)!important;
+  transform:translate3d(var(--pet-look-x),var(--pet-look-y),0);transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage:focus-visible{outline:2px solid #f4c84b!important;outline-offset:4px!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-shadow{position:absolute!important;left:27px!important;right:27px!important;bottom:7px!important;height:13px!important;border-radius:50%!important;background:rgba(0,0,0,.72)!important;filter:blur(7px)!important;transform:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-glow{position:absolute!important;inset:6px!important;border-radius:50%!important;background:radial-gradient(circle at 50% 55%,rgba(91,220,255,.22),rgba(182,108,255,.11) 45%,transparent 70%)!important;filter:none!important;transform:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art{display:block!important;position:absolute!important;inset:-3px -5px auto!important;width:150px!important;height:150px!important;object-fit:cover!important;object-position:50% 55%!important;border-radius:50%!important;filter:saturate(1.08) contrast(1.04)!important;transform:translateZ(0) scale(1.03)!important;transform-origin:50% 72%!important;will-change:transform!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-status-dot{position:absolute!important;right:12px!important;bottom:14px!important;width:10px!important;height:10px!important;border-radius:50%!important;background:#43e6a0!important;border:2px solid #091019!important;box-shadow:0 0 12px rgba(67,230,160,.72)!important;transform:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-presence{display:flex!important;position:absolute!important;right:3px!important;bottom:-2px!important;width:auto!important;min-height:24px!important;margin:0!important;padding:3px 8px!important;border-radius:999px!important;background:rgba(5,9,14,.92)!important;border:1px solid rgba(244,200,75,.2)!important;color:#dce7f3!important;font-size:8px!important;box-shadow:0 8px 24px rgba(0,0,0,.4)!important;opacity:.88!important;transform:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-presence>i{display:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech{display:block!important;position:absolute!important;right:84px!important;top:-4px!important;width:150px!important;min-height:0!important;padding:8px 10px!important;border-radius:14px 14px 3px 14px!important;background:rgba(10,14,23,.96)!important;border:1px solid rgba(182,108,255,.28)!important;box-shadow:0 14px 35px rgba(0,0,0,.45)!important;opacity:0!important;transform:translateY(5px) scale(.97)!important;pointer-events:none!important;transition:.22s ease!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"].pet-has-speech .pet-speech{opacity:1!important;transform:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech b{font-size:10px!important;line-height:1.35!important;color:#f5f7fb!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech small{display:none!important}
+
+@keyframes nxLivingBreathe{0%,100%{transform:translateY(0) scale(1.03)}50%{transform:translateY(-2px) scale(1.045)}}
+@keyframes nxLivingBlink{0%,38%,100%{filter:saturate(1.08) contrast(1.04)}44%,52%{filter:brightness(.78) saturate(.92)}}
+@keyframes nxLivingHappy{0%,100%{transform:translateY(0) rotate(0) scale(1.03)}35%{transform:translateY(-7px) rotate(-2deg) scale(1.055)}70%{transform:translateY(-2px) rotate(2deg) scale(1.04)}}
+@keyframes nxLivingThink{0%,100%{transform:translateY(0) rotate(-1deg) scale(1.03)}50%{transform:translateY(-3px) rotate(1.5deg) scale(1.035)}}
+@keyframes nxLivingSleep{0%,100%{transform:translateY(4px) rotate(-4deg) scale(.99)}50%{transform:translateY(6px) rotate(-5deg) scale(.985)}}
+@keyframes nxLivingPlay{0%,100%{transform:translateY(0) rotate(0) scale(1.03)}25%{transform:translateY(-9px) rotate(-4deg) scale(1.06)}55%{transform:translateY(-3px) rotate(5deg) scale(1.04)}80%{transform:translateY(-7px) rotate(-2deg) scale(1.055)}}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art{animation:nxLivingBreathe 3.6s ease-in-out infinite!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="blink"] .pet-art{animation:nxLivingBlink .6s ease!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="happy"] .pet-art,
+body.ai-clean-page #nexzoCompanion[data-living-state="proud"] .pet-art{animation:nxLivingHappy 1.15s ease!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="celebrate"] .pet-art{animation:nxLivingPlay .7s ease 3!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="thinking"] .pet-art,
+body.ai-clean-page #nexzoCompanion[data-living-state="curious"] .pet-art{animation:nxLivingThink 1.7s ease-in-out infinite!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="sleepy"] .pet-art,
+body.ai-clean-page #nexzoCompanion[data-living-state="sleeping"] .pet-art{animation:nxLivingSleep 3s ease-in-out infinite!important;filter:saturate(.82) brightness(.86)!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="playing"] .pet-art,
+body.ai-clean-page #nexzoCompanion[data-living-state="eating"] .pet-art{animation:nxLivingPlay .9s ease 2!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="look-left"] .pet-art{transform:translateX(-5px) rotate(-1.5deg) scale(1.03)!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="look-right"] .pet-art{transform:translateX(5px) rotate(1.5deg) scale(1.03)!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="stretch"] .pet-art{transform:translateY(-4px) scale(1.055,1.02)!important}
+body.ai-clean-page #nexzoCompanion[data-living-state="supportive"] .pet-stage{box-shadow:0 18px 55px rgba(0,0,0,.6),0 0 30px rgba(182,108,255,.2)!important}
+
+@media(max-width:900px){body.ai-clean-page #nexzoCompanion[data-layout="living"]{right:10px!important;bottom:82px!important;width:108px!important;height:128px!important}body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-scene{height:108px!important}body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage{width:96px!important;height:96px!important}body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art{width:102px!important;height:102px!important}body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech{right:58px!important;width:132px!important}.pet-presence{display:none!important}}
+@media(prefers-reduced-motion:reduce){body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art{animation:none!important;transition:none!important}body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage{transition:none!important;transform:none!important}}
+
+/* V2 — articulated original NEXZO creature. No image is used for the active pet. */
+.pet-art-fallback{display:none!important}
+.nyro-creature{--nx-eye-x:0px;--nx-eye-y:0px;position:absolute;width:142px;height:154px;left:50%;top:50%;transform:translate(-50%,-50%);transform-style:preserve-3d;filter:drop-shadow(0 16px 18px rgba(0,0,0,.5));pointer-events:none;isolation:isolate}
+.nyro-aura{position:absolute;inset:26px 12px 8px;border-radius:50%;background:radial-gradient(circle at 50% 55%,rgba(66,224,255,.2),rgba(139,92,246,.08) 42%,transparent 70%);filter:blur(12px);animation:nyroAura 4.8s ease-in-out infinite}
+.nyro-head{position:absolute;z-index:8;width:92px;height:72px;left:25px;top:20px;border-radius:46% 46% 42% 42%/48% 48% 44% 44%;background:radial-gradient(circle at 35% 18%,#f6f8ff 0 5%,#aab5d4 17%,#5f6c91 45%,#202942 76%,#11182a 100%);border:1px solid rgba(198,222,255,.55);box-shadow:inset 0 6px 10px rgba(255,255,255,.18),inset 0 -12px 18px rgba(0,0,0,.45),0 0 0 2px rgba(95,200,255,.08),0 9px 16px rgba(0,0,0,.35);transform-origin:50% 82%;animation:nyroHeadIdle 5.2s ease-in-out infinite}
+.nyro-face{position:absolute;inset:14px 10px 10px;border-radius:44% 44% 40% 40%;background:linear-gradient(160deg,#071323,#02060d 65%,#09111c);border:1px solid rgba(85,223,255,.3);box-shadow:inset 0 0 20px rgba(0,0,0,.8),0 0 12px rgba(42,210,255,.16)}
+.nyro-eye{position:absolute;top:15px;width:18px;height:25px;border-radius:52%;background:radial-gradient(circle at 45% 35%,#fff 0 5%,#bffbff 7%,#38e9ff 25%,#0087ff 58%,#05346c 76%,#00162d 100%);box-shadow:0 0 8px #21dfff,0 0 18px rgba(0,181,255,.55);overflow:hidden;transform:translate(var(--nx-eye-x),var(--nx-eye-y));transition:transform .12s ease-out, height .12s ease, top .12s ease}
+.nyro-eye-l{left:15px}.nyro-eye-r{right:15px}.nyro-eye i{position:absolute;width:5px;height:8px;border-radius:50%;background:#fff;left:4px;top:3px;opacity:.95}.nyro-eye b{position:absolute;width:4px;height:4px;border-radius:50%;background:#07111e;right:4px;bottom:5px;opacity:.75}
+.nyro-mouth{position:absolute;width:14px;height:6px;border-bottom:2px solid rgba(120,241,255,.9);border-radius:0 0 12px 12px;left:50%;bottom:7px;transform:translateX(-50%);filter:drop-shadow(0 0 3px #1ed9ff);transition:.2s}
+.nyro-cheek{position:absolute;z-index:10;width:9px;height:4px;border-radius:50%;background:#c16bff;bottom:16px;opacity:.45;filter:blur(.3px);box-shadow:0 0 7px #b76cff}.nyro-cheek-l{left:16px}.nyro-cheek-r{right:16px}
+.nyro-ear{position:absolute;z-index:4;width:32px;height:45px;top:2px;background:linear-gradient(145deg,#9aa9d0,#354263 54%,#141b31);clip-path:polygon(50% 0,100% 100%,0 78%);filter:drop-shadow(0 3px 3px rgba(0,0,0,.4));transform-origin:50% 85%;animation:nyroEar 6.4s ease-in-out infinite}.nyro-ear i{position:absolute;inset:9px 8px 8px;background:linear-gradient(#54eaff,#8b5cf6);clip-path:inherit;opacity:.7;filter:blur(.2px)}.nyro-ear-l{left:23px;transform:rotate(-18deg)}.nyro-ear-r{right:23px;transform:scaleX(-1) rotate(-18deg);animation-delay:-2.8s}
+.nyro-body{position:absolute;z-index:5;width:68px;height:69px;left:37px;top:76px;border-radius:44% 44% 50% 50%;background:radial-gradient(circle at 36% 16%,#dbe3f7 0 4%,#7582a8 18%,#35415f 52%,#171e33 85%);border:1px solid rgba(194,218,255,.36);box-shadow:inset 0 5px 9px rgba(255,255,255,.14),inset 0 -10px 14px rgba(0,0,0,.4),0 8px 14px rgba(0,0,0,.35);transform-origin:50% 20%;animation:nyroBreathe 3.8s ease-in-out infinite}
+.nyro-belly{position:absolute;width:42px;height:39px;left:13px;top:20px;border-radius:50%;background:radial-gradient(circle at 50% 35%,rgba(61,229,255,.18),rgba(15,24,42,.75) 68%);border:1px solid rgba(81,218,255,.16)}
+.nyro-core{position:absolute;z-index:3;width:20px;height:20px;left:24px;top:17px;border-radius:50%;background:conic-gradient(from 20deg,#35e9ff,#755cff,#f5ca45,#35e9ff);padding:2px;box-shadow:0 0 10px rgba(50,224,255,.55);animation:nyroCore 5s linear infinite}.nyro-core i{display:block;width:100%;height:100%;border-radius:50%;background:#07111d;box-shadow:inset 0 0 7px #36eaff}
+.nyro-arm,.nyro-leg{position:absolute;z-index:3;background:linear-gradient(150deg,#7f8db2,#303b5b 58%,#151c31);border:1px solid rgba(187,216,255,.28);box-shadow:inset 2px 2px 5px rgba(255,255,255,.12),0 5px 8px rgba(0,0,0,.35)}
+.nyro-arm{width:20px;height:48px;top:82px;border-radius:50% 50% 55% 55%;transform-origin:50% 10%}.nyro-arm i,.nyro-leg i{position:absolute;width:14px;height:11px;left:2px;bottom:-3px;border-radius:50%;background:linear-gradient(#9cadd1,#394765);box-shadow:0 2px 4px rgba(0,0,0,.4)}.nyro-arm-l{left:23px;transform:rotate(18deg);animation:nyroArmL 4.2s ease-in-out infinite}.nyro-arm-r{right:23px;transform:rotate(-18deg);animation:nyroArmR 4.2s ease-in-out infinite}
+.nyro-leg{width:24px;height:28px;top:124px;border-radius:48% 48% 55% 55%}.nyro-leg-l{left:40px;transform:rotate(5deg)}.nyro-leg-r{right:40px;transform:rotate(-5deg)}
+.nyro-tail{position:absolute;z-index:2;width:54px;height:20px;right:3px;top:112px;border-radius:50%;border-top:10px solid #536180;border-right:8px solid #27324e;transform:rotate(24deg);transform-origin:4px 50%;filter:drop-shadow(0 4px 4px rgba(0,0,0,.4));animation:nyroTail 3.3s ease-in-out infinite}.nyro-tail i{position:absolute;width:13px;height:13px;border-radius:50%;right:-6px;top:-10px;background:#3be8ff;box-shadow:0 0 12px #2bdcff}
+.nyro-brow{display:none}
+@keyframes nyroBreathe{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.025,1.04) translateY(-1px)}}
+@keyframes nyroHeadIdle{0%,100%{transform:rotate(-1deg) translateY(0)}45%{transform:rotate(1deg) translateY(-1px)}70%{transform:rotate(0)}}
+@keyframes nyroEar{0%,86%,100%{rotate:0deg}90%{rotate:-8deg}94%{rotate:4deg}}
+@keyframes nyroTail{0%,100%{transform:rotate(18deg)}50%{transform:rotate(34deg)}}
+@keyframes nyroArmL{0%,100%{transform:rotate(18deg)}50%{transform:rotate(14deg)}}@keyframes nyroArmR{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(-14deg)}}
+@keyframes nyroAura{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:.9;transform:scale(1.05)}}@keyframes nyroCore{to{transform:rotate(360deg)}}
+/* living state articulation */
+[data-living-state="blink"] .nyro-eye{height:3px;top:26px;box-shadow:0 0 5px #2de6ff}[data-living-state="blink"] .nyro-eye i,[data-living-state="blink"] .nyro-eye b{display:none}
+[data-living-state="look-left"] .nyro-head{transform:rotate(-7deg) translateX(-3px)}[data-living-state="look-right"] .nyro-head{transform:rotate(7deg) translateX(3px)}
+[data-living-state="curious"] .nyro-head{transform:rotate(8deg) translateY(-4px)}[data-living-state="curious"] .nyro-ear-l{transform:rotate(-29deg)}
+[data-living-state="happy"] .nyro-mouth,[data-living-state="proud"] .nyro-mouth,[data-living-state="celebrate"] .nyro-mouth{height:9px;border:2px solid #66efff;border-top:0;background:rgba(65,221,255,.12)}
+[data-living-state="happy"] .nyro-creature,[data-living-state="proud"] .nyro-creature{animation:nyroHop 1.1s ease}[data-living-state="celebrate"] .nyro-creature,[data-living-state="playing"] .nyro-creature{animation:nyroCelebrate .72s ease 3}
+[data-living-state="thinking"] .nyro-head{animation:nyroThink 1.8s ease-in-out infinite}[data-living-state="thinking"] .nyro-core{box-shadow:0 0 18px #a86cff}
+[data-living-state="sleepy"] .nyro-eye,[data-living-state="sleeping"] .nyro-eye{height:3px;top:25px;filter:saturate(.6)}[data-living-state="sleeping"] .nyro-creature{transform:translate(-50%,-45%) rotate(-8deg) scale(.96);filter:drop-shadow(0 12px 14px rgba(0,0,0,.5)) saturate(.7)}
+[data-living-state="stretch"] .nyro-body{transform:scale(1.05,1.1) translateY(-3px)}[data-living-state="stretch"] .nyro-arm-l{transform:rotate(52deg) translateY(-5px)}[data-living-state="stretch"] .nyro-arm-r{transform:rotate(-52deg) translateY(-5px)}
+[data-living-state="supportive"] .nyro-eye{box-shadow:0 0 10px #b56cff,0 0 20px rgba(181,108,255,.5)}
+@keyframes nyroHop{0%,100%{transform:translate(-50%,-50%)}40%{transform:translate(-50%,-57%) scale(1.03)}70%{transform:translate(-50%,-48%)}}@keyframes nyroCelebrate{0%,100%{transform:translate(-50%,-50%) rotate(0)}30%{transform:translate(-50%,-58%) rotate(-5deg) scale(1.04)}65%{transform:translate(-50%,-54%) rotate(6deg)}}@keyframes nyroThink{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(7deg) translateY(-2px)}}
+/* Cursor gaze is applied to the pupils/eyes, not the whole image. */
+#nexzoCompanion{--nx-eye-x:0px;--nx-eye-y:0px}#nexzoCompanion .nyro-eye{--nx-eye-x:var(--pet-look-x,0px);--nx-eye-y:var(--pet-look-y,0px)}
+/* While Pet Zone is open, hide the floating copy so there is only one visible active creature. */
+body.pet-zone-open #nexzoCompanion{opacity:0!important;pointer-events:none!important}
+.pet-zone-preview{position:relative}.pet-zone-preview>.nyro-preview-creature{position:relative!important;left:auto!important;top:auto!important;transform:scale(1.25)!important;margin:14px auto 4px!important;width:142px!important;height:154px!important;display:block!important}.pet-zone-preview>.pet-zone-avatar{display:none!important}
+@media(max-width:900px){.nyro-creature{transform:translate(-50%,-50%) scale(.78)}.pet-zone-preview>.nyro-preview-creature{transform:scale(1)!important}}
+@media(prefers-reduced-motion:reduce){.nyro-creature *{animation:none!important;transition:none!important}}
+
+
+/* V3 single-presence hardening: one transparent articulated pet, never a card/orb/image duplicate. */
+#nexzoPetOrb{display:none!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"]{
+  width:150px!important;height:166px!important;right:18px!important;bottom:72px!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-card{
+  width:150px!important;height:166px!important;min-height:0!important;margin:0!important;padding:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-scene{
+  width:150px!important;height:166px!important;margin:0!important;padding:0!important;background:transparent!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage{
+  width:150px!important;height:166px!important;right:0!important;bottom:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-shadow{
+  left:31px!important;right:24px!important;bottom:5px!important;height:12px!important;opacity:.55!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-glow{
+  inset:26px 15px 5px!important;background:radial-gradient(circle at 50% 65%,rgba(67,224,255,.14),rgba(139,92,246,.06) 48%,transparent 72%)!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] #activePetArt,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art,
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-art-fallback{display:none!important;visibility:hidden!important;opacity:0!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-presence{
+  right:8px!important;bottom:-14px!important;font-size:9px!important;padding:3px 7px!important;max-width:120px!important;
+}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-status-dot{right:13px!important;bottom:4px!important}
+body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech{right:120px!important;top:16px!important;width:150px!important}
+body.pet-zone-open #nexzoCompanion[data-layout="living"]{display:none!important}
+@media(max-width:760px){
+ body.ai-clean-page #nexzoCompanion[data-layout="living"]{width:116px!important;height:128px!important;right:10px!important;bottom:76px!important}
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .companion-card,
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-scene,
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-stage{width:116px!important;height:128px!important}
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .nyro-creature{transform:translate(-50%,-50%) scale(.76)!important}
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-presence{display:none!important}
+ body.ai-clean-page #nexzoCompanion[data-layout="living"] .pet-speech{right:84px!important;width:130px!important}
+}

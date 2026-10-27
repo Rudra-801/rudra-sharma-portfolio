@@ -1,0 +1,126 @@
+/* NEXZO V78 — visual system convergence + Planner/Hub viewport repair */
+:root{
+  --nx78-bg:#02060d;
+  --nx78-surface:#08101a;
+  --nx78-surface-2:#0b1320;
+  --nx78-border:rgba(148,163,184,.14);
+  --nx78-purple:#8b5cf6;
+  --nx78-cyan:#22d3ee;
+  --nx78-green:#22c55e;
+  --nx78-pink:#ec4899;
+  --nx78-radius:22px;
+  --nx78-shadow:0 18px 46px rgba(0,0,0,.30);
+}
+
+/* ---------- shared shell / visual language ---------- */
+body:is(.planner-page,.dashboard-page,.nx-hub-page,.settings-page,.profile-page,.career-page,.academics-page,.community-page,.home-page){
+  background:radial-gradient(circle at 70% -12%,rgba(34,211,238,.055),transparent 30%),linear-gradient(180deg,#02060d,#030811 48%,#02060d)!important;
+}
+@media(min-width:769px){
+  body.home-page::before{
+    content:"";position:fixed;z-index:2130;left:0;right:0;top:0;height:78px;
+    background:linear-gradient(180deg,rgba(2,6,13,.985),rgba(2,6,13,.95));
+    border-bottom:1px solid rgba(148,163,184,.09);box-shadow:0 10px 34px rgba(0,0,0,.28);pointer-events:none;
+  }
+  body.home-page .home-acad-main{padding-top:92px!important}
+  body[data-shell-ready="true"] .app>.main{padding-top:88px!important}
+}
+
+/* Stop hover motion from physically leaving its layout box. Keep glow only. */
+body:is(.planner-page,.dashboard-page,.nx-hub-page,.settings-page,.profile-page,.career-page,.academics-page,.community-page,.home-page) :is(
+  .card,.panel,.stat,.study,.task-row,.resource-card,.career-card,.dash-card-exact,.dash-stat-exact,.dash-chart-box-exact,
+  .dash-heatmap-box-exact,.community-compose-card,.community-side-card,.settings-v3-card,.profile-card,.profile-panel,.profile-stat,
+  .journey-card,.home-acad-card,.hub-card,.summary-card,.nx-smart-next,.nx-exam-goal,.nx-gamification-panel
+):hover{
+  transform:none!important;filter:none!important;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--nx-surface-accent,var(--accent,var(--x,var(--c,var(--nx78-purple))))) 34%,transparent),0 0 28px color-mix(in srgb,var(--nx-surface-accent,var(--accent,var(--x,var(--c,var(--nx78-purple))))) 16%,transparent),var(--nx78-shadow)!important;
+}
+
+/* Never let layout parents crop borders/glows. */
+body:is(.planner-page,.dashboard-page,.nx-hub-page,.settings-page,.profile-page,.career-page,.academics-page,.community-page,.home-page) :is(
+  .planner-shell,.stats,.main-grid,.eval-grid,.study,#taskList,.dash-stats-exact,.dash-live-layout,.dash-main-grid-exact,
+  .nx-hub-shell,.nx-hub-action-row,.nx-hub-summary,.nx-rewards-layout,.nx-secondary-grid,.nx-ai-grid,.nx-progress-grid,
+  .grid,.grid-3,.grid-4,.home-acad-grid,#resourceGrid,#careerGrid
+){overflow:visible!important;contain:none!important;content-visibility:visible!important}
+
+/* ---------- Planner: one coherent layout ---------- */
+.planner-page .topbar{display:none!important}
+.planner-page .planner-shell{width:min(1440px,100%)!important;max-width:1440px!important;margin-inline:auto!important;padding:0 6px 40px!important;overflow:visible!important}
+.planner-page .planner-head{align-items:center!important;margin:0 0 18px!important;padding:0 2px!important}
+.planner-page .planner-title h1{font-size:clamp(36px,3.6vw,54px)!important;background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.planner-page .planner-title p{color:#98a6ba!important;font-weight:650!important;max-width:760px!important}
+.planner-page .date-chip{border-color:rgba(139,92,246,.32)!important;background:linear-gradient(145deg,rgba(139,92,246,.11),rgba(7,13,22,.97))!important;box-shadow:none!important}
+.planner-page .btn.primary{background:linear-gradient(135deg,#8b5cf6,#22d3ee)!important;border-color:rgba(139,92,246,.55)!important;color:#fff!important;box-shadow:0 9px 24px rgba(99,102,241,.18)!important}
+
+.planner-page .stats{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:12px!important;margin:0 0 18px!important;padding:3px 0!important}
+.planner-page .stat{min-width:0!important;min-height:116px!important;padding:15px!important;border-radius:var(--nx78-radius)!important;background:radial-gradient(circle at 0 0,color-mix(in srgb,var(--x) 11%,transparent),transparent 43%),linear-gradient(145deg,#0a121e,#060b13)!important;border:1px solid color-mix(in srgb,var(--x) 46%,var(--nx78-border))!important;box-shadow:var(--nx78-shadow)!important;overflow:hidden!important}
+.planner-page .stat:nth-child(3){--x:#22d3ee!important}.planner-page .stat:nth-child(6){--x:#8b5cf6!important}
+.planner-page .stat:before{animation:none!important;opacity:.15!important}
+.planner-page .stat-ico{width:50px!important;height:50px!important;min-width:50px!important;border-radius:15px!important;font-size:23px!important}
+.planner-page .stat b{font-size:clamp(23px,2vw,31px)!important;line-height:1!important}.planner-page .stat span{font-size:13px!important}.planner-page .stat small{font-size:11px!important;color:#8ea0b7!important}
+
+.planner-page .main-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:18px!important;align-items:start!important;max-width:100%!important;min-width:0!important}
+.planner-page .main-grid>*{min-width:0!important;max-width:100%!important}
+.planner-page .panel,.planner-page .study{--nx-surface-accent:var(--x,#8b5cf6);border-radius:var(--nx78-radius)!important;padding:22px!important;background:radial-gradient(circle at 8% 2%,color-mix(in srgb,var(--x) 9%,transparent),transparent 32%),linear-gradient(145deg,#09111d,#050a12)!important;border:1px solid color-mix(in srgb,var(--x) 42%,var(--nx78-border))!important;box-shadow:var(--nx78-shadow)!important;overflow:visible!important;contain:none!important}
+.planner-page .panel:before,.planner-page .task-row:before{animation:none!important;opacity:.10!important}
+.planner-page .panel h2{font-size:23px!important}.planner-page .hint{font-weight:600!important;color:#94a3b8!important}
+.planner-page .tabs,.planner-page .tool-row,.planner-page .filters{overflow-x:auto!important;overflow-y:visible!important;flex-wrap:nowrap!important;padding:2px 0 6px!important;scrollbar-width:none!important}
+.planner-page .tabs::-webkit-scrollbar,.planner-page .tool-row::-webkit-scrollbar,.planner-page .filters::-webkit-scrollbar{display:none!important}
+.planner-page .tabs button,.planner-page .tool-row button,.planner-page .filters button{flex:0 0 auto!important;background:#0b1320!important;border-color:rgba(148,163,184,.16)!important;color:#cbd5e1!important;box-shadow:none!important}
+.planner-page .tabs button.active,.planner-page .filters button.active{background:linear-gradient(135deg,rgba(139,92,246,.92),rgba(34,211,238,.72))!important;border-color:rgba(167,139,250,.65)!important;color:#fff!important}
+
+.planner-page .form-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;width:100%!important;min-width:0!important}
+.planner-page .field{min-width:0!important;margin:0!important}.planner-page .field label{color:#c2cada!important;font-size:12px!important}.planner-page .field label:before{color:#a78bfa!important}
+.planner-page .field select,.planner-page .field input{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;min-height:52px!important;padding:0 42px 0 14px!important;border-radius:15px!important;background:#08101b!important;border:1px solid rgba(139,92,246,.42)!important;color:#f8fafc!important;box-sizing:border-box!important;text-overflow:ellipsis!important;white-space:nowrap!important;overflow:hidden!important}
+.planner-page .form-actions{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;align-items:center!important;gap:10px!important;margin-top:20px!important;min-width:0!important}.planner-page .lock{min-width:0!important;white-space:normal!important;margin:0!important}
+.planner-page .suggest-box,.planner-page .ai-preview{min-height:0!important;max-height:none!important;padding:18px!important;border-radius:18px!important;background:linear-gradient(145deg,#07131d,#070b13)!important;border-color:rgba(34,211,238,.38)!important;overflow:visible!important}
+.planner-page .nx-roadmap-summary{background:radial-gradient(circle at 0 0,rgba(34,211,238,.12),transparent 42%),#07121c!important;border-color:rgba(34,211,238,.36)!important;color:#f8fafc!important}
+
+.planner-page .eval-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;margin-top:18px!important}
+.planner-page .study{margin-top:18px!important;padding:20px!important}
+.planner-page .study-top{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}.planner-page .mini-stat{background:#08101a!important;border-color:rgba(148,163,184,.13)!important}
+.planner-page #taskList{width:100%!important;max-width:100%!important;min-width:0!important;padding:2px 0 8px!important}
+.planner-page .table-head,.planner-page .task-row{grid-template-columns:86px minmax(210px,1.45fr) minmax(108px,.8fr) minmax(118px,.85fr) minmax(96px,.65fr) minmax(180px,1fr) 86px!important;gap:10px!important;max-width:100%!important;box-sizing:border-box!important}
+.planner-page .task-row{padding:14px!important;border-radius:18px!important;background:linear-gradient(145deg,#0a121e,#07101a)!important;border:1px solid color-mix(in srgb,var(--x) 40%,rgba(148,163,184,.14))!important;overflow:hidden!important;box-shadow:0 10px 28px rgba(0,0,0,.22)!important}
+.planner-page .task-row:hover{transform:none!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--x) 22%,transparent),0 0 22px color-mix(in srgb,var(--x) 13%,transparent),0 12px 32px rgba(0,0,0,.26)!important}
+.planner-page .task-title,.planner-page .status-area,.planner-page .actions{min-width:0!important}.planner-page .task-title b{line-height:1.15!important}.planner-page .task-title small{overflow-wrap:anywhere!important;color:#aab6c8!important}.planner-page .tag{max-width:100%!important;color:#e7e9ff!important;background:rgba(139,92,246,.15)!important;border:1px solid rgba(139,92,246,.14)!important}.planner-page .task-row .tag:nth-of-type(2){background:rgba(34,211,238,.13)!important;border-color:rgba(34,211,238,.14)!important}.planner-page .status-pill:not(.done):not(.overdue):not(.running){background:rgba(139,92,246,.13)!important;color:#ddd6fe!important}
+
+/* ---------- Hub + injected rewards: same dashboard DNA ---------- */
+.nx-hub-page .nx-hub-shell{width:min(1440px,100%)!important;margin-inline:auto!important;padding:0 6px 42px!important}
+.nx-hub-page .nx-hub-hero,.nx-hub-page .nx-smart-next,.nx-hub-page .nx-exam-goal,.nx-hub-page .summary-card,.nx-hub-page .hub-card,.nx-gamification-panel{
+  background:radial-gradient(circle at 8% 2%,color-mix(in srgb,var(--accent,var(--nx78-purple)) 8%,transparent),transparent 34%),linear-gradient(145deg,#09111d,#050a12)!important;
+  border:1px solid color-mix(in srgb,var(--accent,var(--nx78-purple)) 36%,rgba(148,163,184,.14))!important;
+  border-radius:var(--nx78-radius)!important;box-shadow:var(--nx78-shadow)!important;
+}
+.nx-hub-page .nx-hub-hero{padding:28px!important;margin:0 0 16px!important}.nx-hub-page .nx-hub-hero h1{font-size:clamp(44px,4.3vw,66px)!important}.nx-hub-page .nx-hub-hero-copy p{color:#9aa8ba!important}
+.nx-hub-page .nx-hub-balance b{background:#08101a!important;border-color:rgba(139,92,246,.26)!important;color:#f8fafc!important}
+.nx-hub-page .nx-exam-goal{--accent:#8b5cf6!important}.nx-hub-page .nx-smart-next{--accent:#22d3ee!important}
+.nx-hub-page .summary-card.gold,.nx-hub-page .summary-card.chest-card,.nx-hub-page .hub-card.gold,.nx-hub-page .hub-card.orange{--accent:#8b5cf6!important}
+.nx-hub-page .nx-hub-tabs{background:#07101a!important;border-color:rgba(148,163,184,.12)!important}.nx-hub-page .nx-hub-tabs button.active{background:linear-gradient(135deg,#8b5cf6,#22d3ee)!important;color:#fff!important;box-shadow:0 9px 24px rgba(99,102,241,.18)!important}
+.nx-hub-page .featured-card{min-height:300px!important;padding:22px!important}.nx-hub-page .compact-card{min-height:150px!important;padding:18px!important}.nx-hub-page .hub-card p{color:#96a4b7!important}.nx-hub-page .hub-card button{background:#0b1320!important;border-color:color-mix(in srgb,var(--accent) 38%,rgba(148,163,184,.14))!important}.nx-hub-page .hub-card button:hover{transform:none!important;background:color-mix(in srgb,var(--accent) 12%,#0b1320)!important}
+.nx-hub-page .gold-btn{background:linear-gradient(135deg,#8b5cf6,#22d3ee)!important;color:#fff!important}
+.nx-hub-page .nx-secondary-grid,.nx-hub-page .nx-ai-grid,.nx-hub-page .nx-progress-grid{gap:14px!important}
+
+/* Rewards panel shown on Dashboard/Hub should look like all other dashboard cards. */
+.nx-gamification-panel{--accent:#8b5cf6!important;padding:20px!important;margin:20px 0!important}
+.nx-game-head span{color:#a78bfa!important}.nx-game-stats{gap:10px!important}.nx-game-stats article{background:#08101a!important;border:1px solid rgba(139,92,246,.24)!important;border-radius:15px!important;padding:13px!important}.nx-game-stats article:nth-child(2){border-color:rgba(34,211,238,.25)!important}.nx-game-stats article:nth-child(3){border-color:rgba(34,197,94,.25)!important}.nx-game-stats article:nth-child(4){border-color:rgba(236,72,153,.25)!important}.nx-game-body>div{background:#07101a!important;border-color:rgba(148,163,184,.10)!important}.nx-ledger b{color:#67e8f9!important}.nx-xp-toast{border-color:rgba(139,92,246,.42)!important}.nx-xp-toast b{color:#c4b5fd!important}
+
+/* ---------- responsive desktop/tablet ---------- */
+@media(max-width:1320px) and (min-width:769px){
+  .planner-page .stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .planner-page .main-grid{grid-template-columns:1fr!important}
+  .planner-page .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .planner-page .table-head{display:none!important}
+  .planner-page .task-row{display:grid!important;grid-template-columns:78px minmax(0,1fr) auto auto!important;align-items:center!important}
+  .planner-page .task-row .task-title{grid-column:2/-1!important}.planner-page .task-row .status-area{grid-column:2/-2!important}.planner-page .task-row .actions{grid-column:-2/-1!important}.planner-page .task-row>.tag{width:max-content!important;max-width:170px!important}
+  .nx-hub-page .nx-ai-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.nx-hub-page .career-card{grid-column:span 2!important}.nx-hub-page .nx-progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+@media(max-width:768px){
+  .planner-page .planner-shell,.nx-hub-page .nx-hub-shell{padding-inline:0!important}
+  .planner-page .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.planner-page .stat{min-height:102px!important;padding:12px!important}.planner-page .stat-ico{width:42px!important;height:42px!important;min-width:42px!important}
+  .planner-page .main-grid,.planner-page .eval-grid{grid-template-columns:1fr!important}.planner-page .form-grid{grid-template-columns:1fr!important}.planner-page .form-actions{grid-template-columns:1fr 1fr!important}.planner-page .lock{grid-column:1/-1!important}
+  .planner-page .study-top{grid-template-columns:1fr 1fr!important}.planner-page .table-head{display:none!important}.planner-page .task-row{display:grid!important;grid-template-columns:62px minmax(0,1fr)!important;gap:9px!important}.planner-page .task-row .task-title,.planner-page .task-row .status-area,.planner-page .task-row .actions{grid-column:1/-1!important}.planner-page .task-row>.tag{width:max-content!important;max-width:100%!important}.planner-page .task-row .actions{justify-content:flex-start!important}
+  .nx-hub-page .nx-hub-hero{padding:18px!important}.nx-hub-page .nx-hub-hero h1{font-size:38px!important}.nx-hub-page .nx-hub-action-row,.nx-hub-page .nx-hub-summary,.nx-hub-page .nx-rewards-layout,.nx-hub-page .nx-secondary-grid,.nx-hub-page .nx-ai-grid,.nx-hub-page .nx-progress-grid{grid-template-columns:1fr!important}
+  .nx-game-stats{grid-template-columns:1fr 1fr!important}.nx-game-body{grid-template-columns:1fr!important}
+}

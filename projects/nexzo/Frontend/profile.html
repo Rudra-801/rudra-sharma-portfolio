@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" class="nx-auth-pending">
+<head>
+  <style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+  <script src="js/shared-state.js?v=quality-v15" defer></script>
+<script src="js/config.js?v=quality-v15" defer></script>
+<script src="js/firebase-client.js?v=quality-v15" defer></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script>
+<script src="js/auth-guard.js?v=quality-v15" defer></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXZO | Profile</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/profile.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO | Profile">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/profile.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO | Profile">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
+  
+  
+<link rel="stylesheet" href="css/dist/style.c51476d1a93e.css?v=63">
+  <link rel="stylesheet" href="css/dist/runtime.e7a11eb1cede.css">
+  <link rel="stylesheet" href="css/nexzo-core.css?v=63">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.js?v=quality-v15" defer></script>
+      <link rel="stylesheet" href="css/profile-v39.css?v=92">
+  <script src="js/metric-authority.js" defer></script>
+  <link rel="stylesheet" href="css/gamification.css?v=50101">
+  <link rel="stylesheet" href="css/final-polish.css?v=65">
+  <link rel="stylesheet" href="css/preferences-runtime.css?v=66">
+  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<link rel="stylesheet" href="css/mobile-v75.css?v=75">
+<link rel="stylesheet" href="css/ui-v76.css?v=76">
+<link rel="stylesheet" href="css/workspace-ui.css?v=release-20261005">
+  <link rel="stylesheet" href="css/black-gold-global-v140.css?v=142">
+  <link rel="stylesheet" href="css/brand.css?v=8">
+  <link rel="stylesheet" href="css/nexzo-home-shell.css?v=195">
+<link rel="stylesheet" href="css/ui-stability-v128.css?v=128">
+  <link rel="stylesheet" href="css/internal-header-final-v130.css?v=130">
+  <link rel="stylesheet" href="css/student-digital-twin-v181.css?v=191">
+  <link rel="stylesheet" href="css/nexzo-unified-black-gold-v193.css?v=193">
+</head>
+
+<body class="profile-page profile-body" data-page="profile">
+<div class="bg-orb"></div>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="favicon.png" class="logo" alt="NEXZO">
+      <div>
+        <h1>NEXZO</h1>
+        <p>PLAN  LEARN  ACHIEVE</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="Home.html" style="--c:#ffc107"><i>🏠</i>Home</a>
+      <a href="academics.html" style="--c:#a855f7"><i>📚</i>Academics</a>
+      <a href="ai-assistant.html" style="--c:#ec4899"><i>🤖</i>Study Assistant</a>
+      <a href="career.html" style="--c:#06b6d4"><i>💼</i>Career</a>
+      <a href="planner.html" style="--c:#f97316"><i>📅</i>Planner</a>
+      <a href="community.html" style="--c:#f43f5e"><i>👥</i>Community</a>
+      <a href="dashboard.html" style="--c:#22c55e"><i>📊</i>Dashboard</a>
+      <a href="settings.html" style="--c:#94a3b8"><i>⚙️</i>Settings</a>
+      <a class="active" href="profile.html" style="--c:#3b82f6"><i>👤</i>Profile</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="profile-page">
+      <header class="profile-top">
+        <div class="profile-heading">
+          <h1>My Profile</h1>
+          <p>Track, manage and improve your learning journey.</p>
+        </div>
+        <div class="profile-actions">
+          <button class="profile-btn" id="shareBtn">&#128279; Share Profile</button>
+          <button class="profile-btn gold" id="editBtn">&#9998; Edit Profile</button>
+        </div>
+      </header>
+
+      <section class="profile-hero card">
+        <div class="profile-main">
+          <div class="profile-avatar-wrap">
+            <div id="heroAvatar" class="profile-avatar-fallback">?</div>
+            <button class="photo-btn" id="editPhotoBtn">&#128247;</button>
+          </div>
+          <div>
+            <h2 class="profile-name"><span id="heroName">Loading profile</span><span class="verify" aria-label="Verified">✓</span></h2>
+            <div class="handle" id="heroHandle"></div>
+            <div class="mini-pills">
+              <span class="mini-pill" id="emailPill"></span>
+              <span class="mini-pill" id="countryPill" hidden></span>
+              <span class="mini-pill" id="rolePill" hidden></span>
+            </div>
+            <p class="profile-bio" id="bioText"></p>
+            <div id="completeProfileHint" class="complete-profile-hint" hidden>Complete your profile to add a username, bio, country, role and interests.</div>
+            <div class="mini-pills" id="interestPills"></div>
+          </div>
+        </div>
+
+        <div class="level-showcase">
+          <div class="level-card card nx-rank-energy-card">
+            <div class="nx-energy-field" aria-hidden="true">
+              <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span>
+              <span class="spark s5"></span><span class="spark s6"></span><span class="spark s7"></span><span class="spark s8"></span>
+              <span class="energy-beam b1"></span><span class="energy-beam b2"></span>
+            </div>
+            <div class="level-hex" id="heroBadge">1</div>
+            <h3 id="heroRank">NEXZO STARTER</h3>
+            <div class="nx-rank-xp-row"><span id="heroXp">0 / 100 XP</span><span id="heroPct">0%</span></div>
+            <div class="bar"><span id="heroBar" style="width:0%"></span></div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="sync-stats nx-profile-stat-grid">
+        <div class="sync-stat card" style="--c:var(--orange)"><i class="nx-stat-symbol">🔥</i><div><b id="streakVal">0</b><small>Study Streak</small></div></div>
+        <div class="sync-stat card" style="--c:var(--green)"><i class="nx-stat-symbol">✅</i><div><b id="tasksVal">0</b><small>Completed Tasks</small></div></div>
+        <div class="sync-stat card" style="--c:var(--purple)"><i class="nx-stat-symbol">🤖</i><div><b id="aiVal">0</b><small>Study Score</small></div></div>
+        <div class="sync-stat card" style="--c:var(--gold)"><i class="nx-stat-symbol">🏆</i><div><b id="levelVal">Lv. 1</b><small>NEXZO Level</small></div></div>
+      </section>
+
+      <section class="rank-stat card rank-stat-premium nx-rank-summary" style="--c:#a855f7">
+        <div class="rank-stat-head">
+          <i class="rank-stat-icon">🏆</i>
+          <div class="rank-stat-title">
+            <small class="rank-stat-label">Current Rank</small>
+            <b id="rankVal">STARTER</b>
+          </div>
+        </div>
+        <div class="rank-stat-meta">
+          <span class="rank-meta-item"><em>Tier</em><strong id="rankTier">Tier I</strong></span>
+          <span class="rank-meta-item"><em>Next Rank</em><strong id="rankNext">Explorer</strong></span>
+          <span class="rank-meta-item"><em>XP Left</em><strong id="rankXpLeft">100 XP</strong></span>
+        </div>
+      </section>
+
+      <section class="journey-card card">
+        <div class="journey-head">
+          <div><h2>Learning Journey &#128081;</h2><p>Each level evolves the badge, aura, crown and visual effects.</p></div>
+          <div class="arrow-group"><button class="arrow" id="prev"></button><button class="arrow" id="next"></button></div>
+        </div>
+        <div class="tiers" id="tiers"></div>
+        <div class="stage">
+          <div class="track" id="track"></div>
+          <div class="dots" id="dots"></div>
+          <div class="progress">
+            <span>Current: <b id="currentLabel">Level 1 - STARTER</b></span>
+            <span id="xpMini">0 / 100 XP</span>
+            <div class="grow"><span id="bottomBar" style="width:0%"></span></div>
+            <span>Next: <b id="nextLabel">Level 2</b></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <div class="card"><h2 style="margin-top:0">Recent Activity</h2><div id="activityList"></div></div>
+        <div class="card"><h2 style="margin-top:0">Weekly Goal</h2><div class="ring" id="goalRing"><b id="goalPct">0%</b></div><p style="text-align:center;color:#dce3f7;font-weight:900"><span id="goalText">0 / 10 Hours</span><br>Keep it up!</p></div>
+        <div class="card"><h2 style="margin-top:0">Achievements</h2><div class="achgrid"><div class="ach"><i>&#128293;</i><b>Consistent</b><small>Streak active</small></div><div class="ach"><i>&#9989;</i><b>Task Master</b><small>Tasks completed</small></div><div class="ach"><i>&#9201;</i><b>Time Scholar</b><small>Hours logged</small></div><div class="ach"><i>&#129302;</i><b>Active Learner</b><small>study score</small></div></div></div>
+      </section>
+    </div>
+</main>
+</div>
+
+<div class="modal" id="editModal"><div class="modalbox">
+  <div class="edit-head">
+    <div><h2 id="editModalTitle">&#9998; Complete Your Profile</h2><p id="editModalSubtitle">Your name, email and available account photo are already filled from sign-in.</p></div>
+    <button class="edit-close" id="closeEditTop"></button>
+  </div>
+  <div class="edit-body">
+    <div class="profile-edit-preview">
+      <div id="editPreview" class="preview-letter">R</div>
+      <div>
+        <b id="editPreviewName">Loading profile</b>
+        <small>Live profile preview</small>
+        <p style="color:#aeb8cc;margin:8px 0 0;font-weight:700">Your updated profile syncs across NEXZO pages.</p>
+      </div>
+    </div>
+
+    <div class="edit-grid">
+      <div class="field"><label>Name</label><input id="editName" placeholder="Your name"></div>
+      <div class="field"><label>Email</label><input id="editEmail" placeholder="your@email.com" readonly></div>
+      <div class="field"><label>Unique username</label><input id="editUsername" autocomplete="off" maxlength="20" placeholder="e.g. rudrasharma"><small id="usernameHint">3–20 characters: letters, numbers, dot or underscore. This @username must be unique.</small></div>
+      <div class="field"><label>Country</label><input id="editCountry" placeholder="e.g. India"></div>
+      <div class="field wide"><label>Course / Role</label><input id="editRole" placeholder="e.g. BCA Student, Developer"></div>
+
+      <div class="field wide">
+        <label>Upload Photo</label>
+        <label class="upload-zone" for="editFile">
+          <input id="editFile" type="file" accept="image/*">
+          <b>&#128247; Click to upload profile photo</b>
+          <small>PNG, JPG or WEBP. It is compressed and synced to your account.</small>
+        </label>
+      </div>
+
+      <input id="editPhoto" type="hidden">
+      <div class="field wide"><label>Bio</label><textarea id="editBio" rows="4" placeholder="Write about yourself"></textarea></div>
+      <div class="field wide"><label>Interests comma separated</label><input id="editInterests" placeholder="AI/ML, DSA, Web Dev, DBMS"></div>
+    </div>
+  </div>
+  <div class="modal-actions"><button class="profile-btn" id="skipEdit">Skip for now</button><button class="profile-btn" id="closeEdit">Cancel</button><button class="profile-btn gold" id="saveEdit">Save Profile</button></div>
+</div></div>
+
+    
+
+
+
+<script src="js/profile-storage.js?v=quality-v15" defer></script>
+<script src="js/task-integrity.js?v=2" defer></script>
+<script src="js/data-service.js?v=20261010-evaluation2" defer></script>
+<script src="js/task-store.js?v=152" defer></script>
+
+  <script src="js/settings-state.js?v=66" defer></script>
+  <script src="js/app-shell.js?v=brand-v3" defer></script>
+<script src="js/level-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/state-authority.js?v=152" defer></script>
+  <script src="js/profile-authority.js?v=sync-v135" defer></script>
+  <script src="js/profile-controller.js?v=sync-v135" defer></script>
+<script src="js/performance-runtime.js?v=quality-v15" defer></script>
+  <script src="js/event-actions.js" defer></script>
+<script defer src="js/final-runtime.js?v=90"></script>
+  <script src="js/streak-system.js?v=1" defer></script>
+  <script src="js/gamification-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+<script src="js/personalization-engine-v152.js?v=205" defer></script>  <script src="js/nexzo-home-shell.js?v=live-bg-v195" defer></script>
+  <script src="js/student-digital-twin-v181.js?v=20261010-evaluation2" defer></script>
+</body>
+</html>

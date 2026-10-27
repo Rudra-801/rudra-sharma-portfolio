@@ -1,0 +1,100 @@
+/* NEXZO V168 — Planner submission modal. Scoped; no global overrides. */
+body.planner-page #submitBack.modal-back{
+  position:fixed!important;inset:0!important;z-index:100000!important;display:none;place-items:center!important;
+  padding:clamp(14px,3vw,34px)!important;background:#020304!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;overflow:auto!important;scrollbar-width:none!important;-ms-overflow-style:none!important;
+}
+body.planner-page #submitBack.show{display:grid!important}
+body.planner-page #submitBack .nx-submit-v168{
+  --submit-gold:#e7bc43;--submit-gold-2:#f3d16c;--submit-ink:#050608;--submit-panel:#090b0f;--submit-line:rgba(231,188,67,.22);
+  width:min(900px,calc(100vw - 36px))!important;max-width:900px!important;max-height:min(900px,calc(100dvh - 42px))!important;
+  margin:auto!important;padding:0!important;overflow:hidden!important;position:relative!important;border-radius:26px!important;
+  border:1px solid rgba(231,188,67,.42)!important;background:#07090c!important;
+  box-shadow:0 32px 100px rgba(0,0,0,.76),0 0 0 1px rgba(255,255,255,.025) inset,0 0 46px rgba(231,188,67,.08)!important;
+  color:#f6f1e5!important;animation:none!important;backdrop-filter:none!important;
+}
+body.planner-page #submitBack .nx-submit-head{display:grid;grid-template-columns:48px minmax(0,1fr) 44px;gap:16px;align-items:start;padding:26px 28px 22px;border-bottom:1px solid var(--submit-line);background:#07090c}
+body.planner-page #submitBack .nx-submit-mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;border:1px solid rgba(231,188,67,.42);background:#151207;color:var(--submit-gold-2);font-size:21px;font-weight:900;box-shadow:0 0 24px rgba(231,188,67,.10)}
+body.planner-page #submitBack .nx-submit-eyebrow{display:block;margin:1px 0 6px;color:var(--submit-gold);font-size:11px;font-weight:900;letter-spacing:.16em}
+body.planner-page #submitBack .nx-submit-heading h2{margin:0!important;color:#fff!important;font-size:clamp(23px,3vw,31px)!important;line-height:1.14!important;letter-spacing:-.025em!important}
+body.planner-page #submitBack .nx-submit-heading .hint{margin:8px 0 0!important;color:#9da3ad!important;font-size:13px!important;line-height:1.55!important}
+body.planner-page #submitBack .modal-x{position:static!important;width:44px!important;height:44px!important;display:grid!important;place-items:center!important;margin:0!important;border-radius:14px!important;border:1px solid rgba(255,255,255,.10)!important;background:#0e1116!important;color:#d8d8d8!important;font-size:26px!important;line-height:1!important;cursor:pointer!important}
+body.planner-page #submitBack .modal-x:hover{border-color:rgba(231,188,67,.5)!important;color:var(--submit-gold-2)!important;background:#151207!important}
+body.planner-page #submitBack .submit-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;margin:0!important;padding:18px 28px 0!important;background:transparent!important;border:0!important}
+body.planner-page #submitBack .submit-tabs button{min-height:48px!important;padding:10px 14px!important;border-radius:13px!important;border:1px solid rgba(255,255,255,.10)!important;background:#0b0e13!important;color:#b7bcc5!important;font-size:13px!important;font-weight:850!important;box-shadow:none!important;cursor:pointer!important}
+body.planner-page #submitBack .submit-tabs button:hover{color:#f5ecd3!important;border-color:rgba(231,188,67,.32)!important;background:#111109!important}
+body.planner-page #submitBack .submit-tabs button.active{color:#161208!important;border-color:var(--submit-gold)!important;background:linear-gradient(135deg,var(--submit-gold-2),#dca719)!important;box-shadow:0 8px 26px rgba(231,188,67,.14)!important}
+body.planner-page #submitBack .nx-submit-workspace{padding:20px 28px 24px!important;max-height:calc(100dvh - 290px)!important;overflow:auto!important;scrollbar-width:none!important;-ms-overflow-style:none!important}
+body.planner-page #submitBack .mode{display:none!important}
+body.planner-page #submitBack .mode.active{display:block!important}
+body.planner-page #submitBack .nx-submit-label{display:flex;align-items:center;justify-content:space-between;margin:0 0 8px!important;color:#e8e3d8!important;font-size:12px!important;font-weight:850!important;letter-spacing:.01em}
+body.planner-page #submitBack .nx-submit-label span{color:#777f8b;font-size:10px;text-transform:uppercase;letter-spacing:.09em}
+body.planner-page #submitBack textarea{width:100%!important;margin:0!important;padding:16px 17px!important;border-radius:16px!important;border:1px solid rgba(231,188,67,.19)!important;background:#050607!important;color:#f5f5f5!important;box-shadow:none!important;outline:none!important;resize:vertical!important;font:500 14px/1.6 Inter,system-ui,sans-serif!important}
+body.planner-page #submitBack #pasteAnswer,body.planner-page #submitBack #writeAnswer{min-height:230px!important}
+body.planner-page #submitBack textarea:focus{border-color:rgba(231,188,67,.68)!important;box-shadow:0 0 0 3px rgba(231,188,67,.07)!important}
+body.planner-page #submitBack textarea::placeholder{color:#5f646d!important}
+body.planner-page #submitBack .nx-submit-note{margin-top:16px!important}
+body.planner-page #submitBack #submitNote{min-height:78px!important;max-height:130px!important}
+body.planner-page #submitBack .drop{min-height:220px!important;margin:0!important;padding:26px!important;border:1px dashed rgba(231,188,67,.42)!important;border-radius:18px!important;background:radial-gradient(circle at 50% 0,rgba(231,188,67,.06),transparent 48%),#060709!important;color:#eae6db!important;display:grid!important;place-items:center!important;text-align:center!important;cursor:pointer!important}
+body.planner-page #submitBack .drop:hover{border-color:var(--submit-gold)!important;background:#0c0b07!important}
+body.planner-page #submitBack .drop .up{width:52px;height:52px;margin:0 auto 12px;border:1px solid rgba(231,188,67,.34);border-radius:15px;display:grid;place-items:center;color:var(--submit-gold-2);font-size:25px;background:#121007}
+body.planner-page #submitBack .drop b{display:block!important;font-size:15px!important;color:#fff!important}
+body.planner-page #submitBack .drop small{display:block!important;margin-top:7px!important;color:#777f8b!important;font-size:11px!important}
+body.planner-page #submitBack .preview{margin-top:12px!important}
+body.planner-page #submitBack .error:empty,body.planner-page #submitBack .status:empty{display:none!important}
+body.planner-page #submitBack .error{margin-top:14px!important;padding:12px 14px!important;border:1px solid rgba(248,113,113,.28)!important;border-radius:13px!important;background:rgba(127,29,29,.13)!important;color:#fca5a5!important}
+body.planner-page #submitBack .status{margin:14px 0 0!important;padding:12px 14px!important;border:1px solid rgba(231,188,67,.27)!important;border-radius:13px!important;background:#100e07!important;color:#e7cf88!important;font-size:12px!important;font-weight:800!important}
+body.planner-page #submitBack .modal-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:10px!important;margin:0!important;padding:16px 28px 20px!important;border-top:1px solid var(--submit-line)!important;background:#07080a!important;position:static!important}
+body.planner-page #submitBack .modal-actions .btn{min-height:46px!important;margin:0!important;padding:0 20px!important;border-radius:13px!important;font-size:13px!important;font-weight:900!important;box-shadow:none!important}
+body.planner-page #submitBack .nx-submit-cancel{border:1px solid rgba(255,255,255,.11)!important;background:#0d1014!important;color:#aeb4bd!important}
+body.planner-page #submitBack .nx-submit-evaluate{min-width:220px!important;justify-content:center!important;border:1px solid var(--submit-gold)!important;background:linear-gradient(135deg,var(--submit-gold-2),#dda916)!important;color:#161208!important;box-shadow:0 10px 28px rgba(231,188,67,.14)!important}
+body.planner-page #submitBack .nx-submit-evaluate span{font-size:18px!important;margin-left:3px!important}
+body.planner-page #submitBack .nx-submit-evaluate:disabled{opacity:.62!important;filter:saturate(.65)!important;cursor:wait!important}
+@media(max-width:640px){
+ body.planner-page #submitBack.modal-back{padding:0!important;align-items:end!important}
+ body.planner-page #submitBack .nx-submit-v168{width:100%!important;max-width:none!important;max-height:94dvh!important;border-radius:24px 24px 0 0!important;border-bottom:0!important}
+ body.planner-page #submitBack .nx-submit-head{grid-template-columns:40px minmax(0,1fr) 40px;gap:11px;padding:20px 16px 16px}
+ body.planner-page #submitBack .nx-submit-mark,body.planner-page #submitBack .modal-x{width:40px!important;height:40px!important;border-radius:12px!important}
+ body.planner-page #submitBack .nx-submit-eyebrow{font-size:9px}.planner-page #submitBack .nx-submit-heading h2{font-size:21px!important}
+ body.planner-page #submitBack .nx-submit-heading .hint{font-size:11px!important}
+ body.planner-page #submitBack .submit-tabs{padding:14px 16px 0!important;gap:6px!important}
+ body.planner-page #submitBack .submit-tabs button{min-height:43px!important;padding:8px 5px!important;font-size:11px!important}
+ body.planner-page #submitBack .nx-submit-workspace{padding:16px!important;max-height:calc(94dvh - 245px)!important}
+ body.planner-page #submitBack #pasteAnswer,body.planner-page #submitBack #writeAnswer{min-height:190px!important}
+ body.planner-page #submitBack .modal-actions{padding:13px 16px 16px!important}
+ body.planner-page #submitBack .nx-submit-evaluate{min-width:0!important;flex:1!important}
+}
+
+/* V185 — real MCQ attempt workspace */
+body.planner-page #submitBack.mcq-submit .submit-tabs{display:none!important}
+body.planner-page #submitBack.mcq-submit .nx-submit-note{display:none!important}
+body.planner-page #submitBack .nx-mcq-attempt{display:none}
+body.planner-page #submitBack .nx-mcq-attempt.active{display:block!important}
+body.planner-page #submitBack .nx-mcq-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:16px;padding:14px 16px;border:1px solid rgba(231,188,67,.18);border-radius:14px;background:#0a0a08}
+body.planner-page #submitBack .nx-mcq-intro b{color:#f5d96c;font-size:14px}
+body.planner-page #submitBack .nx-mcq-intro span{color:#8d929a;font-size:11px;text-align:right}
+body.planner-page #submitBack .nx-mcq-card{margin:0 0 14px;padding:17px;border:1px solid rgba(255,255,255,.09);border-radius:17px;background:#070809}
+body.planner-page #submitBack .nx-mcq-card legend{display:flex;gap:10px;align-items:flex-start;width:100%;padding:0 3px 11px;color:#f5f5f5;font-size:14px;font-weight:800;line-height:1.5}
+body.planner-page #submitBack .nx-mcq-card legend span{flex:0 0 auto;color:#e7bc43;font-size:11px;letter-spacing:.08em}
+body.planner-page #submitBack .nx-mcq-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+body.planner-page #submitBack .nx-mcq-option{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:10px;min-height:54px;padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:#0c0e11;color:#d9dde3;cursor:pointer;transition:border-color .18s ease,background .18s ease,transform .18s ease}
+body.planner-page #submitBack .nx-mcq-option:hover{border-color:rgba(231,188,67,.34);background:#11110d;transform:translateY(-1px)}
+body.planner-page #submitBack .nx-mcq-option input{position:absolute;opacity:0;pointer-events:none}
+body.planner-page #submitBack .nx-mcq-letter{width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(231,188,67,.2);border-radius:9px;color:#d9c06a;font-size:12px;font-weight:900;background:#090a0b}
+body.planner-page #submitBack .nx-mcq-option:has(input:checked){border-color:#e7bc43;background:rgba(231,188,67,.09);box-shadow:0 0 0 2px rgba(231,188,67,.05)}
+body.planner-page #submitBack .nx-mcq-option:has(input:checked) .nx-mcq-letter{background:#e7bc43;color:#171207;border-color:#e7bc43}
+@media(max-width:640px){body.planner-page #submitBack .nx-mcq-intro{display:block}body.planner-page #submitBack .nx-mcq-intro span{display:block;margin-top:5px;text-align:left}body.planner-page #submitBack .nx-mcq-options{grid-template-columns:1fr}}
+
+/* V186 — distraction-free evaluation surface: invisible scrollbars, no ambient light bleed. */
+body.planner-page #submitBack::-webkit-scrollbar,body.planner-page #submitBack .nx-submit-workspace::-webkit-scrollbar,body.planner-page #submitBack .nx-submit-v168::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+body.planner-page #submitBack .nx-submit-v168::before,body.planner-page #submitBack .nx-submit-v168::after{display:none!important;content:none!important}
+
+/* V192 — Planner evaluation layout reliability. Keep accents inside cards; do not tint the shared page background. */
+body.planner-page .eval-grid>.panel{box-shadow:inset 0 1px rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.28)!important;}
+body.planner-page .eval-panel-v2{filter:none!important;}
+body.planner-page .eval-panel-v2 .score-wrap{grid-template-columns:minmax(150px,220px) minmax(0,1fr)!important;gap:28px!important;align-items:center!important;}
+body.planner-page .eval-panel-v2 .bars{min-width:0!important;width:100%!important;}
+body.planner-page .eval-panel-v2 .bar-row{display:grid!important;grid-template-columns:130px minmax(120px,1fr) minmax(72px,auto)!important;gap:14px!important;align-items:center!important;}
+body.planner-page .eval-panel-v2 .bar-row>b{min-width:72px!important;max-width:160px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;text-align:right!important;font-size:12px!important;line-height:1.25!important;}
+body.planner-page .eval-panel-v2 .bar-row>b[data-missing-rubric="true"]{color:#8f98a8!important;font-weight:700!important;}
+@media(max-width:900px){body.planner-page .eval-panel-v2 .score-wrap{grid-template-columns:1fr!important}body.planner-page .eval-panel-v2 .bar-row{grid-template-columns:110px minmax(90px,1fr) minmax(60px,auto)!important}}

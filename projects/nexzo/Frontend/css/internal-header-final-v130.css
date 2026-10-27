@@ -1,0 +1,113 @@
+/* NEXZO V130 — approved internal header, static in document flow.
+   Applies only to app-shell internal pages. Home and Study Assistant do not create this rail. */
+html,body{scrollbar-width:none!important;-ms-overflow-style:none!important}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+
+/* One source of truth: app-shell topbar. */
+body[data-shell-ready="true"] > .nx-slider-trigger,
+body[data-shell-ready="true"] > .nx-global-brand{display:none!important}
+
+body[data-shell-ready="true"]{padding-top:112px!important;box-sizing:border-box!important}
+body[data-shell-ready="true"] > #nxShellTopbar.nx-shell-topbar{
+  position:absolute!important;
+  top:0!important;left:0!important;right:0!important;
+  width:100%!important;max-width:none!important;
+  height:108px!important;min-height:108px!important;
+  margin:0!important;padding:18px 34px!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:28px!important;
+  z-index:1085!important;
+  background:linear-gradient(180deg,rgba(3,4,4,.995),rgba(3,4,4,.97))!important;
+  background-image:linear-gradient(180deg,rgba(3,4,4,.995),rgba(3,4,4,.97))!important;
+  border:0!important;border-radius:0!important;
+  box-shadow:0 1px 0 rgba(225,181,47,.16)!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  transform:none!important;translate:none!important;overflow:visible!important;
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-left{
+  display:flex!important;align-items:center!important;gap:18px!important;min-width:0!important;flex:0 0 auto!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn{
+  display:grid!important;place-content:center!important;gap:7px!important;
+  width:64px!important;height:64px!important;min-width:64px!important;padding:0!important;
+  border:1px solid rgba(225,181,47,.46)!important;border-radius:50%!important;
+  background:#050606!important;box-shadow:none!important;color:#e5bf67!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn span{display:block!important;width:20px!important;height:1px!important;background:#d7ad45!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-mobile-brand{
+  display:flex!important;align-items:center!important;min-width:0!important;padding:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;text-decoration:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-lockup{display:flex!important;align-items:center!important;gap:12px!important;width:auto!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-mark{
+  display:block!important;width:64px!important;height:64px!important;min-width:64px!important;max-width:64px!important;
+  object-fit:cover!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{display:flex!important;flex-direction:column!important;width:220px!important;min-width:0!important;overflow:visible!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-wordmark{
+  display:block!important;width:205px!important;height:auto!important;max-width:205px!important;max-height:45px!important;
+  object-fit:contain!important;object-position:left center!important;border:0!important;background:transparent!important;box-shadow:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy small{display:block!important;margin-top:2px!important;font-size:8px!important;line-height:1!important;letter-spacing:.08em!important;color:#d9ad3e!important;white-space:nowrap!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy em{display:none!important}
+
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;
+  width:auto!important;min-width:0!important;margin:0!important;padding:0!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>button,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile){
+  position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;margin:0!important;padding:0!important;
+  color:#f2eddf!important;background:rgba(8,8,7,.9)!important;border:0!important;border-radius:16px!important;
+  box-shadow:none!important;text-decoration:none!important;transform:none!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>button:hover,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile):hover{background:rgba(231,197,95,.08)!important;color:#e7c55f!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-timer-button{width:88px!important;min-width:88px!important;gap:6px!important;padding:0 10px!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-guest-chip{
+  display:flex!important;align-items:center!important;gap:12px!important;width:auto!important;min-width:245px!important;max-width:310px!important;height:58px!important;
+  margin:0!important;padding:3px 4px!important;color:#f2eddf!important;background:transparent!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;text-decoration:none!important;overflow:hidden!important
+}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile-avatar,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-avatar-letter{width:52px!important;height:52px!important;min-width:52px!important;border-radius:12px!important;object-fit:cover!important;border:0!important;box-shadow:none!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile>span:last-child,
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-guest-chip>span:last-child{display:flex!important;flex-direction:column!important;min-width:0!important;line-height:1.15!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile b{font-size:16px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile small{font-size:10px!important;color:#aaa59b!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body[data-shell-ready="true"] #nxShellTopbar [data-nx-shell-badge]{position:absolute!important;top:-5px!important;right:-4px!important;transform:none!important;background:#ef4444!important;color:#fff!important;border-radius:999px!important;padding:3px 6px!important;font:700 10px/1 system-ui!important}
+
+/* Remove competing desktop chrome on internal pages only. */
+body[data-shell-ready="true"] .app>.sidebar{position:fixed!important;z-index:5100!important;top:0!important;bottom:0!important;left:0!important;transform:translateX(-110%)!important;transition:transform .2s ease!important}
+body[data-shell-ready="true"].nx-global-sidebar-open .app>.sidebar{transform:translateX(0)!important}
+body[data-shell-ready="true"] .app>.main{margin-left:0!important;width:100%!important;max-width:none!important;padding-top:0!important}
+body[data-shell-ready="true"] .app>.main>.topbar,
+body[data-shell-ready="true"] .settings-v3-topbar,
+body[data-shell-ready="true"] .dash-topbar-exact{display:none!important}
+
+/* Dialogs always cover the rail. */
+.nx-shell-modal,.modal-overlay,.popup-overlay,[role="dialog"]{z-index:6000!important}
+.nx-shell-modal{position:fixed!important;inset:0!important;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(12px)!important;overflow:auto!important;overscroll-behavior:contain!important}
+.nx-shell-modal-card{position:relative!important;z-index:6001!important;max-height:calc(100vh - 40px)!important;overflow:auto!important}
+
+@media(max-width:1050px){
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{width:175px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-wordmark{width:165px!important;max-width:165px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile{min-width:56px!important;width:56px!important;padding:2px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-profile>span:last-child{display:none!important}
+}
+@media(max-width:760px){
+ body[data-shell-ready="true"]{padding-top:132px!important}
+ body[data-shell-ready="true"] > #nxShellTopbar.nx-shell-topbar{height:128px!important;min-height:128px!important;padding:12px 14px!important;align-items:flex-start!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-global-menu-btn{width:48px!important;height:48px!important;min-width:48px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-mark{width:44px!important;height:44px!important;min-width:44px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy{width:118px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-wordmark{width:112px!important;max-width:112px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-brand-copy small{font-size:6px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions{position:absolute!important;left:14px!important;right:14px!important;bottom:10px!important;gap:7px!important;justify-content:flex-end!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>button,
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile){width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important}
+ body[data-shell-ready="true"] #nxShellTopbar .nx-shell-timer-button{width:70px!important;min-width:70px!important}
+}

@@ -1,0 +1,162 @@
+/* NEXZO V138 — controlled read-aloud player and assistant identity editor. */
+.ai-clean-page button.assistant-avatar{
+  position:relative;
+  padding:3px;
+  cursor:pointer;
+}
+.ai-clean-page button.assistant-avatar::after{
+  content:'✎';
+  position:absolute;
+  right:-3px;
+  bottom:-3px;
+  width:15px;
+  height:15px;
+  border:2px solid #050505;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#d6aa32;
+  color:#090701;
+  font-size:8px;
+  opacity:0;
+  transform:scale(.8);
+  transition:opacity .16s ease,transform .16s ease;
+}
+.ai-clean-page button.assistant-avatar:hover::after,
+.ai-clean-page button.assistant-avatar:focus-visible::after{opacity:1;transform:scale(1)}
+.ai-clean-page button.assistant-avatar:focus-visible{outline:2px solid #e7bc43;outline-offset:3px}
+
+.ai-clean-page .reader-bar{
+  order:18;
+  flex:0 0 auto;
+  width:min(780px,100%);
+  min-height:58px;
+  margin:0 auto 8px;
+  padding:8px 9px 8px 13px;
+  display:grid;
+  grid-template-columns:minmax(170px,1fr) minmax(160px,230px) 92px auto auto;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(231,188,67,.34);
+  border-radius:18px;
+  background:linear-gradient(145deg,#17150f,#0e0e0e 60%,#13110a);
+  box-shadow:0 14px 38px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.025);
+}
+.ai-clean-page .reader-bar[hidden]{display:none!important}
+.ai-clean-page .reader-state{min-width:0;display:flex;align-items:center;gap:10px}
+.ai-clean-page .reader-state>span:last-child{min-width:0;display:flex;flex-direction:column;gap:2px}
+.ai-clean-page .reader-state b{font-size:12px;color:#f2dda0}
+.ai-clean-page .reader-state small{overflow:hidden;color:#8e8878;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+.ai-clean-page .reader-pulse{
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  border-radius:50%;
+  background:radial-gradient(circle,#f2d368 0 18%,transparent 20%),conic-gradient(from 0deg,#d1a329,#5d491a,#d1a329);
+  box-shadow:0 0 18px rgba(231,188,67,.2);
+  animation:nxReaderPulse 1.8s ease-in-out infinite;
+}
+.ai-clean-page .reader-bar.is-paused .reader-pulse{animation-play-state:paused;opacity:.5}
+.ai-clean-page .reader-bar label{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+.ai-clean-page .reader-bar select{
+  width:100%;
+  min-height:36px;
+  margin:0;
+  padding:0 9px;
+  border:1px solid #343126;
+  border-radius:10px;
+  background:#111;
+  color:#d8d4c8;
+  font-size:11px;
+  outline:0;
+}
+.ai-clean-page .reader-bar button{
+  min-height:36px;
+  padding:0 11px;
+  border:1px solid #3b372a;
+  border-radius:10px;
+  background:#171717;
+  color:#d5d0c3;
+  font-size:11px;
+  font-weight:800;
+}
+.ai-clean-page .reader-bar button:hover{border-color:#8f7229;color:#f2d574}
+
+.ai-clean-page .assistant-avatar-card{width:min(480px,94vw);text-align:center}
+.ai-clean-page .assistant-avatar-card>p{max-width:360px;margin:14px auto 20px;color:#888;line-height:1.55}
+.ai-clean-page .assistant-avatar-preview{
+  position:relative;
+  width:118px;
+  height:118px;
+  margin:24px auto 0;
+  padding:7px;
+  display:block;
+  overflow:visible;
+  border:1px solid rgba(231,188,67,.5);
+  border-radius:30px;
+  background:radial-gradient(circle at 35% 25%,rgba(231,188,67,.2),transparent 42%),#090909;
+  box-shadow:0 20px 55px rgba(0,0,0,.5),0 0 36px rgba(231,188,67,.12);
+  cursor:pointer;
+}
+.ai-clean-page .assistant-avatar-preview img{width:100%;height:100%;display:block;border-radius:23px;object-fit:cover}
+.ai-clean-page .assistant-avatar-preview i{position:absolute;right:-7px;bottom:-7px;width:34px;height:34px;display:grid;place-items:center;border:4px solid #0b0b0b;border-radius:50%;background:#dcaf36;color:#080601;font-style:normal}
+.ai-clean-page .assistant-avatar-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ai-clean-page .assistant-avatar-actions button{min-height:44px;border:1px solid #373226;border-radius:12px;background:#141414;color:#d2cec3;font-weight:800}
+.ai-clean-page .assistant-avatar-actions button:last-child{border-color:#9f7b1e;background:linear-gradient(135deg,#efd05f,#c59017);color:#0b0802}
+
+@keyframes nxReaderPulse{50%{transform:scale(.86);filter:brightness(1.25)}}
+@media(prefers-reduced-motion:reduce){.ai-clean-page .reader-pulse{animation:none}}
+@media(max-width:760px){
+  .ai-clean-page .reader-bar{grid-template-columns:minmax(0,1fr) auto auto}
+  .ai-clean-page .reader-bar label{display:none}
+}
+@media(max-width:620px){
+  .ai-clean-page .reader-bar{width:calc(100% - 4px);min-height:52px;padding:7px 8px 7px 10px;border-radius:15px}
+  .ai-clean-page .reader-state b{font-size:11px}.ai-clean-page .reader-state small{max-width:145px}
+  .ai-clean-page .reader-bar button{min-height:34px;padding:0 9px}
+  .ai-clean-page .assistant-avatar-actions{grid-template-columns:1fr}
+}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

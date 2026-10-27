@@ -1,0 +1,31 @@
+:root{--gp-bg:#0d001a;--gp-pink:#ff4ded;--gp-violet:#b84dff;--gp-panel:rgba(18,2,34,.72);--gp-border:rgba(255,77,237,.28);--gp-text:#fff;--gp-muted:#d5c6e7}
+html,body{min-height:100%;background:transparent!important}
+body{position:relative;color:var(--gp-text)}
+#gp-constellation{position:fixed;inset:0;width:100vw;height:100vh;z-index:-100;pointer-events:none;background:radial-gradient(circle at 50% 35%,#22013b 0,#120021 42%,#090011 100%)}
+body:before{content:"";position:fixed;inset:0;z-index:-99;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(255,77,237,.06),transparent 28%),radial-gradient(circle at 82% 35%,rgba(184,77,255,.08),transparent 32%)}
+.gp-topbar{position:fixed;top:0;left:0;right:0;height:64px;z-index:99990;display:flex;align-items:center;padding:0 28px;background:rgba(10,0,20,.72);border-bottom:1px solid rgba(255,77,237,.18);backdrop-filter:blur(14px);font-family:Orbitron,Arial,sans-serif}
+.gp-topbar .gp-brand{font-weight:800;font-size:22px;color:white;text-decoration:none;text-shadow:0 0 12px var(--gp-pink)}
+.gp-topbar .gp-brand span{color:var(--gp-pink)}
+.gp-topbar nav{margin-left:auto;display:flex;gap:10px}.gp-topbar nav a{color:white;text-decoration:none;padding:9px 15px;border-radius:22px;border:1px solid rgba(255,77,237,.2);background:rgba(255,255,255,.035);font-size:12px;font-weight:700;letter-spacing:.4px}.gp-topbar nav a:hover{background:linear-gradient(90deg,var(--gp-pink),var(--gp-violet));box-shadow:0 0 22px rgba(255,77,237,.5)}
+.gp-themed-page{padding-top:64px!important}
+@media(max-width:700px){.gp-topbar{padding:0 14px}.gp-topbar nav a{padding:8px 10px;font-size:10px}.gp-topbar nav a:nth-child(2){display:none}}
+
+/* GamePro v10: keep scrolling functional while hiding native scrollbar chrome */
+html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }
+
+/* GamePro v11 — premium neon system */
+:root{
+  --gp-bg:#07000e;--gp-bg2:#12001f;--gp-pink:#ff45e6;--gp-violet:#a84cff;
+  --gp-cyan:#66e7ff;--gp-surface:rgba(19,3,34,.72);--gp-line:rgba(255,93,236,.20);
+  --gp-shadow:0 24px 80px rgba(0,0,0,.45);--gp-radius:22px;
+}
+*{scrollbar-width:none!important;-ms-overflow-style:none!important}
+*::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{overflow-x:hidden;background:#07000e!important}
+body::after{content:"";position:fixed;inset:0;z-index:-98;pointer-events:none;opacity:.14;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 82%)}
+#gp-constellation{background:radial-gradient(circle at var(--mx,50%) var(--my,34%),#2b0647 0,#130021 38%,#07000e 74%)!important;transition:background .18s linear}
+a,button{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease,color .18s ease}
+a:active,button:active{transform:scale(.97)}
+::selection{background:rgba(255,69,230,.32);color:#fff}

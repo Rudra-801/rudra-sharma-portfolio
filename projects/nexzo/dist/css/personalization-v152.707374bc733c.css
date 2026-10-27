@@ -1,0 +1,5 @@
+@import url('personalization-v151.css?v=151');
+/* V152 visible personalization + sync card */
+.nx-home-personalized{max-width:1480px;margin:22px auto 0;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 26px;border:1px solid rgba(244,196,63,.28)!important;background:linear-gradient(100deg,rgba(244,196,63,.08),rgba(99,62,180,.06) 60%,rgba(5,8,15,.76))!important}
+.nx-home-personalized[hidden]{display:none!important}.nx-home-personalized-copy small{font-weight:900;letter-spacing:.12em;color:#d9b63a}.nx-home-personalized-copy h2{margin:6px 0 4px;font-size:1.35rem}.nx-home-personalized-copy p{margin:0;color:#9aa4b4}.nx-home-personalized-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}.nx-home-personalized-meta span,.nx-home-personalized-meta a{padding:8px 11px;border:1px solid #313846;border-radius:999px;background:#0c1119;color:#dce5f5;text-decoration:none;font-size:.85rem}.nx-home-personalized-meta a{border-color:rgba(244,196,63,.35);color:#f0c84b}
+@media(max-width:760px){.nx-home-personalized{align-items:flex-start;flex-direction:column}.nx-home-personalized-meta{justify-content:flex-start}}

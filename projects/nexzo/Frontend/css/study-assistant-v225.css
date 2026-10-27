@@ -1,0 +1,73 @@
+/* V225 — intent-first Study Assistant. No manual mode bar; one conversational workspace. */
+html,body.ai-clean-page{scrollbar-width:none!important}html::-webkit-scrollbar,body.ai-clean-page::-webkit-scrollbar,.messages::-webkit-scrollbar,.nexzo-companion::-webkit-scrollbar,.modal-card::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}.messages,.nexzo-companion,.modal-card{scrollbar-width:none!important;-ms-overflow-style:none!important}
+body.ai-clean-page .chat-shell{left:248px!important;right:326px!important;top:88px!important;bottom:12px!important;width:auto!important;margin:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+/* AI infers intent from the message; old mode selector is compatibility-only. */
+body.ai-clean-page .assistant-command-center{display:none!important}
+body.ai-clean-page #composerModeChip{display:none!important}
+body.ai-clean-page .messages{flex:1 1 auto!important;min-height:0!important;padding:34px 26px 190px!important;overflow-y:auto!important;overflow-x:hidden!important;scroll-behavior:smooth!important}
+body.ai-clean-page .assistant-welcome{max-width:900px!important;min-height:0!important;margin:8vh auto 0!important;padding:28px!important;border:1px solid rgba(168,85,247,.20)!important;border-radius:28px!important;background:radial-gradient(circle at 12% 0,rgba(168,85,247,.10),transparent 34%),linear-gradient(145deg,rgba(13,18,27,.82),rgba(7,10,15,.72))!important;box-shadow:0 24px 70px rgba(0,0,0,.30)!important;backdrop-filter:blur(16px)!important}
+body.ai-clean-page .welcome-copy h2{font-size:34px!important;background:linear-gradient(90deg,#f7f7fb,#c4b5fd,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent!important}.welcome-actions{grid-template-columns:repeat(3,minmax(0,1fr))!important}.welcome-actions button{min-height:64px!important;background:linear-gradient(145deg,rgba(17,24,39,.94),rgba(9,13,20,.96))!important;border-color:rgba(148,163,184,.17)!important;box-shadow:inset 0 1px rgba(255,255,255,.025)!important}.welcome-actions button:hover{transform:translateY(-3px)!important;border-color:rgba(192,132,252,.48)!important;box-shadow:0 12px 30px rgba(168,85,247,.10)!important}
+/* Composer is the single command surface. Search is a capability inside it, not another bar. */
+body.ai-clean-page #composer{position:absolute!important;left:28px!important;right:28px!important;bottom:28px!important;width:auto!important;margin:0!important;min-height:126px!important;padding:18px!important;border-radius:25px!important;background:linear-gradient(155deg,rgba(14,20,30,.985),rgba(7,11,17,.99))!important;border:1px solid rgba(244,200,75,.38)!important;box-shadow:0 24px 80px rgba(0,0,0,.58),0 0 32px rgba(168,85,247,.06)!important;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease!important}
+body.ai-clean-page #composer:focus-within{border-color:rgba(192,132,252,.60)!important;box-shadow:0 28px 90px rgba(0,0,0,.62),0 0 34px rgba(168,85,247,.12)!important}
+body.ai-clean-page #input{min-height:58px!important;font-size:16px!important;line-height:1.55!important}.composer-search-btn{display:inline-flex!important}.composer-tools-btn{display:inline-flex!important}.disclaimer{position:absolute!important;bottom:4px!important;left:0!important;right:0!important}
+/* Search is a proper centered overlay and can never fall below the conversation. */
+body.ai-clean-page #v221SearchBackdrop{position:fixed!important;inset:0!important;z-index:899!important;background:rgba(2,5,10,.72)!important;backdrop-filter:blur(10px)!important}
+body.ai-clean-page #assistantSearchPanel{position:fixed!important;z-index:900!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:min(720px,calc(100vw - 40px))!important;margin:0!important;padding:22px!important;border-radius:24px!important;border:1px solid rgba(34,211,238,.30)!important;background:radial-gradient(circle at 80% 0,rgba(34,211,238,.08),transparent 32%),linear-gradient(155deg,#101722,#080c12)!important;box-shadow:0 35px 110px rgba(0,0,0,.72),0 0 45px rgba(34,211,238,.08)!important}
+body.ai-clean-page #assistantSearchPanel[hidden]{display:none!important}.assistant-search-panel-head{display:flex!important;justify-content:space-between!important;align-items:center!important;margin-bottom:16px!important}.assistant-search-panel-head small{display:block!important;color:#67e8f9!important;font-weight:900!important;letter-spacing:.12em!important}.assistant-search-panel-head b{display:block!important;margin-top:4px!important;font-size:20px!important}.assistant-search-form{display:grid!important;grid-template-columns:28px minmax(0,1fr) auto!important;align-items:center!important;gap:10px!important;padding:8px 8px 8px 14px!important;border:1px solid rgba(148,163,184,.22)!important;border-radius:17px!important;background:#080c12!important}.assistant-search-form input{height:48px!important;border:0!important;background:transparent!important;color:#fff!important;outline:0!important;font-size:16px!important}.assistant-search-form button{height:44px!important;padding:0 20px!important;border:0!important;border-radius:12px!important;background:linear-gradient(135deg,#22d3ee,#8b5cf6)!important;color:#061017!important;font-weight:900!important}.assistant-search-hints{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:13px!important}.assistant-search-hints button{padding:9px 12px!important;border:1px solid rgba(148,163,184,.16)!important;border-radius:999px!important;background:#111722!important;color:#cbd5e1!important}
+/* Left rail */
+body.ai-clean-page .v220-assistant-rail{overflow:hidden!important;background:linear-gradient(180deg,rgba(12,17,25,.98),rgba(6,9,14,.98))!important}.assistant-rail-note{display:none!important}.assistant-rail-nav button,.assistant-rail-nav a{transition:transform .18s ease,border-color .18s ease,background .18s ease!important}.assistant-rail-nav button:hover,.assistant-rail-nav a:hover{transform:translateX(4px)!important;background:rgba(168,85,247,.07)!important;border-color:rgba(168,85,247,.22)!important}
+/* Persistent companion: actual model, state, reactions and actions. */
+body.ai-clean-page .nexzo-companion{display:flex!important;position:fixed!important;right:14px!important;top:94px!important;bottom:16px!important;width:296px!important;height:auto!important;max-height:none!important;padding:12px!important;overflow-y:auto!important;overflow-x:hidden!important;border-radius:24px!important;background:radial-gradient(circle at 50% 12%,rgba(34,211,238,.08),transparent 28%),linear-gradient(165deg,rgba(12,17,25,.995),rgba(5,8,13,.995))!important;border:1px solid rgba(244,200,75,.25)!important;box-shadow:0 30px 90px rgba(0,0,0,.56),0 0 40px rgba(168,85,247,.08)!important;z-index:44!important;transform:none!important}
+body.ai-clean-page .nexzo-companion:before{content:"♛  YOUR COMPANION"!important;color:#f4c84b!important;font-size:11px!important;font-weight:950!important;letter-spacing:.10em!important;margin:2px 4px 8px!important}
+body.ai-clean-page .nexzo-companion .pet-stage{display:block!important;order:1!important;position:relative!important;width:100%!important;height:245px!important;flex:0 0 245px!important;border-radius:20px!important;overflow:hidden!important;background:radial-gradient(circle at 50% 42%,rgba(34,211,238,.26),transparent 28%),radial-gradient(circle at 50% 105%,rgba(168,85,247,.22),transparent 45%),linear-gradient(180deg,#111b29,#070a0f)!important;border:1px solid rgba(34,211,238,.18)!important;box-shadow:inset 0 1px rgba(255,255,255,.04)!important;animation:nxPetFloat 4.2s ease-in-out infinite!important}
+body.ai-clean-page .nexzo-companion .pet-stage>*{transform:scale(1.42)!important;transform-origin:50% 52%!important}.nexzo-companion[data-pet-kind="sprout"] .pet-stage{filter:hue-rotate(75deg)}.nexzo-companion[data-pet-kind="flare"] .pet-stage{filter:hue-rotate(320deg) saturate(1.25)}.nexzo-companion[data-pet-kind="droppy"] .pet-stage{filter:hue-rotate(160deg)}.nexzo-companion[data-pet-kind="rocky"] .pet-stage{filter:saturate(.35) brightness(.92)}.nexzo-companion[data-pet-kind="cloudie"] .pet-stage{filter:hue-rotate(210deg) brightness(1.18)}
+@keyframes nxPetFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+body.ai-clean-page .nexzo-companion .pet-presence{display:block!important;order:2!important;position:static!important;min-height:40px!important;margin-top:9px!important;padding:10px 12px!important;border-radius:13px!important;background:rgba(52,211,153,.06)!important;border:1px solid rgba(52,211,153,.20)!important;color:#9bf4d0!important}
+body.ai-clean-page .nexzo-companion .pet-popover{display:block!important;order:3!important;position:static!important;width:100%!important;max-height:none!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}.nexzo-companion .pet-popover-head{display:flex!important;padding:11px 2px 8px!important}.nexzo-companion .pet-close{display:none!important}.nexzo-companion .pet-bubble{display:block!important;margin:0 0 9px!important;padding:11px!important;border-radius:14px!important;background:linear-gradient(145deg,rgba(168,85,247,.10),rgba(244,200,75,.05))!important;border:1px solid rgba(168,85,247,.18)!important}.nexzo-companion .pet-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}.nexzo-companion .pet-actions button{min-height:50px!important;border-radius:12px!important}.nexzo-companion .pet-roster{display:none!important}
+@media(max-width:1280px){body.ai-clean-page .chat-shell{left:218px!important;right:274px!important}.v220-assistant-rail{width:190px!important}.nexzo-companion{width:250px!important}}
+@media(max-width:1040px){.v220-assistant-rail{display:none!important}body.ai-clean-page .chat-shell{left:10px!important;right:10px!important}.nexzo-companion{display:none!important}}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

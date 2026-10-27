@@ -1,0 +1,4 @@
+html,body{max-width:100%;min-height:100%;margin:0!important;scrollbar-width:none!important;-ms-overflow-style:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}body{overflow:auto;background-color:transparent!important}body.gp-themed-page{padding-top:0!important}.gp-topbar{display:none!important}/* keep each game inside its iframe instead of forcing platform chrome into it */\n
+/* GamePro v10: keep scrolling functional while hiding native scrollbar chrome */
+html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }

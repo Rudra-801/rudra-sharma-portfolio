@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {GLTFLoader} from '../Frontend/assets/vendor/three/GLTFLoader.js';
+import * as T from '../Frontend/assets/vendor/three/three.module.js';
+import {inspectModel} from '../Frontend/experiments/companion/model-contract.mjs';
+import {CONFIG} from '../Frontend/experiments/companion/config.mjs';
+const bytes=fs.readFileSync(new URL('../Frontend/experiments/companion/assets/nyro-crystal-rig.glb',import.meta.url));
+const model=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
+const report=inspectModel(model,T,CONFIG.animationMap);
+test('procedural review rig is rejected by production contract',()=>{assert.ok(report.errors.includes('Missing textures'));assert.ok(report.errors.includes('Missing animation Idle'));assert.equal(report.skinnedMeshes,7);});
+test('default targets separate authored asset, never review prototype',()=>assert.equal(CONFIG.modelPath,'../../assets/models/nyro/nyro.glb'));
+test('renderer contains no image, SVG or procedural creature fallback',()=>{const src=fs.readFileSync(new URL('../Frontend/experiments/companion/renderer.mjs',import.meta.url),'utf8');assert.doesNotMatch(src,/buildCreature|animateCreature|<svg|<img/);assert.match(src,/inspectModel/);});
+console.log(JSON.stringify({prototypeInspection:report},null,2));

@@ -1,0 +1,11 @@
+(()=>{'use strict';
+const pet=document.getElementById('nexzoCompanion');
+const stage=pet?.querySelector('.pet-stage');
+if(!pet||!stage)return;
+const setOpen=(open)=>{pet.classList.toggle('is-open',!!open);stage.setAttribute('aria-expanded',open?'true':'false');};
+stage.addEventListener('click',()=>setOpen(!pet.classList.contains('is-open')));
+stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setOpen(!pet.classList.contains('is-open'));}});
+document.addEventListener('click',e=>{if(pet.classList.contains('is-open')&&!pet.contains(e.target))setOpen(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false);});
+pet.addEventListener('click',e=>{if(e.target.closest('button'))setTimeout(()=>setOpen(false),120);});
+})();

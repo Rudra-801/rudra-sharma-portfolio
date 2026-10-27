@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const s=document.createElement('script');s.src='app.js';document.body.appendChild(s);document.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginButton')?.click();});});

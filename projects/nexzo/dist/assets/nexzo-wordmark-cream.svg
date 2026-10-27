@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 150" role="img" aria-label="NEXZO">
+ <g fill="none" stroke="#f3eedf" stroke-width="21" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20 128V35Q20 8 39 31L126 126Q137 141 137 119V20"/>
+  <path d="M268 20H201Q178 20 178 46V102Q178 128 203 128H270M179 74H254"/>
+  <path d="M464 20H553Q568 20 556 33L466 116Q453 128 469 128H563"/>
+  <ellipse cx="662" cy="74" rx="67" ry="59"/>
+ </g>
+ <g fill="#f3eedf">
+  <path d="M290 14C322 9 342 37 365 66L394 102C407 119 425 134 442 137C413 149 391 129 371 106L335 63C319 43 306 24 290 14Z"/>
+  <path d="M365 59C391 27 415 5 442 14C420 30 405 52 391 65C379 77 372 70 365 59Z"/>
+  <path d="M336 89C344 81 351 82 358 89C336 116 316 144 288 138C307 121 320 102 336 89Z"/>
+ </g>
+</svg>

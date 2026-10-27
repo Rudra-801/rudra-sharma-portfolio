@@ -1,0 +1,214 @@
+/* NEXZO V137 — branded chat identity, synced user avatar and invisible scrollbars. */
+.ai-clean-page .messages,
+.ai-clean-page .study-mode-bar,
+.ai-clean-page .history-list{
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.ai-clean-page .messages::-webkit-scrollbar,
+.ai-clean-page .study-mode-bar::-webkit-scrollbar,
+.ai-clean-page .history-list::-webkit-scrollbar{
+  display:none;
+  width:0;
+  height:0;
+}
+
+.ai-clean-page .message-row{
+  align-items:flex-start;
+  gap:12px;
+}
+.ai-clean-page .message-row.assistant{
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr);
+}
+.ai-clean-page .message-row.user{
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+}
+.ai-clean-page .message-avatar{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  color:#f7d974;
+  font-size:13px;
+  font-weight:900;
+  line-height:1;
+}
+.ai-clean-page .message-avatar img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.ai-clean-page .assistant-avatar{
+  padding:3px;
+  border:1px solid rgba(231,188,67,.38);
+  background:#0b0b0b;
+  box-shadow:0 8px 22px rgba(0,0,0,.34),0 0 18px rgba(231,188,67,.07);
+}
+.ai-clean-page button.user-avatar{
+  position:relative;
+  padding:0;
+  border:1px solid #49412a;
+  background:linear-gradient(145deg,#28200d,#121212);
+  cursor:pointer;
+  box-shadow:none;
+}
+.ai-clean-page button.user-avatar::after{
+  content:'✎';
+  position:absolute;
+  right:-2px;
+  bottom:-2px;
+  width:15px;
+  height:15px;
+  border:2px solid #050505;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#d6aa32;
+  color:#090701;
+  font-size:8px;
+  opacity:0;
+  transform:scale(.8);
+  transition:opacity .16s ease,transform .16s ease;
+}
+.ai-clean-page button.user-avatar:hover::after,
+.ai-clean-page button.user-avatar:focus-visible::after{
+  opacity:1;
+  transform:scale(1);
+}
+.ai-clean-page button.user-avatar:focus-visible{
+  outline:2px solid #e7bc43;
+  outline-offset:3px;
+}
+.ai-clean-page .assistant .bubble{
+  min-width:0;
+}
+
+.ai-clean-page .profile-chip{
+  padding:4px 10px 4px 5px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.ai-clean-page .profile-avatar-button{
+  position:relative;
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  padding:0;
+  border:1px solid #5d4d23;
+  border-radius:12px;
+  overflow:visible;
+  background:linear-gradient(145deg,#2a220d,#121212);
+  color:#f7d974;
+  cursor:pointer;
+}
+.ai-clean-page .profile-avatar-button>span{
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+.ai-clean-page .profile-avatar-button img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.ai-clean-page .profile-avatar-button i{
+  position:absolute;
+  right:-5px;
+  bottom:-4px;
+  width:17px;
+  height:17px;
+  border:2px solid #090909;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#d8ad36;
+  color:#080601;
+  font-size:9px;
+  font-style:normal;
+}
+.ai-clean-page .profile-avatar-button:hover,
+.ai-clean-page .profile-avatar-button:focus-visible{
+  border-color:#e1ba4e;
+}
+.ai-clean-page .profile-avatar-button.is-saving{
+  pointer-events:none;
+  opacity:.62;
+}
+.ai-clean-page .profile-chip-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  color:inherit;
+  text-decoration:none;
+}
+.ai-clean-page .profile-chip-copy b,
+.ai-clean-page .profile-chip-copy small{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@media(max-width:620px){
+  .ai-clean-page .message-row{gap:8px}
+  .ai-clean-page .message-row.assistant{grid-template-columns:30px minmax(0,1fr)}
+  .ai-clean-page .message-avatar{width:30px;height:30px;flex-basis:30px;border-radius:9px}
+  .ai-clean-page .user .bubble{max-width:calc(88% - 38px)}
+  .ai-clean-page .profile-avatar-button{width:34px;height:34px;flex-basis:34px}
+}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,13 @@
+/* Community discussion controls and restored Study Groups integration. */
+body.community-page:has(#nxRealCommunityModal) #nxShellTopbar{visibility:hidden!important;pointer-events:none!important}
+body.community-page:has(#nxRealCommunityModal){overflow:hidden}
+body.community-page #nxRealCommunityModal .nx-group-workspace{height:100%!important;min-height:0!important;grid-template-rows:minmax(0,1fr)!important}
+body.community-page #nxRealCommunityModal .nx-workspace-chat{height:100%!important;min-height:0!important}
+body.community-page #nxRealCommunityModal .nx-group-room-head{grid-row:1}
+body.community-page #nxRealCommunityModal .nx-group-connection{grid-row:2}
+body.community-page #nxRealCommunityModal .nx-group-search{grid-row:3}
+body.community-page #nxRealCommunityModal .nx-group-chat-window{grid-row:4}
+body.community-page #nxRealCommunityModal .nx-group-actions{grid-row:5}
+body.community-page #communityStudyGroups .nx-community-section-head{display:flex;flex-wrap:wrap;gap:10px}
+body.community-page #communityStudyGroups .nx-group-header-actions{margin-left:auto}
+.community-filter-card{gap:10px;flex-wrap:wrap}.nx-community-search{display:flex;align-items:center;gap:8px;min-width:min(360px,100%);flex:1 1 320px;padding:0 13px;border:1px solid rgba(255,255,255,.11);border-radius:12px;background:rgba(5,8,16,.72)}.nx-community-search span{color:#a78bfa;font-size:20px}.nx-community-search input{width:100%;height:42px;border:0!important;outline:0;background:transparent!important;color:#f8fafc;font:inherit}.nx-community-search input::placeholder{color:#64748b}.nx-community-focus-card{background:radial-gradient(circle at 95% 5%,rgba(168,85,247,.16),transparent 38%),linear-gradient(145deg,rgba(16,11,29,.94),rgba(5,8,16,.96));border-color:rgba(168,85,247,.28)!important}.nx-community-focus-card>p{margin:8px 0 14px;color:#aab4c7;line-height:1.55;font-size:13px}.nx-community-focus-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.nx-community-focus-actions .btn{min-height:38px;border-radius:10px}.community-pro-stats .gold{background:linear-gradient(145deg,rgba(36,27,8,.82),rgba(8,9,13,.94))}@media(max-width:720px){.nx-community-search{flex-basis:100%}.nx-community-focus-actions{grid-template-columns:1fr}}

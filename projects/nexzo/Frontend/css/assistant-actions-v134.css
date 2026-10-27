@@ -1,0 +1,48 @@
+/* NEXZO V134 confirmed assistant actions. */
+.ai-clean-page .assistant-action-card{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:11px;margin:14px 0 4px;padding:13px;border:1px solid rgba(34,211,238,.28);border-radius:15px;background:radial-gradient(circle at 0 0,rgba(34,211,238,.10),transparent 54%),rgba(4,10,18,.86)}
+.ai-clean-page .assistant-action-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(34,211,238,.12);font-size:20px}.ai-clean-page .assistant-action-copy{display:grid;min-width:0}.ai-clean-page .assistant-action-copy small{color:#67e8f9;font-size:9px;font-weight:950;letter-spacing:.14em}.ai-clean-page .assistant-action-copy b{margin-top:2px;color:#f8fafc}.ai-clean-page .assistant-action-copy span,.ai-clean-page .assistant-action-copy em{overflow:hidden;color:#9aa8bb;font-size:11px;text-overflow:ellipsis;white-space:nowrap}.ai-clean-page .assistant-action-copy em{margin-top:3px;color:#c4b5fd;font-style:normal}.ai-clean-page .assistant-action-card>button{min-height:38px;padding:0 13px;border:0;border-radius:11px;background:linear-gradient(135deg,#0891b2,#7c3aed);color:white;font-weight:900;cursor:pointer}.ai-clean-page .assistant-action-card>button:disabled{cursor:wait;opacity:.65}.ai-clean-page .assistant-action-card.is-complete{border-color:rgba(34,197,94,.30);background:rgba(34,197,94,.06)}.ai-clean-page .assistant-action-card.is-complete>strong{color:#4ade80;font-size:12px}
+@media(max-width:640px){.ai-clean-page .assistant-action-card{grid-template-columns:38px minmax(0,1fr)}.ai-clean-page .assistant-action-icon{width:38px;height:38px}.ai-clean-page .assistant-action-card>button,.ai-clean-page .assistant-action-card>strong{grid-column:1/-1}}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

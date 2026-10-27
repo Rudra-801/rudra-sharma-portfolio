@@ -1,0 +1,139 @@
+/* NEXZO UI v76 — unified product shell + evaluator-facing mobile polish */
+:root{
+  --nx-bg:#03070d;--nx-surface:#080d16;--nx-surface-2:#0b111c;--nx-line:rgba(148,163,184,.18);
+  --nx-text:#f7f9ff;--nx-muted:#9eabc0;--nx-purple:#9b5cff;--nx-cyan:#35d6ff;--nx-green:#35dd84;
+  --nx-pink:#ff4db8;--nx-orange:#ff8c3a;--nx-gold:#f6c84b;--nx-radius:22px;--nx-ease:200ms cubic-bezier(.2,.7,.2,1);
+}
+html,body{background:radial-gradient(circle at 78% 0%,rgba(42,79,124,.10),transparent 28%),var(--nx-bg)!important;color:var(--nx-text)}
+body:not(.mentor-page) .main{background:transparent!important}
+
+/* One visual language for functional surfaces */
+body:not(.mentor-page) :is(.card,.panel,.section-panel,.dash-card-exact,.hub-card,.settings-v3-card,.profile-stat,.rank-strip,.journey-card){
+  border-radius:var(--nx-radius)!important;
+  border-color:color-mix(in srgb,var(--c,var(--x,var(--nx-purple))) 52%,var(--nx-line))!important;
+  background:
+    linear-gradient(145deg,color-mix(in srgb,var(--c,var(--x,var(--nx-purple))) 7%,transparent),transparent 46%),
+    linear-gradient(180deg,rgba(12,18,29,.96),rgba(5,9,16,.98))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 12px 34px rgba(0,0,0,.24)!important;
+}
+@media (hover:hover) and (pointer:fine){
+  body:not(.mentor-page) :is(.card,.panel,.dash-card-exact,.hub-card,.profile-stat){transition:transform var(--nx-ease),border-color var(--nx-ease),box-shadow var(--nx-ease)!important;transform:translateY(0)!important}
+  body:not(.mentor-page) :is(.card,.panel,.dash-card-exact,.hub-card,.profile-stat):hover{transform:translateY(-2px)!important;z-index:5!important;box-shadow:0 18px 44px color-mix(in srgb,var(--c,var(--x,var(--nx-purple))) 12%,rgba(0,0,0,.52))!important}
+}
+
+/* Gold is special, not a default surface colour */
+.planner-page{--nx-planner-accent:#8b5cf6}
+.planner-page :is(.panel,.stat,.tabs,.filters){--c:var(--nx-planner-accent)!important;--x:var(--nx-planner-accent)!important}
+.planner-page .panel,.planner-page .stat{border-color:rgba(139,92,246,.34)!important}
+.planner-page .primary,.planner-page .chip.active,.planner-page .tabs .active{background:linear-gradient(135deg,#8b5cf6,#4f9cff)!important;border-color:transparent!important;color:white!important;box-shadow:0 8px 24px rgba(139,92,246,.22)!important}
+
+/* Headings: same rhythm on every page */
+body:not(.mentor-page) :is(.page-title,.planner-title h1,.dash-welcome-exact h1,.profile-page-head h1,.settings-v3-heading h1,.nx-hub-hero h1){letter-spacing:-.035em!important}
+body:not(.mentor-page) :is(.sub,.planner-title p,.dash-welcome-exact p,.settings-v3-heading p){color:var(--nx-muted)!important}
+
+/* Shell mobile brand is hidden on desktop */
+.nx-shell-mobile-brand,.nx-mobile-more{display:none}
+
+/* Prevent visible legacy AI-provider marketing copy from resurfacing */
+[data-nx-provider-brand]{display:none!important}
+
+@media (max-width:760px){
+  :root{--nx-mobile-nav-h:72px;--nx-mobile-pad:16px;--nx-mobile-radius:20px}
+  html{background:#03070d!important}
+  body{background:linear-gradient(180deg,#040912 0%,#02060b 100%)!important}
+
+  /* App-style top bar: brand left, compact actions right */
+  body:not(.mentor-page) #nxShellTopbar{left:12px!important;right:12px!important;top:calc(env(safe-area-inset-top) + 7px)!important;height:56px!important;min-height:56px!important;padding:6px 7px!important;justify-content:space-between!important;border-radius:18px!important;background:rgba(3,7,13,.96)!important}
+  .nx-shell-mobile-brand{display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important;text-decoration:none!important;color:#fff!important;padding:0 5px!important}
+  .nx-shell-mobile-brand img{width:38px!important;height:38px!important;object-fit:cover!important;border-radius:11px!important;border:1px solid rgba(246,200,75,.34)!important;box-shadow:0 0 16px rgba(246,200,75,.10)!important}
+  .nx-shell-mobile-brand span{display:flex!important;flex-direction:column!important;min-width:0!important;line-height:1.05!important}
+  .nx-shell-mobile-brand b{font-size:15px!important;letter-spacing:.03em!important;white-space:nowrap!important}
+  .nx-shell-mobile-brand small{font-size:8px!important;color:#94a3b8!important;text-transform:uppercase!important;letter-spacing:.06em!important;white-space:nowrap!important;max-width:82px!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-actions{margin:0!important;gap:4px!important;min-width:0!important}
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-actions>button,
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-actions>a:not(.nx-shell-profile){width:38px!important;height:38px!important;min-width:38px!important;border-radius:12px!important}
+  body:not(.mentor-page) #nxShellTopbar [data-nx-shell-notifications]{display:none!important}
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-timer-button{width:52px!important;min-width:52px!important;font-size:12px!important}
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-profile{width:38px!important;min-width:38px!important;max-width:38px!important;height:38px!important;border-radius:12px!important}
+  body:not(.mentor-page) #nxShellTopbar .nx-shell-profile-avatar{width:32px!important;height:32px!important;border-radius:10px!important}
+
+  /* Real mobile dock: 4 core destinations + More, no giant sheet */
+  body[data-shell-ready="true"] .app>.sidebar,body:not(.mentor-page) .app>.sidebar{
+    left:12px!important;right:12px!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;height:64px!important;min-height:64px!important;max-height:64px!important;padding:5px!important;border-radius:20px!important;display:flex!important;gap:3px!important;align-items:stretch!important;overflow:hidden!important;background:rgba(3,7,13,.97)!important
+  }
+  body:not(.mentor-page) .sidebar .nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;overflow:hidden!important;flex:1!important;min-width:0!important}
+  body:not(.mentor-page) .sidebar .nav a{display:none!important}
+  body:not(.mentor-page) .sidebar .nav a[data-mobile-primary="true"]{display:flex!important;min-width:0!important;width:auto!important;height:54px!important;min-height:54px!important;flex:1 1 auto!important;padding:4px 2px!important;border-radius:14px!important;gap:2px!important;font-size:8px!important}
+  body:not(.mentor-page) .sidebar .nav a[data-nav-label="Profile"]{display:none!important}
+  body:not(.mentor-page) .sidebar .nav a i{width:25px!important;height:25px!important;min-width:25px!important;font-size:15px!important;border-radius:8px!important}
+  body:not(.mentor-page) .sidebar .nav a span{display:block!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .nx-mobile-more{display:flex!important;flex:0 0 54px!important;width:54px!important;height:54px!important;border:1px solid transparent!important;border-radius:14px!important;background:transparent!important;color:#aeb7c7!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;gap:2px!important;padding:4px 2px!important;font:inherit!important}
+  .nx-mobile-more i{width:25px!important;height:25px!important;border-radius:8px!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:13px!important;background:#101726!important}
+  .nx-mobile-more span{font-size:8px!important;font-weight:700!important}
+  .nx-mobile-more.active{color:#fff!important;border-color:rgba(155,92,255,.45)!important;background:rgba(155,92,255,.11)!important}
+
+  /* More drawer */
+  .nx-mobile-nav-modal{align-items:flex-end!important;padding:12px!important;padding-bottom:calc(84px + env(safe-area-inset-bottom))!important}
+  .nx-mobile-nav-modal .nx-shell-modal-card{max-width:none!important;width:100%!important;max-height:70dvh!important;border-radius:24px!important;padding:18px!important;background:linear-gradient(180deg,#0b111c,#050911)!important}
+  .nx-mobile-nav-modal .nx-shell-modal-card>h2{font-size:22px!important;margin:0 0 14px!important}
+  .nx-mobile-nav-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .nx-mobile-nav-item{display:grid!important;grid-template-columns:36px minmax(0,1fr) 14px!important;align-items:center!important;gap:9px!important;padding:11px!important;border-radius:15px!important;text-decoration:none!important;color:#e8edf6!important;background:#0b111c!important;border:1px solid rgba(148,163,184,.14)!important;min-width:0!important}
+  .nx-mobile-nav-item i{width:36px!important;height:36px!important;border-radius:11px!important;display:grid!important;place-items:center!important;font-style:normal!important;background:color-mix(in srgb,var(--c) 14%,#0b111c)!important;box-shadow:inset 0 0 14px color-mix(in srgb,var(--c) 12%,transparent)!important}
+  .nx-mobile-nav-item span{min-width:0!important}.nx-mobile-nav-item b{display:block!important;font-size:12px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.nx-mobile-nav-item small{display:block!important;font-size:9px!important;color:#7f8ba0!important;margin-top:2px!important}.nx-mobile-nav-item em{font-style:normal!important;color:#667085!important;font-size:18px!important}.nx-mobile-nav-item.active{border-color:color-mix(in srgb,var(--c) 58%,transparent)!important;background:color-mix(in srgb,var(--c) 10%,#0b111c)!important}
+
+  /* Remove giant dead zones caused by desktop min-heights/transforms */
+  body:not(.mentor-page) .main{padding-top:calc(env(safe-area-inset-top) + 78px)!important;padding-left:var(--nx-mobile-pad)!important;padding-right:var(--nx-mobile-pad)!important;padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+  body:not(.mentor-page) :is(section,header,article,div){scroll-margin-top:82px}
+  .planner-page :is(.planner-shell,.planner-head,.stats,.main-grid),.dashboard-page :is(.dashboard-exact-main,.dash-welcome-exact,.dash-stats-exact,.dash-live-layout),.community-page :is(.community-pro-layout,.community-pro-hero,.community-pro-stats),.nx-hub-page :is(.nx-hub-shell,.nx-hub-hero,.nx-hub-action-row,.nx-hub-summary),.settings-page :is(.settings-v3-main,.settings-v3-heading,.settings-v3-layout),.profile-page :is(.profile-shell,.profile-hero,.profile-main){transform:none!important;top:auto!important;bottom:auto!important;min-height:0!important}
+
+  /* Typography scale made for phone, not shrunk desktop */
+  body:not(.mentor-page) :is(.page-title,.planner-title h1,.dash-welcome-exact h1,.profile-page-head h1){font-size:clamp(30px,9vw,40px)!important;line-height:1.03!important;margin:4px 0 7px!important}
+  body:not(.mentor-page) :is(.sub,.planner-title p,.dash-welcome-exact p){font-size:14px!important;line-height:1.5!important;margin-bottom:15px!important}
+
+  /* Universal cards */
+  body:not(.mentor-page) :is(.card,.panel,.section-panel,.dash-card-exact,.hub-card,.settings-v3-card,.settings-v3-heading,.profile-hero,.profile-stat,.rank-strip,.journey-card){border-radius:20px!important;padding:16px!important;overflow:hidden!important}
+  body:not(.mentor-page) :is(.card,.panel,.dash-card-exact,.hub-card,.profile-stat):hover{transform:none!important}
+
+  /* Home: smaller hero + app tiles */
+  .home-page #nx-home-fixed-header-v10{display:none!important}
+  .home-page .home-acad-hero,.home-page .home-hero,.home-page .hero{margin-top:2px!important;padding:20px!important;border-radius:22px!important;min-height:0!important}
+  .home-page .home-acad-hero h1,.home-page .home-hero h1,.home-page .hero h1{font-size:clamp(38px,11vw,50px)!important;line-height:.98!important}
+  .home-page .home-acad-hero p,.home-page .home-hero p,.home-page .hero p{font-size:15px!important;line-height:1.55!important}
+  .home-page .home-acad-grid{grid-template-columns:1fr 1fr!important;gap:10px!important}
+  .home-page .home-acad-card{padding:15px!important;min-height:170px!important}.home-page .home-acad-card h3{font-size:18px!important}.home-page .home-acad-card p{font-size:12px!important}.home-page .home-acad-card ul{display:none!important}.home-page .home-link{font-size:11px!important}
+
+  /* Academics: subject selector is now compact chips, not a full-screen wall */
+  .academics-page .section-panel{padding:14px!important;margin:10px 0!important}.academics-page .section-panel h2{font-size:11px!important;letter-spacing:.16em!important}
+  .academics-page #subjectTabs,.academics-page #levelTabs{display:flex!important;overflow-x:auto!important;flex-wrap:nowrap!important;gap:7px!important;padding:2px 0 7px!important;scroll-snap-type:x proximity!important}
+  .academics-page #subjectTabs button,.academics-page #levelTabs button{flex:0 0 auto!important;font-size:13px!important;padding:10px 13px!important;min-height:40px!important;scroll-snap-align:start!important}
+  .academics-page #resourceGrid{grid-template-columns:1fr!important;gap:10px!important}
+
+  /* Career */
+  .career-page .main>.grid-4{grid-template-columns:1fr 1fr!important;gap:9px!important}.career-page .main>.grid-4>.card{min-height:138px!important;padding:14px!important}.career-page .main>.grid-4>.card h3{font-size:16px!important}.career-page .main>.grid-4>.card p{font-size:12px!important}.career-page #careerGrid{grid-template-columns:1fr!important}
+
+  /* Planner: no off-screen/empty top block */
+  .planner-page .planner-shell{padding:0!important}.planner-page .planner-head{margin:2px 0 12px!important}.planner-page .stats{grid-template-columns:1fr 1fr!important;gap:9px!important}.planner-page .stat{min-height:105px!important;padding:13px!important}.planner-page .stat b{font-size:24px!important}.planner-page .main-grid{grid-template-columns:1fr!important;gap:10px!important}.planner-page .panel{margin-bottom:10px!important}
+
+  /* Dashboard */
+  .dashboard-page .dash-welcome-exact{padding:17px!important;margin:2px 0 10px!important}.dashboard-page .dash-stats-exact{grid-template-columns:1fr 1fr!important;gap:9px!important}.dashboard-page .dash-stat-exact{min-height:106px!important;padding:13px!important}.dashboard-page .dash-live-layout,.dashboard-page .dash-overview-content-exact{grid-template-columns:1fr!important;gap:10px!important}.dashboard-page .dash-heatmap-exact{max-width:100%!important;overflow-x:auto!important}
+
+  /* Community: remove oversized marketing hero */
+  .community-page .community-pro-hero{padding:17px!important;margin:10px 0!important}.community-page .community-pro-hero h1,.community-page .community-pro-hero h2{font-size:30px!important}.community-page .community-pro-hero p{font-size:14px!important}.community-page .community-pro-stats{grid-template-columns:1fr 1fr!important;gap:9px!important}.community-page .community-pro-stats>*{min-height:102px!important;padding:13px!important}
+
+  /* Hub: compact top card, sensible numbers */
+  .nx-hub-page .nx-hub-hero{padding:18px!important;margin:2px 0 10px!important}.nx-hub-page .nx-hub-hero h1{font-size:38px!important}.nx-hub-page .nx-hub-hero p{font-size:13px!important;line-height:1.45!important}.nx-hub-page .nx-hub-balance{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}.nx-hub-page .nx-hub-balance b{font-size:13px!important;line-height:1.2!important;padding:10px 7px!important;word-break:normal!important;overflow-wrap:anywhere!important}.nx-hub-page .nx-hub-action-row,.nx-hub-page .nx-hub-summary,.nx-hub-page .nx-rewards-layout,.nx-hub-page .nx-secondary-grid,.nx-hub-page .nx-ai-grid,.nx-hub-page .nx-progress-grid{grid-template-columns:1fr!important;gap:9px!important}
+
+  /* Settings starts immediately below shell */
+  .settings-page .settings-v3-main{padding-top:0!important}.settings-page .settings-v3-heading{margin:2px 0 9px!important}.settings-page .settings-v3-tabs{margin-bottom:10px!important}.settings-page .settings-v3-layout{grid-template-columns:1fr!important;gap:10px!important}
+
+  /* Profile: no desktop collage on a phone */
+  .profile-page .main{padding-top:calc(env(safe-area-inset-top) + 78px)!important}.profile-page .profile-hero{grid-template-columns:1fr!important;padding:16px!important;margin-top:8px!important}.profile-page .profile-main{grid-template-columns:1fr!important;text-align:center!important}.profile-page .profile-avatar-wrap{width:108px!important;height:108px!important;min-width:108px!important;margin:auto!important}.profile-page .profile-name{font-size:30px!important}.profile-page .profile-actions{grid-template-columns:1fr 1fr!important}.profile-page .profile-actions>*{font-size:12px!important;padding:10px 7px!important}.profile-page .interest-row{justify-content:center!important}
+
+  /* Modals/toasts */
+  .nx-shell-toast{bottom:calc(84px + env(safe-area-inset-bottom))!important}.nx-shell-modal-card{max-height:calc(100dvh - 110px)!important}
+}
+
+@media (max-width:380px){
+  .nx-shell-mobile-brand small{display:none!important}.nx-shell-mobile-brand img{width:34px!important;height:34px!important}.nx-shell-mobile-brand b{font-size:14px!important}
+  .home-page .home-acad-grid{grid-template-columns:1fr!important}.nx-mobile-nav-grid{grid-template-columns:1fr!important}
+}

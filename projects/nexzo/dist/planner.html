@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="nx-auth-pending">
+<head>
+  <link rel="preconnect" href="https://nexzo-backend.onrender.com" crossorigin>
+<meta charset="UTF-8">
+  <style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+  <script src="js/shared-state.cd4682560d3c.js" defer></script>
+<script src="js/config.49c3ae0216c9.js" defer></script>
+<script src="js/firebase-client.5674754c18da.js" defer></script><script src="js/backend-store-v201.aad55e050d8d.js" defer></script>
+<script src="js/auth-guard.7c9400012b44.js" defer></script>
+<link rel="icon" type="image/png" href="favicon.png">
+  <title>NEXZO Smart Planner</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/planner.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Smart Planner">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/planner.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Smart Planner">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="stylesheet" href="css/page-planner.4a60629156b7.css">
+
+
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.23a39528607f.js" defer></script>
+  <script src="js/metric-authority.d5323fddeb8f.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="planner-page" data-page="planner">
+<div class="app"><main class="main">
+  <div class="topbar"><input class="search" aria-label="Search tasks, topics and roadmaps" placeholder="Search tasks, topics, roadmaps..."></div>
+  <div class="planner-shell">
+    <div class="planner-head reveal"><div class="planner-title"><h1>Smart Planner &#10024;</h1><p>Plan smart. Generate questions, submit work, evaluate progress and stay on track in one place.</p></div><div class="planner-actions"><div class="date-chip"><span class="icon" style="--c:#a855f7;margin:0;width:46px;height:46px">&#128197;</span><div><b id="todayDate">Today</b><small id="todayDay">Study Day</small></div></div><button class="btn primary" data-nx-click-target="smartPrompt" data-nx-click-target-action="focus">+ Add Plan</button></div></div>
+    <section class="stats">
+      <div class="stat" style="--x:#a855f7"><div class="stat-ico">&#128203;</div><div><span>Total Tasks</span><b id="statTotal">0</b><small>All tasks</small></div></div>
+      <div class="stat" style="--x:#22c55e"><div class="stat-ico">&#9989;</div><div><span>Completed</span><b id="statDone">0</b><small>Verified submissions</small></div></div>
+      <div class="stat" style="--x:#f59e0b"><div class="stat-ico">&#128338;</div><div><span>Study Time</span><b id="statTime">0h</b><small>This week</small></div></div>
+      <div class="stat" style="--x:#06b6d4"><div class="stat-ico">&#127919;</div><div><span>Accuracy</span><b id="statAccuracy">0%</b><small>Verified evaluation average</small></div></div>
+      <div class="stat" style="--x:#ef4444"><div class="stat-ico">&#128293;</div><div><span>Day Streak</span><b id="statStreak">0</b><small>Keep it up!</small></div></div>
+      <div class="stat" style="--x:#8b5cf6"><div class="stat-ico">&#9684;</div><div><span>Progress</span><b id="statProgress">0%</b><small>Completed planner tasks</small></div></div>
+    </section>
+    <section class="main-grid">
+      <form class="panel" style="--x:#a855f7">
+        <div class="panel-head"><h2>&#10024; Create New Task</h2><span class="chip active" id="modeLabel">Smart Assist</span></div><p class="hint">Write what you want to study. NEXZO will detect subject, level, duration, place and generate questions.</p>
+        <div class="tabs" style="--x:#a855f7"><button type="button" class="active" data-mode="ai" data-nx-click="nzpSetMode" data-nx-click-args="[&quot;ai&quot;]">Smart Assist</button><button type="button" data-mode="manual" data-nx-click="nzpSetMode" data-nx-click-args="[&quot;manual&quot;]">Manual</button><button type="button" data-mode="recommended" data-nx-click="nzpSetMode" data-nx-click-args="[&quot;recommended&quot;]">Recommended</button></div>
+        <div id="recPanel" class="mode-panel"><div class="recs"><div class="rec" data-nx-click="nzpApplyRec" data-nx-click-args="[&quot;DSA Placement Track&quot;]"><b>DSA Placement Track</b><small>Arrays, Linked List, Coding</small></div><div class="rec" data-nx-click="nzpApplyRec" data-nx-click-args="[&quot;DBMS Exam Revision&quot;]"><b>DBMS Exam Revision</b><small>Normalization, SQL, PYQs</small></div><div class="rec" data-nx-click="nzpApplyRec" data-nx-click-args="[&quot;Web Development Project&quot;]"><b>Web Development Project</b><small>HTML, CSS, JS practical</small></div></div></div>
+        <div class="prompt-box" id="promptPanel"><textarea id="smartPrompt" placeholder="Example: I want to prepare Data Structures arrays for placement. Make it intermediate level."></textarea><button type="button" class="magic" data-nx-click="nzpAnalyzePrompt">&#10022;</button></div>
+        <div class="tool-row"><button type="button" data-nx-click="nzpEnhance" data-nx-click-args="[&quot;placement&quot;]">&#9671; Improve Response</button><button type="button" data-nx-click="nzpEnhance" data-nx-click-args="[&quot;breakdown&quot;]">&#9775; Break Down</button><button type="button" data-nx-click="nzpEnhance" data-nx-click-args="[&quot;deadline&quot;]">&#9716; Set Deadline</button><button type="button" data-nx-click="nzpEnhance" data-nx-click-args="[&quot;resources&quot;]">&#10019; Add Resources</button></div>
+        <div class="form-grid">
+          <div class="field"><label>Subject / Track</label><select id="taskSubject"></select></div>
+          <div class="field"><label>Task Type</label><select id="taskType"></select></div>
+          <div class="field"><label>Level</label><select id="taskLevel"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option><option>Expert</option></select></div>
+          <div class="field"><label>Questions / Targets</label><select id="taskQuestions" disabled><option value="">Select Questions / Targets</option></select></div>
+          <div class="field"><label>Duration (Days)</label><select id="taskDuration"><option>1 Day</option><option selected>2 Days</option><option>3 Days</option><option>4 Days</option><option>5 Days</option><option>6 Days</option><option>7 Days</option><option>8 Days</option><option>9 Days</option><option>10 Days</option></select></div>
+          <div class="field"><label>Priority</label><select id="taskPriority"><option>Urgent</option><option>High</option><option selected>Medium</option><option>Low</option></select></div>
+          <div class="field"><label>Study Place</label><select id="taskPlace"><option>Library</option><option>Home</option><option>College / Campus</option><option>College Lab</option><option>Classroom</option><option>Online</option><option>Study Group</option><option>Cafe</option><option>Other</option></select></div>
+          <div class="field"><label>Deadline Date</label><input type="date" id="taskDate"></div>
+          <div class="field"><label>Deadline Time</label><input type="time" id="taskDeadlineTime" value="23:59"></div>
+          <div class="field"><label>Daily Study Hours</label><select id="taskDailyHours"><option>30 Minutes</option><option selected>1 Hour</option><option>2 Hours</option><option>3 Hours</option><option>4 Hours</option><option>5+ Hours</option></select></div>
+        </div>
+        <div class="form-actions"><label class="lock"><input type="checkbox" id="autoLock" checked> Auto-lock after starting</label><button class="btn" type="button" data-nx-click="nzpClearForm">Clear</button><button class="btn primary" type="submit">&#10024; Create Smart Task</button></div>
+      </form>
+      <aside class="panel" style="--x:#06b6d4"><div class="panel-head"><h2>&#129302; Smart Suggestions</h2><button class="btn" data-nx-click="nzpAnalyzePrompt">Refresh</button></div><p class="hint">Generate questions, topics, roadmaps and resources from your task input. The study service is used when configured.</p><div class="tabs" style="--x:#06b6d4"><button class="active" data-sug="Roadmaps" data-nx-click="nzpSetSuggestion" data-nx-click-args="[&quot;Roadmaps&quot;]">Roadmaps</button><button data-sug="Topics" data-nx-click="nzpSetSuggestion" data-nx-click-args="[&quot;Topics&quot;]">Topics</button><button data-sug="Practice" data-nx-click="nzpSetSuggestion" data-nx-click-args="[&quot;Practice&quot;]">Practice</button><button data-sug="Mistakes" data-nx-click="nzpSetSuggestion" data-nx-click-args="[&quot;Mistakes&quot;]">Mistakes</button><button data-sug="Resources" data-nx-click="nzpSetSuggestion" data-nx-click-args="[&quot;Resources&quot;]">Resources</button></div><div class="suggest-box"><h3 id="roadTitle">Smart Roadmap</h3><p class="hint" id="roadSub">Generated from your input</p><div id="aiPreview" class="ai-list"></div></div></aside>
+    </section>
+    <section class="eval-grid">
+      <div class="panel" style="--x:#a855f7"><div class="panel-head"><h2>&#8618; Submit Task</h2><button class="btn primary" data-nx-click="nzpOpenSubmit">Open Submit Window</button></div><p class="hint">Submit proof, screenshot, PDF, image, code file or answer. The study service verifies supported submissions when available; a failed service request never generates marks or XP.</p><label class="drop" data-nx-click="nzpOpenSubmit"><div><div class="up">&#8679;</div><b>Open task submission popup</b><small>Upload file / paste answer / write answer</small></div></label></div>
+      <div class="panel eval-panel-v2" style="--x:#22c55e"><div class="panel-head"><h2>&#9989; Smart Evaluation</h2><button class="btn" data-nx-click="nzpEvalDemo">Refresh Score</button></div><p class="hint">The overall score comes from saved evaluations. Separate rubric scores are shown only when provided.</p><div class="score-wrap"><div class="ring eval-ring-v2" id="scoreRing"><span>Overall Score</span><b id="scoreText">0.0</b><em>/10</em></div><div class="bars"><div class="bar-row"><span>Correctness</span><div class="bar"><span id="barCorrect" style="--w:0%"></span></div><b>0%</b></div><div class="bar-row"><span>Understanding</span><div class="bar"><span id="barUnderstand" style="--w:0%"></span></div><b>0%</b></div><div class="bar-row"><span>Completeness</span><div class="bar"><span id="barComplete" style="--w:0%"></span></div><b>0%</b></div><div class="bar-row"><span>Presentation</span><div class="bar"><span id="barPresent" style="--w:0%"></span></div><b>0%</b></div></div></div><div class="feedback" id="evalFeedback">Submit a task answer/proof to generate your evaluation.</div></div>
+    </section>
+    <section class="panel study" style="--x:#ec4899"><div class="panel-head"><div><h2>&#128203; Your Study Plan</h2><p class="hint">All tasks in one place. Create tasks, view questions, submit work and get transparent evaluation feedback.</p></div><button class="btn primary" data-nx-click-target="smartPrompt" data-nx-click-target-action="focus">+ Add Task</button></div><div class="study-top"><div class="mini-stat"><b id="miniAll">0</b><small>Total planned</small></div><div class="mini-stat"><b id="miniRunning">0</b><small>Running now</small></div><div class="mini-stat"><b id="miniDone">0</b><small>Verified completed</small></div><div class="mini-stat"><b id="miniOverdue">0</b><small>Need attention</small></div></div><div class="filters"><button class="active" data-filter="All" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;All&quot;]">All</button><button data-filter="Today" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;Today&quot;]">Today</button><button data-filter="Running" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;Running&quot;]">Running</button><button data-filter="Pending" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;Pending&quot;]">Pending</button><button data-filter="Completed" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;Completed&quot;]">Completed</button><button data-filter="Overdue" data-nx-click="nzpSetFilter" data-nx-click-args="[&quot;Overdue&quot;]">Overdue</button></div><p id="plannerSyncStatus" class="hint" role="status">Saved on this device</p><div id="taskList"></div></section>
+  </div>
+</main></div>
+
+<div class="modal-back" id="questionsBack"><div class="q-modal"><button class="modal-x" data-nx-click="nzpCloseQuestions">&times;</button><div class="q-head"><div class="q-icon">&#10067;</div><div><h2 id="qTitle">Task Questions</h2><p class="hint" id="qSub">Generated questions based on your selected subject, level and task type.</p></div></div><div id="qList" class="q-list"></div><div class="modal-actions"><button class="btn primary" data-nx-click="nzpCloseQuestions">Got it</button></div></div></div>
+<div class="modal-back" id="submitBack"><div class="submit-modal nx-submit-v168"><header class="nx-submit-head"><div class="nx-submit-mark" aria-hidden="true">✓</div><div class="nx-submit-heading"><span class="nx-submit-eyebrow">NEXZO SMART EVALUATION</span><h2 id="submitTitle">Submit Your Task</h2><p class="hint">Choose how you want to submit. NEXZO verifies the work only after you press evaluate.</p></div><button class="modal-x" data-nx-click="nzpCloseSubmit" aria-label="Close submission window">&times;</button></header><div class="submit-tabs" role="tablist" aria-label="Submission method"><button class="active" data-submit="upload" data-nx-click="nzpSubmitMode" data-nx-click-args="[&quot;upload&quot;]">Upload File</button><button data-submit="paste" data-nx-click="nzpSubmitMode" data-nx-click-args="[&quot;paste&quot;]">Paste Answer</button><button data-submit="write" data-nx-click="nzpSubmitMode" data-nx-click-args="[&quot;write&quot;]">Write Answer</button></div><div class="nx-submit-workspace"><div id="mcqMode" class="mode nx-mcq-attempt" aria-live="polite"></div><div id="uploadMode" class="mode active"><label class="drop"><input type="file" id="proofFile" accept="image/png,image/jpeg,image/webp,.pdf,.txt,.md,.js,.html,.css,.py,.java,.cpp,.c,.json"><div><div class="up">&#8679;</div><b id="fileLabel">Drop your work here or browse files</b><small>Image, PDF, TXT and supported code files</small></div></label><div id="filePreview" class="preview"></div></div><div id="pasteMode" class="mode"><label class="nx-submit-label" for="pasteAnswer">Your answer</label><textarea id="pasteAnswer" placeholder="Paste your completed answer, code or explanation here..."></textarea></div><div id="writeMode" class="mode"><label class="nx-submit-label" for="writeAnswer">Your answer</label><textarea id="writeAnswer" placeholder="Write your complete answer with steps, examples, code or output..."></textarea></div><div class="nx-submit-note"><label class="nx-submit-label" for="submitNote">Note <span>Optional</span></label><textarea id="submitNote" placeholder="Add context for the evaluator, if needed..."></textarea></div><div id="submitError" class="error"></div><div id="submitStatus" class="status" aria-live="polite"></div></div><footer class="modal-actions"><button class="btn nx-submit-cancel" data-nx-click="nzpCloseSubmit">Cancel</button><button class="btn primary nx-submit-evaluate" data-nx-click="nzpSubmitForAI">Evaluate submission <span aria-hidden="true">→</span></button></footer></div></div>
+
+
+
+
+
+
+  <script defer src="js/level-system.504d314a2f55.js"></script>
+  <script defer src="js/state-authority.93fc1d23bf02.js"></script>
+  <script src="js/settings-state.bbb0efe8cc9e.js" defer></script>
+  <script src="js/app-shell.a5d20dca51e0.js" defer></script>
+<script src="js/task-integrity.e1591c740b4b.js" defer></script>
+<script src="js/data-service.19a7f3758365.js" defer></script>
+<script src="js/task-store.70d5d2d679db.js" defer></script>
+<script src="js/ai-service.0b65947f7940.js" defer></script>
+<script src="js/planner-data.260a1e5c53bb.js" defer></script>
+  <script src="js/planner-controller.c007b1475fb2.js" defer></script>
+  <script src="js/performance-runtime.39a399549dd9.js" defer></script>
+  <script src="js/event-actions.44010823e1a9.js" defer></script>
+<script defer src="js/final-runtime.0bbe419101b5.js"></script>
+  <script src="js/streak-system.2954278a6d9c.js" defer></script>
+  <script src="js/gamification-system.31979460172e.js" defer></script>
+  <script src="js/level-up-controller.d0afb4c5a97d.js" defer></script>
+  <script src="js/consent-interactions-v129.b226d20ff1a4.js" defer></script>
+  <script src="js/personalization-engine-v152.f43993080fda.js" defer></script>
+  <script src="js/nexzo-home-shell.e8f440ebb383.js" defer></script>
+  <script src="js/student-digital-twin-v181.f26a4a92425f.js" defer></script>
+  <!-- Local experiment event bridge only; no Planner pet UI. -->
+  <script type="module">
+    if (/^(localhost|127\.0\.0\.1|\[::1\]|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(location.hostname) && new URLSearchParams(location.search).get('companion') !== '0') {
+      import(new URL('experiments/companion/bootstrap.mjs', location.href).href).catch(() => {});
+    }
+  </script>
+</body></html>

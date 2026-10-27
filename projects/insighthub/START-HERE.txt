@@ -1,0 +1,15 @@
+INSIGHTHUB V4 — SECURE LOGIN BUILD
+
+1. Open this folder in VS Code.
+2. Run: npm install
+3. Run: npm --prefix backend install
+4. Run: npm start
+5. Open: http://127.0.0.1:5500
+
+Admin demo:
+Email: admin@insighthub.dev
+Password: Admin123!
+
+The login/signup flow now runs through the Node/Express backend. Passwords are bcrypt-hashed, sessions use signed JWTs, /api/auth/me validates refresh/reload sessions, and registered users persist in backend/data/users.json.
+
+MongoDB is optional for the authentication demo; configure MONGODB_URI when you want the included article API to use MongoDB.

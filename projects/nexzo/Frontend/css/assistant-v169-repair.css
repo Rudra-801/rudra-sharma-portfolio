@@ -1,0 +1,14 @@
+/* V169 — restore the proven Study Assistant workspace layout without touching core capabilities. */
+html,body.ai-clean-page{width:100%;max-width:none;overflow:hidden}
+.ai-clean-page .ai-app{min-height:100dvh;width:100%;margin:0!important;grid-template-columns:minmax(0,1fr) 286px!important;grid-template-rows:52px minmax(0,1fr)!important}
+.ai-clean-page .topbar{position:relative!important;left:auto!important;right:auto!important;top:auto!important;width:auto!important;margin:0!important;grid-column:1/-1!important}
+.ai-clean-page .chat-shell{position:relative!important;left:auto!important;right:auto!important;top:auto!important;width:auto!important;max-width:none!important;margin:0!important;grid-column:1!important;grid-row:2!important}
+.ai-clean-page .nexzo-companion{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;left:auto!important;right:auto!important;top:auto!important;width:auto!important;grid-column:2!important;grid-row:2!important}
+.ai-clean-page .messages{width:100%!important;max-width:none!important;margin:0!important}
+.ai-clean-page .composer{left:auto!important;right:auto!important;margin-left:auto!important;margin-right:auto!important}
+.ai-clean-page .assistant-product-name{display:inline-flex!important}
+.ai-clean-page .status{display:none!important}
+@media(max-width:960px){
+ .ai-clean-page .ai-app{grid-template-columns:1fr!important}
+ .ai-clean-page .nexzo-companion{display:none!important}
+}

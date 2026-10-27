@@ -1,0 +1,40 @@
+/* V214 — Study Group create/request UI aligned with NEXZO black-gold glass system */
+.nx-group-create-v214{width:min(820px,92vw);display:grid;gap:20px;color:#f7f8fb}
+.nx-create-head{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:center;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.nx-create-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(145deg,rgba(245,201,77,.16),rgba(139,92,246,.12));border:1px solid rgba(245,201,77,.24);box-shadow:inset 0 1px rgba(255,255,255,.08),0 10px 28px rgba(0,0,0,.24);font-size:26px}
+.nx-group-create-v214 .nx-modal-kicker{display:block;margin-bottom:5px;color:#e5bd48;font-size:.68rem;font-weight:950;letter-spacing:.13em}
+.nx-group-create-v214 h2{margin:0;font-size:clamp(1.55rem,3vw,2rem);letter-spacing:-.03em}
+.nx-group-create-v214 .nx-modal-copy{margin:6px 0 0;color:#8f99ac;line-height:1.55;font-size:.86rem}
+.nx-create-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nx-create-field{display:grid;gap:8px}.nx-create-field>span{display:flex;justify-content:space-between;align-items:center;color:#dfe4ee;font-size:.78rem;font-weight:900}.nx-create-field em,.nx-create-field small{font-style:normal;color:#6f7a90;font-size:.64rem;font-weight:800}
+.nx-create-field em{padding:4px 7px;border-radius:999px;background:rgba(245,201,77,.07);color:#dcb94f}.nx-create-wide{grid-column:1/-1}
+.nx-group-create-v214 input,.nx-group-create-v214 textarea{width:100%!important;box-sizing:border-box!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:14px!important;background:rgba(4,8,15,.78)!important;color:#f7f8fb!important;outline:none!important;font:inherit!important;transition:.18s ease!important}
+.nx-group-create-v214 input{min-height:54px!important;padding:0 15px!important}.nx-group-create-v214 textarea{min-height:112px!important;padding:14px 15px!important;resize:vertical!important}
+.nx-group-create-v214 input:focus,.nx-group-create-v214 textarea:focus{border-color:rgba(245,201,77,.55)!important;box-shadow:0 0 0 3px rgba(245,201,77,.07)!important}
+.nx-create-privacy-title{display:flex;align-items:end;justify-content:space-between}.nx-create-privacy-title b{display:block;font-size:.86rem}.nx-create-privacy-title small{display:block;margin-top:4px;color:#7f899c;font-size:.7rem}
+.nx-group-privacy-v214{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important}
+.nx-group-privacy-v214>label{position:relative;display:grid!important;grid-template-columns:44px 1fr auto!important;gap:12px!important;align-items:center!important;min-height:98px!important;padding:15px!important;border:1px solid rgba(255,255,255,.085)!important;border-radius:16px!important;background:rgba(255,255,255,.025)!important;cursor:pointer!important;transition:.18s ease!important;overflow:hidden}
+.nx-group-privacy-v214>label:hover{border-color:rgba(245,201,77,.28)!important;background:rgba(245,201,77,.035)!important;transform:translateY(-1px)}
+.nx-group-privacy-v214 input{position:absolute!important;opacity:0!important;pointer-events:none!important}
+.nx-group-privacy-v214>label:has(input:checked){border-color:rgba(245,201,77,.55)!important;background:linear-gradient(145deg,rgba(245,201,77,.085),rgba(139,92,246,.045))!important;box-shadow:inset 0 0 0 1px rgba(245,201,77,.08),0 12px 28px rgba(0,0,0,.16)!important}
+.nx-privacy-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:19px}
+.nx-privacy-copy b,.nx-privacy-copy small{display:block}.nx-privacy-copy b{font-size:.88rem}.nx-privacy-copy small{margin-top:5px;color:#8a94a8;font-size:.68rem;line-height:1.45}
+.nx-group-privacy-v214>label>i{font-style:normal;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.05);color:#9ca6b8;font-size:.61rem;font-weight:900;white-space:nowrap}.nx-group-privacy-v214>label:has(input:checked)>i{background:rgba(245,201,77,.11);color:#f3d77d}
+.nx-create-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:3px}.nx-create-foot>span{color:#778297;font-size:.68rem;line-height:1.45}.nx-create-foot .btn.primary{min-width:190px;display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid #e9bd3f!important;border-radius:13px!important;background:linear-gradient(135deg,#f5c94d,#dca715)!important;color:#111217!important;box-shadow:0 10px 28px rgba(220,167,21,.15)!important;padding:13px 18px!important;font-weight:950!important}.nx-create-foot .btn.primary b{font-size:1.1rem}.nx-create-foot .btn.primary.is-loading{opacity:.75;cursor:wait}
+.nx-private-request-v214{text-align:center;width:min(480px,90vw);padding:8px 4px}.nx-private-lock{width:66px;height:66px;display:grid;place-items:center;margin:0 auto 14px;border-radius:20px;background:linear-gradient(145deg,rgba(245,201,77,.14),rgba(139,92,246,.12));border:1px solid rgba(245,201,77,.24);font-size:28px}.nx-private-request-v214 h2{margin:6px 0 8px;font-size:1.65rem}.nx-private-request-v214 p{margin:0 auto;color:#9099aa;line-height:1.55;max-width:420px}.nx-private-meta{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:16px 0}.nx-private-meta span{padding:7px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.035);color:#cbd1dc;font-size:.68rem}.nx-private-request-v214>.btn{margin:6px 4px 0}
+@media(max-width:700px){.nx-create-grid,.nx-group-privacy-v214{grid-template-columns:1fr!important}.nx-create-wide{grid-column:auto}.nx-create-foot{align-items:stretch;flex-direction:column}.nx-create-foot .btn.primary{width:100%}.nx-create-head{grid-template-columns:48px 1fr}.nx-create-icon{width:48px;height:48px;border-radius:15px}}
+
+/* v240: persistent Study Group branding */
+.nx-group-logo-shell{position:relative;display:inline-grid;place-items:center;overflow:hidden;flex:0 0 auto;background:linear-gradient(145deg,#17130a,#08090d);border:1px solid rgba(232,181,47,.5);color:#f7dda0;font-weight:900;letter-spacing:.04em}
+.nx-group-logo-shell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#07090d}
+.nx-group-logo-fallback{display:grid;place-items:center;width:100%;height:100%;font-size:1rem}
+.nx-group-logo-shell.is-fallback img,.nx-group-logo-shell img[hidden]{display:none!important}
+.nx-group-list-icon.nx-group-logo-shell{width:46px;height:46px;border-radius:13px}
+.nx-workspace-avatar.nx-group-logo-shell{width:42px;height:42px;border-radius:12px}
+.nx-create-logo-preview.nx-group-logo-shell{width:68px;height:68px;border-radius:18px}
+.nx-group-logo-picker{gap:8px}
+.nx-logo-pick-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nx-logo-pick-row input[type="file"]{min-width:min(100%,280px);max-width:100%;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:#080b12;color:#d8deea}
+.nx-info-media-controls{display:flex;gap:8px;flex-wrap:wrap}
+.nx-info-media-controls button{min-height:36px;border-radius:10px}
+@media(max-width:640px){.nx-logo-pick-row{align-items:flex-start}.nx-logo-pick-row input[type="file"]{width:100%}}

@@ -1,0 +1,104 @@
+<!doctype html><html><head><meta charset="UTF-8"><link rel="icon" type="image/png" href="favicon.png"><title>NEXZO Career</title>
+  <meta name="description" content="Explore career paths, skills, roadmaps and interview preparation in NEXZO.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/career.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Career">
+  <meta property="og:description" content="Explore career paths, skills, roadmaps and interview preparation in NEXZO.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/career.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Career">
+  <meta name="twitter:description" content="Explore career paths, skills, roadmaps and interview preparation in NEXZO.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+<link rel="stylesheet" href="css/dist/style.c51476d1a93e.css?v=63">
+  <link rel="stylesheet" href="css/dist/runtime.e7a11eb1cede.css">
+  <link rel="stylesheet" href="css/nexzo-core.css?v=63">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.js?v=quality-v15" defer></script>
+  <script src="js/metric-authority.js" defer></script>
+  <link rel="stylesheet" href="css/gamification.css?v=501">
+  <link rel="stylesheet" href="css/final-polish.css?v=65">
+  <link rel="stylesheet" href="css/preferences-runtime.css?v=66">
+  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<link rel="stylesheet" href="css/mobile-v75.css?v=75">
+<link rel="stylesheet" href="css/ui-v76.css?v=76">
+<link rel="stylesheet" href="css/workspace-ui.css?v=release-20261005">
+  <link rel="stylesheet" href="css/feature-workflows-v131.css?v=131">
+  <link rel="stylesheet" href="css/black-gold-global-v140.css?v=142">
+  <link rel="stylesheet" href="css/career-production-v240.css?v=263">
+  <link rel="stylesheet" href="css/brand.css?v=8">
+  <link rel="stylesheet" href="css/nexzo-home-shell.css?v=195">
+<link rel="stylesheet" href="css/ui-stability-v128.css?v=128">
+  <link rel="stylesheet" href="css/internal-header-final-v130.css?v=130">
+  <link rel="stylesheet" href="css/student-digital-twin-v181.css?v=191">
+  <link rel="stylesheet" href="css/nexzo-unified-black-gold-v193.css?v=193">
+</head><body class="career-page" data-page="career">
+  <div class="app"><main class="main"><div class="career-v242-shell">
+    <header class="career-v242-heading">
+      <div><h1>Career <em>Explorer</em></h1><p>Discover, plan and build your CSE career with evidence-based guidance.</p></div>
+      <blockquote>“A goal without a plan is just a wish.”<small>Plan it inside NEXZO.</small></blockquote>
+    </header>
+
+    <section class="career-v242-feature-strip" aria-label="Career workspace features">
+      <button type="button" data-career-jump="overview"><i>◈</i><span><strong>12</strong><small>Career Paths</small></span></button>
+      <button type="button" data-career-jump="roadmap"><i>⌘</i><span><strong>Personalized</strong><small>Roadmaps</small></span></button>
+      <button type="button" data-career-jump="projects"><i>▤</i><span><strong>Projects</strong><small>& Resources</small></span></button>
+      <button type="button" data-career-jump="interview"><i>◉</i><span><strong>Interview</strong><small>Preparation</small></span></button>
+      <button type="button" data-career-jump="skills"><i>▥</i><span><strong>Skill Gap</strong><small>Analysis</small></span></button>
+      <button type="button" data-career-jump="semester"><i>▣</i><span><strong>Semester</strong><small>Planning</small></span></button>
+    </section>
+
+    <div class="career-v242-status" id="careerStatus" aria-live="polite"></div>
+
+    <section class="career-v242-explorer">
+      <aside class="career-v242-paths" aria-label="Choose career path">
+        <div class="career-v242-path-head"><h2>Choose Your Career Path</h2><p>Select a field to explore detailed information.</p></div>
+        <label class="career-v242-search"><span>⌕</span><input id="careerSearch" type="search" autocomplete="off" placeholder="Search career paths…" aria-label="Search CSE career paths"></label>
+        <div id="careerRoleList" class="career-v242-role-list" aria-live="polite"></div>
+      </aside>
+
+      <section class="career-v242-workspace" id="careerWorkspace" aria-live="polite">
+        <header class="career-v242-role-header" id="careerRoleHeader"></header>
+        <nav class="career-v242-tabs" aria-label="Career details">
+          <button class="active" type="button" data-career-tab="overview">◉ <span>Overview</span></button>
+          <button type="button" data-career-tab="skills">✦ <span>Skills</span></button>
+          <button type="button" data-career-tab="roadmap">⌘ <span>Roadmap</span></button>
+          <button type="button" data-career-tab="semester">▣ <span>Semester Plan</span></button>
+          <button type="button" data-career-tab="projects">♙ <span>Projects</span></button>
+          <button type="button" data-career-tab="interview">♟ <span>Interview</span></button>
+          <button type="button" data-career-tab="resources">▤ <span>Resources</span></button>
+        </nav>
+        <div id="careerTabContent" class="career-v242-tab-content"></div>
+      </section>
+    </section>
+  </div></main></div>
+
+  <script src="js/shared-state.js?v=quality-v15" defer></script>
+<script src="js/config.js?v=quality-v15" defer></script>
+<script src="js/firebase-client.js?v=quality-v15" defer></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script>
+  <script src="js/task-integrity.js?v=2" defer></script>
+<script src="js/data-service.js?v=20261010-evaluation2" defer></script>
+
+  <script defer src="js/level-system.js?v=20261010-evaluation2"></script>
+  <script defer src="js/state-authority.js?v=152"></script>
+  <script src="js/settings-state.js?v=240" defer></script>
+  <script src="js/app-shell.js?v=brand-v3" defer></script>
+<script src="js/task-store.js?v=152" defer></script>
+<script src="js/personalization-engine-v152.js?v=203" defer></script>
+<script src="js/career-controller.js?v=263" defer></script>
+<script src="js/performance-runtime.js?v=quality-v15" defer></script>
+  <script src="js/event-actions.js" defer></script>
+<script defer src="js/final-runtime.js?v=90"></script>
+  <script src="js/streak-system.js?v=2" defer></script>
+  <script src="js/gamification-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+
+  <script src="js/nexzo-home-shell.js?v=live-bg-v195" defer></script>
+  <script src="js/student-digital-twin-v181.js?v=20261010-evaluation2" defer></script>
+</body></html>

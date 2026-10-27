@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>GamePro Intro</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{
+      --rgb1:#ff4ded; --rgb2:#b84dff; --rgb3:#00f0ff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;overflow:hidden;background:#000;color:#fff;font-family:'Orbitron',sans-serif}
+    body{display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+
+    /* Particles */
+    .particles, .particles:after{
+      content:"";position:fixed;inset:-50%;
+      width:200%;height:200%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px) 0 0/80px 80px,
+        radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px) 40px 60px/120px 120px;
+      animation: drift 80s linear infinite;
+      z-index:0;
+    }
+    .particles:after{animation-duration:120s;opacity:.5;transform:rotate(20deg)}
+    @keyframes drift{to{transform:translate(-200px,-200px)}}
+
+    /* Gamer SVG */
+    .stage{width:min(65vw,550px);aspect-ratio:13/9;z-index:1;transition:opacity .8s ease}
+    .breath{animation:breath 2.5s ease-in-out infinite;transform-origin:50% 70%}
+    @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.05) translateY(-3px)}}
+    .ctrl-glow{filter:drop-shadow(0 0 10px var(--rgb1)) drop-shadow(0 0 18px var(--rgb2)) drop-shadow(0 0 28px var(--rgb3));animation:ctrlpulse 1.6s ease-in-out infinite}
+    @keyframes ctrlpulse{0%,100%{opacity:.9}50%{opacity:1}}
+    .thumb{animation:thumb 1.1s ease-in-out infinite alternate;transform-origin:center}
+    @keyframes thumb{from{transform:translate(0,0)}to{transform:translate(4px,-4px)}}
+    .led{opacity:.6;animation:ledblink 1.2s infinite alternate}
+    .led2{animation-delay:.6s}
+    @keyframes ledblink{from{opacity:.35}to{opacity:1}}
+    .ground{filter:blur(10px);opacity:.8;animation:groundpulse 2.4s ease-in-out infinite}
+    @keyframes groundpulse{0%,100%{opacity:.65}50%{opacity:1}}
+
+    /* Loading text */
+    h1{
+      margin-top:20px;font-size:34px;letter-spacing:3px;
+      background:linear-gradient(90deg,var(--rgb1),var(--rgb2),var(--rgb3));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      text-shadow:0 0 25px rgba(255,77,237,.9);
+      animation:glitch 1.5s infinite;
+      z-index:1;transition:opacity .8s ease
+    }
+    @keyframes glitch{0%,100%{transform:skew(0)}20%{transform:skew(3deg)}40%{transform:skew(-3deg)}70%{transform:skew(2deg)}}
+
+    .loader{width:200px;height:8px;border-radius:10px;background:rgba(255,255,255,.2);margin-top:15px;overflow:hidden;z-index:1;transition:opacity .8s ease}
+    .loader span{display:block;width:100%;height:100%;background:linear-gradient(90deg,var(--rgb1),var(--rgb2),var(--rgb3));transform:translateX(-100%);animation:load 2s linear infinite;box-shadow:0 0 16px rgba(184,77,255,.9)}
+    @keyframes load{to{transform:translateX(100%)}}
+
+    /* Logo reveal */
+    .logo{
+      position:absolute;
+      font-size:5rem;
+      font-weight:900;
+      letter-spacing:5px;
+      color:transparent;
+      background:linear-gradient(90deg,var(--rgb1),var(--rgb2),var(--rgb3));
+      -webkit-background-clip:text;
+      text-shadow:0 0 25px rgba(255,77,237,.9);
+      opacity:0;
+      transform:scale(0.7);
+      animation:logoReveal 1.5s ease forwards;
+      animation-delay:3.5s;
+      z-index:5;
+    }
+    @keyframes logoReveal{
+      0%{opacity:0;transform:scale(0.7) blur(10px)}
+      50%{opacity:1;transform:scale(1.1) blur(0)}
+      100%{opacity:1;transform:scale(1)}
+    }
+
+    /* Fade out old elements */
+    .fade-out{opacity:0 !important}
+  </style>
+<link href="gamepro-theme.css" rel="stylesheet"/><script defer="True" src="gamepro-theme.js"></script></head>
+<body>
+<div class="particles"></div>
+<!-- Gamer -->
+<svg class="stage" id="gamer" viewbox="0 0 520 360">
+<ellipse class="ground" cx="260" cy="315" fill="url(#rgblight)" rx="190" ry="22"></ellipse>
+<g class="breath">
+<path d="M210 290 L225 320 L245 320 L230 290 Z" fill="#0b0016"></path>
+<path d="M275 290 L290 320 L310 320 L295 290 Z" fill="#0b0016"></path>
+<path d="M220 200 Q260 170 300 200 L295 270 Q260 295 225 270 Z" fill="#120023"></path>
+<circle cx="260" cy="160" fill="#14002a" r="35"></circle>
+<ellipse cx="270" cy="160" fill="url(#visorg)" opacity=".9" rx="16" ry="10"></ellipse>
+<path d="M220 210 Q205 230 215 245 L235 250 Q225 230 235 215 Z" fill="#0f0020"></path>
+<path d="M300 210 Q315 230 305 245 L285 250 Q295 230 285 215 Z" fill="#0f0020"></path>
+<g class="ctrl-glow">
+<path d="M235 235 Q247 225 260 235 Q273 225 285 235 Q295 245 290 258 Q280 270 260 265 Q240 270 230 258 Q225 245 235 235 Z" fill="#1a0030" stroke="url(#rgblight)" stroke-width="2"></path>
+<circle class="thumb" cx="246" cy="245" fill="url(#rgblight)" r="6"></circle>
+<circle cx="278" cy="244" fill="url(#rgblight)" r="5"></circle>
+<circle cx="286" cy="250" fill="url(#rgblight)" r="4"></circle>
+<circle cx="282" cy="256" fill="url(#rgblight)" r="3.5"></circle>
+<circle class="led" cx="260" cy="248" fill="url(#rgblight)" r="2.5"></circle>
+</g>
+<circle class="led led2" cx="222" cy="214" fill="url(#rgblight)" r="3"></circle>
+<circle class="led" cx="298" cy="214" fill="url(#rgblight)" r="3"></circle>
+</g>
+<defs>
+<radialgradient id="rgblight"><stop offset="0%" stop-color="#ff4ded"></stop><stop offset="50%" stop-color="#b84dff"></stop><stop offset="100%" stop-color="#00f0ff"></stop></radialgradient>
+<lineargradient id="visorg"><stop offset="0%" stop-color="#00f0ff"></stop><stop offset="100%" stop-color="#b84dff"></stop></lineargradient>
+</defs>
+</svg>
+<h1 id="loading-text">Loading Games...</h1>
+<div class="loader" id="loader"><span></span></div>
+<!-- Logo -->
+<div class="logo" id="logo">GAMEPRO</div>
+<!-- Tudum style sound -->
+<audio autoplay="" id="intro-sound">
+<source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-mechanical-bling-210.wav" type="audio/wav"/>
+</audio>
+<script>
+    // fix autoplay on click
+    document.addEventListener("click", ()=> {
+      document.getElementById("intro-sound").play().catch(()=>{});
+    }, {once:true});
+
+    // after 3.5s fade out loading and gamer, show logo
+    setTimeout(()=>{
+      document.getElementById("gamer").classList.add("fade-out");
+      document.getElementById("loading-text").classList.add("fade-out");
+      document.getElementById("loader").classList.add("fade-out");
+    }, 3200);
+
+    // after 5s go to games
+    setTimeout(()=>{
+      window.location.href="games.html";
+    }, 5000);
+  </script>
+</body>
+</html>

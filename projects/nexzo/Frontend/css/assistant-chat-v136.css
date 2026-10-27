@@ -1,0 +1,193 @@
+/* NEXZO V136 — black/gold, document-flow Study Assistant. */
+:root{
+  --chat-bg:#050505;
+  --chat-surface:#111111;
+  --chat-surface-2:#181818;
+  --chat-line:#2a2a2a;
+  --chat-gold:#e7bc43;
+  --chat-gold-bright:#f6d873;
+  --chat-text:#f4f4f4;
+  --chat-muted:#9b9b9b;
+}
+body.ai-clean-page{
+  color:var(--chat-text);
+  background:radial-gradient(circle at 50% -12%,rgba(231,188,67,.075),transparent 32%),var(--chat-bg);
+}
+.ai-clean-page .ai-app{grid-template-rows:64px 52px minmax(0,1fr);background:transparent}
+.ai-clean-page .topbar{
+  padding:8px 20px;
+  border-color:rgba(231,188,67,.18);
+  background:rgba(5,5,5,.96);
+  box-shadow:none;
+}
+.ai-clean-page .brand-group{gap:10px}
+.ai-clean-page .brand-group strong{font-size:22px;letter-spacing:-.02em}
+.ai-clean-page .brand-group b{color:#d7d7d7;font-weight:650}
+.ai-clean-page .logo{border-color:rgba(231,188,67,.3);background:#050505}
+.ai-clean-page .status{padding:5px 9px;border-color:#333;background:#111;color:#aaa}
+.ai-clean-page .status.online{border-color:rgba(231,188,67,.35);background:#151207;color:#e8ce7a}
+.ai-clean-page .status.offline,.ai-clean-page .status.checking{border-color:#3a3320;background:#17140b;color:#cdbb82}
+.ai-clean-page .top-actions .icon-btn,.ai-clean-page .top-actions .timer-btn{
+  border-color:#292929;background:#111;color:#d9d9d9;box-shadow:none
+}
+.ai-clean-page .top-actions .icon-btn:hover,.ai-clean-page .top-actions .timer-btn:hover{border-color:#756029;color:var(--chat-gold-bright)}
+.ai-clean-page .profile-chip{
+  border-color:#343434;background:#101010;color:#f5f5f5;box-shadow:none
+}
+.ai-clean-page .profile-chip>span:first-child{color:#080808;background:linear-gradient(135deg,var(--chat-gold-bright),#b98413)}
+
+.ai-clean-page .workspace-bar{
+  padding:5px 20px;border-color:#1b1b1b;background:#070707
+}
+.ai-clean-page .workspace-actions{width:min(1040px,100%);gap:6px}
+.ai-clean-page .tool-btn,.ai-clean-page .new-chat{
+  min-height:36px;padding:7px 13px;border-radius:10px;border:1px solid #2a2a2a;background:#101010;color:#bdbdbd;box-shadow:none;font-size:13px
+}
+.ai-clean-page .tool-btn:hover{border-color:#645322;background:#15130c;color:var(--chat-gold-bright);transform:none}
+.ai-clean-page .new-chat{border-color:#9d781c;background:linear-gradient(135deg,#efd05f,#c89418);color:#100c03}
+
+.ai-clean-page .chat-shell{padding:0 18px 8px;background:transparent}
+.ai-clean-page .study-mode-bar{
+  flex:0 0 auto;display:flex;width:min(760px,100%);margin:0 auto;padding:12px 0 5px;gap:5px
+}
+.ai-clean-page .study-mode-bar button{
+  min-height:34px;flex:1 1 0;padding:6px 12px;border:1px solid transparent;border-radius:10px;background:transparent;color:#8f8f8f;font-size:13px;font-weight:700;box-shadow:none
+}
+.ai-clean-page .study-mode-bar button:hover{border-color:#302a1c;background:#0d0c09;color:#ddd;transform:none}
+.ai-clean-page .study-mode-bar button.active{
+  border-color:rgba(231,188,67,.38);background:#17140b;color:var(--chat-gold-bright);box-shadow:none
+}
+.ai-clean-page .mode-guide{display:none}
+
+.ai-clean-page .messages{padding:18px 0 110px;scrollbar-color:#5d4a19 transparent}
+.ai-clean-page .message-row{
+  width:min(780px,calc(100% - 28px));margin:0 auto 28px;display:flex;gap:0
+}
+.ai-clean-page .message-row.assistant{justify-content:flex-start}
+.ai-clean-page .message-row.user{justify-content:flex-end;margin-bottom:30px}
+.ai-clean-page .message-row .avatar{display:none}
+.ai-clean-page .bubble{
+  color:var(--chat-text);font-size:15px;line-height:1.72;overflow-wrap:anywhere
+}
+.ai-clean-page .assistant .bubble{
+  width:100%;max-width:none;padding:0 0 4px;border:0;border-radius:0;background:transparent;box-shadow:none
+}
+.ai-clean-page .user .bubble{
+  width:auto;max-width:min(78%,640px);padding:11px 16px;border:1px solid #323232;border-radius:20px 20px 5px 20px;background:#1b1b1b;box-shadow:none
+}
+.ai-clean-page .bubble p{margin:.62em 0}
+.ai-clean-page .bubble p:first-child{margin-top:0}.ai-clean-page .bubble p:last-child{margin-bottom:0}
+.ai-clean-page .bubble h1,.ai-clean-page .bubble h2,.ai-clean-page .bubble h3{color:#f7f7f7;letter-spacing:-.02em}
+.ai-clean-page .bubble strong{color:#fff}
+.ai-clean-page .bubble a{color:var(--chat-gold-bright)}
+.ai-clean-page .bubble code{border:1px solid #292929;background:#111;color:#f0cf6a}
+.ai-clean-page .bubble pre{border-color:#2a2a2a;background:#0b0b0b;box-shadow:inset 3px 0 rgba(231,188,67,.45)}
+.ai-clean-page .bubble-actions{margin-top:12px;padding:2px 0 0;border:0}
+.ai-clean-page .bubble-actions .action-icon{color:#777}
+.ai-clean-page .bubble-actions .action-icon:hover,.ai-clean-page .bubble-actions .action-icon.active{background:#171717;color:#ddd}
+.ai-clean-page .message-more-menu{border-color:#333;background:#1b1b1b}
+
+.ai-clean-page .thinking-row{margin-top:2px}
+.ai-clean-page .thinking-row .bubble{padding:4px 0}
+.ai-clean-page .thinking i{background:var(--chat-gold)}
+
+.ai-clean-page .empty-state.assistant-welcome{height:100%;min-height:360px}
+.ai-clean-page .assistant-welcome>div{width:min(780px,100%);padding:40px 0 120px}
+.ai-clean-page .welcome-mark{
+  width:46px;height:46px;margin:0 auto 20px;display:grid;place-items:center;border:1px solid rgba(231,188,67,.44);border-radius:15px;background:linear-gradient(145deg,#1b170b,#0d0d0d);color:var(--chat-gold-bright);font-weight:900;box-shadow:0 0 28px rgba(231,188,67,.08)
+}
+.ai-clean-page .empty-state h2{margin:0;font-size:clamp(26px,3vw,38px);letter-spacing:-.035em}
+.ai-clean-page .empty-state p{margin:10px 0 26px;color:#898989;font-size:14px}
+.ai-clean-page .welcome-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.ai-clean-page .welcome-actions button{
+  min-height:76px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;padding:14px 16px;border:1px solid #282828;border-radius:16px;background:#101010;color:#eee;text-align:left;box-shadow:none
+}
+.ai-clean-page .welcome-actions button:hover{border-color:#6e5923;background:#14130f;transform:none;box-shadow:none}
+.ai-clean-page .welcome-actions button b{font-size:14px}.ai-clean-page .welcome-actions button small{color:#818181;font-size:12px}
+
+.ai-clean-page .attachment-preview{width:min(780px,100%);border-color:#66521f;background:#17130a;color:#e8cf82}
+.ai-clean-page .composer{
+  width:min(780px,100%);grid-template-columns:auto minmax(0,1fr) auto auto;gap:5px;padding:7px;border:1px solid #393324;border-radius:25px;background:#171717;box-shadow:0 18px 55px rgba(0,0,0,.48)
+}
+.ai-clean-page .composer:focus-within{border-color:#8b712e;box-shadow:0 18px 55px rgba(0,0,0,.5),0 0 0 1px rgba(231,188,67,.08)}
+.ai-clean-page .composer textarea{min-height:44px;padding:11px 9px;color:#f2f2f2}
+.ai-clean-page .composer textarea::placeholder{color:#777}
+.ai-clean-page .plus-btn,.ai-clean-page .mic-btn,.ai-clean-page .send-btn{width:42px;height:42px;border-radius:50%;border-color:#303030;background:#202020;color:#c7c7c7;box-shadow:none}
+.ai-clean-page .plus-btn:hover,.ai-clean-page .mic-btn:hover{border-color:#6b5723;background:#242117;color:var(--chat-gold-bright)}
+.ai-clean-page .send-btn{border-color:#d1a92f;background:linear-gradient(135deg,#f1d05d,#c48d12);color:#0a0802}
+.ai-clean-page .disclaimer{width:min(780px,100%);color:#555}
+.ai-clean-page .attach-menu{border-color:#333;background:#181818}
+.ai-clean-page .attach-menu button:hover{background:#242117;color:var(--chat-gold-bright)}
+
+.ai-clean-page .connection-notice{width:min(780px,100%);margin-top:8px;border-color:#51431f;border-radius:12px;background:#151208;color:#d8c47d;box-shadow:none}
+.ai-clean-page .connection-notice button{border-color:#8f7123;background:#d8af36;color:#100c03}
+.ai-clean-page .assistant-action-card{border-color:rgba(231,188,67,.3);background:#10100d}
+.ai-clean-page .assistant-action-icon{background:#201a09;color:var(--chat-gold-bright)}
+.ai-clean-page .assistant-action-copy small{color:var(--chat-gold-bright)}
+.ai-clean-page .assistant-action-card>button{background:linear-gradient(135deg,#f0cf5d,#bd8610);color:#100c03}
+
+@media(max-width:850px){
+  .ai-clean-page .workspace-actions{justify-content:flex-end}
+  .ai-clean-page .message-row{width:min(720px,calc(100% - 16px))}
+}
+@media(max-width:620px){
+  .ai-clean-page .ai-app{grid-template-rows:58px 48px minmax(0,1fr)}
+  .ai-clean-page .workspace-bar{padding:5px 8px}
+  .ai-clean-page .tool-btn{display:none}
+  .ai-clean-page .new-chat{min-height:34px;padding:6px 11px}
+  .ai-clean-page .chat-shell{padding:0 8px 6px}
+  .ai-clean-page .study-mode-bar{justify-content:flex-start;overflow-x:auto;padding-top:8px}
+  .ai-clean-page .study-mode-bar button{flex:0 0 auto;min-width:78px}
+  .ai-clean-page .messages{padding:14px 0 92px}
+  .ai-clean-page .message-row{width:calc(100% - 8px);margin-bottom:22px}
+  .ai-clean-page .user .bubble{max-width:88%;padding:10px 13px}
+  .ai-clean-page .assistant-welcome>div{padding:26px 0 90px}
+  .ai-clean-page .welcome-actions{grid-template-columns:1fr}
+  .ai-clean-page .welcome-actions button{min-height:66px}
+  .ai-clean-page .composer{grid-template-columns:auto minmax(0,1fr) auto}
+  .ai-clean-page .mic-btn{display:none}
+}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

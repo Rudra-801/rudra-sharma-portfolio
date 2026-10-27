@@ -1,0 +1,11 @@
+RUDRA SHARMA PORTFOLIO
+
+1. Install Node.js 22+.
+2. In this folder: npm ci
+3. Run: npm start
+4. Open http://127.0.0.1:5500
+
+Local contact storage requires no cloud configuration.
+Run npm test and npm run check for verification.
+See README.md before production configuration.
+Do not reuse NEXZO Firebase configuration.

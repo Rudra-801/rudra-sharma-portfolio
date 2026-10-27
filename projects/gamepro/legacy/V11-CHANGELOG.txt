@@ -1,0 +1,11 @@
+GamePro v11 — Premium Personal Polish
+
+- Preserved existing games and game logic.
+- Preserved purple/pink moving constellation identity.
+- Added pointer-reactive depth to the animated background.
+- Reworked Home hero into a cleaner premium arcade landing composition.
+- Upgraded navigation pills, glow hierarchy and responsive behavior.
+- Upgraded Games library cards with restrained 3D hover depth, image zoom and pointer glow.
+- Standardized spacing, radii, typography hierarchy and glass surfaces.
+- Hid scrollbar chrome globally (including nested scrollable elements) while keeping scrolling functional.
+- No backend/game mechanics were intentionally changed.

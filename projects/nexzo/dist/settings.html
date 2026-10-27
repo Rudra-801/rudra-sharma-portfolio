@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" class="nx-auth-pending">
+<head>
+  <style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+  <meta charset="UTF-8">
+  <script src="js/shared-state.cd4682560d3c.js" defer></script>
+<script src="js/config.49c3ae0216c9.js" defer></script>
+<script src="js/firebase-client.5674754c18da.js" defer></script><script src="js/backend-store-v201.aad55e050d8d.js" defer></script>
+<script src="js/auth-guard.7c9400012b44.js" defer></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050811">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>NEXZO Settings</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/settings.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Settings">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/settings.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Settings">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+
+
+
+<link rel="stylesheet" href="css/page-settings.6c7bcc78acf2.css">
+
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.23a39528607f.js" defer></script>
+  <script src="js/metric-authority.d5323fddeb8f.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="settings-page settings-v3-body" data-page="settings" data-settings-version="3">
+  <div class="app">
+    <main class="main settings-v3-main">
+      <header class="topbar settings-v3-topbar" aria-label="Settings toolbar">
+        <div class="settings-v3-search-shell">
+          <span aria-hidden="true">⌕</span>
+          <input id="settingsGlobalSearch" type="search" autocomplete="off" placeholder="Search settings..." aria-label="Search settings">
+          <kbd>Ctrl K</kbd>
+          <div id="settingsSearchResults" class="settings-v3-search-results" hidden></div>
+        </div>
+        <div class="settings-v3-top-actions">
+          <button type="button" class="settings-v3-icon-btn" title="Notification settings" aria-label="Notification settings" data-nx-click="openSettingsPanelV3" data-nx-click-args="[&quot;notifications&quot;]">
+            <span>🔔</span><em id="settingsNotificationCount">0</em>
+          </button>
+          <button type="button" class="settings-v3-xp-chip" title="Current NEXZO XP" data-nx-click-href="profile.html">
+            <span>⚡</span><b id="settingsXpValue">0 XP</b>
+          </button>
+        </div>
+      </header>
+
+      <section class="settings-v3-heading reveal">
+        <div class="settings-v3-heading-icon" aria-hidden="true">⚙</div>
+        <div>
+          <h1>Settings</h1>
+          <p>Manage your NEXZO experience, preferences, notifications and privacy.</p>
+        </div>
+      </section>
+
+      <nav class="settings-v3-tabs reveal delay1" id="settingsV3Tabs" aria-label="Settings sections">
+        <button type="button" class="active" data-panel="general"><span>⚙</span>General</button>
+        <button type="button" data-panel="preferences"><span>✣</span>Preferences</button>
+        <button type="button" data-panel="notifications"><span>♟</span>Notifications</button>
+        <button type="button" data-panel="privacy"><span>◈</span>Privacy</button>
+        <button type="button" data-panel="account"><span>♙</span>Account</button>
+        <button type="button" data-panel="about"><span>ⓘ</span>About</button>
+      </nav>
+
+      <section class="settings-v3-layout">
+        <div class="settings-v3-content" id="settingsV3Content" aria-live="polite"></div>
+
+        <aside class="settings-v3-side" aria-label="Settings tools">
+          <article class="settings-v3-card settings-v3-preview-card" data-accent-card="purple">
+            <div class="settings-v3-card-title">
+              <span class="settings-v3-title-icon">◉</span>
+              <div><h2>Live Preview</h2><p>See how NEXZO looks with your current settings.</p></div>
+            </div>
+            <div class="settings-v3-preview-window" id="settingsThemePreview">
+              <div class="settings-v3-preview-brand">
+                <div class="settings-v3-preview-logo">N</div>
+                <div><b>NEXZO Interface</b><small id="settingsPreviewText">Premium dark experience</small></div>
+              </div>
+              <div class="settings-v3-preview-nav">
+                <span class="active">⌂<small>Home</small></span>
+                <span>▥<small>Academics</small></span>
+                <span>▣<small>Planner</small></span>
+                <span>♧<small>Community</small></span>
+              </div>
+              <div class="settings-v3-preview-progress"><i id="settingsPreviewProgress"></i></div>
+            </div>
+          </article>
+
+          <article class="settings-v3-card settings-v3-quick-card" data-accent-card="gold">
+            <div class="settings-v3-card-title compact"><span class="settings-v3-title-icon">⚡</span><h2>Quick Actions</h2></div>
+            <div class="settings-v3-action-list">
+              <button type="button" id="settingsClearCache"><span>♲</span><b>Clear Temporary Cache</b><i>›</i></button>
+              <button type="button" id="settingsReset"><span>⚙</span><b>Reset Settings</b><i>›</i></button>
+              <button type="button" id="settingsSync"><span>⟳</span><b>Sync My Settings</b><i>›</i></button>
+              <button type="button" id="settingsExport"><span>⇧</span><b>Export My Data</b><i>›</i></button>
+              <button type="button" class="danger" id="settingsLogout"><span>↪</span><b>Log Out</b><i>›</i></button>
+            </div>
+          </article>
+        </aside>
+      </section>
+
+      <footer class="settings-v3-footer">
+        <span>◇ Account preferences use Firestore; device-only preferences remain in this browser.</span>
+        <span>© 2026 NEXZO</span>
+      </footer>
+    </main>
+  </div>
+
+  <script defer src="js/level-system.504d314a2f55.js"></script>
+  <script defer src="js/state-authority.93fc1d23bf02.js"></script>
+  <script src="js/settings-state.bbb0efe8cc9e.js" defer></script>
+  <script src="js/app-shell.a5d20dca51e0.js" defer></script>
+<script src="js/task-integrity.e1591c740b4b.js" defer></script>
+<script src="js/data-service.19a7f3758365.js" defer></script>
+<script src="js/task-store.70d5d2d679db.js" defer></script>
+<script src="js/settings-controller.f3a9b13076d8.js" defer></script>
+  <script src="js/performance-runtime.39a399549dd9.js" defer></script>
+  <script src="js/event-actions.44010823e1a9.js" defer></script>
+<script defer src="js/final-runtime.0bbe419101b5.js"></script>
+  <script src="js/streak-system.2954278a6d9c.js" defer></script>
+  <script src="js/gamification-system.31979460172e.js" defer></script>
+  <script src="js/level-up-controller.d0afb4c5a97d.js" defer></script>
+  <script src="js/consent-interactions-v129.b226d20ff1a4.js" defer></script>
+<script src="js/personalization-engine-v152.f43993080fda.js" defer></script>  <script src="js/nexzo-home-shell.e8f440ebb383.js" defer></script>
+</body>
+</html>

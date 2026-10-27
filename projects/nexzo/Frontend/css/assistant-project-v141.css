@@ -1,0 +1,120 @@
+/* NEXZO V141 — project context, voice feedback and smooth assistant states. */
+html:not([data-nexzo-theme="light"]) body.ai-clean-page .topbar{
+  background:#030508!important;
+  background-image:none!important;
+  border:1px solid #e1b52f!important;
+  border-radius:var(--nx-radius,16px)!important;
+}
+.ai-clean-page .attach-menu{
+  width:min(390px,calc(100vw - 24px));
+  padding:8px;
+  border:1px solid rgba(225,181,47,.34);
+  border-radius:18px;
+  background:#161616;
+  box-shadow:0 26px 70px rgba(0,0,0,.6);
+}
+.ai-clean-page .attach-menu button{
+  width:100%;
+  min-height:58px;
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  text-align:left;
+}
+.ai-clean-page .attach-menu button>i{font-style:normal;font-size:18px;text-align:center}
+.ai-clean-page .attach-menu button>span{min-width:0;display:flex;flex-direction:column;gap:2px}
+.ai-clean-page .attach-menu button b{color:#f2f2f2;font-size:13px}
+.ai-clean-page .attach-menu button small{color:#858585;font-size:10px;line-height:1.3}
+.ai-clean-page .attachment-preview{
+  padding:10px;
+  border-radius:16px;
+  background:#100f0b;
+}
+.ai-clean-page .attachment-summary{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ai-clean-page .attachment-summary>span{display:flex;flex-direction:column;gap:2px}
+.ai-clean-page .attachment-summary b{font-size:12px;color:#f0d174}
+.ai-clean-page .attachment-summary small{font-size:10px;color:#858075}
+.ai-clean-page .attachment-summary button{
+  min-height:30px;padding:0 9px;border:1px solid #4a4026;border-radius:9px;background:#171717;color:#c8c1af;font-size:10px
+}
+.ai-clean-page .attachment-list{
+  max-height:122px;margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;overflow:auto;scrollbar-width:none
+}
+.ai-clean-page .attachment-list::-webkit-scrollbar{display:none}
+.ai-clean-page .attachment-list>span{
+  max-width:min(290px,100%);min-height:32px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:7px;
+  padding:5px 6px 5px 9px;border:1px solid #302b1f;border-radius:10px;background:#171717
+}
+.ai-clean-page .attachment-list>span>b{overflow:hidden;color:#cfcabf;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+.ai-clean-page .attachment-list>span>button{width:22px;height:22px;border:0;border-radius:7px;background:#24211a;color:#b8ad8b}
+.ai-clean-page .voice-feedback{
+  position:absolute;right:58px;bottom:calc(100% + 9px);padding:7px 10px 7px 26px;
+  border:1px solid rgba(225,181,47,.4);border-radius:999px;background:#111;color:#e4c761;font-size:11px;font-weight:800;
+  box-shadow:0 12px 28px rgba(0,0,0,.4)
+}
+.ai-clean-page .voice-feedback[hidden]{display:none}
+.ai-clean-page .voice-feedback::before{
+  content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;border-radius:50%;background:#e1b52f;transform:translateY(-50%);animation:nxListeningPulse 1s ease-in-out infinite
+}
+.ai-clean-page .mic-btn.is-listening{border-color:#e1b52f;background:#2a2109;color:#f3d367;animation:nxMicPulse 1s ease-in-out infinite}
+.ai-clean-page .bubble.is-streaming{min-height:32px;opacity:1;transition:opacity .22s ease}
+.ai-clean-page .bubble.is-streaming p{animation:nxStreamReveal .24s ease both}
+@keyframes nxListeningPulse{50%{opacity:.25;transform:translateY(-50%) scale(.65)}}
+@keyframes nxMicPulse{50%{box-shadow:0 0 0 7px rgba(225,181,47,.08)}}
+@keyframes nxStreamReveal{from{opacity:.45;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .ai-clean-page .voice-feedback::before,.ai-clean-page .mic-btn.is-listening,.ai-clean-page .bubble.is-streaming p{animation:none}
+}
+@media(max-width:620px){
+  .ai-clean-page .attach-menu{left:0;bottom:58px}
+  .ai-clean-page .voice-feedback{right:8px}
+}
+
+
+/* =========================================================
+   NEXZO V133 — STUDY ASSISTANT RESTORE/CLEANUP
+   Keep the Assistant's own controls/layout. Remove only outer gold framing
+   and accidental shell spacing introduced by generic internal-page rules.
+   ========================================================= */
+body.study-assistant-page,
+html[data-page="assistant"] body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.study-assistant-page :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]),
+html[data-page="assistant"] body :is(.nx-app-header, .nexzo-app-header, [data-nexzo-app-header="true"]) {
+  display: none !important;
+}
+
+body.study-assistant-page :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header),
+html[data-page="assistant"] body :is(.assistant-header, .study-assistant-header, .assistant-topbar, .sa-header) {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.study-assistant-page :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell),
+html[data-page="assistant"] body :is(.assistant-shell, .study-assistant-shell, .assistant-layout, .sa-shell) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove enclosing gold capsules while preserving individual controls/actions. */
+body.study-assistant-page :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar),
+html[data-page="assistant"] body :is(.assistant-header-inner, .assistant-header-actions, .assistant-toolbar) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

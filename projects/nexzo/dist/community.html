@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" class="nx-auth-pending">
+<head>
+  <style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+  <meta charset="UTF-8">
+  <script src="js/shared-state.cd4682560d3c.js" defer></script>
+<script src="js/config.49c3ae0216c9.js" defer></script>
+<script src="js/firebase-client.5674754c18da.js" defer></script><script src="js/backend-store-v201.aad55e050d8d.js" defer></script>
+<script src="js/auth-guard.7c9400012b44.js" defer></script>
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>NEXZO Community</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/community.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Community">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/community.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Community">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<link rel="stylesheet" href="css/page-community.f9011eb452da.css">
+
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.23a39528607f.js" defer></script>
+  <script src="js/metric-authority.d5323fddeb8f.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body data-current-page="community" class="community-page" data-page="community">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="favicon.png" alt="NEXZO" class="logo-img">
+      <div><h1>NEXZO</h1><p>PLAN • LEARN • ACHIEVE</p></div>
+    </div>
+    <nav class="nav">
+      <a href="Home.html" style="--c:#ffc107"><i>🏠</i>Home</a>
+      <a href="academics.html" style="--c:#a855f7"><i>📚</i>Academics</a>
+      <a href="ai-assistant.html" style="--c:#ec4899"><i>🤖</i>Study Assistant</a>
+      <a href="career.html" style="--c:#06b6d4"><i>💼</i>Career</a>
+      <a href="planner.html" style="--c:#f97316"><i>📅</i>Planner</a>
+      <a class="active" href="community.html" style="--c:#f43f5e"><i>👥</i>Community</a>
+      <a href="dashboard.html" style="--c:#22c55e"><i>📊</i>Dashboard</a>
+      <a href="settings.html" style="--c:#94a3b8"><i>⚙️</i>Settings</a>
+      <a href="profile.html" style="--c:#3b82f6"><i>👤</i>Profile</a>
+    </nav>
+  </aside>
+
+  <main class="main community-pro-page">
+    <section class="community-pro-hero community-header-v120">
+      <div class="community-header-copy">
+        <span>COMMUNITY</span>
+        <h1>NEXZO Community</h1>
+        <p>Learn together • Share knowledge • Grow faster with students, projects and guided discussions.</p>
+      </div>
+      <div class="community-header-actions">
+        <button class="community-ai-btn" id="openCommunityAI">🤖 Ask Study Helper</button>
+        <button class="btn primary" id="openCreatePostBtn">+ Create Post</button>
+      </div>
+    </section>
+
+    <section class="community-pro-stats">
+      <article class="cyan"><i>👥</i><b id="communityTotalPosts">0</b><span>Total<br>Posts</span></article>
+      <article class="purple"><i>⚡</i><b id="communityActiveUsers">0</b><span>Active<br>Students</span></article>
+      <article class="gold"><i>🔖</i><b id="communitySavedCount">0</b><span>Saved<br>Posts</span></article>
+      <article class="green"><i>💬</i><b id="communityDiscussionCount">0</b><span>Discussions</span></article>
+    </section>
+
+
+    <section id="communityPosts" class="community-pro-layout">
+      <section class="community-pro-main">
+        <div class="community-compose-card">
+          <div class="compose-head">
+            <div class="compose-avatar">R</div>
+            <div>
+              <h3>Share something with NEXZO</h3>
+              <p>Post doubts, notes, errors, questions, resources or project updates.</p>
+            </div>
+          </div>
+          <textarea id="communityPostText" placeholder="Write your doubt, resource, question or update..."></textarea>
+          <div class="compose-row">
+            <input id="communityPostTags" placeholder="Tags e.g. DSA, DBMS, AI">
+            <select id="communityPostCategory">
+              <option>Academics</option>
+              <option>Career</option>
+              <option>Project</option>
+              <option>Doubt</option>
+              <option>Resource</option>
+            </select>
+          </div>
+          <div class="compose-actions">
+            <button class="btn" id="communityAIImprove">✨ Improve Response</button>
+            <button class="btn" id="communityAttach">📎 Add Resource</button>
+            <button class="btn primary" id="communityCreatePost">🚀 Publish Post</button>
+          </div>
+        </div>
+
+        <div class="community-filter-card">
+          <label class="nx-community-search"><span>⌕</span><input id="communitySearch" type="search" placeholder="Search posts, tags or students…" autocomplete="off"></label>
+          <button class="active" data-filter="all">All Posts</button>
+          <button data-filter="mine">My Posts</button>
+          <button data-filter="saved">Saved</button>
+          <select id="communitySort">
+            <option value="latest">Latest</option>
+            <option value="popular">Popular</option>
+            <option value="replies">Most Replies</option>
+          </select>
+        </div>
+
+        <div id="communityFeed" class="community-feed-pro"></div>
+      </section>
+
+      <aside class="community-pro-side">
+        <section id="communityStudyGroups" aria-hidden="false" class="nx-community-groups-hub community-side-groups" aria-labelledby="nxStudyGroupsTitle">
+          <div class="nx-community-section-head"><div><h2 id="nxStudyGroupsTitle">👥 Study Groups</h2></div><div class="nx-group-header-actions"><button class="btn secondary" id="openAllGroups">More</button><button class="btn" id="openCreateGroup">+ Group</button></div></div>
+          <div id="studyGroupsList" class="nx-study-groups-grid"></div>
+        </section>
+        <section class="community-side-card purple nx-community-focus-card">
+          <div class="side-title"><h3>🎯 Community Focus</h3></div>
+          <p>Ask doubts, share useful resources, discuss projects and save the posts you want to revisit.</p>
+          <div class="nx-community-focus-actions">
+            <button class="btn" data-community-jump="saved">🔖 Saved posts</button>
+            <button class="btn" data-community-jump="mine">✍️ My posts</button>
+          </div>
+        </section>
+
+        <section class="community-side-card cyan">
+          <div class="side-title"><h3>🔥 Trending Topics</h3><button id="refreshTrending">Refresh</button></div>
+          <div id="trendingTopics" class="side-list"></div>
+        </section>
+
+        <section class="community-side-card gold">
+          <div class="side-title"><h3>🏆 Top Contributors</h3><button>This Week</button></div>
+          <div id="topContributors" class="side-list"></div>
+        </section>
+
+
+      </aside>
+    </section>
+  </main>
+</div>
+
+<div id="communityModalRoot"></div>
+
+
+
+
+
+
+  <script defer src="js/level-system.504d314a2f55.js"></script>
+  <script defer src="js/state-authority.93fc1d23bf02.js"></script>
+  <script src="js/settings-state.bbb0efe8cc9e.js" defer></script>
+  <script src="js/app-shell.a5d20dca51e0.js" defer></script>
+<script src="js/task-integrity.e1591c740b4b.js" defer></script>
+<script src="js/data-service.19a7f3758365.js" defer></script>
+<script src="js/ai-service.0b65947f7940.js" defer></script>
+<script src="js/community-safety.3f4b1ac02efa.js" defer></script>
+<script src="js/community-report-queue.7e660c8140bd.js" defer></script>
+<script src="js/community-contracts.4822d11bae18.js" defer></script>
+<script src="js/community-service.bd12fdcb82f3.js" defer></script>
+  <script src="js/performance-runtime.39a399549dd9.js" defer></script>
+  <script src="js/event-actions.44010823e1a9.js" defer></script>
+<script defer src="js/final-runtime.0bbe419101b5.js"></script>
+  <script src="js/streak-system.2954278a6d9c.js" defer></script>
+  <script src="js/gamification-system.31979460172e.js" defer></script>
+  <script src="js/level-up-controller.d0afb4c5a97d.js" defer></script>
+  <script src="js/consent-interactions-v129.b226d20ff1a4.js" defer></script>
+<script src="js/personalization-engine-v152.f43993080fda.js" defer></script>  <script src="js/nexzo-home-shell.e8f440ebb383.js" defer></script>
+  <script src="js/student-digital-twin-v181.f26a4a92425f.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* NEXZO V140 — actual last-load visual authority for the complete website. */
+:root{
+  --nx140-black:#020202;
+  --nx140-surface:#090908;
+  --nx140-surface-2:#12110e;
+  --nx140-gold:#e7bc43;
+  --nx140-gold-bright:#f3d56d;
+  --nx140-gold-deep:#9b6c0b;
+  --nx140-line:rgba(231,188,67,.28);
+  --nx140-muted:#a7a399;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page){
+  color:#f4f2ec!important;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(231,188,67,.10),transparent 27%),
+    radial-gradient(circle at 86% 84%,rgba(155,108,11,.08),transparent 30%),
+    linear-gradient(145deg,#010101,#070706 48%,#020202)!important;
+  background-attachment:fixed!important;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(.sidebar,.topbar,#nxShellTopbar,.nx-shell-topbar,.workspace-bar,.settings-v3-topbar){
+  border-color:var(--nx140-line)!important;
+  background:linear-gradient(155deg,rgba(14,14,12,.97),rgba(3,3,3,.97))!important;
+  box-shadow:0 16px 48px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.025)!important;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page):not(.ai-clean-page) :is(
+  .card,.panel,.section-panel,.glass-card,.section-card,.home-acad-card,.resource-card,.career-card,
+  .stat,.stat-card,.dashboard-card,.dashboard-stat,.dash-card-exact,.planner-card,.planner-panel,.planner-stat,
+  .task-row,.nx-hub-hero,.nx-hub-card,.hub-card,.summary-card,.settings-v3-card,.settings-v3-heading,
+  .settings-v4-card,.settings-v4-panel,.profile-card,.profile-stat,.profile-hero,.rank-strip,.journey-card,
+  .community-side-card,.community-compose-card,.community-filter-card,.community-pro-card,.community-side-groups,
+  .nx-community-groups-hub,.auth-box,.legal-card
+){
+  color:#f4f2ec!important;
+  border-color:color-mix(in srgb,var(--c,var(--x,var(--nx140-gold))) 24%,var(--nx140-gold) 40%)!important;
+  background:
+    radial-gradient(circle at 10% -5%,color-mix(in srgb,var(--c,var(--x,var(--nx140-gold))) 10%,transparent),transparent 34%),
+    radial-gradient(circle at 90% 112%,rgba(231,188,67,.075),transparent 38%),
+    linear-gradient(145deg,rgba(19,19,16,.98),rgba(6,6,6,.985) 65%,rgba(12,11,7,.98))!important;
+  background-size:150% 150%,165% 165%,100% 100%!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.03),0 0 25px rgba(231,188,67,.035)!important;
+  animation:nxV140Surface 13s ease-in-out infinite alternate!important;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(.page-title,.hero-title,.section-title,h1){
+  color:#f6e4aa!important;
+  background:linear-gradient(100deg,#fff 8%,#f5df9a 58%,#c58f18)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  text-shadow:none!important;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(input,textarea,select,.search,.search-input){
+  color:#f1eee5!important;
+  border-color:#353126!important;
+  background:#0a0a09!important;
+  box-shadow:none!important;
+}
+html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(input,textarea,select,.search,.search-input):focus{
+  border-color:#a7832c!important;
+  outline:0!important;
+  box-shadow:0 0 0 3px rgba(231,188,67,.09)!important;
+}
+
+html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(.btn.primary,.tab.active,.tabs button.active,.new-chat,.send-btn,.nx-shell-signin,.nx-guest-login-primary){
+  color:#0c0902!important;
+  border-color:#d2a72e!important;
+  background:linear-gradient(135deg,#f2d263,#c68e13)!important;
+  box-shadow:0 9px 24px rgba(154,107,10,.2)!important;
+}
+
+/* Guest gate: concise copy and two unmistakable decisions. */
+html:not([data-nexzo-theme="light"]) .nx-shell-modal:has(.nx-guest-auth-copy){
+  background:rgba(0,0,0,.84)!important;
+  backdrop-filter:blur(18px)!important;
+}
+html:not([data-nexzo-theme="light"]) .nx-shell-modal-card:has(.nx-guest-auth-copy){
+  width:min(570px,calc(100vw - 28px))!important;
+  padding:28px!important;
+  border:1px solid rgba(231,188,67,.4)!important;
+  border-radius:25px!important;
+  background:radial-gradient(circle at 88% 0,rgba(231,188,67,.12),transparent 35%),linear-gradient(145deg,#11100d,#060606)!important;
+  box-shadow:0 32px 96px rgba(0,0,0,.72),0 0 44px rgba(231,188,67,.08)!important;
+}
+html:not([data-nexzo-theme="light"]) .nx-shell-modal-card:has(.nx-guest-auth-copy)>h2{
+  margin:0 0 18px!important;
+  color:#f6e6b2!important;
+}
+html:not([data-nexzo-theme="light"]) .nx-guest-auth-copy{
+  display:grid!important;
+  grid-template-columns:48px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:16px!important;
+  padding:18px!important;
+  border:1px solid rgba(231,188,67,.21)!important;
+  border-radius:18px!important;
+  background:rgba(231,188,67,.045)!important;
+}
+html:not([data-nexzo-theme="light"]) .nx-guest-lock{
+  width:48px!important;height:48px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:14px!important;
+  background:rgba(231,188,67,.13)!important;
+}
+html:not([data-nexzo-theme="light"]) .nx-guest-auth-copy p{margin:0!important;line-height:1.5!important;color:#d7d4cb!important}
+html:not([data-nexzo-theme="light"]) .nx-guest-auth-copy strong{display:block!important;margin-bottom:5px!important;color:#f4e5b6!important;font-size:15px!important}
+html:not([data-nexzo-theme="light"]) .nx-guest-auth-copy p span{display:block!important;color:#aaa69c!important;font-size:13px!important}
+html:not([data-nexzo-theme="light"]) .nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-shell-modal-actions{display:flex!important;justify-content:flex-end!important;gap:10px!important;margin-top:20px!important}
+html:not([data-nexzo-theme="light"]) .nx-guest-stay{color:#d8d4ca!important;border:1px solid #3b372c!important;background:#121211!important}
+
+/* Assistant uses the same material system without disturbing the chat layout. */
+html:not([data-nexzo-theme="light"]) body.ai-clean-page :is(.topbar,.workspace-bar,.modal-card,.side-panel,.drawer){
+  border-color:rgba(231,188,67,.26)!important;
+  background:linear-gradient(150deg,rgba(17,16,12,.98),rgba(4,4,4,.98))!important;
+}
+html:not([data-nexzo-theme="light"]) body.ai-clean-page .tool-btn{
+  border-color:#383226!important;
+  background:#0d0d0c!important;
+  color:#ddd6c3!important;
+}
+html:not([data-nexzo-theme="light"]) body.ai-clean-page #assistantAvatarOpen{
+  border-color:rgba(231,188,67,.48)!important;
+  color:#f1d77d!important;
+}
+
+@keyframes nxV140Surface{
+  0%{background-position:0% 0%,100% 100%,0 0}
+  100%{background-position:28% 20%,72% 76%,0 0}
+}
+
+@media(max-width:620px){
+  html:not([data-nexzo-theme="light"]) .nx-shell-modal-card:has(.nx-guest-auth-copy){padding:20px!important}
+  html:not([data-nexzo-theme="light"]) .nx-guest-auth-copy{grid-template-columns:40px minmax(0,1fr)!important;padding:15px!important}
+  html:not([data-nexzo-theme="light"]) .nx-guest-lock{width:40px!important;height:40px!important}
+  html:not([data-nexzo-theme="light"]) .nx-shell-modal-card:has(.nx-guest-auth-copy) .nx-shell-modal-actions{display:grid!important;grid-template-columns:1fr 1fr!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html:not([data-nexzo-theme="light"]) body:not(.admin-page) :is(.card,.panel,.section-panel,.stat,.task-row,.hub-card,.community-side-card,.profile-card){animation:none!important}
+}
+
+/* V141 final-cascade geometry: page styles cannot recolour or reshape the toolbar. */
+:root{--nx-radius:16px}
+html:not([data-nexzo-theme="light"]) body :is(.nx-shell-topbar,.topbar,.home-acad-topbar,.dash-topbar-exact){
+  background:#030508!important;
+  background-image:none!important;
+  border-color:#e1b52f!important;
+  border-radius:var(--nx-radius)!important;
+}
+html:not([data-nexzo-theme="light"]) body :is(.card,.panel,.stat,.hub-card,.nx-hub-card,.summary-card,.section-card,.section-panel,.modal-card,.task-row){
+  border-radius:var(--nx-radius)!important;
+}
+html:not([data-nexzo-theme="light"]) body[data-shell-ready="true"] #nxShellTopbar.nx-shell-topbar{
+  background:#030508!important;
+  background-image:none!important;
+  border:1px solid #e1b52f!important;
+  border-radius:var(--nx-radius)!important;
+}

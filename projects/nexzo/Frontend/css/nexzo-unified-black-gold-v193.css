@@ -1,0 +1,129 @@
+/* NEXZO V193 — one visual authority: Home-derived black / cream / gold system. */
+:root{
+  --nx193-bg:#030302;
+  --nx193-panel:#0a0a08;
+  --nx193-panel-2:#10100d;
+  --nx193-cream:#f5e7b0;
+  --nx193-text:#f5f2e9;
+  --nx193-muted:#aaa59a;
+  --nx193-gold:#e4b62f;
+  --nx193-gold-2:#f4d56b;
+  --nx193-line:rgba(228,182,47,.28);
+  --nx193-line-soft:rgba(228,182,47,.14);
+}
+
+/* One page canvas. Page-specific purple/green/cyan body glows are intentionally removed. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page){
+  --primary:var(--nx193-gold)!important;--accent:var(--nx193-gold)!important;
+  --gold:var(--nx193-gold)!important;--purple:var(--nx193-gold)!important;
+  --violet:var(--nx193-gold)!important;--cyan:var(--nx193-gold-2)!important;
+  --green:var(--nx193-gold)!important;--teal:var(--nx193-gold)!important;
+  color:var(--nx193-text)!important;
+  background:var(--nx193-bg)!important;
+  background-image:none!important;
+}
+
+/* Header belongs to document flow. No page is allowed to pin it to the viewport. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  #nxShellTopbar,.nx-shell-topbar,.topbar,.dash-topbar-exact,.home-acad-topbar,.settings-v3-topbar
+){
+  position:absolute!important;top:0!important;left:0!important;right:0!important;
+  background:#030302!important;background-image:none!important;
+  border-color:transparent!important;border-bottom:1px solid rgba(228,182,47,.16)!important;
+  border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+
+/* Shared Home-like trajectory stays behind content. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .nx-trajectory,.nx-trajectory-layer,.home-trajectory,.trajectory-layer,.nx-bg-lines,.journey-lines,.nx-journey-lines
+){z-index:0!important;pointer-events:none!important;opacity:.72!important}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  main,.main,.page,.page-content,.content,.workspace,.planner-shell,.career-page-main,.profile-page-main,.community-pro-page,.dashboard-exact-main
+){position:relative;z-index:1}
+
+/* Unified surfaces: black first, thin gold border, restrained gold light only. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .card,.panel,.section-panel,.section-card,.glass-card,.stat,.stat-card,.dashboard-card,.dashboard-stat,.dash-card-exact,
+  .planner-card,.planner-panel,.planner-stat,.task-row,.task-card,.smart-planner-hero,.planner-hero,
+  .career-card,.career-detail,.career-path-card,.career-bridge,.career-feature,
+  .home-acad-card,.resource-card,.subject-card,.curriculum-card,.academic-card,
+  .profile-card,.profile-stat,.profile-hero,.rank-strip,.journey-card,
+  .nx-hub-hero,.nx-hub-card,.hub-card,.summary-card,
+  .community-side-card,.community-compose-card,.community-filter-card,.community-pro-card,.community-side-groups,.nx-community-groups-hub,
+  .settings-v3-card,.settings-v3-heading,.settings-v4-card,.settings-v4-panel,
+  .nx181,.nx181-card,.nx181-map,.nx181-dashboard,.nx181-recovery,.nx181-career,
+  .modal-card,.nx-shell-modal-card,.auth-box,.legal-card
+){
+  color:var(--nx193-text)!important;
+  border-color:var(--nx193-line)!important;
+  background:linear-gradient(145deg,rgba(16,15,11,.985),rgba(5,5,4,.99))!important;
+  background-image:linear-gradient(145deg,rgba(16,15,11,.985),rgba(5,5,4,.99))!important;
+  box-shadow:0 16px 44px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.025)!important;
+  animation:none!important;
+}
+
+/* Planner is no longer a purple/teal island. */
+.planner-page :is(.smart-planner-hero,.planner-hero,.planner-card,.planner-panel,.planner-stat,.task-row),
+.dashboard-page :is(.dash-card-exact,.dashboard-card,.dashboard-stat),
+.profile-page :is(.profile-card,.profile-stat,.profile-hero,.rank-strip),
+.community-page :is(.community-pro-card,.community-side-card,.nx-community-groups-hub),
+.career-page :is(.career-card,.career-detail,.career-path-card){
+  background:linear-gradient(145deg,rgba(16,15,11,.985),rgba(5,5,4,.99))!important;
+  border-color:var(--nx193-line)!important;
+  box-shadow:0 16px 44px rgba(0,0,0,.38)!important;
+}
+
+/* Typography follows Home: cream display headings, neutral body copy. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  h1,.page-title,.hero-title,.section-title,.planner-title,.profile-title,.career-title,.academic-title
+){color:var(--nx193-cream)!important;background:none!important;-webkit-text-fill-color:initial!important;text-shadow:none!important}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(p,.muted,.subtitle,.description,.helper,.meta,small){color:var(--nx193-muted)}
+
+/* Buttons/tabs: only selected/primary controls receive solid gold. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .btn.primary,.primary-btn,.btn-primary,.tab.active,.tabs button.active,.active-tab,.send-btn,.new-chat,.nx-shell-signin
+){
+  color:#100c02!important;border-color:#d5a91f!important;
+  background:linear-gradient(135deg,var(--nx193-gold-2),#d59c16)!important;
+  box-shadow:0 8px 24px rgba(228,182,47,.14)!important;
+}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  button,.btn,.tab,.tool-btn,.action-btn,.secondary-btn
+):not(.primary):not(.btn-primary):not(.active){
+  border-color:rgba(228,182,47,.22)!important;
+}
+
+/* Form controls. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(input,textarea,select,.search,.search-input){
+  color:var(--nx193-text)!important;background:#080807!important;border-color:rgba(228,182,47,.22)!important;box-shadow:none!important;
+}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(input,textarea,select,.search,.search-input):focus{
+  border-color:rgba(244,213,107,.72)!important;box-shadow:0 0 0 3px rgba(228,182,47,.08)!important;
+}
+
+/* Remove historical neon glows while retaining semantic status text. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .smart-evaluation,.evaluation-card,.submit-card,.nx181-card,.community-pro-card,.group-pro-card,.profile-stat,.dashboard-stat,.planner-stat
+){filter:none!important;text-shadow:none!important}
+
+/* Four-option intelligence/navigation strips match Academics: flat dark cells + gold active state. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .nx190-strip,.nx-intelligence-strip,.planner-intelligence-strip,.career-intelligence-strip,.profile-intelligence-strip
+){
+  background:#070706!important;border:1px solid rgba(228,182,47,.18)!important;box-shadow:none!important;
+}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(
+  .nx190-strip>*,.nx-intelligence-strip>*,.planner-intelligence-strip>*,.career-intelligence-strip>*,.profile-intelligence-strip>*
+){background:#090908!important;border-color:rgba(228,182,47,.16)!important;box-shadow:none!important}
+
+/* Evaluation rows remain readable and never form vertical word columns. */
+.planner-page :is(.rubric-row,.evaluation-row,.score-row){grid-template-columns:minmax(118px,auto) minmax(120px,1fr) minmax(48px,auto)!important;gap:14px!important;align-items:center!important}
+.planner-page :is(.rubric-value,.evaluation-value,.score-value){min-width:48px!important;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;text-align:right!important}
+
+/* Keep scroll behavior, hide decorative scrollbars. */
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page){scrollbar-width:none}
+html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page)::-webkit-scrollbar{width:0;height:0}
+
+@media(max-width:760px){
+  html:not([data-nexzo-theme="light"]) body:not(.home-page):not(.admin-page) :is(.nx190-strip,.nx-intelligence-strip,.planner-intelligence-strip,.career-intelligence-strip,.profile-intelligence-strip){overflow-x:auto;scrollbar-width:none}
+}

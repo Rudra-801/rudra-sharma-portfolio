@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEXZO Developer Console</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/admin.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Developer Console">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/admin.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Developer Console">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api"><link rel="icon" href="favicon.png"><link rel="stylesheet" href="css/admin-dashboard.css">  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<script src="js/runtime-observability.js?v=quality-v16" defer></script>
+<script src="js/event-actions.js?v=quality-v16" defer></script>
+<link rel="stylesheet" href="css/workspace-ui.css?v=release-20261005">
+  <link rel="stylesheet" href="css/black-gold-global-v140.css?v=142">
+</head>
+<body><div class="admin-shell">
+<header><div class="brand"><img src="favicon.png" alt="NEXZO"><div><b>NEXZO</b><span>Developer Console</span></div></div><div class="admin-auth" id="adminIdentity">Checking access…</div><a class="back" href="Home.html">← Back to NEXZO</a></header>
+<main>
+<section class="hero"><div><span>PRIVATE ADMIN WORKSPACE</span><h1>User Data & Rewards Control</h1><p>Manage XP, coins, streaks, quests, achievements and cosmetics. Every write is logged.</p></div><div class="status" id="connectionStatus">Connecting…</div></section>
+<section class="search-card"><div><label for="userQuery">Find user by Firebase UID or profile email</label><div class="search-row"><input id="userQuery" placeholder="Paste UID or email"><button id="searchUser">Find user</button><button class="ghost" id="loadMe">Load my account</button></div><small>For another user, their profile must already be saved in Firestore.</small></div><div class="quick-users" id="recentUsers"></div></section>
+<div class="workspace" id="workspace" hidden>
+<aside class="user-card"><div class="avatar" id="targetAvatar">N</div><h2 id="targetName">User</h2><p id="targetEmail"></p><code id="targetUid"></code><div class="badges"><span id="targetLevel">Level 1</span><span id="targetVerified">Auth unknown</span></div><button class="danger-outline" id="reloadTarget">Reload cloud data</button></aside>
+<section class="content">
+<nav class="tabs"><button class="active" data-tab="rewards">Rewards</button><button data-tab="profile">Profile</button><button data-tab="unlocks">Unlocks</button><button data-tab="quests">Quests</button><button data-tab="audit">Audit</button></nav>
+<div class="tab-panel active" data-panel="rewards">
+<div class="stat-grid"><article><small>Total XP</small><b id="statXP">0</b></article><article><small>Coins</small><b id="statCoins">0</b></article><article><small>Login streak</small><b id="statLogin">0</b></article><article><small>Study streak</small><b id="statStudy">0</b></article><article><small>Combo</small><b id="statCombo">0x</b></article><article><small>Current level</small><b id="statLevel">1</b></article></div>
+<div class="form-card"><h3>Adjust rewards</h3><div class="grid2"><label>XP change<input id="xpDelta" type="number" value="0"></label><label>Coins change<input id="coinsDelta" type="number" value="0"></label><label>Login streak<input id="loginStreak" type="number" min="0"></label><label>Study streak<input id="studyStreak" type="number" min="0"></label></div><label>Required reason<input id="rewardReason" maxlength="160" placeholder="Example: Internship testing correction"></label><div class="actions"><button id="applyRewards">Apply changes</button><button class="ghost" id="setExact">Set exact totals</button></div></div>
+<div class="form-card developer-preset"><div class="preset-heading"><div><span>DEVELOPER PRESET</span><h3>Max selected account</h3><p>Sets Level 100 XP, 1,000,000 coins, 365-day streaks, all achievements, all cosmetics, completed quests and subject mastery.</p></div><div class="preset-level">LVL 100</div></div><label>Audit reason<input id="maxReason" value="Developer account maximum preset" maxlength="160"></label><button id="maxAccount">⚡ Max selected account</button><small>Use “Load my account” first to max your own developer account. This action is saved to the admin audit log.</small></div><div class="form-card"><h3>Danger zone</h3><p>Reset only rewards data. Tasks, profile, posts and chats remain untouched.</p><button class="danger" id="resetRewards">Reset XP, coins and rewards</button></div>
+</div>
+<div class="tab-panel" data-panel="profile"><div class="form-card"><h3>Edit profile document</h3><div class="grid2"><label>Name<input id="profileName"></label><label>Username<input id="profileUsername"></label><label>Role / headline<input id="profileRole"></label><label>Country<input id="profileCountry"></label></div><label>Bio<textarea id="profileBio" rows="4"></textarea></label><label>Photo URL<input id="profilePhoto"></label><label>Required reason<input id="profileReason" placeholder="Reason for profile edit"></label><button id="saveProfile">Save profile</button></div></div>
+<div class="tab-panel" data-panel="unlocks"><div class="form-card"><h3>Achievements</h3><div class="choice-grid" id="achievementGrid"></div></div><div class="form-card"><h3>Cosmetics</h3><div class="choice-grid" id="cosmeticGrid"></div></div><label>Required reason<input id="unlockReason" placeholder="Reason for unlock change"></label><button id="saveUnlocks">Save unlocks</button></div>
+<div class="tab-panel" data-panel="quests"><div class="form-card"><h3>Daily quests</h3><div id="questEditor"></div><div class="actions"><button id="saveQuests">Save quest progress</button><button class="ghost" id="resetQuests">Reset today’s quests</button></div></div></div>
+<div class="tab-panel" data-panel="audit"><div class="form-card"><h3>Recent admin changes</h3><div id="auditList" class="audit-list"></div></div></div>
+</section></div>
+</main><div id="toast" class="toast"></div></div>
+<script defer src="js/firebase-client.js"></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script><script defer src="js/level-system.js?v=20261010-evaluation2"></script><script src="js/streak-system.js?v=1" defer></script>
+  <script defer src="js/admin-dashboard.js"></script>  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/performance-runtime.js?v=quality-v16" defer></script>
+  <script src="js/shared-state.js?v=quality-v16" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+</body></html>

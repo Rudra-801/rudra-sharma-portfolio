@@ -1,0 +1,1 @@
+import {Router} from 'express';import {categories} from '../controllers/categoryController.js';const r=Router();r.get('/',categories);export default r;

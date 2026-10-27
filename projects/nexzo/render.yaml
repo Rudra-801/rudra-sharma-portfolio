@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: nexzo-backend
+    runtime: node
+    rootDir: Backend
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /ready
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: FIREBASE_PROJECT_ID
+        value: personalized-recommendersystem
+      - key: FIREBASE_STORAGE_BUCKET
+        value: personalized-recommendersystem.firebasestorage.app
+      - key: ALLOWED_ORIGINS
+        value: https://personalized-recommendersystem.web.app,https://personalized-recommendersystem.firebaseapp.com
+      - key: AI_RATE_LIMIT_PER_MINUTE
+        value: 20
+      - key: AI_RATE_LIMIT_PER_DAY
+        value: 500
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_IMAGE_MODEL
+        value: gemini-3.1-flash-image
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+
+  # Optional production scheduler. Enable this Cron Job on Render so Study
+  # Assistant schedules run even when no browser tab is open.
+  - type: cron
+    name: nexzo-scheduler
+    runtime: node
+    rootDir: Backend
+    schedule: "*/5 * * * *"
+    buildCommand: npm ci --omit=dev
+    startCommand: npm run scheduler
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: FIREBASE_PROJECT_ID
+        value: personalized-recommendersystem
+      - key: FIREBASE_STORAGE_BUCKET
+        value: personalized-recommendersystem.firebasestorage.app
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_IMAGE_MODEL
+        value: gemini-3.1-flash-image
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false

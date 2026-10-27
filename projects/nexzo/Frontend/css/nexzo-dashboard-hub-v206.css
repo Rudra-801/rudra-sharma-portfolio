@@ -1,0 +1,41 @@
+/* NEXZO V206 — Hub merged into NEXZO Today / Dashboard */
+.nx-dashboard-growth{
+  margin:18px 0 22px;
+  padding:18px;
+  border:1px solid rgba(245,184,46,.22);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at top right,rgba(245,184,46,.08),transparent 35%),
+    linear-gradient(180deg,rgba(11,14,23,.96),rgba(8,10,18,.96));
+  box-shadow:0 18px 50px rgba(0,0,0,.24);
+  overflow:hidden;
+}
+.nx-growth-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}
+.nx-growth-kicker{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;letter-spacing:.15em;font-weight:800;color:#f5c96a;margin-bottom:6px}
+.nx-growth-head h2{margin:0;font-size:clamp(1.35rem,2.4vw,2rem);color:#fff}
+.nx-growth-head p{margin:7px 0 0;color:#9ca8bd;max-width:690px;line-height:1.55}
+.nx-growth-balance{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nx-growth-balance b{padding:8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);color:#f7d77b;font-size:.8rem;white-space:nowrap}
+.nx-growth-action-row{margin:0 0 14px}
+.nx-growth-summary{margin:0 0 14px}
+.nx-growth-tabs{position:sticky;top:8px;z-index:4;background:rgba(7,9,16,.86);backdrop-filter:blur(16px);border-radius:14px;padding:6px;margin:0 0 14px;border:1px solid rgba(255,255,255,.06)}
+.nx-dashboard-growth .nx-hub-panel{animation:nxGrowthFade .18s ease}
+.nx-dashboard-growth .section-heading{margin-top:4px}
+.nx-dashboard-growth .hub-card{min-height:0}
+.nx-dashboard-growth .nx-ai-grid,.nx-dashboard-growth .nx-progress-grid{gap:12px}
+.nx-dashboard-growth .nx-secondary-grid{gap:12px}
+.nx-dashboard-growth .nx-rewards-layout{gap:12px}
+.nx-dashboard-growth .nx-verified-strip{margin:12px 0}
+.nx-dashboard-growth button{cursor:pointer}
+.nx-dashboard-growth .nx-hub-tabs button{min-height:40px}
+.nx-dashboard-growth .nx-hub-tabs button.active{box-shadow:0 0 0 1px rgba(245,184,46,.18) inset}
+.nx-dashboard-growth .nx-smart-next,.nx-dashboard-growth .nx-exam-goal{min-height:112px}
+.nx-dashboard-growth .summary-card{min-height:112px}
+@keyframes nxGrowthFade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .nx-dashboard-growth{padding:13px;border-radius:18px}
+  .nx-growth-head{flex-direction:column}
+  .nx-growth-balance{justify-content:flex-start}
+  .nx-growth-tabs{position:static;display:grid;grid-template-columns:repeat(3,1fr)}
+  .nx-growth-tabs button{font-size:.75rem;padding:9px 6px}
+}

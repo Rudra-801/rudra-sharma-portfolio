@@ -1,0 +1,13 @@
+/* Campus custom-select integration. The menu itself is portalled to <body> by custom-select-v128.js,
+   so no section ancestor can clip it. Keep only the source field above its setup surface. */
+body.nx-campus-page .nx-campus-wrap,
+body.nx-campus-page .nx-campus-setup,
+body.nx-campus-page .nx-campus-setup>div,
+body.nx-campus-page .nx-custom-select{overflow:visible!important}
+body.nx-campus-page .nx-campus-setup{position:relative!important;z-index:4!important}
+body.nx-campus-page .nx-custom-select.is-open{z-index:5!important}
+body.nx-campus-page .nx-custom-select-menu.nx-custom-select-portal{
+  position:fixed!important;z-index:12000!important;margin:0!important;
+  max-height:min(360px,48vh)!important;overflow-y:auto!important;overflow-x:hidden!important;
+  background:#0a0a08!important;box-shadow:0 28px 70px rgba(0,0,0,.82)!important
+}

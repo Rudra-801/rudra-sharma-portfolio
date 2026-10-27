@@ -1,0 +1,139 @@
+<!doctype html><html><head><meta charset="UTF-8"><link rel="icon" type="image/png" href="favicon.png"><title>NEXZO Academics</title>
+  <meta name="description" content="Explore academic resources, notes, videos, practice material and learning roadmaps in NEXZO.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/academics.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Academics">
+  <meta property="og:description" content="Explore academic resources, notes, videos, practice material and learning roadmaps in NEXZO.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/academics.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Academics">
+  <meta name="twitter:description" content="Explore academic resources, notes, videos, practice material and learning roadmaps in NEXZO.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+<link rel="stylesheet" href="css/dist/style.c51476d1a93e.css?v=63">
+  <link rel="stylesheet" href="css/dist/runtime.e7a11eb1cede.css">
+  <link rel="stylesheet" href="css/nexzo-core.css?v=63">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.js?v=quality-v15" defer></script>
+  <script src="js/metric-authority.js" defer></script>
+  <link rel="stylesheet" href="css/gamification.css?v=501">
+  <link rel="stylesheet" href="css/final-polish.css?v=65">
+  <link rel="stylesheet" href="css/preferences-runtime.css?v=66">
+  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<link rel="stylesheet" href="css/mobile-v75.css?v=75">
+<link rel="stylesheet" href="css/ui-v76.css?v=76">
+<link rel="stylesheet" href="css/workspace-ui.css?v=release-20261005">
+  <link rel="stylesheet" href="css/black-gold-global-v140.css?v=142">
+  <link rel="stylesheet" href="css/academics-curriculum-v235.css?v=250-notes">
+  <link rel="stylesheet" href="css/brand.css?v=8">
+  <link rel="stylesheet" href="css/nexzo-home-shell.css?v=195">
+<link rel="stylesheet" href="css/ui-stability-v128.css?v=128">
+  <link rel="stylesheet" href="css/internal-header-final-v130.css?v=130">
+  <link rel="stylesheet" href="css/student-digital-twin-v181.css?v=191">
+  <link rel="stylesheet" href="css/nexzo-unified-black-gold-v193.css?v=193">
+</head><body class="academics-page" data-page="academics"><div class="app"><main class="main"><div class="topbar"></div>
+  <section class="nx-acad-hero">
+    <div><span class="nx-acad-kicker">MRIIRS · B.TECH CSE</span><h1 class="page-title">Academics</h1><p class="sub">Your subjects, syllabus and progress—together in one study workspace.</p></div>
+    <button type="button" class="nx-acad-primary" id="manageCurriculumBtn">＋ Manage My Subjects</button>
+  </section>
+
+  <nav class="nx-acad-tabs" aria-label="Academics sections">
+    <button type="button" class="active" data-acad-tab="mine">My Subjects</button>
+    <button type="button" data-acad-tab="catalog">All Curriculum</button>
+    <button type="button" data-acad-tab="progress">My Progress</button>
+  </nav>
+
+  <section class="nx-acad-panel active" data-acad-panel="mine">
+    <article class="nx-next-card" id="academicNextAction">
+      <div class="nx-next-icon">◎</div><div><span>RECOMMENDED NEXT ACTION</span><h2>Choose your current subjects</h2><p>Select only the subjects you are studying now. NEXZO will build recommendations from them.</p></div>
+      <button type="button" data-open-curriculum>Choose subjects</button>
+    </article>
+    <div class="nx-section-heading"><div><h2>My Current Subjects</h2><p>Add only the subjects you are studying now.</p></div><button type="button" data-open-curriculum>＋ Add subject</button></div>
+    <section class="nx-subject-grid" id="mySubjectGrid"></section>
+  </section>
+
+  <section class="nx-acad-panel" data-acad-panel="catalog" hidden>
+    <div class="nx-catalog-toolbar">
+      <select id="curriculumSemester" hidden aria-hidden="true"><option value="all">All</option></select>
+      <label class="nx-search"><span>⌕</span><input id="curriculumSearch" type="search" placeholder="Search subject or course code…" autocomplete="off"></label>
+      <select id="curriculumType" aria-label="Course type"><option value="all">Filter by type</option><option value="core">Core subjects</option><option value="elective">Electives</option></select>
+    </div>
+    <div class="nx-catalog-summary" id="catalogSummary"></div>
+    <section class="nx-subject-grid nx-catalog-grid" id="curriculumGrid"></section>
+  </section>
+
+  <section class="nx-acad-panel" data-acad-panel="progress" hidden>
+    <section class="nx-progress-stats" id="academicProgressStats"></section>
+    <div class="nx-section-heading"><div><h2>Topic Progress</h2><p>Progress is calculated only from your selected subjects.</p></div></div>
+    <section class="nx-progress-list" id="academicProgressList"></section>
+  </section>
+
+  <div id="subjectTabs" hidden></div><div id="levelTabs" hidden></div><section id="resourceGrid" hidden></section>
+</main></div>
+
+<div class="nx-acad-modal" id="curriculumManager" hidden>
+  <div class="nx-acad-modal-card nx-manager-card" role="dialog" aria-modal="true" aria-labelledby="curriculumManagerTitle">
+    <button type="button" class="nx-modal-close" data-close-acad-modal aria-label="Close">×</button>
+    <span class="nx-acad-kicker">PERSONAL CURRICULUM</span><h2 id="curriculumManagerTitle">Choose your current subjects</h2>
+    <p>Select any subjects you are currently studying.</p>
+    <label class="nx-search"><span>⌕</span><input id="managerSearch" type="search" placeholder="Search subjects…"></label>
+    <div class="nx-manager-list" id="managerSubjectList"></div>
+    <div class="nx-manager-actions"><div><span id="managerSelectionCount">0 selected</span><small id="managerSaveStatus" class="nx-manager-save-status" aria-live="polite"></small></div><button type="button" class="nx-acad-primary" id="saveMySubjectsBtn">Save My Subjects</button></div>
+  </div>
+</div>
+
+<div class="nx-acad-modal" id="courseWorkspace" hidden>
+  <div class="nx-acad-modal-card nx-workspace-card" role="dialog" aria-modal="true" aria-labelledby="workspaceTitle">
+    <button type="button" class="nx-modal-close" data-close-acad-modal aria-label="Close">×</button>
+    <div id="courseWorkspaceContent"></div>
+  </div>
+</div>
+
+<div class="nx-acad-modal" id="academicToolModal" hidden>
+  <div class="nx-acad-modal-card nx-tool-card" role="dialog" aria-modal="true" aria-labelledby="academicToolTitle">
+    <button type="button" class="nx-modal-close" data-close-acad-modal aria-label="Close">×</button>
+    <div id="academicToolContent"></div>
+  </div>
+</div>
+
+    
+
+
+
+  <script src="js/shared-state.js?v=quality-v15" defer></script>
+<script src="js/config.js?v=production-ai-v160" defer></script>
+<script src="js/firebase-client.js?v=quality-v15" defer></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script>
+  <script src="js/task-integrity.js?v=2" defer></script>
+<script src="js/data-service.js?v=20261010-evaluation2" defer></script>
+
+  <script defer src="js/level-system.js?v=20261010-evaluation2"></script>
+  <script defer src="js/state-authority.js?v=152"></script>
+  <script src="js/settings-state.js?v=66" defer></script>
+  <script src="js/app-shell.js?v=brand-v3" defer></script>
+<script src="js/task-store.js?v=152" defer></script>
+<script src="js/ai-service.js?v=20261010-evaluation2" defer></script>
+<script src="js/personalization-engine-v152.js?v=203" defer></script>
+<script src="js/academic-notes.js?v=5" defer></script>
+<script src="js/academics-controller.js?v=20261010-evaluation2" defer></script>
+
+<script src="js/performance-runtime.js?v=257-quality-v15" defer></script>
+  <script src="js/event-actions.js" defer></script>
+<script defer src="js/final-runtime.js?v=90"></script>
+  <script src="js/streak-system.js?v=1" defer></script>
+  <script src="js/gamification-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+  <script src="js/nexzo-home-shell.js?v=live-bg-v195" defer></script>
+  <script src="js/student-digital-twin-v181.js?v=20261010-evaluation2" defer></script>
+  <!-- Local experiment event bridge only; no Academics pet UI. -->
+  <script type="module">
+    if (/^(localhost|127\.0\.0\.1|\[::1\]|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(location.hostname) && new URLSearchParams(location.search).get('companion') !== '0') {
+      import(new URL('experiments/companion/bootstrap.mjs', location.href).href).catch(() => {});
+    }
+  </script>
+</body></html>

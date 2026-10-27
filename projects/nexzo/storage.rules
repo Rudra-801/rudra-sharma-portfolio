@@ -1,0 +1,42 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null; }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+    function validSize() { return request.resource == null || request.resource.size <= 10 * 1024 * 1024; }
+    function safeContent() {
+      return request.resource == null
+        || request.resource.contentType.matches('image/.*')
+        || request.resource.contentType.matches('audio/.*')
+        || request.resource.contentType in ['application/pdf','text/plain','application/zip','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.ms-powerpoint','application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+    }
+    function groupOwner(groupId) {
+      return signedIn()
+        && firestore.get(/databases/(default)/documents/groups/$(groupId)).data.ownerUid == request.auth.uid;
+    }
+    match /users/{uid}/{allPaths=**} {
+      allow read: if owner(uid);
+      allow create, update: if owner(uid) && validSize() && safeContent();
+      allow delete: if owner(uid);
+    }
+    match /community/{uid}/{allPaths=**} {
+      allow read: if signedIn();
+      allow create, update: if owner(uid) && validSize() && safeContent();
+      allow delete: if owner(uid);
+    }
+    match /groups/{groupId}/branding/logo.webp {
+      allow read: if signedIn();
+      allow create, update: if groupOwner(groupId)
+        && request.resource.size <= 2 * 1024 * 1024
+        && request.resource.contentType == 'image/webp';
+      allow delete: if groupOwner(groupId);
+    }
+    match /groups/{groupId}/branding/wallpaper {
+      allow read: if signedIn();
+      allow create, update: if groupOwner(groupId)
+        && request.resource.size <= 8 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if groupOwner(groupId);
+    }
+  }
+}

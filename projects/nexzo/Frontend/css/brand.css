@@ -1,0 +1,58 @@
+/* Shared NEXZO brand lockup. Keep the wide wordmark out of legacy square-logo rules. */
+.nx-brand-lockup{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;width:100%!important}
+.nx-brand-copy{display:flex!important;flex:1 1 auto!important;flex-direction:column!important;gap:3px!important;line-height:1!important;min-width:0!important;overflow:hidden!important}
+.nx-brand-copy small{display:block!important;color:#e5bf67!important;font:800 8px/1.2 system-ui,sans-serif!important;letter-spacing:.075em!important;white-space:nowrap!important;margin:0!important}
+.nx-brand-mark{display:block!important;object-fit:cover!important;margin:0!important;padding:0!important}
+.nx-brand-wordmark{display:block!important;width:100%!important;height:auto!important;min-width:0!important;max-width:100%!important;object-fit:contain!important;object-position:left center!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;margin:0!important;padding:0!important;filter:brightness(1.35) contrast(1.08)!important}
+
+/* Sidebar lockup mirrors the Home/Study Assistant treatment. */
+body .app>.sidebar>.brand{display:flex!important;align-items:center!important;width:calc(100% + 16px)!important;max-width:none!important;min-height:70px!important;height:auto!important;margin:2px -8px 18px!important;padding:6px 8px!important;box-sizing:border-box!important;border:1px solid rgba(225,181,47,.68)!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(6,8,8,.97),rgba(3,5,6,.94))!important;box-shadow:0 0 18px rgba(225,181,47,.08),inset 0 1px 0 rgba(255,255,255,.025)!important;overflow:hidden!important}
+body .app>.sidebar>.brand .nx-brand-lockup{width:100%!important}
+body .app>.sidebar>.brand .nx-brand-mark{width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;max-width:52px!important;max-height:52px!important;flex:0 0 52px!important;border-radius:14px!important;background:#05070d!important;border:1px solid rgba(225,181,47,.45)!important;box-shadow:0 0 18px rgba(225,181,47,.16)!important}
+body .app>.sidebar>.brand .nx-brand-copy{gap:3px!important}
+body .app>.sidebar>.brand .nx-brand-lockup{gap:9px!important}
+body .app>.sidebar>.brand .nx-brand-wordmark{width:100%!important;height:auto!important;min-width:0!important;min-height:0!important;max-width:178px!important;max-height:39px!important;flex:0 1 auto!important}
+
+/* Home and Assistant keep their existing geometry but share the same uncropped wordmark behavior. */
+.nx-home-brand-v10{width:276px!important;min-width:276px!important;overflow:hidden!important}
+.nx-home-brand-v10 .nx-brand-lockup{gap:11px!important}
+.nx-home-brand-v10 .nx-brand-mark{width:46px!important;height:46px!important;min-width:46px!important;max-width:46px!important;flex:0 0 46px!important;border-radius:12px!important}
+.nx-home-brand-v10 .nx-brand-copy{flex:1 1 auto!important;min-width:0!important;overflow:hidden!important}
+.nx-home-brand-v10 .nx-brand-wordmark{width:100%!important;height:auto!important;max-width:184px!important;max-height:37px!important}
+/* Keep the wider desktop lockup from colliding with the action bar on smaller screens. */
+@media(max-width:1040px) and (min-width:791px){
+  .nx-home-brand-v10{width:246px!important;min-width:246px!important}
+  .nx-home-brand-v10 .nx-brand-mark{width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;flex-basis:42px!important}
+  .nx-home-brand-v10 .nx-brand-wordmark{max-width:160px!important}
+}
+@media(max-width:790px){
+  .nx-home-brand-v10{width:52px!important;min-width:52px!important;height:52px!important;padding:4px!important}
+  .nx-home-brand-v10 .nx-brand-lockup{justify-content:center!important;gap:0!important}
+  .nx-home-brand-v10 .nx-brand-copy{display:none!important}
+  .nx-home-brand-v10 .nx-brand-mark{width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;flex-basis:42px!important}
+}
+@media(max-width:500px){.nx-home-brand-v10{display:none!important}}
+
+.ai-clean-page .brand-group .nx-brand-mark,.ai-clean-page .drawer-brand .nx-brand-mark{width:46px!important;height:46px!important;min-width:46px!important;max-width:46px!important;border-radius:12px!important}
+.ai-clean-page .brand-group .nx-brand-wordmark{width:170px!important;height:35px!important;max-width:170px!important;max-height:35px!important}
+.ai-clean-page .drawer-brand .nx-brand-wordmark{width:160px!important;height:33px!important;max-width:160px!important;max-height:33px!important}
+
+.nx-shell-mobile-brand .nx-brand-lockup{gap:7px!important}
+.nx-shell-mobile-brand .nx-brand-mark{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;max-width:34px!important;max-height:34px!important;border-radius:10px!important}
+.nx-shell-mobile-brand .nx-brand-wordmark{width:118px!important;height:26px!important;min-width:0!important;max-width:118px!important;max-height:26px!important}
+.nx-shell-mobile-brand small{display:none!important}
+
+body:is([data-sidebar-mode="icons"],[data-sidebar-mode="collapsed"],[data-sidebar-mode="iconOnly"]) .app>.sidebar>.brand{width:60px!important;min-height:60px!important;padding:5px!important;justify-content:center!important}
+body:is([data-sidebar-mode="icons"],[data-sidebar-mode="collapsed"],[data-sidebar-mode="iconOnly"]) .app>.sidebar>.brand .nx-brand-lockup{justify-content:center!important;gap:0!important}
+body:is([data-sidebar-mode="icons"],[data-sidebar-mode="collapsed"],[data-sidebar-mode="iconOnly"]) .app>.sidebar>.brand .nx-brand-copy{display:none!important}
+body:is([data-sidebar-mode="icons"],[data-sidebar-mode="collapsed"],[data-sidebar-mode="iconOnly"]) .app>.sidebar>.brand .nx-brand-mark{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;max-height:46px!important;flex-basis:46px!important}
+
+@media(max-width:1100px) and (min-width:769px){
+  body .app>.sidebar>.brand{width:calc(100% + 12px)!important;margin-inline:-6px!important;padding-inline:7px!important}
+  body .app>.sidebar>.brand .nx-brand-mark{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;max-width:48px!important;max-height:48px!important;flex-basis:48px!important}
+  body .app>.sidebar>.brand .nx-brand-wordmark{width:100%!important;max-width:168px!important;height:auto!important;max-height:36px!important;flex-basis:auto!important}
+}
+@media(max-width:768px){body .app>.sidebar>.brand{display:none!important}}
+
+/* Study Groups belongs in the Community right rail. Do not globally hide it. */
+#communityStudyGroups{display:block}

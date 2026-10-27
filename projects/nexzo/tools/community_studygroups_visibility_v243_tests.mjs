@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const html=fs.readFileSync(root+'Frontend/community.html','utf8');
+const js=fs.readFileSync(root+'Frontend/js/community-service.js','utf8');
+const tests=[];const test=(n,c)=>tests.push([n,!!c]);
+test('Study Groups right-rail section is visible by default',/id="communityStudyGroups"(?![^>]*\shidden(?:\s|>|=))[^>]*aria-hidden="false"/.test(html));
+test('renderGroups actively restores Study Groups visibility',js.includes("section.removeAttribute('hidden')")&&js.includes("section.setAttribute('aria-hidden','false')"));
+test('Study Groups still exposes create and more actions',html.includes('id="openCreateGroup"')&&html.includes('id="openAllGroups"'));
+test('empty state remains honest instead of fake groups',js.includes('No study groups yet. Create one or request access to a private group.'));
+let pass=0;for(const [n,c] of tests){console.log(`${c?'PASS':'FAIL'} ${n}`);if(c)pass++;}console.log(`\n${pass}/${tests.length} passed`);process.exit(pass===tests.length?0:1);

@@ -1,0 +1,56 @@
+/* V4 canvas placement. The canvas is intentionally transparent: the
+   Three.js renderer supplies the model's depth shading and lighting. */
+body[data-page="ai"] #nexzoCompanion[data-pet-runtime="v4"] .pet-stage {
+  position: relative; display: grid; place-items: center; background: transparent !important;
+  border: 0 !important; box-shadow: none !important; overflow: visible;
+  isolation: isolate; touch-action: manipulation;
+}
+body[data-page="ai"] #nexzoCompanion[data-pet-runtime="v4"] #activePetCreature,
+body[data-page="ai"] #nexzoCompanion[data-pet-runtime="v4"] #activePetArt { display: none !important; visibility: hidden !important; }
+#nexzoPetCanvas { display: block; width: 150px; height: 166px; max-width: 100%; background: transparent; pointer-events: none; }
+.pet-v4-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 12px auto 4px; width: min(100%, 420px); }
+.pet-v4-stats span { display: grid; gap: 2px; padding: 8px 6px; border: 1px solid rgba(119, 210, 255, .16); border-radius: 10px; background: rgba(9, 15, 28, .68); text-align: center; }
+.pet-v4-stats b { color: rgba(220, 235, 249, .62); font-size: 10px; font-weight: 600; }
+.pet-v4-stats em { color: #dff8ff; font-size: 12px; font-style: normal; }
+body.nx-motion-off #nexzoPetCanvas, body.nx-motion-reduced #nexzoPetCanvas { transition: none; }
+@media (max-width: 760px) {
+  #nexzoPetCanvas { width: 116px; height: 128px; }
+  .pet-v4-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { #nexzoPetCanvas { animation: none; } }
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"],
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .companion-card,
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-scene,
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-stage {
+ background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;
+}
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-scene {
+ position:relative!important;width:150px!important;height:190px!important;margin:0 auto!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-stage {
+ position:relative!important;right:auto!important;bottom:auto!important;left:auto!important;top:auto!important;
+ width:150px!important;height:166px!important;margin:0 auto!important;overflow:visible!important;
+}
+body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-presence {
+ position:relative!important;right:auto!important;bottom:auto!important;left:auto!important;display:flex!important;
+ width:max-content!important;max-width:calc(100% - 8px)!important;min-height:22px!important;margin:2px auto 0!important;
+ padding:3px 8px!important;transform:none!important;white-space:nowrap!important;z-index:3!important;
+ background:rgba(7,10,18,.82)!important;border-color:rgba(128,96,213,.34)!important;box-shadow:0 8px 22px rgba(0,0,0,.34)!important;
+}
+@media (max-width: 760px) {
+ body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-scene{width:116px!important;height:150px!important}
+ body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-stage{width:116px!important;height:128px!important}
+ body.ai-clean-page #nexzoCompanion[data-pet-runtime="v4"] .pet-presence{font-size:8px!important;margin-top:1px!important}
+}
+body[data-pet-runtime="v4"] #petZoneModal[hidden]{display:none!important}
+body[data-pet-runtime="v4"] #petZoneCreature,
+body[data-pet-runtime="v4"] #petZoneAvatar,
+body[data-pet-runtime="v4"] [data-zone-pet]:not([data-zone-pet="nexy"]),
+body[data-pet-runtime="v4"] [data-pet-choice]:not([data-pet-choice="nexy"]){display:none!important}
+body[data-pet-runtime="v4"] .companion-roster{display:none!important}
+body[data-pet-runtime="v4"] #petZoneModal .pet-zone-preview{min-width:0}
+body[data-pet-runtime="v4"] #petZoneModal canvas{width:100%;height:260px}
+.pet-zone-model-badge{display:grid;place-items:center;width:54px;height:54px;border:1px solid rgba(103,232,249,.42);border-radius:16px;background:radial-gradient(circle at 35% 25%,rgba(103,232,249,.42),rgba(124,58,237,.34) 55%,rgba(8,13,23,.92));box-shadow:0 0 24px rgba(124,58,237,.24);color:#e9d5ff;font-size:13px;font-weight:950;letter-spacing:.08em}
+/* Hide the retired body before the lazy WebGL runtime finishes loading. */
+body[data-pet-runtime="v4"] .nyro-creature,
+body[data-pet-runtime="v4"] .pet-art-fallback { display:none!important; }

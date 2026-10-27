@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const js=fs.readFileSync(root+'Frontend/js/career-controller.js','utf8');
+const html=fs.readFileSync(root+'Frontend/career.html','utf8');
+const rules=fs.readFileSync(root+'firestore.rules','utf8');
+const tests=[]; const test=(n,c)=>tests.push([n,!!c]);
+const roles=[...js.matchAll(/path\('([^']+)'\s*,\s*'([^']+)'/g)].map(m=>m[2]);
+const required=['Software Engineer','Full-Stack Developer','Frontend Developer','Backend Developer','AI/ML Engineer','Data Scientist','Data Analyst','Cybersecurity Engineer','Cloud/DevOps Engineer','Mobile App Developer','Game Developer','UI/UX Engineer'];
+test('all 12 requested CSE career paths exist',required.every(x=>roles.includes(x))&&roles.length===12);
+test('skill-gap is based only on explicit user input',js.includes('splitSkills(skills)')&&js.includes('Checklist comparison only')&&js.includes('will not infer a personal gap automatically'));
+test('career target is UID-scoped and Firestore read-back verified',js.includes("'users',user.uid,'career','main'")&&js.includes('await fs.getDoc(ref)')&&js.includes('Career target confirmation did not match'));
+test('cached target is never called cloud-saved',js.includes('Cached target: ${savedState.roleName}. Cloud confirmation is unavailable.')&&js.includes('savedStateCloud=false'));
+test('roadmap Planner IDs are deterministic and duplicate-safe',js.includes('career-${role.id}-${step.id}')&&js.includes('This roadmap item is already in Planner'));
+test('signed-in Planner add requires cloud flush before success toast',js.includes('const ok=await store.flush()')&&js.includes('Roadmap item confirmed in Planner.'));
+test('career rules are owner-only',rules.includes('match /career/{docId}')&&rules.includes('allow read: if owner(uid)')&&rules.includes('validCareer(request.resource.data, uid)'));
+test('career page has loading/status/search accessibility',js.includes('Loading your saved career target')&&html.includes('aria-live="polite"')&&html.includes('aria-label="Search CSE career paths"'));
+test('external resources are safe new-tab links',js.includes('target="_blank" rel="noopener noreferrer"'));
+test('career explorer production controller is loaded',html.includes('career-controller.js?v=263')&&js.includes('Career v242')&&html.includes('Career <em>Explorer</em>')&&html.includes('career-v242-explorer'));
+test('career workspace has requested tabbed dashboard layout', ['overview','skills','roadmap','semester','projects','interview','resources'].every(x=>html.includes(`data-career-tab="${x}"`))&&html.includes('career-v242-feature-strip')&&html.includes('career-v242-role-list'));
+test('planner bulk generation remains duplicate-safe',js.includes('addAllToPlanner')&&js.includes('All roadmap steps are already in Planner'));
+let pass=0;for(const [n,c] of tests){console.log(`${c?'PASS':'FAIL'} ${n}`);if(c)pass++;}
+console.log(`\n${pass}/${tests.length} passed`);process.exit(pass===tests.length?0:1);

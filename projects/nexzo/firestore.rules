@@ -1,0 +1,664 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+    function admin() {
+      return signedIn() && request.auth.token.email_verified == true
+        && request.auth.token.email in ['rudrasharma92004@gmail.com','rudrasharma9122004@gmail.com'];
+    }
+    function nonNegativeInt(value, maximum) {
+      return value is int && value >= 0 && value <= maximum;
+    }
+    function validHttpUrl(value) {
+      return value is string
+        && value.size() <= 1000
+        && (value == '' || value.matches('^https?://.*$'));
+    }
+    function validSettingsV5(data, uid) {
+      return data.uid == uid
+        && data.schemaVersion is int && data.schemaVersion >= 5
+        && data.defaultStudyTime in ['30 Min','1 Hour','2 Hours','3 Hours','4 Hours']
+        && data.weekStart in ['Monday','Sunday']
+        && data.language in ['English','Hindi','Hinglish']
+        && data.timeZone is string && data.timeZone.size() > 0 && data.timeZone.size() <= 64
+        && data.inAppNotifications is bool
+        && data.notifyTasks is bool
+        && data.notifyCommunity is bool
+        && data.notifyStreak is bool
+        && data.profileVisibility in ['Public','Friends only','Private']
+        && data.activityStatus is bool
+        && data.privacyConsent is bool
+        && data.personalizationConsent is bool
+        && data.personalization is bool
+        && data.aiHistory is bool
+        && data.emailDigest is string && data.emailDigest.size() <= 32
+        && data.updatedAtMs is int && data.updatedAtMs >= 0;
+    }
+    function validCareer(data, uid) {
+      return data.uid == uid
+        && data.schemaVersion is int && data.schemaVersion >= 240
+        && data.roleId is string && data.roleId.size() > 0 && data.roleId.size() <= 80
+        && data.roleName is string && data.roleName.size() > 0 && data.roleName.size() <= 100
+        && data.currentSkills is list && data.currentSkills.size() <= 40
+        && data.updatedAtMs is int && data.updatedAtMs >= 0
+        && (!('selectedAtMs' in data) || (data.selectedAtMs is int && data.selectedAtMs >= 0));
+    }
+    function validPost(data) {
+      return data.keys().hasOnly([
+          'uid','authorName','authorUsername','authorPhoto','text','tags','category','resourceUrl',
+          'likes','replies','createdAtMs','updatedAtMs'
+        ])
+        && data.uid == request.auth.uid
+        && data.authorName is string && data.authorName.size() > 0 && data.authorName.size() <= 100
+        && data.authorUsername is string && data.authorUsername.matches('^[a-z0-9._]{3,20}$')
+        && data.authorPhoto is string && data.authorPhoto.size() <= 2048
+        && data.text is string && data.text.size() > 0 && data.text.size() <= 2000
+        && data.tags is list && data.tags.size() <= 4
+        && (data.tags.size() < 1 || (data.tags[0] is string && data.tags[0].size() <= 24))
+        && (data.tags.size() < 2 || (data.tags[1] is string && data.tags[1].size() <= 24))
+        && (data.tags.size() < 3 || (data.tags[2] is string && data.tags[2].size() <= 24))
+        && (data.tags.size() < 4 || (data.tags[3] is string && data.tags[3].size() <= 24))
+        && data.category is string && data.category.size() <= 80
+        && validHttpUrl(data.resourceUrl)
+        && nonNegativeInt(data.likes, 10000000)
+        && nonNegativeInt(data.replies, 10000000)
+        && data.createdAtMs is int && data.updatedAtMs is int;
+    }
+    function validLikeCounterChange(postId) {
+      let likePath = /databases/$(database)/documents/posts/$(postId)/likes/$(request.auth.uid);
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes','updatedAtMs'])
+        && request.resource.data.updatedAtMs is int
+        && (
+          (!exists(likePath) && existsAfter(likePath)
+            && request.resource.data.likes == resource.data.likes + 1)
+          ||
+          (exists(likePath) && !existsAfter(likePath)
+            && request.resource.data.likes == resource.data.likes - 1
+            && request.resource.data.likes >= 0)
+        );
+    }
+    function validReplyIncrement() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies','updatedAtMs'])
+        && request.resource.data.updatedAtMs is int
+        && request.resource.data.replies == resource.data.replies + 1;
+    }
+    function validGroup(data) {
+      return data.keys().hasOnly([
+          'ownerUid','ownerName','name','subject','description','memberCount','createdAtMs','updatedAtMs','avatarURL','wallpaperURL','wallpaperType','privacy','inviteCode','permissions','schemaVersion'
+        ])
+        && (!('schemaVersion' in data) || (data.schemaVersion is int && data.schemaVersion >= 215))
+        && data.ownerUid is string && data.ownerUid.size() > 0
+        && data.ownerName is string && data.ownerName.size() > 0 && data.ownerName.size() <= 100
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.subject is string && data.subject.size() > 0 && data.subject.size() <= 80
+        && data.description is string && data.description.size() <= 500
+        && (!('avatarURL' in data) || (data.avatarURL is string && data.avatarURL.size() <= 2048))
+        && data.wallpaperURL is string && data.wallpaperURL.size() <= 2048
+        && (!('wallpaperType' in data) || (data.wallpaperType is string && data.wallpaperType in ['builtin','upload','']))
+        && (!('privacy' in data) || data.privacy in ['public','private'])
+        && (!('inviteCode' in data) || (data.inviteCode is string && data.inviteCode.size() <= 32))
+        && data.permissions is map
+        && data.permissions.keys().hasOnly(['membersCanSend','membersCanInvite','membersCanEdit','historyVisible','approvalRequired'])
+        && data.permissions.membersCanSend is bool
+        && data.permissions.membersCanInvite is bool
+        && data.permissions.membersCanEdit is bool
+        && data.permissions.historyVisible is bool
+        && data.permissions.approvalRequired is bool
+        && nonNegativeInt(data.memberCount, 1000000)
+        && data.createdAtMs is int && data.updatedAtMs is int;
+    }
+    function groupDoc(groupId) { return get(/databases/$(database)/documents/groups/$(groupId)).data; }
+    function isGroupOwner(groupId) { return signedIn() && groupDoc(groupId).ownerUid == request.auth.uid; }
+    function isGroupMember(groupId) { return signedIn() && exists(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)); }
+    function isGroupAdmin(groupId) {
+      return isGroupOwner(groupId) || (isGroupMember(groupId) && get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.role == 'admin');
+    }
+    function groupPermission(groupId, key) { return groupDoc(groupId).permissions[key] == true; }
+    function groupOwnerMissing(groupId) {
+      return !(groupDoc(groupId).keys().hasAny(['ownerUid']))
+        || groupDoc(groupId).ownerUid == ''
+        || !exists(/databases/$(database)/documents/groups/$(groupId)/members/$(groupDoc(groupId).ownerUid));
+    }
+    function validOrphanOwnerClaim(groupId) {
+      return signedIn()
+        && isGroupMember(groupId)
+        && groupOwnerMissing(groupId)
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.ownerName is string
+        && request.resource.data.ownerName.size() > 0
+        && request.resource.data.ownerName.size() <= 100
+        && request.resource.data.createdAtMs == resource.data.createdAtMs
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ownerUid','ownerName','updatedAtMs'])
+        && getAfter(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.role == 'owner'
+        && validGroup(request.resource.data);
+    }
+
+    function validMembershipCounterChange(groupId) {
+      let memberPath = /databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid);
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberCount','updatedAtMs'])
+        && request.resource.data.updatedAtMs is int
+        && (
+          (!exists(memberPath) && existsAfter(memberPath)
+            && request.resource.data.memberCount == resource.data.memberCount + 1)
+          ||
+          (exists(memberPath) && !existsAfter(memberPath)
+            && request.resource.data.memberCount == resource.data.memberCount - 1
+            && request.resource.data.memberCount >= 1)
+        );
+    }
+
+
+    match /usernames/{username} {
+      allow read: if signedIn();
+      allow create, update: if signedIn()
+        && username.matches('^[a-z0-9._]{3,20}$')
+        && request.resource.data.keys().hasOnly(['uid','username','updatedAtMs'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.username == username
+        && request.resource.data.updatedAtMs is int
+        && (!exists(/databases/$(database)/documents/usernames/$(username)) || resource.data.uid == request.auth.uid);
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+    }
+
+    match /publicProfiles/{uid} {
+      allow read: if signedIn();
+      allow create, update: if owner(uid)
+        && request.resource.data.keys().hasOnly(['uid','name','username','photoURL','updatedAtMs'])
+        && request.resource.data.uid == uid
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.username is string
+        && request.resource.data.username.matches('^[a-z0-9._]{3,20}$')
+        && request.resource.data.photoURL is string
+        && request.resource.data.photoURL.size() <= 2048
+        && request.resource.data.updatedAtMs is int;
+      allow delete: if owner(uid);
+    }
+
+    match /users/{uid} {
+      allow read: if owner(uid) || admin();
+      allow create, update, delete: if admin();
+
+      match /state/{stateId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.keys().hasOnly([
+            'data','schemaVersion','createdAt','updatedAt','updatedBy',
+            'migrationVersion','migrationSource','migrationScore'
+          ])
+          && request.resource.data.data is map
+          && request.resource.data.updatedBy == uid;
+        allow delete: if false;
+      }
+
+      // Private grading keys are accessible only through Firebase Admin.
+      match /privateQuestionPlans/{planId} { allow read, write: if false; }
+      match /academicEvaluations/{evaluationId} { allow read: if owner(uid); allow write: if false; }
+      match /tasks/{taskId} {
+        allow read: if owner(uid);
+        function validTask() { return request.resource.data.uid == uid
+          && request.resource.data.id == taskId
+          && request.resource.data.title is string
+          && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 160
+          && request.resource.data.status in ['pending','in-progress','paused','overdue','submitted','needs-improvement','completed']
+          && request.resource.data.updatedAtMs is int; }
+        function noNewReceipt() { return !request.resource.data.keys().hasAny(['evaluationId','serverVerified','questionPlanId','answerKey'])
+          && (!('score' in request.resource.data) || request.resource.data.score == null)
+          && (!('submissionLocked' in request.resource.data) || request.resource.data.submissionLocked == false)
+          && (!('xpGranted' in request.resource.data) || request.resource.data.xpGranted == false)
+          && (!('rewardClaimed' in request.resource.data) || request.resource.data.rewardClaimed == false); }
+        function immutableReceipt() { return !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'evaluationId','serverVerified','questionPlanId','score','maxScore','submissionLocked','submittedAnswer','submittedAtMs','evaluatedAtMs','xpGranted','rewardClaimed','evaluationSource','evaluationMode','aiFeedback'
+        ]); }
+        allow create: if owner(uid) && validTask() && noNewReceipt();
+        allow update: if owner(uid) && validTask() && immutableReceipt()
+          && (!('answerKey' in request.resource.data) || request.resource.data.answerKey == resource.data.answerKey)
+          && (!('questionPlanId' in resource.data) || !request.resource.data.diff(resource.data).affectedKeys().hasAny(['generatedQuestions','subject','type','level','unit','topic']))
+          && (!('serverVerified' in resource.data) || resource.data.serverVerified != true || !request.resource.data.diff(resource.data).affectedKeys().hasAny(['done','completed','status','progress','completedAtMs','generatedQuestions','subject','type','level']));
+        allow delete: if false;
+      }
+
+      match /profile/{docId} {
+        allow read: if owner(uid) || admin();
+        allow create, update: if (owner(uid) || admin())
+          && request.resource.data.uid == uid;
+        allow delete: if false;
+      }
+
+      match /stats/{docId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.uid == uid
+          && nonNegativeInt(request.resource.data.totalTasks, 100000)
+          && nonNegativeInt(request.resource.data.completedTasks, 100000)
+          && request.resource.data.completedTasks <= request.resource.data.totalTasks
+          && nonNegativeInt(request.resource.data.totalStudyMinutes, 100000000)
+          && nonNegativeInt(request.resource.data.currentStreak, 10000)
+          && nonNegativeInt(request.resource.data.level, 100)
+          && request.resource.data.level >= 1
+          && nonNegativeInt(request.resource.data.aiScore, 100);
+        allow delete: if false;
+      }
+
+      match /settings/{docId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.uid == uid
+          && (
+            !('schemaVersion' in request.resource.data)
+            || request.resource.data.schemaVersion < 5
+            || validSettingsV5(request.resource.data, uid)
+          );
+        allow delete: if false;
+      }
+
+      match /career/{docId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid) && validCareer(request.resource.data, uid);
+        allow delete: if false;
+      }
+
+      match /pet/{docId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && docId == 'main'
+          && request.resource.data.uid == uid
+          && request.resource.data.schemaVersion == 1
+          && request.resource.data.kind in ['nexy','sprout','flare','droppy','rocky','cloudie']
+          && request.resource.data.energy is int && request.resource.data.energy >= 0 && request.resource.data.energy <= 100
+          && request.resource.data.happiness is int && request.resource.data.happiness >= 0 && request.resource.data.happiness <= 100
+          && request.resource.data.bond is int && request.resource.data.bond >= 0 && request.resource.data.bond <= 100
+          && request.resource.data.hunger is int && request.resource.data.hunger >= 0 && request.resource.data.hunger <= 100
+          && request.resource.data.petXP is int && request.resource.data.petXP >= 0
+          && request.resource.data.level is int && request.resource.data.level >= 1 && request.resource.data.level <= 100
+          && request.resource.data.updatedAtMs is int;
+        allow delete: if false;
+      }
+
+      match /accountRequests/{requestId} {
+        allow read: if owner(uid);
+        allow create: if owner(uid)
+          && requestId.matches('^delete_[0-9]+$')
+          && request.resource.data.keys().hasOnly(['uid','type','status','source','requestedAtMs','requestedAt'])
+          && request.resource.data.uid == uid
+          && request.resource.data.type == 'delete-account'
+          && request.resource.data.status == 'pending'
+          && request.resource.data.source == 'settings'
+          && request.resource.data.requestedAtMs is int
+          && request.resource.data.requestedAtMs > 0;
+        allow update, delete: if false;
+      }
+
+      match /achievements/{achievementId} {
+        allow read, create, update: if owner(uid);
+        allow delete: if false;
+      }
+
+
+
+      match /rewardPurchases/{purchaseId} {
+        allow read: if owner(uid) || admin();
+        allow create: if owner(uid)
+          && purchaseId.matches('^purchase_[A-Za-z0-9_-]+$')
+          && request.resource.data.keys().hasOnly(['uid','itemId','purchaseId','cost','createdAtMs','createdAt'])
+          && request.resource.data.uid == uid
+          && request.resource.data.itemId in ['mock-test-unlock','revision-pack','streak-freeze','focus-booster','purple-border','scholar-title','chat-glow','diamond-frame']
+          && request.resource.data.purchaseId is string
+          && request.resource.data.purchaseId.size() >= 12
+          && request.resource.data.purchaseId.size() <= 180
+          && request.resource.data.cost is int
+          && request.resource.data.cost >= 0
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs > 0;
+        allow update, delete: if false;
+      }
+
+      match /xpLedger/{entryId} {
+        allow read: if owner(uid) || admin();
+        allow create: if admin() || (owner(uid)
+          && request.resource.data.uid == uid
+          && request.resource.data.amount is int
+          && request.resource.data.amount >= 0
+          && request.resource.data.amount <= 500);
+        allow update, delete: if false;
+      }
+
+      match /rewards/{docId} {
+        allow read: if owner(uid) || admin();
+        allow create, update: if (owner(uid) || admin())
+          && request.resource.data.uid == uid
+          && (
+            (docId == 'streaks'
+              && request.resource.data.loginDays is list
+              && request.resource.data.studyDays is list
+              && request.resource.data.loginDays.size() <= 730
+              && request.resource.data.studyDays.size() <= 730
+              && (!('freezeDays' in request.resource.data) || (request.resource.data.freezeDays is list && request.resource.data.freezeDays.size() <= 60)))
+            ||
+            (docId != 'streaks'
+              && request.resource.data.totalXP is int
+              && request.resource.data.totalXP >= 0
+              && ((!exists(/databases/$(database)/documents/users/$(uid)/rewards/$(docId))
+                    && !request.resource.data.keys().hasAny(['evaluationRevision','lastEvaluationId']))
+                  || (exists(/databases/$(database)/documents/users/$(uid)/rewards/$(docId))
+                    && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['evaluationRevision','lastEvaluationId'])
+                    && (!('evaluationRevision' in resource.data) || request.resource.data.totalXP >= resource.data.totalXP)))
+              && request.resource.data.totalXP <= 270000
+              && request.resource.data.coins is int
+              && request.resource.data.coins >= 0
+              && request.resource.data.coins <= 10000000
+              && (admin()
+                  || !exists(/databases/$(database)/documents/users/$(uid)/rewards/$(docId))
+                  || (request.resource.data.totalXP <= resource.data.totalXP + 2000
+                      && request.resource.data.coins <= resource.data.coins + 300))
+            )
+          );
+        allow delete: if owner(uid) || admin();
+      }
+
+      match /notifications/{notificationId} {
+        allow read, update, delete: if owner(uid);
+        allow create: if owner(uid);
+      }
+
+      match /aiChats/{chatId} {
+        allow read, create, update, delete: if owner(uid);
+      }
+
+
+      match /personalization/{docId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.uid == uid
+          && request.resource.data.schemaVersion is int
+          && request.resource.data.schemaVersion >= 151
+          && request.resource.data.profile is map
+          && request.resource.data.events is list
+          && request.resource.data.mastery is map
+          && request.resource.data.mistakes is map
+          && request.resource.data.recommendations is list
+          && request.resource.data.updatedAtMs is int;
+        allow delete: if owner(uid);
+      }
+
+      match /learningProfile/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /dailyCheckins/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /learningEvents/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /topicMastery/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /mistakes/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /recommendations/{docId} { allow read, create, update, delete: if owner(uid); }
+      match /recommendationFeedback/{docId} { allow read, create, update, delete: if owner(uid); }
+
+      match /savedPosts/{postId} {
+        allow read: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.keys().hasOnly(['postId','createdAtMs'])
+          && request.resource.data.postId == postId
+          && request.resource.data.createdAtMs is int
+          && (!('expiresAtMs' in request.resource.data) || request.resource.data.expiresAtMs is int);
+        allow delete: if owner(uid);
+      }
+    }
+
+
+
+    match /communityPosts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 2000;
+      allow update, delete: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid;
+    }
+
+    match /posts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && validPost(request.resource.data)
+        && request.resource.data.likes == 0
+        && request.resource.data.replies == 0;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+      allow update: if signedIn() && (
+        (
+          resource.data.uid == request.auth.uid
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.createdAtMs == resource.data.createdAtMs
+          && request.resource.data.likes == resource.data.likes
+          && request.resource.data.replies == resource.data.replies
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'text','tags','category','resourceUrl','updatedAtMs'
+          ])
+          && validPost(request.resource.data)
+        )
+        || validLikeCounterChange(postId)
+        || validReplyIncrement()
+      );
+
+      match /comments/{commentId} {
+        allow read: if signedIn();
+        allow create: if signedIn()
+          && request.resource.data.keys().hasOnly(['uid','authorName','authorUsername','authorPhoto','text','attachment','replyTo','createdAtMs','expiresAtMs'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.authorName is string
+          && request.resource.data.authorName.size() > 0
+          && request.resource.data.authorName.size() <= 100
+          && request.resource.data.authorUsername is string
+          && request.resource.data.authorUsername.matches('^[a-z0-9._]{3,20}$')
+          && request.resource.data.authorPhoto is string
+          && request.resource.data.authorPhoto.size() <= 2048
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 1000
+          && (request.resource.data.text.size() > 0 || request.resource.data.attachment is map)
+          && (!('replyTo' in request.resource.data) || (request.resource.data.replyTo is map && request.resource.data.replyTo.keys().hasOnly(['id','authorName','text']) && request.resource.data.replyTo.id is string && request.resource.data.replyTo.id.size() <= 128 && request.resource.data.replyTo.authorName is string && request.resource.data.replyTo.authorName.size() <= 100 && request.resource.data.replyTo.text is string && request.resource.data.replyTo.text.size() <= 160))
+          && (!('attachment' in request.resource.data) || (request.resource.data.attachment.keys().hasOnly(['kind','name','size','sizeLabel','contentType','url','path']) && request.resource.data.attachment.kind in ['image','gif','audio','document','sticker'] && request.resource.data.attachment.url is string && request.resource.data.attachment.url.size() <= 2048 && request.resource.data.attachment.path is string && request.resource.data.attachment.path.size() <= 500))
+          && request.resource.data.createdAtMs is int;
+        allow update: if signedIn()
+          && resource.data.uid == request.auth.uid
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.createdAtMs == resource.data.createdAtMs
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text'])
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 1000
+          && (request.resource.data.text.size() > 0 || request.resource.data.attachment is map)
+          && (!('replyTo' in request.resource.data) || (request.resource.data.replyTo is map && request.resource.data.replyTo.keys().hasOnly(['id','authorName','text']) && request.resource.data.replyTo.id is string && request.resource.data.replyTo.id.size() <= 128 && request.resource.data.replyTo.authorName is string && request.resource.data.replyTo.authorName.size() <= 100 && request.resource.data.replyTo.text is string && request.resource.data.replyTo.text.size() <= 160))
+          && (!('attachment' in request.resource.data) || (request.resource.data.attachment.keys().hasOnly(['kind','name','size','sizeLabel','contentType','url','path']) && request.resource.data.attachment.kind in ['image','gif','audio','document','sticker'] && request.resource.data.attachment.url is string && request.resource.data.attachment.url.size() <= 2048 && request.resource.data.attachment.path is string && request.resource.data.attachment.path.size() <= 500));
+        allow delete: if signedIn() && (resource.data.uid == request.auth.uid || get(/databases/$(database)/documents/posts/$(postId)).data.uid == request.auth.uid);
+      }
+
+      match /likes/{likeUid} {
+        allow read: if signedIn();
+        allow create: if signedIn()
+          && request.auth.uid == likeUid
+          && request.resource.data.keys().hasOnly(['uid','createdAtMs'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.createdAtMs is int;
+        allow delete: if signedIn() && request.auth.uid == likeUid;
+        allow update: if false;
+      }
+    }
+
+    match /groups/{groupId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && validGroup(request.resource.data)
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.memberCount == 1
+        && getAfter(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.uid == request.auth.uid
+        && getAfter(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.role == 'owner'
+        && (request.resource.data.schemaVersion < 240 || (
+          getAfter(/databases/$(database)/documents/groups/$(groupId)/private/invite).data.code is string
+          && getAfter(/databases/$(database)/documents/groups/$(groupId)/private/invite).data.code.size() >= 6
+          && getAfter(/databases/$(database)/documents/groups/$(groupId)/private/invite).data.code.size() <= 32
+        ));
+      allow update: if signedIn() && (
+        (isGroupOwner(groupId)
+          && request.resource.data.createdAtMs == resource.data.createdAtMs
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'ownerUid','ownerName','name','subject','description','memberCount','updatedAtMs','avatarURL','wallpaperURL','wallpaperType','privacy','inviteCode','permissions'
+          ])
+          && validGroup(request.resource.data))
+        || (isGroupAdmin(groupId)
+          && request.resource.data.createdAtMs == resource.data.createdAtMs
+          && request.resource.data.ownerUid == resource.data.ownerUid
+          && request.resource.data.ownerName == resource.data.ownerName
+          && request.resource.data.permissions == resource.data.permissions
+          && request.resource.data.inviteCode == resource.data.inviteCode
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','subject','description','updatedAtMs','avatarURL','wallpaperURL','wallpaperType'])
+          && validGroup(request.resource.data))
+        || (isGroupMember(groupId) && groupPermission(groupId, 'membersCanEdit') && request.resource.data.ownerUid == resource.data.ownerUid && request.resource.data.ownerName == resource.data.ownerName && request.resource.data.createdAtMs == resource.data.createdAtMs && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','subject','description','updatedAtMs']) && validGroup(request.resource.data))
+        || validMembershipCounterChange(groupId)
+        || validOrphanOwnerClaim(groupId)
+      );
+      allow delete: if signedIn() && resource.data.ownerUid == request.auth.uid;
+
+      match /private/{privateDoc} {
+        allow read: if signedIn() && privateDoc == 'invite'
+          && (isGroupOwner(groupId) || isGroupAdmin(groupId) || (isGroupMember(groupId) && groupPermission(groupId, 'membersCanInvite')));
+        allow create: if signedIn() && privateDoc == 'invite'
+          && request.resource.data.keys().hasOnly(['code','updatedAtMs'])
+          && request.resource.data.code is string
+          && request.resource.data.code.size() >= 6
+          && request.resource.data.code.size() <= 32
+          && request.resource.data.updatedAtMs is int
+          && getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid == request.auth.uid;
+        allow update: if signedIn() && privateDoc == 'invite' && isGroupOwner(groupId)
+          && request.resource.data.keys().hasOnly(['code','updatedAtMs'])
+          && request.resource.data.code is string
+          && request.resource.data.code.size() >= 6
+          && request.resource.data.code.size() <= 32
+          && request.resource.data.updatedAtMs is int;
+        allow delete: if signedIn() && privateDoc == 'invite' && isGroupOwner(groupId);
+      }
+
+      match /members/{memberUid} {
+        allow read: if signedIn();
+        allow create: if signedIn()
+          && (request.auth.uid == memberUid || isGroupAdmin(groupId))
+          && ((request.auth.uid == memberUid
+                && request.resource.data.role == 'owner'
+                && getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid == memberUid)
+              || isGroupAdmin(groupId) || groupDoc(groupId).permissions.approvalRequired == false || (exists(/databases/$(database)/documents/groups/$(groupId)/joinRequests/$(memberUid)) && get(/databases/$(database)/documents/groups/$(groupId)/joinRequests/$(memberUid)).data.status == 'approved'))
+          && request.resource.data.keys().hasOnly(['uid','name','username','photoURL','role','joinedAtMs'])
+          && request.resource.data.uid == memberUid
+          && request.resource.data.name is string
+          && request.resource.data.name.size() > 0
+          && request.resource.data.name.size() <= 100
+          && request.resource.data.username is string
+          && request.resource.data.username.matches('^[a-z0-9._]{3,20}$')
+          && request.resource.data.photoURL is string
+          && request.resource.data.photoURL.size() <= 2048
+          && request.resource.data.joinedAtMs is int
+          && (
+            request.resource.data.role == 'member'
+            || (
+              request.resource.data.role == 'owner'
+              && getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid == memberUid
+            )
+          );
+        allow update: if signedIn() && (
+          (isGroupOwner(groupId)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role'])
+            && request.resource.data.role in ['member','admin','owner']
+            && (request.resource.data.role != 'owner' || getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid == memberUid)
+            && (resource.data.role != 'owner' || getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid != memberUid))
+          ||
+          (request.auth.uid == memberUid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','username','photoURL','lastDeliveredAtMs','lastReadAtMs'])
+            && (!('lastDeliveredAtMs' in request.resource.data) || (request.resource.data.lastDeliveredAtMs is int && request.resource.data.lastDeliveredAtMs >= 0))
+            && (!('lastReadAtMs' in request.resource.data) || (request.resource.data.lastReadAtMs is int && request.resource.data.lastReadAtMs >= 0))
+            && (!('name' in request.resource.data) || (request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 100))
+            && (!('username' in request.resource.data) || (request.resource.data.username is string && request.resource.data.username.matches('^[a-z0-9._]{3,20}$')))
+            && (!('photoURL' in request.resource.data) || (request.resource.data.photoURL is string && request.resource.data.photoURL.size() <= 2048)))
+          ||
+          (request.auth.uid == memberUid
+            && groupOwnerMissing(groupId)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role'])
+            && request.resource.data.role == 'owner'
+            && getAfter(/databases/$(database)/documents/groups/$(groupId)).data.ownerUid == request.auth.uid)
+        );
+        allow delete: if signedIn() && (
+          (request.auth.uid == memberUid
+            && resource.data.role != 'owner'
+            && groupDoc(groupId).ownerUid != memberUid)
+          || (isGroupOwner(groupId) && memberUid != groupDoc(groupId).ownerUid)
+          || (isGroupAdmin(groupId) && resource.data.role == 'member')
+          || (isGroupOwner(groupId) && !existsAfter(/databases/$(database)/documents/groups/$(groupId)))
+        );
+      }
+
+      match /joinRequests/{requestUid} {
+        allow read: if signedIn() && (request.auth.uid == requestUid || isGroupAdmin(groupId));
+        allow create: if signedIn() && request.auth.uid == requestUid
+          && request.resource.data.keys().hasOnly(['uid','name','username','photoURL','status','createdAtMs','updatedAtMs'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.status == 'pending';
+        allow update: if signedIn()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','username','photoURL','status','updatedAtMs'])
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.createdAtMs == resource.data.createdAtMs
+          && ((isGroupAdmin(groupId) && request.resource.data.status in ['pending','approved','rejected'])
+            || (request.auth.uid == requestUid && request.resource.data.status == 'pending'));
+        allow delete: if signedIn() && (request.auth.uid == requestUid || isGroupAdmin(groupId) || (isGroupOwner(groupId) && !existsAfter(/databases/$(database)/documents/groups/$(groupId))));
+      }
+
+      match /messages/{messageId} {
+        allow read: if isGroupMember(groupId) && (isGroupAdmin(groupId) || groupPermission(groupId, 'historyVisible') || resource.data.createdAtMs >= get(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)).data.joinedAtMs);
+        allow create: if signedIn()
+          && isGroupMember(groupId)
+          && (isGroupAdmin(groupId) || groupPermission(groupId, 'membersCanSend'))
+          && request.resource.data.keys().hasOnly(['uid','authorName','authorUsername','authorPhoto','text','attachment','replyTo','createdAtMs','expiresAtMs'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.authorName is string
+          && request.resource.data.authorName.size() > 0
+          && request.resource.data.authorName.size() <= 100
+          && request.resource.data.authorUsername is string
+          && request.resource.data.authorUsername.matches('^[a-z0-9._]{3,20}$')
+          && request.resource.data.authorPhoto is string
+          && request.resource.data.authorPhoto.size() <= 2048
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 1000
+          && (request.resource.data.text.size() > 0 || request.resource.data.attachment is map)
+          && (!('replyTo' in request.resource.data) || (request.resource.data.replyTo is map && request.resource.data.replyTo.keys().hasOnly(['id','authorName','text']) && request.resource.data.replyTo.id is string && request.resource.data.replyTo.id.size() <= 128 && request.resource.data.replyTo.authorName is string && request.resource.data.replyTo.authorName.size() <= 100 && request.resource.data.replyTo.text is string && request.resource.data.replyTo.text.size() <= 160))
+          && (!('attachment' in request.resource.data) || (request.resource.data.attachment.keys().hasOnly(['kind','name','size','sizeLabel','contentType','url','path']) && request.resource.data.attachment.kind in ['image','gif','audio','document','sticker'] && request.resource.data.attachment.url is string && request.resource.data.attachment.url.size() <= 2048 && request.resource.data.attachment.path is string && request.resource.data.attachment.path.size() <= 500))
+          && request.resource.data.createdAtMs is int;
+        allow update: if false;
+        allow delete: if signedIn() && (resource.data.uid == request.auth.uid || (isGroupOwner(groupId) && !existsAfter(/databases/$(database)/documents/groups/$(groupId))));
+      }
+    }
+
+
+    match /reports/{reportId} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['postId','reporterUid','reason','status','createdAtMs'])
+        && request.resource.data.reporterUid == request.auth.uid
+        && request.resource.data.postId is string
+        && request.resource.data.postId.size() > 0
+        && exists(/databases/$(database)/documents/posts/$(request.resource.data.postId))
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() >= 3
+        && request.resource.data.reason.size() <= 300
+        && request.resource.data.status == 'open'
+        && request.resource.data.createdAtMs is int;
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
+
+    match /adminAudit/{auditId} {
+      allow read: if admin();
+      allow create: if admin()
+        && request.resource.data.adminUid == request.auth.uid
+        && request.resource.data.targetUid is string
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() > 0
+        && request.resource.data.reason.size() <= 300;
+      allow update, delete: if false;
+    }
+
+  }
+}

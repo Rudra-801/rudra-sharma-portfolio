@@ -1,0 +1,6 @@
+
+html,body{scrollbar-width:none!important;-ms-overflow-style:none!important}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
+body.home-page,html[data-page="home"] body{overflow-y:auto!important;scrollbar-width:none!important}
+body.home-page::-webkit-scrollbar,html[data-page="home"] body::-webkit-scrollbar,
+body.home-page *::-webkit-scrollbar,html[data-page="home"] body *::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}

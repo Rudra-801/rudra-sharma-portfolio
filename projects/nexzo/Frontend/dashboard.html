@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="nx-auth-pending">
+<head>
+<style id="nxAuthFirstPaint">html.nx-auth-pending body{visibility:hidden!important}</style>
+<meta charset="UTF-8">
+  <script src="js/shared-state.js?v=quality-v14" defer></script>
+<script src="js/config.js?v=quality-v14" defer></script>
+<script src="js/firebase-client.js?v=quality-v14" defer></script><script src="js/backend-store-v201.js?v=20261010-evaluation2" defer></script>
+<script src="js/auth-guard.js?v=quality-v14" defer></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXZO Dashboard</title>
+  <meta name="description" content="NEXZO personalized learning workspace for students.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://personalized-recommendersystem.web.app/dashboard.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEXZO">
+  <meta property="og:title" content="NEXZO Dashboard">
+  <meta property="og:description" content="NEXZO personalized learning workspace for students.">
+  <meta property="og:url" content="https://personalized-recommendersystem.web.app/dashboard.html">
+  <meta property="og:image" content="https://personalized-recommendersystem.web.app/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NEXZO Dashboard">
+  <meta name="twitter:description" content="NEXZO personalized learning workspace for students.">
+  <meta name="nexzo-api-base-url" content="https://nexzo-backend.onrender.com/api">
+<link rel="icon" href="favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="css/dist/style.c51476d1a93e.css?v=63">
+<link rel="stylesheet" href="css/dist/runtime.e7a11eb1cede.css">
+  <link rel="stylesheet" href="css/nexzo-core.css?v=63">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="js/runtime-observability.js?v=quality-v14" defer></script>
+  <script src="js/metric-authority.js" defer></script>
+  <link rel="stylesheet" href="css/gamification.css?v=501">
+  <link rel="stylesheet" href="css/engagement-hub.css?v=3">
+  <link rel="stylesheet" href="css/final-polish.css?v=65">
+  <link rel="stylesheet" href="css/preferences-runtime.css?v=66">
+  <link rel="stylesheet" href="css/level-up-final.css?v=72">
+<link rel="stylesheet" href="css/mobile-v75.css?v=75">
+<link rel="stylesheet" href="css/ui-v76.css?v=76">
+<link rel="stylesheet" href="css/workspace-ui.css?v=release-20261005">
+  <link rel="stylesheet" href="css/task-state-layout-v139.css?v=139">
+  <link rel="stylesheet" href="css/personalization-v204.css?v=2040915">
+  <link rel="stylesheet" href="css/black-gold-global-v140.css?v=142">
+  <link rel="stylesheet" href="css/nexzo-today-v209.css?v=209">
+  <link rel="stylesheet" href="css/nexzo-today-v214.css?v=214">
+  <link rel="stylesheet" href="css/brand.css?v=8">
+<style id="nxDashboardRecommendationsV269">
+.nx-dash-rec-label{font-size:12px;font-weight:700;letter-spacing:.04em;color:#a78bfa;opacity:.9}
+</style>
+  <link rel="stylesheet" href="css/nexzo-home-shell.css?v=195">
+<link rel="stylesheet" href="css/ui-stability-v128.css?v=128">
+  <link rel="stylesheet" href="css/internal-header-final-v130.css?v=130">
+  <link rel="stylesheet" href="css/student-digital-twin-v181.css?v=182">
+  <link rel="stylesheet" href="css/nexzo-unified-black-gold-v193.css?v=193">
+</head>
+<body class="dashboard-exact-page dashboard-page nx-dashboard-live" data-page="dashboard">
+<div class="app">
+  <main class="main dashboard-exact-main">
+    
+    
+    <section class="dash-topbar-exact nx-academics-topbar">
+      <div class="nx-topbar-spacer" aria-hidden="true"></div>
+
+      <div class="dash-actions-exact nx-academics-actions">
+        <button id="dashSearchBtn" title="Search">🔍</button>
+        <button id="dashNotifBtn" title="Notifications">🔔<em id="dashNotifCount">0</em></button>
+        <button id="dashTimerTopBtn" title="Focus Timer"><b id="dashTopTimer">25:00</b></button>
+        <button data-nx-click-href="ai-assistant.html" title="Study Assistant">✦</button>
+
+        <a class="dash-profile-chip-exact nx-academics-profile" href="profile.html">
+          <img id="dashAvatar" src="favicon.png" alt="Profile">
+          <div>
+            <b id="dashUserName">Student</b>
+            <small id="dashLevelText">Keep learning!</small>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="dash-welcome-exact">
+      <div><h1 id="dashGreeting">Good Morning, Student! 👋</h1><p id="dashWelcomeLine">Your complete NEXZO learning activity is synced here.</p></div>
+      <div class="dash-date-card-exact"><span>📅</span><div><b id="dashDate">Today</b><small id="dashDay">Study Day</small></div></div>
+    </section>
+<section class="dash-stats-exact">
+      <article class="dash-stat-exact orange"><i>🔥</i><div><p>Study Streak</p><h2 id="dashStreak">0</h2><b>days</b><small id="dashBestStreak">Keep it up!</small></div></article>
+      <article class="dash-stat-exact green"><i>✅</i><div><p>Tasks Completed</p><h2 id="dashTasksDone">0</h2><b id="dashTaskRatio">of 0 tasks</b><small>Planner synced</small></div></article>
+      <article class="dash-stat-exact cyan"><i>⏱️</i><div><p>Study Hours</p><h2 id="dashHours">0h</h2><b id="dashHoursDelta">this week</b><small>From study sessions</small></div></article>
+      <article class="dash-stat-exact purple"><i>🤖</i><div><p>Study Score</p><h2 id="dashAiScore">0</h2><b>/100 average</b><small>From task evaluations</small></div></article>
+      <article class="dash-stat-exact gold"><i>📊</i><div><p>Overall Progress</p><h2 id="dashProgress">0%</h2><b>overall</b><small id="dashMissionText">Start your journey</small></div></article>
+    </section>
+
+    
+<section class="dash-live-layout">
+      <section class="dash-card-exact dash-study-overview-exact">
+        <div class="dash-card-title-exact"><h2>Study Overview</h2><select id="dashRange"><option value="7">This Week</option><option value="30">Last 30 Days</option></select></div>
+        <div class="dash-overview-content-exact">
+          <div class="dash-chart-box-exact"><h3>Weekly Study Hours</h3><strong id="dashWeeklyHours">0h <span id="dashTrend">▲ 0%</span></strong><small>vs previous period</small><svg id="dashDynamicChart" class="dash-line-chart-exact" viewBox="0 0 460 230" preserveAspectRatio="none"></svg></div>
+          <div class="dash-heatmap-box-exact"><h3>Study Activity Heatmap</h3><div class="dash-heatmap-exact" id="dashHeatmapExact"></div><div class="dash-heatmap-legend-exact"><span>Less</span><i></i><i></i><i></i><i></i><i></i><span>More</span></div></div>
+        </div>
+      </section>
+
+      <section class="dash-card-exact dash-upcoming-exact"><div class="dash-card-title-exact"><h2>Upcoming Tasks</h2><a href="planner.html">View all →</a></div><div class="dash-task-list-exact" id="dashUpcomingTasksExact"></div><a href="planner.html" class="dash-go-planner-exact">📅 Go to Planner →</a></section>
+      <section class="dash-card-exact"><div class="dash-card-title-exact"><h2>Subject Progress</h2><a href="academics.html">View all →</a></div><div id="dashSubjectProgressExact"></div></section>
+      <section class="dash-card-exact"><div class="dash-card-title-exact"><h2>Recent Activity</h2><a href="community.html">View all →</a></div><div id="dashRecentActivityExact"></div></section>
+
+      <section class="dash-card-exact nx-dash-personalized"><div class="dash-card-title-exact"><div><h2>🎯 Personalized Recommendations</h2><p id="dashPersonalSummary" class="nx-personal-summary">Loading your NEXZO profile…</p></div><button type="button" class="nx-profile-toggle" id="dashPersonalToggle">Edit personalization</button></div><div id="dashPersonalizedActions"><div class="nx-runtime-empty">Building recommendations from your learning activity…</div></div><div id="dashPersonalSetup" class="nx-dashboard-personal-setup nx-personal-modal" hidden><div class="nx-personal-modal-shell"><div class="nx-personal-modal-hero"><div><span class="nx-recommender-kicker">PERSONAL RECOMMENDER SYSTEM</span><h2>Build your NEXZO Learning Profile</h2><p>Tell NEXZO what you study, what you want to achieve and how you prefer to learn. This profile powers recommendations across the whole platform.</p></div><button type="button" class="nx-personal-close" id="dashPersonalClose" aria-label="Close">×</button></div><div class="nx-recommender-flow nx-dashboard-flow"><div><b>1. Your input</b><span>subjects · interests · goals</span></div><i>→</i><div><b>2. Learning signals</b><span>scores · tasks · deadlines</span></div><i>→</i><div><b>3. Personal ranking</b><span>priority · relevance · time</span></div><i>→</i><div><b>4. NEXZO adapts</b><span>academics · career · planner · AI</span></div></div><form id="dashPersonalForm" class="nx-dashboard-personal-form nx-old-personal-form"><section class="nx-personal-form-card"><div class="nx-form-card-title"><span>01</span><div><h3>Academic Profile</h3><p>Your current university context</p></div></div><div class="nx-form-fields"><label>Course<input id="dashCourse" placeholder="B.Tech"></label><label>Branch<input id="dashBranch" placeholder="CSE"></label><label>Semester<input id="dashSemester" placeholder="6"></label><label>Current level<select id="dashLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label><label class="full">Current subjects<input id="dashSubjects" placeholder="DSA, DBMS, CN, OS"></label><label class="full">Backlogs / weak subjects<input id="dashBacklogs" placeholder="Optional: OS, CN"></label></div></section><section class="nx-personal-form-card"><div class="nx-form-card-title"><span>02</span><div><h3>Goals & Interests</h3><p>What NEXZO should optimize for</p></div></div><div class="nx-form-fields"><label class="full">Interests<input id="dashInterests" placeholder="AI, Web Development, Python"></label><label>Learning goal<select id="dashGoal"><option>Improve academics</option><option>Exam preparation</option><option>Placement preparation</option><option>Build projects</option><option>Learn a new skill</option></select></label><label>Career goal<input id="dashCareer" placeholder="Software Engineer"></label><label class="full">Exam dates / deadlines<input id="dashExams" placeholder="DBMS=2026-09-20, OS=2026-09-25"></label></div></section><section class="nx-personal-form-card"><div class="nx-form-card-title"><span>03</span><div><h3>Learning Preferences</h3><p>Fit recommendations into your routine</p></div></div><div class="nx-form-fields"><label>Daily study time<input id="dashDaily" type="number" min="10" max="720" value="60"><small>minutes/day</small></label><label>Session length<input id="dashSession" type="number" min="10" max="180" value="30"><small>minutes/session</small></label><label>Preferred mode<select id="dashMode"><option>Adaptive</option><option>Theory</option><option>Practice</option><option>Revision</option><option>Projects</option></select></label><label>Language<select id="dashLanguage"><option>Hinglish</option><option>English</option><option>Hindi</option></select></label></div><div class="nx-profile-impact"><b>One profile. Whole platform.</b><span>Home · Academics · Career · Planner · Study Assistant · Dashboard</span></div></section><div class="nx-personal-submitbar"><div><b>Ready to personalize NEXZO?</b><span>Your saved values can be edited anytime.</span></div><button class="nx-personalize-submit" type="submit">Save & Personalize NEXZO →</button></div></form></div></div></section>
+      <section id="nxPulseV203" class="nx-intelligence-command nx-intelligence-near-recommender" aria-live="polite"><div class="nx-runtime-empty">Preparing NEXZO Today…</div></section>
+      <section class="dash-card-exact"><div class="dash-card-title-exact"><h2>Smart Suggestions</h2><a href="ai-assistant.html">Open Study Assistant →</a></div><div id="dashAiSuggestionsExact"></div></section>
+      <section class="dash-card-exact dash-productivity"><div class="dash-card-title-exact"><h2>Productivity Insights</h2></div><div class="dash-productivity-wrap"><div class="dash-ring-live" id="dashProductivityRing"><b id="dashProductivityScore">0%</b><small>Productive</small></div><div id="dashInsightList" class="dash-insight-list"></div></div></section>
+      <section class="dash-card-exact"><div class="dash-card-title-exact"><h2>Achievements</h2><a href="profile.html">View profile →</a></div><div id="dashAchievements" class="dash-achievement-grid"></div></section>
+      <section class="dash-card-exact"><div class="dash-card-title-exact"><h2>Weekly Goal</h2></div><div class="dash-goal-live"><i>🏆</i><div><p id="dashGoalText">Create tasks to begin.</p><div class="dash-goal-bar"><span id="dashGoalBar"></span></div></div><b id="dashGoalCount">0 / 5</b></div></section>
+</section>
+
+    
+  </main>
+</div>
+<div id="dashSearchPanel" class="dash-search-panel" hidden></div>
+</div>
+
+    
+
+
+
+
+  <script>
+    window.NEXZOTogglePersonalization = function(){
+      var panel=document.getElementById('dashPersonalSetup');
+      var btn=document.getElementById('dashPersonalToggle');
+      if(!panel)return;
+      var opening=panel.hasAttribute('hidden');
+      if(opening){
+        // Portal the modal directly under <body>. This prevents transformed/glass
+        // dashboard ancestors from turning position:fixed into an in-card panel.
+        if(panel.parentElement !== document.body) document.body.appendChild(panel);
+        panel.removeAttribute('hidden');
+        panel.style.display='block';
+        document.documentElement.classList.add('nx-personal-modal-open');
+        document.body.classList.add('nx-personal-modal-open');
+        var shell=panel.querySelector('.nx-personal-modal-shell');
+        if(shell) shell.scrollTop=0;
+      } else {
+        panel.setAttribute('hidden','');
+        panel.style.display='none';
+        document.documentElement.classList.remove('nx-personal-modal-open');
+        document.body.classList.remove('nx-personal-modal-open');
+      }
+      if(btn) btn.textContent=opening?'Close personalization':'Edit personalization';
+    };
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'){
+        var panel=document.getElementById('dashPersonalSetup');
+        if(panel && !panel.hasAttribute('hidden')) window.NEXZOTogglePersonalization();
+      }
+    });
+  </script>
+  <script defer src="js/level-system.js?v=20261010-evaluation2"></script>
+  <script defer src="js/state-authority.js?v=152"></script>
+  <script src="js/settings-state.js?v=66" defer></script>
+  <script src="js/app-shell.js?v=brand-v3" defer></script>
+<script src="js/task-integrity.js?v=2" defer></script>
+<script src="js/data-service.js?v=20261010-evaluation2" defer></script>
+<script src="js/task-store.js?v=152" defer></script>
+<script src="js/dashboard-controller.js?v=sync-v135" defer></script>
+<script src="js/personalization-engine-v152.js?v=203" defer></script>
+<script src="js/personalization-dashboard-v205.js?v=2050915" defer></script>
+<script src="js/nexzo-intelligence-v203.js?v=203" defer></script>
+<script src="js/nexzo-today-v209.js?v=209" defer></script>
+  <script src="js/performance-runtime.js?v=quality-v14" defer></script>
+  <script src="js/event-actions.js" defer></script>
+<script defer src="js/final-runtime.js?v=90"></script>
+  <script src="js/streak-system.js?v=1" defer></script>
+  <script src="js/gamification-system.js?v=20261010-evaluation2" defer></script>
+  <script src="js/level-up-controller.js?v=5" defer></script>
+  <script src="js/consent-interactions-v129.js?v=129" defer></script>
+  <script src="js/nexzo-home-shell.js?v=live-bg-v195" defer></script>
+  <script src="js/student-digital-twin-v181.js?v=20261010-evaluation2" defer></script>
+</body>
+</html>

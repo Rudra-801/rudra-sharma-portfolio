@@ -1,0 +1,62 @@
+
+/* V215 — NEXZO Hub visual unification: same black/glass/3D language as the core site. */
+body[data-page="hub"]{
+  --nx215-gold:#f3c94b;
+  --nx215-panel:rgba(10,14,20,.82);
+  --nx215-line:rgba(255,255,255,.09);
+  --nx215-shadow:0 22px 70px rgba(0,0,0,.42);
+}
+body[data-page="hub"] .nx-hub-page{position:relative;isolation:isolate}
+body[data-page="hub"] .nx-hub-page:before,
+body[data-page="hub"] .nx-hub-page:after{
+  content:"";position:fixed;pointer-events:none;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.17
+}
+body[data-page="hub"] .nx-hub-page:before{width:340px;height:340px;right:8%;top:14%;background:#6d42ff}
+body[data-page="hub"] .nx-hub-page:after{width:300px;height:300px;left:20%;bottom:8%;background:#e3a812}
+body[data-page="hub"] .nx-hub-hero,
+body[data-page="hub"] .nx-smart-action,
+body[data-page="hub"] .nx-exam-goal,
+body[data-page="hub"] .summary-card,
+body[data-page="hub"] .hub-card,
+body[data-page="hub"] .nx-verified-strip{
+  border:1px solid var(--nx215-line)!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008)),
+    var(--nx215-panel)!important;
+  box-shadow:var(--nx215-shadow),inset 0 1px 0 rgba(255,255,255,.035)!important;
+  backdrop-filter:blur(18px)!important;
+  transform-style:preserve-3d;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease!important;
+}
+body[data-page="hub"] .summary-card:hover,
+body[data-page="hub"] .hub-card:hover,
+body[data-page="hub"] .nx-smart-action:hover,
+body[data-page="hub"] .nx-exam-goal:hover{
+  border-color:rgba(243,201,75,.34)!important;
+  box-shadow:0 28px 82px rgba(0,0,0,.5),0 0 28px rgba(243,201,75,.06),inset 0 1px 0 rgba(255,255,255,.055)!important;
+}
+body[data-page="hub"] .nx-hub-tabs{
+  position:sticky;top:10px;z-index:15;
+  padding:7px!important;border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:18px!important;background:rgba(8,11,16,.86)!important;backdrop-filter:blur(18px)
+}
+body[data-page="hub"] .nx-hub-tabs button{border-radius:13px!important;transition:.18s ease!important}
+body[data-page="hub"] .nx-hub-tabs button.active{
+  background:linear-gradient(135deg,rgba(112,77,255,.96),rgba(29,181,228,.86))!important;
+  box-shadow:0 10px 26px rgba(82,78,235,.23)!important
+}
+body[data-page="hub"] .card-icon,
+body[data-page="hub"] .summary-icon{
+  transform:translateZ(18px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.25)!important
+}
+body[data-page="hub"] button{
+  transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important
+}
+body[data-page="hub"] button:hover{transform:translateY(-2px)}
+body[data-page="hub"] .nx-hub-panel{animation:nx215HubIn .28s ease both}
+@keyframes nx215HubIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  body[data-page="hub"] .nx-hub-panel{animation:none}
+  body[data-page="hub"] .summary-card,body[data-page="hub"] .hub-card{transform:none!important}
+}

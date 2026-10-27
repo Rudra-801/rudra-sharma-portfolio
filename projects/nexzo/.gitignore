@@ -1,0 +1,14 @@
+.tooling/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.zip
+__pycache__/
+Frontend/.release-check/
+.vscode/
+*service-account*.json
+*firebase-adminsdk*.json
+
+.firebase/

@@ -1,0 +1,8 @@
+/* Focused NEXZO polish: one product language, no orbit/glow takeover. */
+body[data-page="academics"],body[data-page="career"]{--nx-review-gold:#f4c64d;--nx-review-line:#2a3039;background:#05070b!important}
+body[data-page="academics"] .card,body[data-page="career"] .card,body[data-page="career"] [class*="career-v242-"]{box-shadow:none}
+body[data-page="academics"] button,body[data-page="academics"] a,body[data-page="career"] button,body[data-page="career"] a{transition:border-color .18s ease,background-color .18s ease,transform .18s ease,color .18s ease}
+body[data-page="academics"] .card:hover,body[data-page="career"] .career-v242-role-list button:hover,body[data-page="career"] .career-v242-tabs button:hover{border-color:var(--nx-review-gold)!important}
+body[data-page="career"] .career-v242-explorer,body[data-page="career"] .career-v242-workspace{overflow:visible!important}
+body[data-page="career"] .career-v242-role-list{overflow-x:hidden!important}
+@media(prefers-reduced-motion:reduce){body[data-page="academics"] *,body[data-page="career"] *{scroll-behavior:auto!important;transition:none!important}}
