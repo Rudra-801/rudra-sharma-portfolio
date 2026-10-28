@@ -14,13 +14,22 @@ function createApp({ store = createContactStore() } = {}) {
   if (process.env.TRUST_PROXY)
     app.set("trust proxy", Number(process.env.TRUST_PROXY));
   app.use(helmet({ contentSecurityPolicy: false }));
-  app.get("/api/health", (_req, res) =>
-    res.json({
-      ok: true,
-      service: "Rudra Portfolio",
-      contactStorage: store.mode,
-    }),
-  );
+  app.get("/api/health", async (_req, res) => {
+    try {
+      const ready = store.check ? await store.check() : true;
+      if (!ready)
+        return res
+          .status(503)
+          .json({ ok: false, service: "Rudra Portfolio" });
+      res.json({
+        ok: true,
+        service: "Rudra Portfolio",
+        contactStorage: store.mode,
+      });
+    } catch {
+      res.status(503).json({ ok: false, service: "Rudra Portfolio" });
+    }
+  });
   app.post(
     "/api/contact",
     rateLimit({

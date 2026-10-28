@@ -93,6 +93,28 @@ test("failed persistence never reports success", async () =>
       assert.equal(r.status, 503);
     },
   ));
+test("health route waits for the contact database readiness", async () => {
+  await withServer(
+    { mode: "mongodb", check: async () => false, save: async () => "id" },
+    async (base) => {
+      const r = await fetch(base + "/api/health");
+      assert.equal(r.status, 503);
+      assert.equal((await r.json()).ok, false);
+    },
+  );
+  await withServer(
+    {
+      mode: "mongodb",
+      check: async () => {
+        throw new Error("connection failure");
+      },
+      save: async () => "id",
+    },
+    async (base) => {
+      assert.equal((await fetch(base + "/api/health")).status, 503);
+    },
+  );
+});
 test("isolated Firebase and production configuration guards", () => {
   assert.throws(
     () =>

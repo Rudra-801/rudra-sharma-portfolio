@@ -42,11 +42,13 @@ Production refuses local contact storage. Cloud credentials must be stored outsi
 - `projects/`: original bundled project implementations preserved. These have independent service requirements.
 - `tests/backend.test.js`: HTTP validation, persistence, failure behavior, private file blocking, configuration isolation and local-link checks.
 
-## Deployment preparation (not deployed)
+## Render deployment preparation
 
-Use a Node-capable host, `npm ci`, then `npm start`. Set `NODE_ENV=production`, configure the independent Firebase or MongoDB contact store and set `HOST=0.0.0.0`. Set `TRUST_PROXY` only to the actual trusted proxy hop count. Keep all secrets and contact records out of Git. Configure the final domain/canonical URL and absolute social-image URL after choosing hosting.
+The app requires a **Node/Express web service**; static-only hosting cannot run `/api/contact`. The Render Blueprint in `render.yaml` uses `npm ci` and `npm start`, sets `NODE_ENV=production`, binds to `0.0.0.0`, and checks `/api/health`. It selects the existing MongoDB adapter (`CONTACT_STORE=mongodb`). Production health checks wait for the Atlas connection, so Render will not mark the service healthy while contact storage is unavailable.
 
-The included Render manifest is a configuration template only; no hosting or Firebase project was created. GitHub Pages cannot run the contact API.
+Before creating the Render service, create a **separate MongoDB Atlas database and database user** for this portfolio. Add the Render service's outbound IP addresses to the Atlas project's Network Access list. Add `MONGODB_URI` as a secret in the Render dashboard; never put its value in this repository, a commit, or chat. The Blueprint's `sync: false` declares the required secret without storing it in Git. Also ensure `backend/.env`, `.env`, private keys and credential files remain ignored; `git check-ignore` can verify local secret files before a commit.
+
+No Atlas database, Render service, production environment variable or domain has been created/configured yet. Do not select Firebase for this deployment. NEXZO's Firebase project and configuration are outside this portfolio deployment. Add the production canonical URL and absolute social-image URL after the Render URL is live. GitHub Pages cannot run the contact API.
 
 ## Project boundaries
 

@@ -5,14 +5,13 @@ services:
     plan: free
     buildCommand: npm ci
     startCommand: npm start
+    healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
         value: production
       - key: HOST
         value: 0.0.0.0
       - key: CONTACT_STORE
-        value: firebase
-      - key: PORTFOLIO_FIREBASE_PROJECT_ID
-        sync: false
-      - key: PORTFOLIO_FIREBASE_CREDENTIALS
+        value: mongodb
+      - key: MONGODB_URI
         sync: false

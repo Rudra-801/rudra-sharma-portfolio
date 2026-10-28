@@ -1,7 +1,7 @@
-# QA — 28 October 2026
+# QA — 29 October 2026
 
 - Node syntax check: passed.
-- Backend automated suite: 4/4 passed (contact validation/storage failures, private paths, configuration isolation, and local links/assets).
+- Backend automated suite: 5/5 passed (contact validation/storage failures, MongoDB readiness, private paths, configuration isolation, and local links/assets).
 - `/api/health`: returned `ok: true`, contact storage mode `local`.
 - Invalid contact submission: returned HTTP 400; no contact record was created.
 - Browser console and uncaught errors: 0.
@@ -13,6 +13,7 @@
 - Reduced motion: product transform computes to `none`; scrollbar style is `none` while regular scrolling remains available.
 - Local contact submission was not sent during this pass; only invalid-data validation was exercised. Firebase/MongoDB live writes were not exercised because no separate deployment credentials are configured.
 - NEXZO Firebase services/configuration were not accessed or modified.
+- Render Blueprint uses the Node service with Atlas mode, an HTTP health check, and a dashboard-only `MONGODB_URI` secret. Production health now returns 503 until MongoDB is reachable.
 
 ## Release boundary
 

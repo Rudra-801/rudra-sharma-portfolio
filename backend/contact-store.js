@@ -53,6 +53,9 @@ function createContactStore(env = process.env) {
     const db = getFirestore(app);
     return {
       mode,
+      async check() {
+        return true;
+      },
       async save(value) {
         const row = await db
           .collection("portfolioContacts")
@@ -69,8 +72,13 @@ function createContactStore(env = process.env) {
     const ready = mongoose.connect(env.MONGODB_URI, {
       serverSelectionTimeoutMS: 10000,
     });
+    ready.catch(() => {});
     return {
       mode,
+      async check() {
+        await ready;
+        return mongoose.connection.readyState === 1;
+      },
       async save(value) {
         await ready;
         return String((await Contact.create(value))._id);
@@ -88,6 +96,9 @@ function createContactStore(env = process.env) {
     path.join(__dirname, "data", "portfolio-contacts.json");
   return {
     mode,
+    async check() {
+      return true;
+    },
     async save(value) {
       fs.mkdirSync(path.dirname(file), { recursive: true });
       const rows = fs.existsSync(file)
