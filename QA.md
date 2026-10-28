@@ -1,21 +1,20 @@
-# Final QA — 27 October 2026
+# QA — 28 October 2026
 
-- Node syntax checks: passed.
-- Backend automated suite: contact validation, local persistence, storage failure, private-file denial, existing demo GET APIs, isolated Firebase configuration and local asset/link resolution passed.
-- Local contact browser submission: successful; UI clearly reports local-only storage.
-- Navigation: mobile expand/collapse and section links verified.
-- Case studies: open, close, Escape and focus return verified.
-- NEXZO highlights: selection, pressed state, number and description update verified.
-- Browser console: no errors or warnings on portfolio page.
-- Responsive widths checked: 360, 390, 430, 768, 1024, 1440, 1920; no horizontal overflow observed. Portrait subsequently checked on desktop and 360px mobile.
-- Scrollbar: computed scrollbar-width none; ordinary scrolling works.
-- Reduced motion: explicit CSS and JavaScript branches disable smooth scrolling, reveal transitions and 3D transforms. Browser API does not expose motion emulation; OS-mode verification remains manual.
-- All root portfolio local links and images resolve. GitHub and LinkedIn point to supplied profile URLs; mailto uses existing resume email.
-- InsightHub and GamePro previews opened and current interface screenshots captured. Their independent backend/auth flows were not claimed as portfolio services.
-- NEXZO cloud services were deliberately not accessed. Existing NEXZO source/configuration was not modified.
-- Firebase live writes and MongoDB live writes are not tested: no separate deployment environment has been configured.
-- Original resume is a downloadable HTML document with Print / Save PDF, preserved from source.
+- Node syntax check: passed.
+- Backend automated suite: 4/4 passed (contact validation/storage failures, private paths, configuration isolation, and local links/assets).
+- `/api/health`: returned `ok: true`, contact storage mode `local`.
+- Invalid contact submission: returned HTTP 400; no contact record was created.
+- Browser console and uncaught errors: 0.
+- Responsive browser widths checked: 360, 390, 430, 768, 1024, 1440, 1724, and 1920 px; document width matched viewport at each size. NEXZO text and feature rail stayed within the section bounds at 1724 and 1920 px.
+- Navigation: mobile menu opens, closes after selecting a section, and section anchor settles below the fixed header.
+- NEXZO selector: next/previous and Arrow keys update selected row, description, counter, browser label, and alternate bundled interface screenshot. Initial feature setup does not scroll the page.
+- Case studies: modal opens with a project URL fragment; Escape and browser Back close it and restore focus; the URL clears.
+- Resume: `/assets/resume/Rudra-Sharma-Resume.pdf` returned HTTP 200 (`application/pdf`) and downloaded as `Rudra-Sharma-Resume.pdf`. The one-page PDF rendered and its text matched the original Word document. The exact uploaded DOCX is also preserved at `assets/resume/Rudra-Sharma-Resume.docx`.
+- Reduced motion: product transform computes to `none`; scrollbar style is `none` while regular scrolling remains available.
+- Local contact submission was not sent during this pass; only invalid-data validation was exercised. Firebase/MongoDB live writes were not exercised because no separate deployment credentials are configured.
+- NEXZO Firebase services/configuration were not accessed or modified.
 
 ## Release boundary
 
-This is a fully runnable local portfolio with production configuration guards. Hosting, independent cloud credentials, final canonical domain and live contact delivery remain deployment work. No Firebase deployment was performed.
+This remains a local-ready portfolio with its isolated contact backend. Configure a separate portfolio deployment and its own contact storage credentials when ready. No Firebase deployment was performed.
+
