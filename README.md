@@ -2,6 +2,11 @@
 
 A bespoke dark portfolio built with the existing HTML, CSS and JavaScript stack. Includes the supplied portrait, CSS 3D product surface, eight NEXZO feature selectors, accessible case-study dialogs, selected projects, engineering capabilities, education/journey and an isolated contact API.
 
+Live Demo: Pending production deployment
+
+GitHub: https://github.com/Rudra-801
+LinkedIn: https://www.linkedin.com/in/rudra-sharma-468b87304/
+
 ## Local run
 
 Requires Node.js 22 or newer.
