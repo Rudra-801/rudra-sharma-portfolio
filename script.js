@@ -100,7 +100,7 @@ $$(
   observer.observe(el);
 });
 document.body.classList.add("motion-ready");
-portfolioHighlights.forEach(([title], i) => {
+portfolioHighlights.forEach(({title}, i) => {
   const b = document.createElement("button");
   b.type = "button";
   b.innerHTML = `<span>${String(i + 1).padStart(2, "0")}</span>${title}`;
@@ -109,36 +109,64 @@ portfolioHighlights.forEach(([title], i) => {
   $("#feature-controls").append(b);
 });
 let currentFeature = 0;
-let featureSwapTimer;
-function selectFeature(i) {
+let featureRequest = 0;
+const evidenceCache = new Map();
+function loadEvidence(feature) {
+  if (!evidenceCache.has(feature.src)) {
+    const image = new Image();
+    image.src = feature.src;
+    evidenceCache.set(feature.src, image.decode().then(() => image));
+  }
+  return evidenceCache.get(feature.src);
+}
+async function selectFeature(i) {
   i = (i + portfolioHighlights.length) % portfolioHighlights.length;
   currentFeature = i;
-  const image = $("#featured-image");
-  const nextSrc = i % 2 ? "assets/project-shots/nexzo-real.png" : "assets/project-shots/nexzo-current.webp";
-  clearTimeout(featureSwapTimer);
-  if (image.getAttribute("src") !== nextSrc) {
-    image.classList.add("changing");
-    featureSwapTimer = window.setTimeout(() => {
-      image.src = nextSrc;
-      image.alt = i % 2 ? "NEXZO student workspace dashboard interface" : "NEXZO sign-in interface with guest access";
-      image.onload = () => image.classList.remove("changing");
-    }, motion.matches ? 0 : 160);
-  } else image.classList.remove("changing");
-  $$("#feature-controls button").forEach((b, j) =>
-    b.setAttribute("aria-pressed", String(i === j)),
-  );
-  $("#feature-number").textContent = String(i + 1).padStart(2, "0") + " / 08";
-  $("#feature-description").textContent = portfolioHighlights[i][1];
-  $(".screen-caption span:first-child").textContent =
-    portfolioHighlights[i][0].toUpperCase();
-  $(".screen-caption span:last-child").textContent =
-    String(i + 1).padStart(2, "0") + "—08";
-  $(".browser-bar span:nth-child(2)").textContent = `NEXZO / ${i % 2 ? "STUDENT DASHBOARD" : "STUDENT WORKSPACE"}`;
-  if (innerWidth <= 800) $$("#feature-controls button")[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: motion.matches ? "instant" : "smooth" });
+  const request = ++featureRequest;
+  const feature = portfolioHighlights[i];
+  const buttons = $$("#feature-controls button");
+  buttons.forEach((button, index) => button.setAttribute("aria-pressed", String(index === i)));
+  $("#feature-controls").style.setProperty("--active-y", buttons[i].offsetTop + "px");
+  $("#feature-controls").style.setProperty("--active-height", buttons[i].offsetHeight + "px");
+  try {
+    await loadEvidence(feature);
+    if (request !== featureRequest) return;
+    const screen = $(".product-screen");
+    const previous = $("#featured-image");
+    screen.querySelectorAll("img:not(#featured-image)").forEach(image => image.remove());
+    if (previous.getAttribute("src") !== feature.src) {
+      const incoming = new Image();
+      incoming.src = feature.src;
+      incoming.alt = feature.alt;
+      await incoming.decode();
+      if (request !== featureRequest) return;
+      previous.removeAttribute("id");
+      incoming.id = "featured-image";
+      screen.append(incoming);
+      if (!motion.matches) {
+        previous.animate([{opacity:1,transform:"scale(1)"},{opacity:0,transform:"scale(.985) translateZ(-20px)"}],{duration:500,easing:"ease",fill:"forwards"});
+        await incoming.animate([{opacity:0,transform:"scale(1.015) translateZ(20px)"},{opacity:1,transform:"scale(1) translateZ(0)"}],{duration:550,easing:"cubic-bezier(.2,.7,.2,1)"}).finished;
+      }
+      previous.remove();
+    }
+    if (request !== featureRequest) return;
+    $("#feature-number").textContent = String(i + 1).padStart(2,"0") + " / 08";
+    $("#feature-description").textContent = feature.description;
+    $(".browser-bar span:nth-child(2)").textContent = "NEXZO / " + feature.label;
+    $(".screen-caption span:first-child").textContent = feature.title.toUpperCase();
+    $(".screen-caption span:last-child").textContent = String(i+1).padStart(2,"0") + "—08";
+    $("#feature-source").href = feature.source;
+    $("#capture-link").href = feature.src;
+    const controls = $("#feature-controls");
+    if (innerWidth <= 800) controls.scrollTo({left:buttons[i].offsetLeft-controls.offsetLeft,behavior:motion.matches?"instant":"smooth"});
+    for (const offset of [-1,1]) loadEvidence(portfolioHighlights[(i+offset+portfolioHighlights.length)%portfolioHighlights.length]).catch(()=>{});
+  } catch {
+    if (request === featureRequest) $("#feature-description").textContent = "The product capture could not load. Open the live NEXZO page using the source link.";
+  }
 }
 $("#feature-prev").addEventListener("click", () => selectFeature(currentFeature - 1));
 $("#feature-next").addEventListener("click", () => selectFeature(currentFeature + 1));
-$(".feature-rail").addEventListener("keydown", (e) => {
+$("#featured").addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); selectFeature(currentFeature + (e.key === "ArrowRight" ? 1 : -1)); }
 });
 let swipeStart = null;
@@ -178,7 +206,7 @@ $$("[data-case]").forEach((b) =>
       figure.className = "case-hero";
       const img = new Image();
       img.src = p.shot;
-      img.alt = p.name + " — bundled project screenshot";
+      img.alt = p.name + (b.dataset.case === "nexzo" ? " — captured live product interface" : " — bundled project screenshot");
       figure.append(img);
       wrap.append(figure);
     }
@@ -194,6 +222,18 @@ $$("[data-case]").forEach((b) =>
       grid.append(a);
     });
     wrap.append(grid);
+    if (p.flow) {
+      const architecture = document.createElement("section");
+      architecture.className = "architecture-evidence";
+      const heading = document.createElement("h3");
+      heading.textContent = "PERSONALIZATION / DATA FLOW";
+      const flow = document.createElement("ol");
+      p.flow.forEach(step => { const item = document.createElement("li"); item.textContent = step; flow.append(item); });
+      const note = document.createElement("p");
+      note.textContent = "Implementation diagram based on the bundled data service and personalization engine. It is not a product screenshot or a performance claim.";
+      architecture.append(heading, flow, note);
+      wrap.append(architecture);
+    }
     const actions = document.createElement("div");
     actions.className = "case-actions";
     if (p.url) {
@@ -202,12 +242,12 @@ $$("[data-case]").forEach((b) =>
       a.href = p.url;
       a.target = "_blank";
       a.rel = "noopener";
-      a.textContent = "Open bundled project ↗";
+      a.textContent = b.dataset.case === "nexzo" ? "View live NEXZO ↗" : "Open bundled project ↗";
       actions.append(a);
     }
     const gh = document.createElement("a");
     gh.className = "button";
-    gh.href = p.url ? "https://github.com/Rudra-801/rudra-sharma-portfolio/tree/main/projects/" + b.dataset.case : "https://github.com/Rudra-801";
+    gh.href = p.sourceUrl || (p.url ? "https://github.com/Rudra-801/rudra-sharma-portfolio/tree/main/projects/" + b.dataset.case : "https://github.com/Rudra-801");
     gh.target = "_blank";
     gh.rel = "noopener";
     gh.textContent = p.url ? "GitHub source ↗" : "GitHub profile ↗";

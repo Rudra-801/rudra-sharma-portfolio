@@ -1,24 +1,23 @@
 window.portfolioProjects = {
   nexzo: {
     name: "NEXZO",
-    shot: "assets/project-shots/nexzo-current.webp",
-    url: "projects/nexzo/dist/Home.html",
+    shot: "assets/nexzo-evidence/recommendations.png",
+    url: "https://personalized-recommendersystem.web.app/",
+    sourceUrl: "https://github.com/Rudra-801/rudra-sharma-portfolio/tree/main/projects/nexzo",
     description: "Personalized Recommender System for University Students",
+    flow: ["Student activity", "Tasks & assessments", "Shared student state", "Recommendation ranking", "Next action", "Result & feedback", "Updated state"],
     sections: {
-      Overview:
-        "A unified student platform for academics, career guidance, planning, community, progress and intelligent assistance.",
-      Problem:
-        "Connect fragmented student workflows and learning context in one workspace.",
-      Architecture:
-        "HTML / CSS / JavaScript → Firebase Authentication and Firestore → Node.js services → recommendation and study-assistant workflows.",
-      Technology:
-        "JavaScript, HTML, CSS, Firebase, Node.js and model-backed AI integration. Python is used in verification tooling.",
-      Features:
-        "Academic resources, career paths, planning, community, recommendations and study assistance.",
-      Challenges:
-        "Keeping learning profile, planner activity and recommendation context coherent across modules.",
-      Result:
-        "Bundled student platform. Cloud and AI features require its independent environment. This portfolio does not configure or connect to NEXZO services.",
+      Overview: "A connected student platform for academics, career planning, study workflows, community and personalized recommendations.",
+      Problem: "Students have different subjects, learning goals and assessment results. A generic resource list does not use that context to decide what to study next.",
+      System: "Academics, Career, Planner, Community, Study Assistant and Dashboard share student context. The captured Academics view shows a recommended next subject; Dashboard displays Planner-derived completion and study activity.",
+      "Personalization loop": "The recommender source combines profile context, assessed activity, mastery, urgency, interests, career fit and planner capacity. Results and explicit feedback feed subsequent ranking. The diagram describes this implementation, not a measured outcome.",
+      Architecture: "HTML/CSS/JavaScript frontend → shared data and personalization modules → authenticated persistence with Firebase Authentication and Cloud Firestore. A separate Node.js/Express service supports API and assistant workflows.",
+      Technology: "HTML, CSS, JavaScript, Firebase Authentication, Cloud Firestore, Node.js and Express. Assistant tools are visible in the live interface; this capture pass does not verify every external AI tool's availability.",
+      "My role": "Built the modular student platform, responsive frontend, Firebase Authentication and user-specific Firestore persistence.",
+      "What I built": "Connected academic, career, planning, community, dashboard, profile and settings workflows; authentication, persistent student state and progress tracking. The source also includes personalization and Study Assistant integration.",
+      "Engineering decisions": "Use shared task/profile data across modules; derive progress from completed tasks and evaluated submissions; use assessed events for mastery; retain cloud persistence across sessions. The shared data service and personalization engine implement these decisions.",
+      "Engineering challenges": "The data service normalizes task status across legacy task representations and dispatches update events across modules. Its persistence code explicitly retains evaluation and reward flags so state survives synchronization.",
+      Result: "A working student platform connecting study resources, planning, recommendations, community and progress. The captures show the live product on 29 October 2026.",
     },
   },
   insighthub: {
@@ -75,38 +74,12 @@ window.portfolioProjects = {
   },
 };
 window.portfolioHighlights = [
-  [
-    "Personalized Recommendations",
-    "Learning context, goals and activity inform academic and career actions.",
-  ],
-  [
-    "Complete Student Ecosystem",
-    "A connected workspace for academics, career exploration, planning and community.",
-  ],
-  [
-    "Academics & Career Guidance",
-    "Subject resources, career paths and skill roadmaps.",
-  ],
-  [
-    "Smart Planner & Evaluation",
-    "Study schedules, task planning and assessment workflows.",
-  ],
-  [
-    "Community",
-    "Student discussions and collaboration within the learning workspace.",
-  ],
-  [
-    "AI Study Assistant",
-    "Model-backed explanations, quizzes and study tools; requires its independent AI service.",
-  ],
-  [
-    "Progress Tracking",
-    "Goals and learning activity provide context for the next action.",
-  ],
-  [
-    "Modern Responsive Interface",
-    "A shared product experience for desktop and mobile.",
-  ],
-];
-
-for (const id of ["nexzo", "insighthub", "gamepro"]) { const p = window.portfolioProjects[id]; p.sections["My role"] = "Full-stack product engineering: interface, application behavior and integration of the bundled project systems."; p.sections["Engineering takeaways"] = id === "nexzo" ? "Shared learning context needs clear state ownership across planning, progress and recommendations." : id === "insighthub" ? "Protected publishing needs server-side authorization as well as a clear editorial interface." : "Independent game loops need consistent navigation and carefully scoped shared state."; }
+  { title: "Personalized Recommendations", description: "Academics displays a recommended next subject and its current mastery context, with an action to continue studying.", file: "recommendations.png", label: "ACADEMIC NEXT ACTION", page: "academics.html", alt: "Real NEXZO Academics recommended next action and current subjects" },
+  { title: "Complete Student Ecosystem", description: "The live Home view links Academics, Career, Planner, Community, Dashboard and Study Assistant in one workspace.", file: "home.png", label: "STUDENT WORKSPACE", page: "Home.html", alt: "Real NEXZO Home with navigation to the student modules" },
+  { title: "Academics & Career Guidance", description: "This Academics capture shows current subjects, curriculum navigation and subject continuation controls. Career is a separate module in the live workspace.", file: "academics.png", label: "ACADEMICS", page: "academics.html", alt: "Real NEXZO subject cards and academic navigation" },
+  { title: "Smart Planner & Evaluation", description: "The real task form provides subject, task type, level, duration and priority inputs alongside a suggestions panel. No task was submitted during capture.", file: "planner.png", label: "PLANNER", page: "planner.html", alt: "Actual NEXZO Planner task creation and suggestion controls" },
+  { title: "Community", description: "The Community composer supports categorized student posts and resource attachments. Private group details are excluded from this crop.", file: "community.png", label: "COMMUNITY", page: "community.html", alt: "Actual NEXZO Community post composer and category controls" },
+  { title: "AI Study Assistant", description: "The Study Assistant tool drawer exposes search, research, code, data and document controls. No conversation was created for this capture.", file: "assistant-tools.png", label: "STUDY ASSISTANT / TOOLS", page: "ai-assistant.html", alt: "Actual NEXZO Study Assistant tools drawer" },
+  { title: "Progress Tracking", description: "Dashboard displays Planner-synced completion, study sessions and evaluation-derived progress in the captured application state.", file: "progress.png", label: "DASHBOARD / PROGRESS", page: "dashboard.html", alt: "Real NEXZO Dashboard displaying captured Planner-derived progress" },
+  { title: "Modern Responsive Interface", description: "A real 430-pixel-wide Academics capture shows stacked navigation, subject controls and the recommended next action.", file: "mobile-academics.png", label: "MOBILE / ACADEMICS", page: "academics.html", alt: "Actual NEXZO Academics interface captured at mobile width" },
+].map(item => ({ ...item, src: "assets/nexzo-evidence/" + item.file, source: "https://personalized-recommendersystem.web.app/" + item.page }));

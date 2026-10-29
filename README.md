@@ -53,7 +53,13 @@ The app requires a **Node/Express web service**; static-only hosting cannot run 
 
 Before creating the Render service, create a **separate MongoDB Atlas database and database user** for this portfolio. Add the Render service's outbound IP addresses to the Atlas project's Network Access list. Add `MONGODB_URI` as a secret in the Render dashboard; never put its value in this repository, a commit, or chat. The Blueprint's `sync: false` declares the required secret without storing it in Git. Also ensure `backend/.env`, `.env`, private keys and credential files remain ignored; `git check-ignore` can verify local secret files before a commit.
 
-No Atlas database, Render service, production environment variable or domain has been created/configured yet. Do not select Firebase for this deployment. NEXZO's Firebase project and configuration are outside this portfolio deployment. Add the production canonical URL and absolute social-image URL after the Render URL is live. GitHub Pages cannot run the contact API.
+A separate Atlas project, restricted database user and Render service now exist. The assigned Render URL is `https://rudra-sharma-portfolio.onrender.com`; it is not yet a verified live demo. Deployment is blocked until the owner resets/saves the Atlas password and saves the actual connection string in Render's secret `MONGODB_URI`. Do not select Firebase for this deployment. NEXZO's Firebase project and configuration are outside this portfolio deployment. Add production canonical metadata after the URL is healthy and tested. GitHub Pages cannot run the contact API.
+
+## Authentic product evidence
+
+The eight NEXZO highlights use distinct captures of the actual deployed application, with source pages and capture bounds documented in [SOURCES.md](assets/nexzo-evidence/SOURCES.md). Screenshots are cropped only; the portfolio does not reconstruct application UI or populate demonstration metrics. The assistant capture shows real tool controls, not an invented conversation. The progress capture contains the application's existing state, not adoption claims. Each frame links to its full-resolution capture and live source page.
+
+The case study documents source-supported task state, personalization ranking, feedback and persistence. The architecture flow is a portfolio explanation, not an application screenshot. CodeCollab remains explicitly marked as an architecture concept in development. InsightHub and GamePro previews are actual bundled application captures with seeded/sample metrics excluded.
 
 ## Project boundaries
 

@@ -159,3 +159,19 @@ test("all portfolio local links and image sources exist", () => {
       id,
     );
 });
+
+test("NEXZO highlights use distinct traceable real evidence assets", () => {
+  const vm = require("node:vm");
+  const context = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../projects-data.js"), "utf8"), context);
+  const highlights = context.window.portfolioHighlights;
+  assert.equal(highlights.length, 8);
+  assert.equal(new Set(highlights.map(item => item.src)).size, 8);
+  for (const item of highlights) {
+    assert.ok(item.src.startsWith("assets/nexzo-evidence/"));
+    assert.ok(fs.existsSync(path.join(__dirname, "..", item.src)));
+    assert.ok(item.source.startsWith("https://personalized-recommendersystem.web.app/"));
+    assert.ok(!/login|V170/.test(item.src + item.description));
+  }
+  assert.equal(context.window.portfolioProjects.nexzo.url, "https://personalized-recommendersystem.web.app/");
+});

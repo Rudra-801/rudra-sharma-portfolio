@@ -2,7 +2,7 @@ const http=require('http'),fs=require('fs'),path=require('path'),url=require('ur
 const ROOT=path.resolve(__dirname,'..'),DATA=path.join(__dirname,'data','store.json'),PORT=process.env.PORT||5500;
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.txt':'text/plain'};
 const projects=[
- {id:'nexzo',name:'NEXZO V170',stack:['Firebase','Firestore','Node.js','Express','AI'],type:'flagship'},
+ {id:'nexzo',name:'NEXZO',stack:['Firebase','Firestore','Node.js','Express','AI'],type:'flagship'},
  {id:'insighthub',name:'InsightHub',stack:['Node.js','Express','MongoDB'],type:'fullstack'},
  {id:'pulsechat',name:'PulseChat',stack:['Socket.io','Node.js','Express'],type:'fullstack'},
  {id:'cartforge',name:'CartForge',stack:['Node.js','Express','Catalog API'],type:'fullstack'},
