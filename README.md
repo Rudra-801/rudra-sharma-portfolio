@@ -38,8 +38,8 @@ Production refuses local contact storage. Cloud credentials must be stored outsi
 - `index.html`, `style.css`: semantic layout, responsive design, reduced-motion styles and portrait composition.
 - `script.js`: navigation, scroll choreography, highlight selection, dialogs and contact states.
 - `projects-data.js`: centralized, source-grounded case-study and feature content.
-- `assets/rudra-portrait.png`: transparent cutout from Rudra's supplied photo. Original face, clothing and pose were requested preserved; background extraction used the built-in image tool.
-- `assets/portrait-config.json`: portrait asset path and accessible description.
+- `assets/portraits/`: untouched uploaded original, person alpha-mask PNG and lossless WebP derivatives. Desktop uses an enlarged editorial crop of the real walking pose; mobile uses an upper-body crop of the same photograph. See `assets/portraits/SOURCE.md` for provenance.
+- `assets/portrait-config.json`: source/crop provenance, dimensions and accessible description. The hero uses a static `<picture>` so browsers choose the appropriate asset immediately.
 - `backend/server.js`: current Express entry point; validated contact API, safe public file serving and preserved demo API routes.
 - `backend/contact-store.js`: isolated local/Firebase/MongoDB adapters.
 - `backend/mongodb-server.js`: preserved original MongoDB server.
@@ -69,6 +69,6 @@ Opening a bundled project is separate from visiting the portfolio. NEXZO cloud/A
 
 CSS perspective provides spatial depth without a WebGL bundle or permanent render loop. Scroll work is requestAnimationFrame-throttled and only updates visible stages. Small screens flatten the product surface. Reduced-motion removes entrance transforms and smooth scrolling. Native selection, keyboard shortcuts, context menus and browser scrolling remain intact. Scrollbars are hidden with standard and vendor rules. Native dialog behavior provides focus trapping and Escape dismissal.
 
-## Portrait edit provenance
+## Real photograph provenance
 
-Built-in image generation/edit tool, background extraction prompt: Remove only the outdoor background to alpha transparency; preserve the supplied person's face, hair, expression, skin, beard, pose, proportions, clothing, shoes and watch; no new person or text; clean natural hair edges. Output copied to `assets/rudra-portrait.png` (about 750 KB).
+The current photograph is the user's uploaded `download(1).png` attachment, preserved byte-for-byte at `assets/portraits/rudra-original.png`. Background isolation uses a non-generative human segmentation mask; original RGB values are retained. No face, pose, hairstyle, proportions or clothing is generated or replaced. Production WebP assets use lossless encoding. A smaller mobile crop is selected with `<picture>` and responsive sources. The obsolete image-tool portrait and social preview depicting it were replaced.

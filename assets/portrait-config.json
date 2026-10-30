@@ -1,4 +1,16 @@
 {
-  "src": "assets/rudra-portrait.png",
-  "alt": "Rudra Sharma wearing his blazer and black shirt"
+  "src": "assets/portraits/rudra-full.png",
+  "alt": "Rudra Sharma",
+  "width": 379,
+  "height": 1029,
+  "mobileWidth": 379,
+  "mobileHeight": 576,
+  "crop": [
+    384,
+    282,
+    763,
+    1311
+  ],
+  "source": "assets/portraits/rudra-original.png",
+  "method": "Non-generative person segmentation; original RGB pixels with alpha mask only. Lossless WebP."
 }

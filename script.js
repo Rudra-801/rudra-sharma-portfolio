@@ -53,7 +53,7 @@ function updateScroll() {
     }
     if (scrollY < innerHeight) {
       const p = Math.min(scrollY / innerHeight, 1);
-      $(".architecture").style.transform = `rotateY(-23deg) rotateZ(13deg) translateY(${p * 48}px)`;
+      $(".architecture").style.transform = `translateY(${p * 24}px)`;
       $(".hero-copy").style.translate = `0 ${p * -18}px`;
       const portrait = $(".portrait-layer");
       if (portrait) portrait.style.translate = `0 ${p * 12}px`;
@@ -329,18 +329,3 @@ $("#contactForm").addEventListener("submit", async (e) => {
     button.innerHTML = "Send Message <span>↗</span>";
   }
 });
-fetch("assets/portrait-config.json")
-  .then((r) => r.json())
-  .then(({ src, alt }) => {
-    if (!src || !/^assets\/[\w./-]+\.(png|webp|avif)$/i.test(src)) return;
-    const img = new Image();
-    img.alt = alt || "Rudra Sharma";
-    img.onload = () => {
-      const layer = document.createElement("div");
-      layer.className = "portrait-layer";
-      layer.append(img);
-      $(".hero").append(layer);
-    };
-    img.src = src;
-  })
-  .catch(() => {});

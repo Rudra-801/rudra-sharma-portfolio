@@ -406,33 +406,6 @@ em {
 .architecture > i:nth-child(3) {
   left: 85%;
 }
-.monolith {
-  position: absolute;
-  left: 12%;
-  top: 27%;
-  height: 53%;
-  width: 70%;
-  border: 1px solid #c6a77935;
-  background: linear-gradient(135deg, #1a1d1b, #090b0a 65%);
-  box-shadow: 25px 35px 70px #0008;
-  transform: translateZ(65px);
-  font-size: clamp(120px, 17vw, 280px);
-  font-weight: 700;
-  letter-spacing: -20px;
-  color: #b2a18516;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.monolith span {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 7px;
-  letter-spacing: 3px;
-  color: #bba38399;
-  font-weight: 400;
-}
 .hero-baseline {
   position: absolute;
   bottom: 32px;
@@ -1213,7 +1186,6 @@ dialog::backdrop {
   inset: 10% 24% 0 28%;
   z-index: 0;
   pointer-events: none;
-  filter: drop-shadow(0 20px 30px #0008);
   transition: translate .8s var(--ease), opacity .8s var(--ease);
   animation: portrait-arrive .9s var(--ease) .3s both;
 }
@@ -1223,8 +1195,7 @@ dialog::backdrop {
   width: 100%;
   object-fit: contain;
   object-position: center bottom;
-  mask-image: linear-gradient(#000 85%, transparent);
-  filter: drop-shadow(0 0 1px #cfb18a20);
+  display: block;
 }
 @media (min-width: 1600px) {
   .hero {
@@ -1403,9 +1374,6 @@ dialog::backdrop {
   .architecture {
     left: 46%;
     width: 55%;
-  }
-  .monolith {
-    font-size: 200px;
   }
   .hero-baseline {
     left: 24px;
@@ -1604,10 +1572,6 @@ dialog::backdrop {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .portrait-layer {
-    inset: 10% -15% 25% 40%;
-    opacity: 0.5;
-  }
 }
 @media (max-width: 400px) {
   .hero {
@@ -1701,7 +1665,30 @@ dialog::backdrop {
     transform: none;
   }
 }
-/* Portrait composition: original identity, isolated from supplied photograph. */
+/* Original photograph pixels with an alpha mask; no generated person or face. */
+.portrait-layer picture { display: block; position: relative; width: 100%; height: 100%; z-index: 1; }
+.portrait-layer::after {
+  content: "";
+  position: absolute;
+  bottom: -44px;
+  left: 22%;
+  right: 20%;
+  height: 95px;
+  z-index: 0;
+  background: radial-gradient(ellipse, #050606b0 0%, #05060640 40%, transparent 72%);
+}
+.hero-space .architecture {
+  transform: none;
+  left: 38%;
+  width: 34%;
+  top: 0;
+  height: 100%;
+  border: 0;
+  background: radial-gradient(ellipse at 50% 36%, #b4976920, #38352b0c 45%, transparent 70%);
+}
+.hero-space .architecture > i { width: 1px; background: linear-gradient(transparent 5%, #bba38330 38%, transparent 92%); box-shadow: none; transform: rotate(12deg); }
+.hero-space .architecture > i:nth-child(2) { left: 75%; opacity: .45; transform: rotate(12deg); }
+.hero-space .architecture > i:nth-child(3) { display: none; }
 @media (min-width: 801px) {
   .hero {
     height: 680px;
@@ -1709,24 +1696,16 @@ dialog::backdrop {
     padding-top: 125px;
   }
   .portrait-layer {
-    inset: 75px 26% 0 31%;
-    overflow: hidden;
+    inset: 105px 27% 38px 29%;
     opacity: 1;
   }
   .portrait-layer img {
-    height: 1060px;
-    max-width: none;
-    width: 795px;
+    height: 138%;
+    width: 100%;
     object-fit: contain;
     object-position: center top;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    filter: saturate(0.7) brightness(0.84);
-    mask-image: linear-gradient(#000 42%, transparent 65%);
-  }
-  .hero-space .monolith {
-    opacity: 0.35;
+    filter: drop-shadow(12px 15px 15px #0008);
+    mask-image: linear-gradient(#000 62%, #000e 70%, transparent 89%);
   }
   .hero-note {
     margin-left: 25px;
@@ -1746,11 +1725,7 @@ dialog::backdrop {
     height: 780px;
   }
   .portrait-layer {
-    top: 85px;
-  }
-  .portrait-layer img {
-    height: 1250px;
-    width: 937px;
+    top: 100px;
   }
 }
 @media (max-width: 800px) {
@@ -1768,24 +1743,20 @@ dialog::backdrop {
     inset: auto;
     order: 1;
     width: 100%;
-    height: 360px;
+    height: 460px;
     opacity: 1;
     overflow: hidden;
-    margin-top: -10px;
-    margin-bottom: -30px;
+    margin-top: 14px;
+    margin-bottom: 0;
   }
+  .portrait-layer::after { display: none; }
   .portrait-layer img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 530px;
-    max-width: none;
-    height: 707px;
+    width: 100%;
+    height: 770px;
     object-fit: contain;
     object-position: center top;
-    transform: translateX(-50%);
-    filter: saturate(0.75) brightness(0.88);
-    mask-image: linear-gradient(#000 33%, transparent 53%);
+    filter: drop-shadow(8px 10px 12px #0008);
+    mask-image: linear-gradient(#000 55%, transparent 65%);
   }
   .hero-note {
     order: 2;
@@ -1807,6 +1778,16 @@ dialog::backdrop {
   .hero-baseline {
     bottom: 22px;
   }
+}
+@media (max-width: 600px) {
+  .portrait-layer { height: 410px; margin-top: 20px; }
+  .portrait-layer picture { max-width: 310px; margin-inline: auto; }
+  .portrait-layer img { height: 100%; object-fit: contain; mask-image: linear-gradient(#000 90%, transparent); }
+  .portrait-layer::after { display: none; }
+}
+@media (max-width: 400px) {
+  .portrait-layer { height: 380px; }
+  .portrait-layer picture { max-width: 280px; }
 }
 
 @media (max-width: 800px) {

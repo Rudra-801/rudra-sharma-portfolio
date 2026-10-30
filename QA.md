@@ -19,6 +19,14 @@
 
 The separate Atlas/Render setup is prepared. Actual MONGODB_URI entry in Render remains an owner action. Public website, database connectivity, production contact write and production responsive/console QA are not yet verified. No successful deployment is claimed.
 
+## Real portrait integration — 30 October 2026
+
+- Replaced the obsolete image-tool portrait with the exact newly uploaded photograph; its untouched original and SHA-256 are preserved in `assets/portraits/SOURCE.md`.
+- Verified original RGB preservation and visible-pixel equality through full-size lossless WebP encoding. Only the alpha mask, crop and proportional mobile resizing change.
+- Desktop portrait is 38% larger than the preceding full-body composition, with lower legs cropped. The giant RS/background frames were removed; two fine lines, restrained warm light and a soft shadow remain.
+- Visually compared local browser layouts at 1920×1080, 1440×900, 1366×768, 768×1024, 430×932 and 390×844. No horizontal overflow; face/navigation clearance and name readability checked. Mobile selects the smaller upper-body WebP rather than the 3.4 MB original.
+- Local browser warning/error log: empty. Node syntax and all six existing tests passed. Public production verification is still pending the deployment credential handoff described above.
+
 ## Authenticity pass
 
 - Eight real NEXZO application captures and their source/crop provenance are in `assets/nexzo-evidence/SOURCES.md`.
